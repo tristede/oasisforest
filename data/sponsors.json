@@ -2,30 +2,30 @@
   "sponsors": [
     {
       "nom": "Sponsor Maillot",
-      "logo": "",
-      "url": "",
-      "principal": true
+      "logo": "/img/logo uof.svg",
+      "url": "google.fr",
+      "principal": false
     },
     {
-      "nom": "Partenaire B",
+      "nom": "SPONSOR",
       "logo": "",
       "url": "",
       "principal": false
     },
     {
-      "nom": "Entreprise C",
+      "nom": "SPONSOR",
       "logo": "",
       "url": "",
       "principal": false
     },
     {
-      "nom": "Sponsor D",
+      "nom": "SPONSOR",
       "logo": "",
       "url": "",
       "principal": false
     },
     {
-      "nom": "Marque E",
+      "nom": "SPONSOR",
       "logo": "",
       "url": "",
       "principal": false
