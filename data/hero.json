@@ -13,6 +13,12 @@
         "/img/IMG_8323.webp",
         "/img/IMG_8135.webp"
       ]
+    },
+    {
+      "legende": "test",
+      "images": [
+        "/img/IMG_2208.png"
+      ]
     }
   ]
 }
