@@ -186,7 +186,7 @@
     </nav>
 
     <!-- Bouton Menu Mobile Flottant (Visible uniquement sur mobile) -->
-    <button id="mobile-menu-btn" aria-label="Ouvrir le menu de navigation" class="md:hidden fixed bottom-6 left-6 bg-night text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-[0_0_20px_rgba(56,189,248,0.2)] border border-white/10 z-[70] transition-transform active:scale-90">
+    <button id="mobile-menu-btn" aria-label="Ouvrir le menu de navigation" class="md:hidden fixed top-16 right-4 bg-night text-white w-12 h-12 rounded-full flex items-center justify-center text-xl shadow-[0_0_20px_rgba(56,189,248,0.4)] border border-white/10 z-[70] transition-transform active:scale-90">
         <i class="fas fa-bars"></i>
     </button>
 
@@ -361,6 +361,26 @@
         </div>
     </section>
 
+    <!-- Agenda RBFA Officiel -->
+    <section id="agenda" class="py-20 relative z-10">
+        <div class="max-w-5xl mx-auto px-4 reveal">
+            <div class="glass-panel p-8 md:p-16 rounded-[2.5rem] border border-white/10 text-center relative overflow-hidden group hover-tilt" data-tilt-max="3">
+                <div class="absolute inset-0 bg-gradient-to-r from-accent/0 via-accent/5 to-accent/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                <div class="w-20 h-20 mx-auto bg-white/5 rounded-full flex items-center justify-center mb-8 border border-white/10">
+                    <i class="far fa-calendar-check text-4xl text-accent"></i>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-black text-white mb-6">Classements Officiels</h2>
+                <p class="text-lg text-slate-300 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                    Pour suivre le classement en direct de la D2 et des divisions de nos jeunes, consultez la plateforme officielle de l'Union Belge (RBFA).
+                </p>
+                <!-- Lien ciblé vers la page club -->
+                <a href="https://www.rbfa.be/fr/club/9955/equipes" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-10 py-5 text-sm font-bold text-night tracking-widest uppercase bg-accent rounded-full hover:bg-white hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] transition-all duration-300">
+                    Aller sur RBFA <i class="fas fa-arrow-right ml-3"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Historique & Valeurs (Timeline + Polaroids) -->
     <section id="club" class="py-20 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -482,26 +502,6 @@
                     <h4 class="text-white font-bold text-lg mb-3">Le Rayonnement</h4>
                     <p class="text-slate-400 text-sm leading-relaxed">Développer notre présence sur les réseaux sociaux (objectif +40% d'impressions) pour engager notre communauté.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Agenda RBFA Officiel -->
-    <section id="agenda" class="py-20 relative z-10">
-        <div class="max-w-5xl mx-auto px-4 reveal">
-            <div class="glass-panel p-8 md:p-16 rounded-[2.5rem] border border-white/10 text-center relative overflow-hidden group hover-tilt" data-tilt-max="3">
-                <div class="absolute inset-0 bg-gradient-to-r from-accent/0 via-accent/5 to-accent/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-                <div class="w-20 h-20 mx-auto bg-white/5 rounded-full flex items-center justify-center mb-8 border border-white/10">
-                    <i class="far fa-calendar-check text-4xl text-accent"></i>
-                </div>
-                <h2 class="text-3xl md:text-5xl font-black text-white mb-6">Classements Officiels</h2>
-                <p class="text-lg text-slate-300 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
-                    Pour suivre le classement en direct de la D2 et des divisions de nos jeunes, consultez la plateforme officielle de l'Union Belge (RBFA).
-                </p>
-                <!-- Lien ciblé vers la page club -->
-                <a href="https://www.rbfa.be/fr/club/9955/equipes" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-10 py-5 text-sm font-bold text-night tracking-widest uppercase bg-accent rounded-full hover:bg-white hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] transition-all duration-300">
-                    Aller sur RBFA <i class="fas fa-arrow-right ml-3"></i>
-                </a>
             </div>
         </div>
     </section>
