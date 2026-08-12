@@ -3,30 +3,24 @@
     {
       "nom": "SPONSOR",
       "logo": "/img/logo uof.svg",
-      "url": "google.fr",
-      "principal": false
-    },
-    {
-      "nom": "SPONSOR",
-      "logo": "",
       "url": "",
       "principal": false
     },
     {
       "nom": "SPONSOR",
-      "logo": "",
+      "logo": "/img/logo uof.svg",
       "url": "",
       "principal": false
     },
     {
       "nom": "SPONSOR",
-      "logo": "",
+      "logo": "/img/logo uof.svg",
       "url": "",
       "principal": false
     },
     {
       "nom": "SPONSOR",
-      "logo": "",
+      "logo": "/img/logo uof.svg",
       "url": "",
       "principal": false
     }
