@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Union Oasis Forest - L'excellence du futsal bruxellois. De notre équipe première en Division 2 Nationale jusqu'à notre académie de jeunes OA Next Gen.">
-    <title>Union Oasis Forest | Futsal D2</title>
+    <title>Union Oasis Forest</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
@@ -160,8 +160,8 @@
         <div class="blob-3 animate-blob"></div>
     </div>
 
-    <!-- Glass Navbar (Fixed, h-24 = 96px) -->
-    <nav class="fixed top-0 w-full z-50 glass-panel border-b-0 border-white/5 transition-all duration-300 h-24">
+    <!-- Glass Navbar (Fixed, Desktop Only) -->
+    <nav class="hidden md:block fixed top-0 w-full z-50 glass-panel border-b-0 border-white/5 transition-all duration-300 h-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
             <div class="flex justify-between items-center h-full">
                 
@@ -170,41 +170,41 @@
                     <div id="logo-header-container" class="w-12 h-12 flex items-center justify-center">
                         <!-- INSÉRER LA BALISE <svg> OU <img> ICI -->
                     </div>
-                    <span class="font-black text-white text-xl hidden sm:block tracking-[0.2em] uppercase">Oasis Forest</span>
+                    <span class="font-black text-white text-xl tracking-[0.2em] uppercase"></span>
                 </div>
                 
-                <div class="hidden md:flex items-center space-x-8">
+                <div class="flex items-center space-x-8">
                     <a href="#entites" class="text-slate-300 hover:text-accent transition-colors font-medium text-sm uppercase tracking-widest">Équipes</a>
                     <a href="#club" class="text-slate-300 hover:text-accent transition-colors font-medium text-sm uppercase tracking-widest">Histoire</a>
-                    <a href="#agenda" class="text-slate-300 hover:text-accent transition-colors font-medium text-sm uppercase tracking-widest">Agenda</a>
                     <a href="#" onclick="openGallery(event)" class="text-slate-300 hover:text-accent transition-colors font-medium text-sm uppercase tracking-widest">Photos</a>
+                    <a href="#partenaires" class="text-slate-300 hover:text-accent transition-colors font-medium text-sm uppercase tracking-widest">Sponsors</a>
+                    <a href="#contact" class="text-slate-300 hover:text-accent transition-colors font-medium text-sm uppercase tracking-widest">Maps</a>
                     <a href="#contact" class="glass-panel text-accent border border-accent/30 px-6 py-2.5 rounded-full font-bold hover:bg-accent hover:text-night hover:shadow-[0_0_20px_rgba(56,189,248,0.4)] transition-all duration-300 uppercase tracking-wider text-xs">Nous rejoindre</a>
                 </div>
-
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" aria-label="Ouvrir le menu de navigation" class="text-white focus:outline-none p-2">
-                        <i class="fas fa-bars text-2xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Menu Mobile avec transition fluide -->
-        <div id="mobile-menu" class="absolute w-full glass-panel border-t border-white/5 opacity-0 invisible -translate-y-2 transition-all duration-300 md:hidden bg-night/95">
-            <div class="px-4 pt-2 pb-6 space-y-2">
-                <a href="#entites" class="mobile-link block px-3 py-4 text-white font-medium hover:bg-white/5 rounded-xl uppercase tracking-wider text-sm">Nos Équipes</a>
-                <a href="#club" class="mobile-link block px-3 py-4 text-white font-medium hover:bg-white/5 rounded-xl uppercase tracking-wider text-sm">Histoire</a>
-                <a href="#agenda" class="mobile-link block px-3 py-4 text-accent font-medium hover:bg-white/5 rounded-xl uppercase tracking-wider text-sm">Agenda RBFA</a>
-                <a href="#" onclick="openGallery(event)" class="mobile-link block px-3 py-4 text-white font-medium hover:bg-white/5 rounded-xl uppercase tracking-wider text-sm">Photos</a>
-                <a href="#partenaires" class="mobile-link block px-3 py-4 text-white font-medium hover:bg-white/5 rounded-xl uppercase tracking-wider text-sm">Sponsors</a>
-                <a href="#contact" class="mobile-link block px-3 py-4 text-white font-medium hover:bg-white/5 rounded-xl uppercase tracking-wider text-sm">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- Sponsors Marquee FIXE sous la navbar (top-24 = 96px) -->
+    <!-- Bouton Menu Mobile Flottant (Visible uniquement sur mobile) -->
+    <button id="mobile-menu-btn" aria-label="Ouvrir le menu de navigation" class="md:hidden fixed bottom-6 left-6 bg-night text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-[0_0_20px_rgba(56,189,248,0.2)] border border-white/10 z-[70] transition-transform active:scale-90">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Menu Mobile Plein Écran -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-night/95 backdrop-blur-xl opacity-0 invisible transition-all duration-300 md:hidden flex flex-col items-center justify-center">
+        <div class="flex flex-col items-center space-y-8 w-full px-6 text-center">
+            <a href="#entites" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Nos Équipes</a>
+            <a href="#club" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Histoire</a>
+            <a href="#agenda" class="mobile-link text-2xl text-accent font-black uppercase tracking-widest hover:text-white transition-colors">Agenda RBFA</a>
+            <a href="#" onclick="openGallery(event)" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Photos</a>
+            <a href="#partenaires" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Sponsors</a>
+            <a href="#contact" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Maps & Contact</a>
+        </div>
+    </div>
+
+    <!-- Sponsors Marquee FIXE sous la navbar sur Desktop, au sommet sur Mobile -->
     <!-- Nouveau système anti-superposition (Flex + min-w-full) -->
-    <div id="sponsors-marquee" class="fixed top-24 w-full z-40 bg-black/60 backdrop-blur-md border-b border-white/10 py-2.5 shadow-lg flex overflow-hidden">
+    <div id="sponsors-marquee" class="fixed top-0 md:top-24 w-full z-40 bg-black/60 backdrop-blur-md border-b border-white/10 py-2.5 shadow-lg flex overflow-hidden">
         
         <div class="flex animate-marquee min-w-full shrink-0 items-center justify-around gap-12 px-6">
             <div class="flex items-center gap-2">
@@ -230,8 +230,8 @@
         </div>
     </div>
 
-    <!-- Hero Section (padding top ajusté pour compenser navbar + marquee fixes) -->
-    <header id="home" class="pt-48 pb-20 md:pt-56 md:pb-32 flex items-center min-h-screen relative overflow-hidden">
+    <!-- Hero Section (padding top ajusté) -->
+    <header id="home" class="pt-28 pb-20 md:pt-56 md:pb-32 flex items-center min-h-screen relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col items-center">
             
             <div class="text-center reveal relative z-20">
@@ -417,7 +417,7 @@
                 <!-- 2026 : Nationale 2 & OA Next Gen -->
                 <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse mb-12 reveal">
                     <div class="flex items-center justify-center w-16 h-16 rounded-full bg-accent border-2 border-white shadow-[0_0_20px_rgba(56,189,248,0.8)] absolute left-0 md:left-1/2 md:-translate-x-1/2 z-10">
-                        <span class="text-night font-black text-sm">2026</span>
+                        <span class="text-white font-black text-sm">2026</span>
                     </div>
                     <div class="w-full pl-24 md:pl-0 md:w-[45%] md:px-12 text-left">
                         <div class="glass-panel border-accent/30 p-6 rounded-2xl shadow-[0_0_20px_rgba(56,189,248,0.1)]">
@@ -545,96 +545,22 @@
 
     <!-- Section Sponsoring / B2B -->
     <section id="partenaires" class="py-20 relative z-10 border-t border-white/5 bg-night/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 reveal">
-                <p class="text-accent text-sm font-bold tracking-[0.2em] uppercase mb-4">Sponsoring</p>
-                <h2 class="text-3xl md:text-5xl font-black text-white mb-6">Devenez Partenaire</h2>
-                <p class="text-slate-300 max-w-2xl mx-auto font-light leading-relaxed">
-                    Associez l'image de votre entreprise à un projet sportif et social ambitieux. Découvrez nos 3 niveaux d'engagement et contactez-nous pour recevoir le dossier de sponsoring complet.
-                </p>
-            </div>
-
-            <div class="grid lg:grid-cols-3 gap-6 lg:gap-8 reveal">
-                <!-- Partenaire Local -->
-                <div class="glass-panel p-8 rounded-3xl border-white/5 flex flex-col relative group hover:border-slate-400/30 transition-colors">
-                    <h3 class="text-2xl font-black text-white mb-2">Partenaire Local</h3>
-                    <p class="text-slate-400 text-sm mb-6 h-10">Participez à notre projet sportif et social à votre échelle.</p>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel p-8 md:p-12 rounded-[2.5rem] border border-white/10 text-center relative overflow-hidden group hover-tilt" data-tilt-max="3">
+                <div class="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-blue-600/10 opacity-50"></div>
+                
+                <div class="relative z-10">
+                    <p class="text-accent text-sm font-bold tracking-[0.2em] uppercase mb-4">Sponsoring</p>
+                    <h2 class="text-3xl md:text-5xl font-black text-white mb-6">Devenez Partenaire</h2>
+                    <p class="text-slate-300 text-lg mx-auto font-light leading-relaxed mb-10">
+                        Associez l'image de votre entreprise à un projet sportif et social ambitieux. Soutenez la jeunesse bruxelloise et gagnez en visibilité au cœur de la capitale.
+                    </p>
                     
-                    <ul class="space-y-4 mb-8 flex-1">
-                        <li class="flex items-start text-sm text-slate-300">
-                            <i class="fas fa-check text-accent mt-1 mr-3"></i> Panneau publicitaire standard
-                        </li>
-                        <li class="flex items-start text-sm text-slate-300">
-                            <i class="fas fa-check text-accent mt-1 mr-3"></i> 1 Post collectif de bienvenue sur nos réseaux
-                        </li>
-                        <li class="flex items-start text-sm text-slate-300">
-                            <i class="fas fa-check text-accent mt-1 mr-3"></i> Invitations aux événements du club
-                        </li>
-                        <li class="flex items-start text-sm text-slate-300">
-                            <i class="fas fa-check text-accent mt-1 mr-3"></i> Soutien local et visibilité ciblée
-                        </li>
-                    </ul>
-                    
-                    <a href="https://wa.me/32477022021?text=Bonjour,%20je%20souhaite%20recevoir%20le%20dossier%20de%20sponsoring%20pour%20l'offre%20Partenaire%20Local." target="_blank" rel="noopener noreferrer" class="w-full block text-center glass-panel bg-white/5 hover:bg-white/10 text-white font-bold py-4 rounded-xl transition-colors text-sm uppercase tracking-wider">
-                        Demander le dossier
-                    </a>
-                </div>
-
-                <!-- Partenaire Génération -->
-                <div class="glass-panel p-8 rounded-3xl border-accent/40 bg-accent/5 flex flex-col relative group transform lg:-translate-y-4 shadow-[0_0_30px_rgba(56,189,248,0.1)]">
-                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-night font-black text-xs uppercase tracking-widest py-1.5 px-4 rounded-full shadow-lg">
-                        Impact Direct
-                    </div>
-                    <h3 class="text-2xl font-black text-white mb-2 mt-2">Partenaire Génération</h3>
-                    <p class="text-slate-400 text-sm mb-6 h-10">Partenariat avec nos équipes de jeunes, pour un impact local fort !</p>
-                    
-                    <ul class="space-y-4 mb-8 flex-1">
-                        <li class="flex items-start text-sm text-slate-300">
-                            <i class="fas fa-check text-accent mt-1 mr-3"></i> <span class="font-bold text-white">Tenues complètes</span> de l'Académie (U3 à U17)
-                        </li>
-                        <li class="flex items-start text-sm text-slate-300">
-                            <i class="fas fa-check text-accent mt-1 mr-3"></i> 1 Post dédié exclusif sur les réseaux sociaux
-                        </li>
-                        <li class="flex items-start text-sm text-slate-300">
-                            <i class="fas fa-check text-accent mt-1 mr-3"></i> Encart Newsletter + WhatsApp
-                        </li>
-                        <li class="flex items-start text-sm text-slate-300">
-                            <i class="fas fa-check text-accent mt-1 mr-3"></i> Partenaire privilégié du club
-                        </li>
-                    </ul>
-                    
-                    <a href="https://wa.me/32477022021?text=Bonjour,%20je%20souhaite%20recevoir%20le%20dossier%20de%20sponsoring%20pour%20l'offre%20Partenaire%20G%C3%A9n%C3%A9ration." target="_blank" rel="noopener noreferrer" class="w-full block text-center bg-accent hover:bg-accentDark text-night font-black py-4 rounded-xl transition-colors shadow-[0_0_20px_rgba(56,189,248,0.4)] text-sm uppercase tracking-wider">
-                        Demander le dossier
-                    </a>
-                </div>
-
-                <!-- Partenaire Principal -->
-                <div class="glass-panel p-8 rounded-3xl border-white/5 flex flex-col relative group hover:border-yellow-500/30 transition-colors">
-                    <h3 class="text-2xl font-black text-white mb-2">Partenaire Principal</h3>
-                    <p class="text-slate-400 text-sm mb-6 h-10">Omniprésence physique et digitale au cœur du club.</p>
-                    
-                    <ul class="space-y-4 mb-8 flex-1">
-                        <li class="flex items-start text-sm text-slate-300">
-                            <i class="fas fa-crown text-yellow-500 mt-1 mr-3"></i> Flocage principal face avant sur les <span class="font-bold text-white ml-1">Maillots D2 & U21</span>
-                        </li>
-                        <li class="flex items-start text-sm text-slate-300">
-                            <i class="fas fa-crown text-yellow-500 mt-1 mr-3"></i> Bâches premium grand format + Drapeaux
-                        </li>
-                        <li class="flex items-start text-sm text-slate-300">
-                            <i class="fas fa-crown text-yellow-500 mt-1 mr-3"></i> Omniprésence (visuels de match, vidéos)
-                        </li>
-                        <li class="flex items-start text-sm text-slate-300">
-                            <i class="fas fa-crown text-yellow-500 mt-1 mr-3"></i> Image de partenaire majeur du sport local
-                        </li>
-                    </ul>
-                    
-                    <a href="https://wa.me/32477022021?text=Bonjour,%20je%20souhaite%20recevoir%20le%20dossier%20de%20sponsoring%20pour%20l'offre%20Partenaire%20Principal." target="_blank" rel="noopener noreferrer" class="w-full block text-center glass-panel bg-white/5 hover:bg-white/10 text-white font-bold py-4 rounded-xl transition-colors text-sm uppercase tracking-wider border border-yellow-500/20 hover:border-yellow-500/50">
-                        Demander le dossier
+                    <a href="https://wa.me/32477022021?text=Bonjour,%20je%20souhaite%20recevoir%20le%20dossier%20de%20sponsoring%20du%20club." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-gradient-to-r from-accent to-blue-600 text-white font-bold px-10 py-5 rounded-full hover:shadow-[0_0_30px_rgba(56,189,248,0.5)] transition-all transform hover:-translate-y-1 tracking-wider uppercase text-sm">
+                        <i class="fab fa-whatsapp text-xl mr-3"></i> Demander le dossier complet
                     </a>
                 </div>
             </div>
-            
-            <p class="text-center text-slate-500 text-xs mt-8">Les frais techniques liés à la production matérielle de vos supports sont facturés à prix coûtant lors de la première année d'installation.</p>
         </div>
     </section>
 
@@ -681,11 +607,17 @@
                     </div>
                 </div>
 
-                <a href="https://maps.google.com/?q=Bd+de+la+Deuxième+Armée+Britannique+600,+1190+Forest" target="_blank" rel="noopener noreferrer" class="block h-[500px] lg:h-auto rounded-3xl overflow-hidden glass-panel p-2 reveal relative group">
-                    <div class="absolute inset-0 z-10 bg-night/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl backdrop-blur-sm">
-                        <span class="bg-accent text-night font-bold px-6 py-3 rounded-full flex items-center gap-2">
-                            <i class="fas fa-external-link-alt"></i> Ouvrir dans Maps
-                        </span>
+                <div class="block h-[500px] lg:h-auto rounded-3xl overflow-hidden glass-panel p-2 reveal relative group">
+                    <div class="absolute inset-0 z-10 bg-night/80 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl backdrop-blur-md gap-4">
+                        <h4 class="text-white font-bold mb-2 tracking-widest uppercase text-sm">Ouvrir avec :</h4>
+                        
+                        <a href="https://maps.google.com/?q=Bd+de+la+Deuxième+Armée+Britannique+600,+1190+Forest" target="_blank" rel="noopener noreferrer" class="bg-white text-night font-bold px-8 py-3 rounded-full flex items-center gap-3 hover:scale-105 transition-transform w-64 justify-center shadow-lg">
+                            <i class="fab fa-google text-blue-500 text-lg"></i> Google Maps
+                        </a>
+                        
+                        <a href="https://www.waze.com/ul?q=Bd%20de%20la%20Deuxi%C3%A8me%20Arm%C3%A9e%20Britannique%20600,%201190%20Forest&navigate=yes" target="_blank" rel="noopener noreferrer" class="bg-[#33ccff] text-night font-bold px-8 py-3 rounded-full flex items-center gap-3 hover:scale-105 transition-transform w-64 justify-center shadow-lg">
+                            <i class="fab fa-waze text-lg"></i> Waze
+                        </a>
                     </div>
                     <div class="w-full h-full rounded-2xl overflow-hidden bg-night/50 relative">
                         <iframe 
@@ -698,7 +630,7 @@
                             referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
-                </a>
+                </div>
             </div>
         </div>
     </section>
@@ -820,7 +752,8 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 <!-- Photo 1 -->
                 <div class="group relative aspect-square rounded-3xl overflow-hidden glass-panel border border-white/5">
-                    <img src="https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=800&q=80" alt="Match D2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <!-- 👇 IMPORTER PHOTO 1 ICI 👇 (Remplacez le lien dans src="") -->
+                    <img src="https://placehold.co/800x800/020617/38bdf8?text=IMPORTER+PHOTO+1" alt="Match D2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-night/90 via-night/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                         <div>
                             <span class="text-accent text-[10px] font-black uppercase tracking-widest block mb-1">D2 Nationale</span>
@@ -830,7 +763,8 @@
                 </div>
                 <!-- Photo 2 -->
                 <div class="group relative aspect-square rounded-3xl overflow-hidden glass-panel border border-white/5">
-                    <img src="https://images.unsplash.com/photo-1574629810360-7efbb1925713?auto=format&fit=crop&w=800&q=80" alt="Entraînement" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <!-- 👇 IMPORTER PHOTO 2 ICI 👇 (Remplacez le lien dans src="") -->
+                    <img src="https://placehold.co/800x800/020617/38bdf8?text=IMPORTER+PHOTO+2" alt="Entraînement" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-night/90 via-night/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                         <div>
                             <span class="text-accent text-[10px] font-black uppercase tracking-widest block mb-1">D2 Nationale</span>
@@ -840,7 +774,8 @@
                 </div>
                 <!-- Photo 3 -->
                 <div class="group relative aspect-square rounded-3xl overflow-hidden glass-panel border border-white/5">
-                    <img src="https://images.unsplash.com/photo-1516624683217-bf02fc6b6b7c?auto=format&fit=crop&w=800&q=80" alt="Académie" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <!-- 👇 IMPORTER PHOTO 3 ICI 👇 (Remplacez le lien dans src="") -->
+                    <img src="https://placehold.co/800x800/020617/38bdf8?text=IMPORTER+PHOTO+3" alt="Académie" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-night/90 via-night/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                         <div>
                             <span class="text-cyan-400 text-[10px] font-black uppercase tracking-widest block mb-1">OA Next Gen</span>
@@ -850,7 +785,8 @@
                 </div>
                 <!-- Photo 4 -->
                 <div class="group relative aspect-square rounded-3xl overflow-hidden glass-panel border border-white/5">
-                    <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=800&q=80" alt="Célébration" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <!-- 👇 IMPORTER PHOTO 4 ICI 👇 (Remplacez le lien dans src="") -->
+                    <img src="https://placehold.co/800x800/020617/38bdf8?text=IMPORTER+PHOTO+4" alt="Célébration" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-night/90 via-night/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                         <div>
                             <span class="text-white text-[10px] font-black uppercase tracking-widest block mb-1">Club</span>
@@ -860,7 +796,8 @@
                 </div>
                 <!-- Photo 5 -->
                 <div class="group relative aspect-square rounded-3xl overflow-hidden glass-panel border border-white/5">
-                    <img src="https://images.unsplash.com/photo-1431324155629-1a6d0a11f4d5?auto=format&fit=crop&w=800&q=80" alt="Ballon" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <!-- 👇 IMPORTER PHOTO 5 ICI 👇 (Remplacez le lien dans src="") -->
+                    <img src="https://placehold.co/800x800/020617/38bdf8?text=IMPORTER+PHOTO+5" alt="Ballon" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-night/90 via-night/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                         <div>
                             <span class="text-cyan-400 text-[10px] font-black uppercase tracking-widest block mb-1">OA Next Gen</span>
@@ -870,7 +807,8 @@
                 </div>
                 <!-- Photo 6 -->
                 <div class="group relative aspect-square rounded-3xl overflow-hidden glass-panel border border-white/5">
-                    <img src="https://images.unsplash.com/photo-1508344928928-7165b67de128?auto=format&fit=crop&w=800&q=80" alt="Coach" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <!-- 👇 IMPORTER PHOTO 6 ICI 👇 (Remplacez le lien dans src="") -->
+                    <img src="https://placehold.co/800x800/020617/38bdf8?text=IMPORTER+PHOTO+6" alt="Coach" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-night/90 via-night/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                         <div>
                             <span class="text-accent text-[10px] font-black uppercase tracking-widest block mb-1">U21</span>
@@ -1175,11 +1113,21 @@
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
         const links = document.querySelectorAll('.mobile-link');
+        const menuIcon = btn.querySelector('i');
         
         function toggleMenu() {
             menu.classList.toggle('opacity-0');
             menu.classList.toggle('invisible');
-            menu.classList.toggle('-translate-y-2');
+            
+            if (menu.classList.contains('opacity-0')) {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+                document.body.classList.remove('modal-open');
+            } else {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+                document.body.classList.add('modal-open');
+            }
         }
         btn.addEventListener('click', toggleMenu);
         links.forEach(link => link.addEventListener('click', () => {
