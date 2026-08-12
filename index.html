@@ -259,13 +259,13 @@
             <!-- Floating Hero Polaroids -->
             <div class="hidden lg:block absolute right-10 top-20 parallax-wrapper" data-speed="0.15">
                 <div class="polaroid hover-tilt rotate-6 w-64 opacity-80 hover:opacity-100 transition-opacity" data-tilt-max="15">
-                    <img src="https://images.unsplash.com/photo-1574629810360-7efbb1925713?auto=format&fit=crop&w=600&q=80" alt="Équipe sur le terrain" class="aspect-square grayscale hover:grayscale-0 transition-all duration-500">
+                    <img src="./D85A3835.webp" alt="Équipe sur le terrain" class="aspect-square grayscale hover:grayscale-0 transition-all duration-500 object-cover">
                     <p class="polaroid-caption font-handwriting">Passion & Futsal</p>
                 </div>
             </div>
             <div class="hidden lg:block absolute left-10 bottom-0 parallax-wrapper" data-speed="-0.1">
                 <div class="polaroid hover-tilt -rotate-6 w-56 opacity-60 hover:opacity-100 transition-opacity" data-tilt-max="15">
-                    <img src="https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=600&q=80" alt="Victoire" class="aspect-square grayscale hover:grayscale-0 transition-all duration-500">
+                    <img src="./IMG_8323.webp" alt="Victoire" class="aspect-square grayscale hover:grayscale-0 transition-all duration-500 object-cover">
                     <p class="polaroid-caption font-handwriting">L'Esprit d'Équipe</p>
                 </div>
             </div>
@@ -727,13 +727,24 @@
             </div>
         </div>
 
+        <!-- MODALE 3 : LIGHTBOX IMAGE EN GRAND -->
+        <div id="modal-lightbox" class="fixed inset-0 z-[110] flex items-center justify-center opacity-0 hidden transition-all duration-300">
+            <div class="absolute inset-0 bg-black/95 backdrop-blur-lg" id="lightbox-bg"></div>
+            <button id="btn-close-lightbox" class="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors z-[120]">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <div class="relative z-[115] max-w-[90vw] max-h-[90vh] flex items-center justify-center">
+                <img id="lightbox-img" src="" alt="Vue agrandie" class="max-w-full max-h-[90vh] object-contain rounded-xl shadow-[0_0_50px_rgba(0,0,0,0.8)] transform scale-95 transition-transform duration-300">
+            </div>
+        </div>
+
     </div>
 
     <!-- PAGE GALERIE (Overlay Plein Écran pour le mode One-Page) -->
     <div id="gallery-page" class="fixed inset-0 bg-night z-[100] hidden flex-col overflow-y-auto opacity-0 transition-opacity duration-300">
         
-        <!-- Navbar Galerie -->
-        <div class="sticky top-0 w-full z-10 bg-night/80 backdrop-blur-md border-b border-white/5 h-20 flex items-center justify-between px-4 sm:px-6 lg:px-8">
+        <!-- Navbar Galerie (Padding ajusté) -->
+        <div class="sticky top-0 w-full z-10 bg-night/80 backdrop-blur-md border-b border-white/5 h-24 flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
             <div class="flex items-center gap-4">
                 <button onclick="closeGallery()" class="w-10 h-10 rounded-full bg-white/5 hover:bg-white/20 text-white flex items-center justify-center transition-colors">
                     <i class="fas fa-arrow-left"></i>
@@ -747,72 +758,90 @@
             </div>
         </div>
 
-        <!-- Grille Photos -->
+        <!-- Grille Photos (Images cliquables) -->
         <div class="max-w-7xl mx-auto px-4 py-8 md:py-12 w-full flex-1">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 <!-- Photo 1 -->
-                <div class="group relative aspect-square rounded-3xl overflow-hidden glass-panel border border-white/5">
+                <div class="group relative aspect-square rounded-3xl overflow-hidden glass-panel border border-white/5 cursor-pointer" onclick="openLightbox('./D85A3835.webp')">
                     <!-- Mise à jour avec la première image -->
                     <img src="./D85A3835.webp" alt="Match D2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-night/90 via-night/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <div>
-                            <span class="text-accent text-[10px] font-black uppercase tracking-widest block mb-1">D2 Nationale</span>
-                            <span class="text-white font-bold tracking-wide">Action de match</span>
+                        <div class="flex justify-between items-end w-full">
+                            <div>
+                                <span class="text-accent text-[10px] font-black uppercase tracking-widest block mb-1">D2 Nationale</span>
+                                <span class="text-white font-bold tracking-wide">Action de match</span>
+                            </div>
+                            <i class="fas fa-expand text-white/50 text-xl"></i>
                         </div>
                     </div>
                 </div>
                 <!-- Photo 2 -->
-                <div class="group relative aspect-square rounded-3xl overflow-hidden glass-panel border border-white/5">
+                <div class="group relative aspect-square rounded-3xl overflow-hidden glass-panel border border-white/5 cursor-pointer" onclick="openLightbox('./IMG_8135.webp')">
                     <!-- Mise à jour avec la deuxième image -->
                     <img src="./IMG_8135.webp" alt="Entraînement" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-night/90 via-night/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <div>
-                            <span class="text-accent text-[10px] font-black uppercase tracking-widest block mb-1">Équipe</span>
-                            <span class="text-white font-bold tracking-wide">Moment de jeu</span>
+                        <div class="flex justify-between items-end w-full">
+                            <div>
+                                <span class="text-accent text-[10px] font-black uppercase tracking-widest block mb-1">Équipe</span>
+                                <span class="text-white font-bold tracking-wide">Moment de jeu</span>
+                            </div>
+                            <i class="fas fa-expand text-white/50 text-xl"></i>
                         </div>
                     </div>
                 </div>
                 <!-- Photo 3 -->
-                <div class="group relative aspect-square rounded-3xl overflow-hidden glass-panel border border-white/5">
+                <div class="group relative aspect-square rounded-3xl overflow-hidden glass-panel border border-white/5 cursor-pointer" onclick="openLightbox('./IMG_8323.webp')">
                     <!-- Mise à jour avec la troisième image -->
                     <img src="./IMG_8323.webp" alt="Académie" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-night/90 via-night/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <div>
-                            <span class="text-cyan-400 text-[10px] font-black uppercase tracking-widest block mb-1">Club</span>
-                            <span class="text-white font-bold tracking-wide">Intensité</span>
+                        <div class="flex justify-between items-end w-full">
+                            <div>
+                                <span class="text-cyan-400 text-[10px] font-black uppercase tracking-widest block mb-1">Club</span>
+                                <span class="text-white font-bold tracking-wide">Intensité</span>
+                            </div>
+                            <i class="fas fa-expand text-white/50 text-xl"></i>
                         </div>
                     </div>
                 </div>
                 <!-- Photo 4 -->
-                <div class="group relative aspect-square rounded-3xl overflow-hidden glass-panel border border-white/5">
+                <div class="group relative aspect-square rounded-3xl overflow-hidden glass-panel border border-white/5 cursor-pointer" onclick="openLightbox('https://placehold.co/800x800/020617/38bdf8?text=IMPORTER+PHOTO+4')">
                     <!-- 👇 IMPORTER PHOTO 4 ICI 👇 (Remplacez le lien dans src="") -->
                     <img src="https://placehold.co/800x800/020617/38bdf8?text=IMPORTER+PHOTO+4" alt="Célébration" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-night/90 via-night/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <div>
-                            <span class="text-white text-[10px] font-black uppercase tracking-widest block mb-1">Club</span>
-                            <span class="text-white font-bold tracking-wide">Esprit d'équipe</span>
+                        <div class="flex justify-between items-end w-full">
+                            <div>
+                                <span class="text-white text-[10px] font-black uppercase tracking-widest block mb-1">Club</span>
+                                <span class="text-white font-bold tracking-wide">Esprit d'équipe</span>
+                            </div>
+                            <i class="fas fa-expand text-white/50 text-xl"></i>
                         </div>
                     </div>
                 </div>
                 <!-- Photo 5 -->
-                <div class="group relative aspect-square rounded-3xl overflow-hidden glass-panel border border-white/5">
+                <div class="group relative aspect-square rounded-3xl overflow-hidden glass-panel border border-white/5 cursor-pointer" onclick="openLightbox('https://placehold.co/800x800/020617/38bdf8?text=IMPORTER+PHOTO+5')">
                     <!-- 👇 IMPORTER PHOTO 5 ICI 👇 (Remplacez le lien dans src="") -->
                     <img src="https://placehold.co/800x800/020617/38bdf8?text=IMPORTER+PHOTO+5" alt="Ballon" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-night/90 via-night/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <div>
-                            <span class="text-cyan-400 text-[10px] font-black uppercase tracking-widest block mb-1">OA Next Gen</span>
-                            <span class="text-white font-bold tracking-wide">Équipements</span>
+                        <div class="flex justify-between items-end w-full">
+                            <div>
+                                <span class="text-cyan-400 text-[10px] font-black uppercase tracking-widest block mb-1">OA Next Gen</span>
+                                <span class="text-white font-bold tracking-wide">Équipements</span>
+                            </div>
+                            <i class="fas fa-expand text-white/50 text-xl"></i>
                         </div>
                     </div>
                 </div>
                 <!-- Photo 6 -->
-                <div class="group relative aspect-square rounded-3xl overflow-hidden glass-panel border border-white/5">
+                <div class="group relative aspect-square rounded-3xl overflow-hidden glass-panel border border-white/5 cursor-pointer" onclick="openLightbox('https://placehold.co/800x800/020617/38bdf8?text=IMPORTER+PHOTO+6')">
                     <!-- 👇 IMPORTER PHOTO 6 ICI 👇 (Remplacez le lien dans src="") -->
                     <img src="https://placehold.co/800x800/020617/38bdf8?text=IMPORTER+PHOTO+6" alt="Coach" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-night/90 via-night/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <div>
-                            <span class="text-accent text-[10px] font-black uppercase tracking-widest block mb-1">U21</span>
-                            <span class="text-white font-bold tracking-wide">Consignes du coach</span>
+                        <div class="flex justify-between items-end w-full">
+                            <div>
+                                <span class="text-accent text-[10px] font-black uppercase tracking-widest block mb-1">U21</span>
+                                <span class="text-white font-bold tracking-wide">Consignes du coach</span>
+                            </div>
+                            <i class="fas fa-expand text-white/50 text-xl"></i>
                         </div>
                     </div>
                 </div>
@@ -1080,6 +1109,9 @@
 
         // --- LOGIQUE DE LA GALERIE PHOTOS ---
         const galleryPage = document.getElementById('gallery-page');
+        const modalLightbox = document.getElementById('modal-lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxBg = document.getElementById('lightbox-bg');
         
         function openGallery(e) {
             if(e) e.preventDefault();
@@ -1107,6 +1139,51 @@
                 document.body.classList.remove('modal-open');
             }, 300); // 300ms match avec duration-300
         }
+
+        // --- LOGIQUE LIGHTBOX ---
+        function openLightbox(imgSrc) {
+            lightboxImg.src = imgSrc;
+            modalLightbox.classList.remove('hidden');
+            modalLightbox.classList.add('flex');
+            
+            // Force reflow
+            void modalLightbox.offsetWidth;
+            
+            modalLightbox.classList.remove('opacity-0');
+            modalLightbox.classList.add('opacity-100');
+            setTimeout(() => {
+                lightboxImg.classList.remove('scale-95');
+                lightboxImg.classList.add('scale-100');
+            }, 50);
+        }
+
+        function closeLightbox() {
+            modalLightbox.classList.remove('opacity-100');
+            modalLightbox.classList.add('opacity-0');
+            lightboxImg.classList.remove('scale-100');
+            lightboxImg.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modalLightbox.classList.add('hidden');
+                modalLightbox.classList.remove('flex');
+                lightboxImg.src = ''; // Clear image source
+            }, 300);
+        }
+
+        // Events Lightbox
+        document.getElementById('btn-close-lightbox').addEventListener('click', closeLightbox);
+        lightboxBg.addEventListener('click', closeLightbox);
+        
+        // Fermer la lightbox avec la touche Echap
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (!modalLightbox.classList.contains('hidden')) {
+                    closeLightbox();
+                } else if (!galleryPage.classList.contains('hidden')) {
+                    closeGallery();
+                }
+            }
+        });
 
 
         // 2. Menu Mobile
