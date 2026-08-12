@@ -1,0 +1,80 @@
+# Configuration Sveltia CMS — galerie et sponsors éditables
+# Doc du chantier : ../SPEC-cms.md
+
+backend:
+  name: github
+  repo: tristede/oasisforest
+  branch: main
+  # URL du Worker Cloudflare sveltia-cms-auth (auth GitHub)
+  base_url: https://oasisforest-cms-auth.tristederk.workers.dev
+
+# Dossier où le CMS dépose les images téléversées
+media_folder: img
+public_folder: /img
+
+collections:
+  - name: accueil
+    label: Page d'accueil
+    files:
+      - name: hero
+        label: Photos d'en-tête (polaroids)
+        file: data/hero.json
+        fields:
+          - name: polaroids
+            label: Polaroids
+            widget: list
+            fields:
+              - { name: legende, label: Légende, widget: string }
+              - name: images
+                label: Photos (une tirée au hasard à chaque visite)
+                widget: list
+                field:
+                  name: image
+                  label: Photo
+                  widget: image
+                  hint: "Redimensionner à 1600 px de large maximum. Format WebP de préférence."
+
+  - name: galerie
+    label: Galerie photos
+    files:
+      - name: photos
+        label: Photos
+        file: data/gallery.json
+        fields:
+          - name: photos
+            label: Photos
+            widget: list
+            fields:
+              - name: image
+                label: Photo
+                widget: image
+                hint: "Redimensionner à 1600 px de large maximum. Privilégier le format WebP (le JPG/PNG reste accepté)."
+              - { name: legende, label: Légende, widget: string }
+              - name: categorie
+                label: Catégorie
+                widget: select
+                options:
+                  - { label: "D2 Nationale", value: "d2" }
+                  - { label: "Académie", value: "academie" }
+
+  - name: sponsors
+    label: Sponsors
+    files:
+      - name: liste
+        label: Liste des sponsors
+        file: data/sponsors.json
+        fields:
+          - name: sponsors
+            label: Sponsors
+            widget: list
+            fields:
+              - name: nom
+                label: Nom
+                widget: string
+              - name: logo
+                label: Logo
+                widget: image
+                required: false
+                hint: "Logo au format SVG ou PNG sur fond transparent de préférence. Laisser vide affiche le nom en texte."
+              - { name: url, label: Site web, widget: string, required: false }
+              - { name: principal, label: Sponsor maillot, widget: boolean, default: false }

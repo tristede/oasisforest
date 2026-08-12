@@ -16,7 +16,7 @@
     <meta property="og:url" content="https://oasisforest.be/">
     <meta property="og:title" content="Union Oasis Forest - Club de Futsal Bruxellois">
     <meta property="og:description" content="L'excellence du futsal bruxellois. De notre équipe première en Division 2 Nationale jusqu'à notre académie de jeunes OA Next Gen.">
-    <meta property="og:image" content="https://oasisforest.be/D85A3835.webp">
+    <meta property="og:image" content="https://oasisforest.be/img/D85A3835.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:locale" content="fr_BE">
@@ -26,7 +26,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Union Oasis Forest - Club de Futsal Bruxellois">
     <meta name="twitter:description" content="L'excellence du futsal bruxellois. De notre équipe première en Division 2 Nationale jusqu'à notre académie de jeunes OA Next Gen.">
-    <meta name="twitter:image" content="https://oasisforest.be/D85A3835.webp">
+    <meta name="twitter:image" content="https://oasisforest.be/img/D85A3835.webp">
 
     <!-- Données structurées Schema.org -->
     <script type="application/ld+json">
@@ -311,28 +311,11 @@
     <!-- Nouveau système anti-superposition (Flex + min-w-full) -->
     <div id="sponsors-marquee" class="fixed top-0 lg:top-24 w-full z-40 bg-black/60 backdrop-blur-md border-b border-white/10 py-2.5 shadow-lg flex overflow-hidden">
         
-        <div class="flex animate-marquee min-w-full shrink-0 items-center justify-around gap-12 px-6">
-            <div class="flex items-center gap-2">
-                <i class="fas fa-crown text-accent text-sm"></i>
-                <span class="text-sm font-black text-white tracking-widest uppercase">Sponsor Maillot</span>
-            </div>
-            <div class="text-xs font-bold text-slate-300 uppercase tracking-widest">Partenaire B</div>
-            <div class="text-xs font-bold text-slate-300 uppercase tracking-widest">Entreprise C</div>
-            <div class="text-xs font-bold text-slate-300 uppercase tracking-widest">Sponsor D</div>
-            <div class="text-xs font-bold text-slate-300 uppercase tracking-widest">Marque E</div>
-        </div>
+        <!-- Contenu généré par JS depuis data/sponsors.json (voir renderSponsors). -->
+        <div id="sponsors-track-1" class="flex animate-marquee min-w-full shrink-0 items-center justify-around gap-12 px-6"></div>
 
         <!-- Copie parfaite pour la boucle infinie, sans aucun absolute ou délai, suit naturellement le premier conteneur -->
-        <div class="flex animate-marquee min-w-full shrink-0 items-center justify-around gap-12 px-6" aria-hidden="true">
-            <div class="flex items-center gap-2">
-                <i class="fas fa-crown text-accent text-sm"></i>
-                <span class="text-sm font-black text-white tracking-widest uppercase">Sponsor Maillot</span>
-            </div>
-            <div class="text-xs font-bold text-slate-300 uppercase tracking-widest">Partenaire B</div>
-            <div class="text-xs font-bold text-slate-300 uppercase tracking-widest">Entreprise C</div>
-            <div class="text-xs font-bold text-slate-300 uppercase tracking-widest">Sponsor D</div>
-            <div class="text-xs font-bold text-slate-300 uppercase tracking-widest">Marque E</div>
-        </div>
+        <div id="sponsors-track-2" class="flex animate-marquee min-w-full shrink-0 items-center justify-around gap-12 px-6" aria-hidden="true"></div>
     </div>
 
     <!-- Hero Section (padding top ajusté) -->
@@ -367,14 +350,14 @@
             <!-- Floating Hero Polaroids -->
             <div class="hidden lg:block absolute right-10 top-20 parallax-wrapper" data-speed="0.15">
                 <div class="polaroid hover-tilt rotate-6 w-64 opacity-80 hover:opacity-100 transition-opacity" data-tilt-max="15">
-                    <img src="./D85A3835.webp" alt="Équipe sur le terrain" class="aspect-square grayscale hover:grayscale-0 transition-all duration-500 object-cover">
-                    <p class="polaroid-caption font-handwriting">Passion & Futsal</p>
+                    <img data-hero-img="0" src="img/D85A3835.webp" alt="Équipe sur le terrain" class="aspect-square grayscale hover:grayscale-0 transition-all duration-500 object-cover">
+                    <p data-hero-caption="0" class="polaroid-caption font-handwriting">Passion & Futsal</p>
                 </div>
             </div>
             <div class="hidden lg:block absolute left-10 bottom-0 parallax-wrapper" data-speed="-0.1">
                 <div class="polaroid hover-tilt -rotate-6 w-56 opacity-60 hover:opacity-100 transition-opacity" data-tilt-max="15">
-                    <img src="./IMG_8323.webp" alt="Victoire" class="aspect-square grayscale hover:grayscale-0 transition-all duration-500 object-cover">
-                    <p class="polaroid-caption font-handwriting">L'Esprit d'Équipe</p>
+                    <img data-hero-img="1" src="img/IMG_8323.webp" alt="Victoire" class="aspect-square grayscale hover:grayscale-0 transition-all duration-500 object-cover">
+                    <p data-hero-caption="1" class="polaroid-caption font-handwriting">L'Esprit d'Équipe</p>
                 </div>
             </div>
         </div>
@@ -515,7 +498,7 @@
                         <!-- Photo superposée sur la zone tampon vide du bas de l'encart -->
                         <div class="hidden md:flex justify-center -mt-16 relative z-20">
                             <div class="polaroid hover-tilt rotate-3 w-52" data-tilt-max="12">
-                                <img src="./IMG_8135.webp" alt="Les débuts du club" class="aspect-square grayscale sepia-[.2] object-cover">
+                                <img src="img/IMG_8135.webp" alt="Les débuts du club" class="aspect-square grayscale sepia-[.2] object-cover">
                                 <p class="polaroid-caption font-handwriting">Le projet naît</p>
                             </div>
                         </div>
@@ -551,7 +534,7 @@
                     <!-- Photo parallèle à l'encart, de l'autre côté de la ligne -->
                     <div class="hidden md:flex w-[45%] justify-center px-8">
                         <div class="polaroid hover-tilt -rotate-3 w-52" data-tilt-max="12">
-                            <img src="./IMG_8323.webp" alt="La communauté du club" class="aspect-square grayscale object-cover">
+                            <img src="img/IMG_8323.webp" alt="La communauté du club" class="aspect-square grayscale object-cover">
                             <p class="polaroid-caption font-handwriting">Notre communauté</p>
                         </div>
                     </div>
@@ -898,102 +881,20 @@
                 </button>
                 <h2 class="text-xl md:text-2xl font-black text-white tracking-widest uppercase">Galerie <span class="text-accent">Photos</span></h2>
             </div>
-            <div class="hidden sm:flex gap-2">
-                <button class="px-4 py-1.5 rounded-full bg-accent text-night font-bold text-xs tracking-wider uppercase">Tout</button>
-                <button class="px-4 py-1.5 rounded-full glass-panel text-white hover:text-accent font-bold text-xs tracking-wider uppercase transition-colors border-white/5">D2 Nationale</button>
-                <button class="px-4 py-1.5 rounded-full glass-panel text-white hover:text-accent font-bold text-xs tracking-wider uppercase transition-colors border-white/5">Académie</button>
+            <div id="gallery-filters" class="hidden sm:flex gap-2">
+                <button data-filter="tout" class="gallery-filter-btn px-4 py-1.5 rounded-full bg-accent text-night font-bold text-xs tracking-wider uppercase transition-colors">Tout</button>
+                <button data-filter="d2" class="gallery-filter-btn px-4 py-1.5 rounded-full glass-panel text-white hover:text-accent font-bold text-xs tracking-wider uppercase transition-colors border-white/5">D2 Nationale</button>
+                <button data-filter="academie" class="gallery-filter-btn px-4 py-1.5 rounded-full glass-panel text-white hover:text-accent font-bold text-xs tracking-wider uppercase transition-colors border-white/5">Académie</button>
             </div>
         </div>
 
         <!-- Grille Photos (Images cliquables) -->
         <div class="max-w-7xl mx-auto px-4 py-8 md:py-12 w-full flex-1">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                <!-- Photo 1 -->
-                <div class="group relative aspect-square rounded-3xl overflow-hidden glass-panel border border-white/5 cursor-pointer" onclick="openLightbox('./D85A3835.webp')">
-                    <!-- Mise à jour avec la première image -->
-                    <img src="./D85A3835.webp" alt="Match D2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-night/90 via-night/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <div class="flex justify-between items-end w-full">
-                            <div>
-                                <span class="text-accent text-[10px] font-black uppercase tracking-widest block mb-1">D2 Nationale</span>
-                                <span class="text-white font-bold tracking-wide">Action de match</span>
-                            </div>
-                            <i class="fas fa-expand text-white/50 text-xl"></i>
-                        </div>
-                    </div>
-                </div>
-                <!-- Photo 2 -->
-                <div class="group relative aspect-square rounded-3xl overflow-hidden glass-panel border border-white/5 cursor-pointer" onclick="openLightbox('./IMG_8135.webp')">
-                    <!-- Mise à jour avec la deuxième image -->
-                    <img src="./IMG_8135.webp" alt="Entraînement" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-night/90 via-night/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <div class="flex justify-between items-end w-full">
-                            <div>
-                                <span class="text-accent text-[10px] font-black uppercase tracking-widest block mb-1">Équipe</span>
-                                <span class="text-white font-bold tracking-wide">Moment de jeu</span>
-                            </div>
-                            <i class="fas fa-expand text-white/50 text-xl"></i>
-                        </div>
-                    </div>
-                </div>
-                <!-- Photo 3 -->
-                <div class="group relative aspect-square rounded-3xl overflow-hidden glass-panel border border-white/5 cursor-pointer" onclick="openLightbox('./IMG_8323.webp')">
-                    <!-- Mise à jour avec la troisième image -->
-                    <img src="./IMG_8323.webp" alt="Académie" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-night/90 via-night/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <div class="flex justify-between items-end w-full">
-                            <div>
-                                <span class="text-cyan-400 text-[10px] font-black uppercase tracking-widest block mb-1">Club</span>
-                                <span class="text-white font-bold tracking-wide">Intensité</span>
-                            </div>
-                            <i class="fas fa-expand text-white/50 text-xl"></i>
-                        </div>
-                    </div>
-                </div>
-                <!-- Photo 4 -->
-                <div class="group relative aspect-square rounded-3xl overflow-hidden glass-panel border border-white/5 cursor-pointer" onclick="openLightbox('https://placehold.co/800x800/020617/38bdf8?text=IMPORTER+PHOTO+4')">
-                    <!-- 👇 IMPORTER PHOTO 4 ICI 👇 (Remplacez le lien dans src="") -->
-                    <img src="https://placehold.co/800x800/020617/38bdf8?text=IMPORTER+PHOTO+4" alt="Célébration" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-night/90 via-night/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <div class="flex justify-between items-end w-full">
-                            <div>
-                                <span class="text-white text-[10px] font-black uppercase tracking-widest block mb-1">Club</span>
-                                <span class="text-white font-bold tracking-wide">Esprit d'équipe</span>
-                            </div>
-                            <i class="fas fa-expand text-white/50 text-xl"></i>
-                        </div>
-                    </div>
-                </div>
-                <!-- Photo 5 -->
-                <div class="group relative aspect-square rounded-3xl overflow-hidden glass-panel border border-white/5 cursor-pointer" onclick="openLightbox('https://placehold.co/800x800/020617/38bdf8?text=IMPORTER+PHOTO+5')">
-                    <!-- 👇 IMPORTER PHOTO 5 ICI 👇 (Remplacez le lien dans src="") -->
-                    <img src="https://placehold.co/800x800/020617/38bdf8?text=IMPORTER+PHOTO+5" alt="Ballon" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-night/90 via-night/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <div class="flex justify-between items-end w-full">
-                            <div>
-                                <span class="text-cyan-400 text-[10px] font-black uppercase tracking-widest block mb-1">OA Next Gen</span>
-                                <span class="text-white font-bold tracking-wide">Équipements</span>
-                            </div>
-                            <i class="fas fa-expand text-white/50 text-xl"></i>
-                        </div>
-                    </div>
-                </div>
-                <!-- Photo 6 -->
-                <div class="group relative aspect-square rounded-3xl overflow-hidden glass-panel border border-white/5 cursor-pointer" onclick="openLightbox('https://placehold.co/800x800/020617/38bdf8?text=IMPORTER+PHOTO+6')">
-                    <!-- 👇 IMPORTER PHOTO 6 ICI 👇 (Remplacez le lien dans src="") -->
-                    <img src="https://placehold.co/800x800/020617/38bdf8?text=IMPORTER+PHOTO+6" alt="Coach" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-night/90 via-night/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <div class="flex justify-between items-end w-full">
-                            <div>
-                                <span class="text-accent text-[10px] font-black uppercase tracking-widest block mb-1">U21</span>
-                                <span class="text-white font-bold tracking-wide">Consignes du coach</span>
-                            </div>
-                            <i class="fas fa-expand text-white/50 text-xl"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
+            <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"></div>
+
+            <!-- État vide : affiché si aucune photo (ou JSON introuvable) -->
+            <p id="gallery-empty" class="hidden text-center text-slate-500 py-16">Aucune photo pour le moment.</p>
+
             <div class="mt-12 text-center">
                 <p class="text-slate-500 text-sm">D'autres photos arrivent bientôt...</p>
             </div>
@@ -1252,6 +1153,182 @@
         backdrop.addEventListener('click', (e) => {
             if (e.target === backdrop) closeModals();
         });
+
+
+        // --- RENDU DES CONTENUS ÉDITABLES (data/*.json → CMS) ---
+        // Galerie, sponsors et polaroids du hero sont générés depuis des JSON
+        // pour être édités par un bénévole via /admin (Sveltia CMS). Voir SPEC-cms.md.
+
+        // Le CMS écrit des chemins absolus (/img/...). On les rend relatifs pour que
+        // le site fonctionne aussi bien sur domaine racine que sur sous-chemin GitHub Pages.
+        const toRel = (p) => (p || '').replace(/^\//, '');
+        const pickRandom = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+        // Charge un JSON en tolérant l'absence de fichier (retourne null sans casser la page).
+        async function loadJSON(url) {
+            try {
+                const res = await fetch(url, { cache: 'no-cache' });
+                if (!res.ok) return null;
+                return await res.json();
+            } catch (_) {
+                return null;
+            }
+        }
+
+        // 1) Polaroids du hero : une image tirée au hasard par polaroid, à chaque visite.
+        async function renderHero() {
+            const data = await loadJSON('data/hero.json');
+            if (!data || !Array.isArray(data.polaroids)) return; // on garde l'image de secours du HTML
+            data.polaroids.forEach((p, k) => {
+                const img = document.querySelector(`[data-hero-img="${k}"]`);
+                const cap = document.querySelector(`[data-hero-caption="${k}"]`);
+                if (img && Array.isArray(p.images) && p.images.length) {
+                    img.src = toRel(pickRandom(p.images));
+                }
+                if (cap && p.legende) cap.textContent = p.legende;
+                if (img && p.legende) img.alt = p.legende;
+            });
+        }
+
+        // 2) Galerie + filtres fonctionnels.
+        const CATEGORIES = { d2: 'D2 Nationale', academie: 'Académie' };
+        let galleryPhotos = [];
+        let currentFilter = 'tout';
+
+        function buildTile(photo) {
+            const rel = toRel(photo.image);
+            const cat = photo.categorie || '';
+            const tile = document.createElement('div');
+            tile.className = 'group relative aspect-square rounded-3xl overflow-hidden glass-panel border border-white/5 cursor-pointer';
+            tile.dataset.categorie = cat;
+
+            const img = document.createElement('img');
+            img.src = rel;
+            img.alt = photo.legende || '';
+            img.loading = 'lazy';
+            img.className = 'w-full h-full object-cover transition-transform duration-700 group-hover:scale-110';
+
+            const overlay = document.createElement('div');
+            overlay.className = 'absolute inset-0 bg-gradient-to-t from-night/90 via-night/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6';
+            const row = document.createElement('div');
+            row.className = 'flex justify-between items-end w-full';
+            const texts = document.createElement('div');
+            const catLabel = document.createElement('span');
+            catLabel.className = 'text-accent text-[10px] font-black uppercase tracking-widest block mb-1';
+            catLabel.textContent = CATEGORIES[cat] || '';
+            const legende = document.createElement('span');
+            legende.className = 'text-white font-bold tracking-wide';
+            legende.textContent = photo.legende || '';
+            texts.append(catLabel, legende);
+            const icon = document.createElement('i');
+            icon.className = 'fas fa-expand text-white/50 text-xl';
+            row.append(texts, icon);
+            overlay.append(row);
+
+            tile.append(img, overlay);
+            tile.addEventListener('click', () => openLightbox(rel));
+            return tile;
+        }
+
+        function renderGalleryGrid() {
+            const grid = document.getElementById('gallery-grid');
+            const empty = document.getElementById('gallery-empty');
+            if (!grid) return;
+            const list = currentFilter === 'tout'
+                ? galleryPhotos
+                : galleryPhotos.filter((p) => p.categorie === currentFilter);
+            grid.innerHTML = '';
+            list.forEach((p) => grid.append(buildTile(p)));
+            if (empty) empty.classList.toggle('hidden', list.length > 0);
+        }
+
+        function setupGalleryFilters() {
+            const btns = document.querySelectorAll('.gallery-filter-btn');
+            const activeCls = ['bg-accent', 'text-night'];
+            const idleCls = ['glass-panel', 'text-white', 'hover:text-accent', 'border-white/5'];
+            btns.forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    currentFilter = btn.dataset.filter || 'tout';
+                    btns.forEach((b) => {
+                        const on = b === btn;
+                        b.classList.toggle('bg-accent', on);
+                        b.classList.toggle('text-night', on);
+                        b.classList.toggle('glass-panel', !on);
+                        b.classList.toggle('text-white', !on);
+                        b.classList.toggle('hover:text-accent', !on);
+                        b.classList.toggle('border-white/5', !on);
+                    });
+                    renderGalleryGrid();
+                });
+            });
+        }
+
+        async function renderGallery() {
+            const data = await loadJSON('data/gallery.json');
+            galleryPhotos = (data && Array.isArray(data.photos)) ? data.photos : [];
+            renderGalleryGrid();
+            setupGalleryFilters();
+        }
+
+        // 3) Bandeau sponsors : les deux pistes (copie aria-hidden) depuis le même JSON.
+        function buildSponsor(s) {
+            const hasLogo = s.logo && s.logo.trim() !== '';
+            let inner;
+            if (hasLogo) {
+                const img = document.createElement('img');
+                img.src = toRel(s.logo);
+                img.alt = s.nom || '';
+                img.loading = 'lazy';
+                img.className = 'h-7 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity';
+                inner = img;
+            } else if (s.principal) {
+                inner = document.createElement('div');
+                inner.className = 'flex items-center gap-2';
+                inner.innerHTML = '<i class="fas fa-crown text-accent text-sm"></i>';
+                const span = document.createElement('span');
+                span.className = 'text-sm font-black text-white tracking-widest uppercase';
+                span.textContent = s.nom || '';
+                inner.append(span);
+            } else {
+                inner = document.createElement('div');
+                inner.className = 'text-xs font-bold text-slate-300 uppercase tracking-widest';
+                inner.textContent = s.nom || '';
+            }
+            // Lien facultatif : uniquement si une URL est fournie.
+            if (s.url && s.url.trim() !== '') {
+                const a = document.createElement('a');
+                a.href = s.url;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.className = 'flex items-center';
+                a.setAttribute('aria-label', s.nom || 'Sponsor');
+                a.append(inner);
+                return a;
+            }
+            return inner;
+        }
+
+        async function renderSponsors() {
+            const marquee = document.getElementById('sponsors-marquee');
+            const t1 = document.getElementById('sponsors-track-1');
+            const t2 = document.getElementById('sponsors-track-2');
+            const data = await loadJSON('data/sponsors.json');
+            const list = (data && Array.isArray(data.sponsors)) ? data.sponsors : [];
+            if (!list.length) {
+                if (marquee) marquee.classList.add('hidden'); // masquer proprement si vide
+                return;
+            }
+            [t1, t2].forEach((track) => {
+                if (!track) return;
+                track.innerHTML = '';
+                list.forEach((s) => track.append(buildSponsor(s)));
+            });
+        }
+
+        // Lancement
+        renderHero();
+        renderGallery();
+        renderSponsors();
 
 
         // --- LOGIQUE DE LA GALERIE PHOTOS ---

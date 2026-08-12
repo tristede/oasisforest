@@ -1,0 +1,34 @@
+{
+  "sponsors": [
+    {
+      "nom": "Sponsor Maillot",
+      "logo": "",
+      "url": "",
+      "principal": true
+    },
+    {
+      "nom": "Partenaire B",
+      "logo": "",
+      "url": "",
+      "principal": false
+    },
+    {
+      "nom": "Entreprise C",
+      "logo": "",
+      "url": "",
+      "principal": false
+    },
+    {
+      "nom": "Sponsor D",
+      "logo": "",
+      "url": "",
+      "principal": false
+    },
+    {
+      "nom": "Marque E",
+      "logo": "",
+      "url": "",
+      "principal": false
+    }
+  ]
+}

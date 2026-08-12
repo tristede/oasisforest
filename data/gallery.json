@@ -1,0 +1,19 @@
+{
+  "photos": [
+    {
+      "image": "/img/D85A3835.webp",
+      "legende": "Action de match — D2 Nationale",
+      "categorie": "d2"
+    },
+    {
+      "image": "/img/IMG_8135.webp",
+      "legende": "Moment de jeu à l'entraînement",
+      "categorie": "d2"
+    },
+    {
+      "image": "/img/IMG_8323.webp",
+      "legende": "L'intensité de notre académie",
+      "categorie": "academie"
+    }
+  ]
+}
