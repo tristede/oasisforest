@@ -76,5 +76,5 @@ Hébergé sur **GitHub Pages** depuis la branche principale du dépôt `tristede
 ## Contact du club (déjà dans le site)
 
 - Complexe sportif : Bd. de la 2ème Armée Britannique 600, 1190 Forest
-- Email : cluboasisforest@gmail.com — WhatsApp : +32 477 02 20 21
+- Email : union@oasisforest.be — WhatsApp : +32 477 02 20 21
 - Réseaux : `oasisforestfutsal` (Instagram, TikTok, Facebook)
