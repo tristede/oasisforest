@@ -3,8 +3,7 @@
     {
       "legende": "Passion & Futsal",
       "images": [
-        "/img/D85A3835.webp",
-        "/img/IMG_8135.webp"
+        "/img/D85A3835.webp"
       ]
     },
     {
@@ -12,6 +11,12 @@
       "images": [
         "/img/IMG_8323.webp",
         "/img/IMG_8135.webp"
+      ]
+    },
+    {
+      "legende": "Le projet naît",
+      "images": [
+        "/img/IMG_2208.png"
       ]
     }
   ]

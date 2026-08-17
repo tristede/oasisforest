@@ -1,32 +1,26 @@
 {
   "sponsors": [
     {
-      "nom": "Sponsor Maillot",
-      "logo": "",
-      "url": "",
-      "principal": true
-    },
-    {
-      "nom": "Partenaire B",
-      "logo": "",
+      "nom": "SPONSOR",
+      "logo": "/img/logo uof.svg",
       "url": "",
       "principal": false
     },
     {
-      "nom": "Entreprise C",
-      "logo": "",
+      "nom": "SPONSOR",
+      "logo": "/img/logo uof.svg",
       "url": "",
       "principal": false
     },
     {
-      "nom": "Sponsor D",
-      "logo": "",
+      "nom": "SPONSOR",
+      "logo": "/img/logo uof.svg",
       "url": "",
       "principal": false
     },
     {
-      "nom": "Marque E",
-      "logo": "",
+      "nom": "SPONSOR",
+      "logo": "/img/logo uof.svg",
       "url": "",
       "principal": false
     }
