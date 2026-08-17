@@ -204,6 +204,18 @@
             animation: pulse 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
 
+        /* Chaque carte "Nos Équipes" grossit en claquant légèrement à son apparition,
+           l'une après l'autre au fil du défilement (effet "roue crantée"). Sélecteur
+           renforcé pour ne pas toucher au .reveal générique utilisé ailleurs sur le site.
+           transform/opacity uniquement : coût de rendu nul, jamais de saccade. */
+        #entites .team-card-reveal.reveal {
+            transform: translateY(30px) scale(0.86);
+            transition: opacity 0.45s ease-out, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        #entites .team-card-reveal.reveal.active {
+            transform: translateY(0) scale(1);
+        }
+
         /* Couleur unie : de "Nos Equipes" jusqu'a "Devenez Partenaire" */
         .zone-unie {
             background-color: #070f20;
@@ -384,9 +396,9 @@
                 </p>
             </div>
 
-            <div class="space-y-4 reveal">
+            <div class="space-y-4">
                 <!-- 1. Division 2 -->
-                <div data-team="div2" class="glass-panel glass-panel-interactive cursor-pointer rounded-2xl p-6 md:p-8 flex items-center justify-between group">
+                <div data-team="div2" class="glass-panel glass-panel-interactive cursor-pointer rounded-2xl p-6 md:p-8 flex items-center justify-between group reveal team-card-reveal">
                     <div class="flex items-center gap-6">
                         <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-800 flex items-center justify-center text-white text-2xl shadow-lg border border-white/10 group-hover:scale-110 transition-transform">
                             <i class="fas fa-trophy"></i>
@@ -400,7 +412,7 @@
                 </div>
 
                 <!-- 2. U21 -->
-                <div data-team="u21" class="glass-panel glass-panel-interactive cursor-pointer rounded-2xl p-6 md:p-8 flex items-center justify-between group">
+                <div data-team="u21" class="glass-panel glass-panel-interactive cursor-pointer rounded-2xl p-6 md:p-8 flex items-center justify-between group reveal team-card-reveal">
                     <div class="flex items-center gap-6">
                         <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-sky-500 to-blue-700 flex items-center justify-center text-white text-2xl shadow-lg border border-white/10 group-hover:scale-110 transition-transform">
                             <i class="fas fa-shield-alt"></i>
@@ -414,7 +426,7 @@
                 </div>
 
                 <!-- 3. U15 - U13 -->
-                <div data-team="u15_13" class="glass-panel glass-panel-interactive cursor-pointer rounded-2xl p-6 md:p-8 flex items-center justify-between group">
+                <div data-team="u15_13" class="glass-panel glass-panel-interactive cursor-pointer rounded-2xl p-6 md:p-8 flex items-center justify-between group reveal team-card-reveal">
                     <div class="flex items-center gap-6">
                         <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-500 to-sky-600 flex items-center justify-center text-white text-2xl shadow-lg border border-white/10 group-hover:scale-110 transition-transform">
                             <i class="fas fa-fire-flame-curved"></i>
@@ -430,7 +442,7 @@
                 <div class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent my-8"></div>
 
                 <!-- 4. U7 - U12 -->
-                <div data-team="u7_12" class="glass-panel glass-panel-interactive cursor-pointer rounded-2xl p-6 md:p-8 flex items-center justify-between group">
+                <div data-team="u7_12" class="glass-panel glass-panel-interactive cursor-pointer rounded-2xl p-6 md:p-8 flex items-center justify-between group reveal team-card-reveal">
                     <div class="flex items-center gap-6">
                         <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-teal-400 to-cyan-600 flex items-center justify-center text-white text-2xl shadow-lg border border-white/10 group-hover:scale-110 transition-transform">
                             <i class="fas fa-graduation-cap"></i>
@@ -444,7 +456,7 @@
                 </div>
 
                 <!-- 5. U3 -->
-                <div data-team="u3" class="glass-panel glass-panel-interactive cursor-pointer rounded-2xl p-6 md:p-8 flex items-center justify-between group">
+                <div data-team="u3" class="glass-panel glass-panel-interactive cursor-pointer rounded-2xl p-6 md:p-8 flex items-center justify-between group reveal team-card-reveal">
                     <div class="flex items-center gap-6">
                         <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white text-2xl shadow-lg border border-white/10 group-hover:scale-110 transition-transform">
                             <i class="fas fa-child"></i>
