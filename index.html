@@ -197,21 +197,12 @@
             transform: translateY(0);
         }
 
-        /* Indice de clic sur les cartes "Nos Équipes" : le chevron se décale deux fois
-           au moment où la carte apparaît au défilement, pour signaler que c'est cliquable
-           (constat A/B test : des utilisateurs défilaient sans cliquer). */
-        @keyframes chevronHint {
-            0%, 100% { transform: translateX(0); opacity: .6; }
-            50% { transform: translateX(10px); opacity: 1; }
+        /* Indice de clic sur les cartes "Nos Équipes" : le chevron pulse doucement en
+           continu (constat A/B test : des utilisateurs défilaient sans cliquer). Boucle
+           CSS légère (opacity only), pas de déclenchement au scroll, jamais figée. */
+        .team-chevron {
+            animation: pulse 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
-        .reveal.active .team-chevron {
-            animation: chevronHint 0.9s ease-in-out 2;
-        }
-        [data-team="div2"] .team-chevron { animation-delay: .15s; }
-        [data-team="u21"] .team-chevron { animation-delay: .3s; }
-        [data-team="u15_13"] .team-chevron { animation-delay: .45s; }
-        [data-team="u7_12"] .team-chevron { animation-delay: .6s; }
-        [data-team="u3"] .team-chevron { animation-delay: .75s; }
 
         /* Couleur unie : de "Nos Equipes" jusqu'a "Devenez Partenaire" */
         .zone-unie {
@@ -573,7 +564,7 @@
                 <!-- Flèche de continuité : la suite de l'histoire, guide l'oeil vers Nos Valeurs -->
                 <div class="relative h-32 reveal">
                     <div aria-hidden="true" class="absolute left-6 md:left-1/2 top-10 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none">
-                        <svg viewBox="0 0 24 24" class="w-6 h-6 text-accent animate-bounce drop-shadow-[0_0_10px_rgba(56,189,248,0.6)]" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
+                        <svg viewBox="0 0 24 24" class="w-5 h-5 text-accent animate-bounce drop-shadow-[0_0_10px_rgba(56,189,248,0.6)]" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                             <!-- Chevron a angle au sommet de ~60 degres (quasi equilateral) -->
                             <polyline points="0.5,2 12,22 23.5,2"></polyline>
                         </svg>
