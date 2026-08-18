@@ -10,6 +10,8 @@ Hébergé sur **GitHub Pages** depuis la branche principale du dépôt `tristede
   ⚠️ Le CDN affiche un warning en production. Migration vers Tailwind CLI/PostCSS à prévoir avant la mise en ligne définitive.
 - **Font Awesome 6.4** (CDN) pour les icônes.
 - **Google Fonts** : Montserrat (texte) + Caveat (`font-handwriting`, légendes des polaroids).
+- **Instagram embed.js** (CDN Meta, `//www.instagram.com/embed.js`) pour la bannière « Actu
+  Instagram ». Seule dépendance externe hors JSON du site — voir `data/instagram.json`.
 
 ## Fichiers du dépôt
 
@@ -23,6 +25,7 @@ Hébergé sur **GitHub Pages** depuis la branche principale du dépôt `tristede
 | `data/gallery.json` | Vignettes de la galerie (généré au chargement par JS) |
 | `data/sponsors.json` | Bandeau sponsors (généré par JS, deux pistes) |
 | `data/hero.json` | Polaroids du hero : liste d'images par polaroid, **tirage aléatoire à chaque visite** |
+| `data/instagram.json` | URL du post Instagram mis en avant dans la bannière « Actu » (vide = bannière masquée) |
 | `admin/index.html` + `admin/config.yml` | Interface Sveltia CMS (`/admin`) |
 | `.nojekyll` | Empêche Jekyll d'ignorer les dossiers en underscore sur GitHub Pages |
 
@@ -63,6 +66,10 @@ Hébergé sur **GitHub Pages** depuis la branche principale du dépôt `tristede
      et déployer le **Worker Cloudflare** `sveltia/sveltia-cms-auth`, puis renseigner son URL
      dans `admin/config.yml` (`base_url`, actuellement un placeholder). Détail : `admin/README.md`.
    - Reste aussi à fournir les **vrais logos de sponsors** (placeholders « Partenaire B »… en attendant).
+   - ✅ **Aperçu galerie** (section avant « Nos Réseaux ») et **bannière Actu Instagram**
+     (section après « Nos Réseaux », embed officiel Meta) ajoutés, même logique de rendu
+     JS + JSON éditable. `data/instagram.json.postUrl` est vide par défaut : coller l'URL
+     d'un post via `/admin` (collection « Actu Instagram ») pour activer la bannière.
 2. **Tailwind en production** — remplacer le CDN par un CSS compilé.
 3. **Pop-up de recrutement** — envisagé, avec cooldown (mémorisation via `localStorage`).
    Uniquement sur des échéances **réelles** : places limitées par catégorie d'âge,

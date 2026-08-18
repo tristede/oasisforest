@@ -58,6 +58,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Widget officiel Meta pour l'embed du post Instagram mis en avant (bandeau "Actu").
+         Charge le blockquote injecté par renderInstagramActu() ; voir data/instagram.json. -->
+    <script async src="//www.instagram.com/embed.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -660,6 +663,27 @@
         </div>
     </section>
 
+    <!-- Aperçu Galerie : polaroid tiré au hasard dans data/gallery.json + invitation à
+         ouvrir la galerie complète (openGallery(), même modale que le lien de la navbar). -->
+    <section id="gallery-teaser" class="py-20 relative z-10">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16 reveal">
+                <div class="polaroid hover-tilt rotate-3 w-48 sm:w-56 shrink-0" data-tilt-max="10">
+                    <img id="gallery-teaser-img" src="img/D85A3835.webp" alt="Aperçu de la galerie" class="aspect-square grayscale hover:grayscale-0 transition-all duration-500 object-cover">
+                    <p id="gallery-teaser-caption" class="polaroid-caption font-handwriting">Un souvenir du club</p>
+                </div>
+                <div class="text-center md:text-left">
+                    <p class="text-accent text-sm font-bold tracking-[0.2em] uppercase mb-3">Galerie</p>
+                    <h2 class="text-3xl md:text-4xl font-black text-white tracking-tight mb-4">Nos plus beaux moments</h2>
+                    <p class="text-slate-300 font-light leading-relaxed mb-8 max-w-md">Matchs, entraînements, académie... revivez les temps forts du club en images.</p>
+                    <a href="#" onclick="openGallery(event)" class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-accent to-blue-600 text-white font-bold px-8 py-4 rounded-full hover:shadow-[0_0_30px_rgba(56,189,248,0.5)] transition-all transform hover:-translate-y-1 tracking-wider uppercase text-sm">
+                        Voir les photos récentes <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Social Media (Glass Grid) -->
     <section class="py-20 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -692,6 +716,20 @@
                     <span class="font-bold text-white tracking-wide text-sm md:text-base">WhatsApp</span>
                 </a>
             </div>
+        </div>
+    </section>
+
+    <!-- Bandeau Actu Instagram : embed officiel Meta (embed.js) du post choisi dans
+         data/instagram.json (URL éditable via le CMS). Masqué tant qu'aucun post n'est
+         renseigné - voir renderInstagramActu(). -->
+    <section id="instagram-actu" class="py-20 relative z-10 hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-[#E1306C]/30 mb-6">
+                <i class="fab fa-instagram text-[#E1306C]"></i>
+                <span class="text-[#E1306C] text-xs font-bold tracking-widest uppercase">Actu Instagram</span>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-black text-white tracking-tight mb-8">Notre dernière publication</h2>
+            <div id="instagram-embed-container" class="max-w-md mx-auto"></div>
         </div>
     </section>
 
@@ -1343,6 +1381,24 @@
             setupGalleryFilters();
         }
 
+        // Aperçu galerie (section avant "Nos Réseaux") : une photo tirée au hasard parmi
+        // la galerie, à chaque visite. Dépend de galleryPhotos déjà chargé par renderGallery().
+        function renderGalleryTeaser() {
+            const section = document.getElementById('gallery-teaser');
+            if (!galleryPhotos.length) {
+                if (section) section.classList.add('hidden'); // pas de photo -> masquer proprement
+                return;
+            }
+            const photo = pickRandom(galleryPhotos);
+            const img = document.getElementById('gallery-teaser-img');
+            const cap = document.getElementById('gallery-teaser-caption');
+            if (img) {
+                img.src = toRel(photo.image);
+                img.alt = photo.legende || 'Aperçu de la galerie';
+            }
+            if (cap) cap.textContent = photo.legende || 'Un souvenir du club';
+        }
+
         // 3) Bandeau sponsors : les deux pistes (copie aria-hidden) depuis le même JSON.
         function buildSponsor(s) {
             const hasLogo = s.logo && s.logo.trim() !== '';
@@ -1381,6 +1437,32 @@
             return inner;
         }
 
+        // Bandeau "Actu Instagram" : embed officiel Meta du post choisi dans
+        // data/instagram.json. URL éditable via le CMS ; masqué proprement si absente.
+        async function renderInstagramActu() {
+            const data = await loadJSON('data/instagram.json');
+            const url = (data && typeof data.postUrl === 'string') ? data.postUrl.trim() : '';
+            const section = document.getElementById('instagram-actu');
+            const container = document.getElementById('instagram-embed-container');
+            if (!url || !container || !section) return; // reste masqué (classe hidden par défaut)
+
+            container.innerHTML = `<blockquote class="instagram-media" data-instgrm-permalink="${url}" data-instgrm-version="14" style="margin:0 auto;"></blockquote>`;
+            section.classList.remove('hidden');
+
+            // embed.js ne traite que les blockquotes présentes à son chargement ; celle-ci
+            // est injectée après coup, il faut donc relancer le traitement manuellement.
+            // Le script est chargé en async et peut ne pas encore être prêt : on patiente.
+            const process = () => { if (window.instgrm && window.instgrm.Embeds) window.instgrm.Embeds.process(); };
+            if (window.instgrm) {
+                process();
+            } else {
+                const wait = setInterval(() => {
+                    if (window.instgrm) { clearInterval(wait); process(); }
+                }, 200);
+                setTimeout(() => clearInterval(wait), 8000); // abandon silencieux après 8s
+            }
+        }
+
         async function renderSponsors() {
             const marquee = document.getElementById('sponsors-marquee');
             const t1 = document.getElementById('sponsors-track-1');
@@ -1400,8 +1482,9 @@
 
         // Lancement
         renderHero();
-        renderGallery();
+        renderGallery().then(renderGalleryTeaser);
         renderSponsors();
+        renderInstagramActu();
 
 
         // --- LOGIQUE DE LA GALERIE PHOTOS ---

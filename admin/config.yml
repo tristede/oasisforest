@@ -78,3 +78,16 @@ collections:
                 hint: "Logo au format SVG ou PNG sur fond transparent de préférence. Laisser vide affiche le nom en texte."
               - { name: url, label: Site web, widget: string, required: false }
               - { name: principal, label: Sponsor maillot, widget: boolean, default: false }
+
+  - name: instagram
+    label: Actu Instagram
+    files:
+      - name: dernier-post
+        label: Post mis en avant
+        file: data/instagram.json
+        fields:
+          - name: postUrl
+            label: Lien du post Instagram
+            widget: string
+            required: false
+            hint: "Collez l'URL complète du post à mettre en avant (ex. https://www.instagram.com/p/XXXXXXXXX/). Laisser vide masque la bannière sur le site."
