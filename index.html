@@ -58,9 +58,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
-    <!-- Widget officiel Meta pour l'embed du post Instagram mis en avant (bandeau "Actu").
-         Charge le blockquote injecté par renderInstagramActu() ; voir data/instagram.json. -->
-    <script async src="//www.instagram.com/embed.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -741,20 +738,6 @@
                     <span class="font-bold text-white tracking-wide text-sm md:text-base">WhatsApp</span>
                 </a>
             </div>
-        </div>
-    </section>
-
-    <!-- Bandeau Actu Instagram : embed officiel Meta (embed.js) du post choisi dans
-         data/instagram.json (URL éditable via le CMS). Masqué tant qu'aucun post n'est
-         renseigné - voir renderInstagramActu(). -->
-    <section id="instagram-actu" class="py-20 relative z-10 hidden">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-[#E1306C]/30 mb-6">
-                <i class="fab fa-instagram text-[#E1306C]"></i>
-                <span class="text-[#E1306C] text-xs font-bold tracking-widest uppercase">Actu Instagram</span>
-            </div>
-            <h2 class="text-3xl md:text-4xl font-black text-white tracking-tight mb-8">Notre dernière publication</h2>
-            <div id="instagram-embed-container" class="max-w-md mx-auto"></div>
         </div>
     </section>
 
@@ -1493,32 +1476,6 @@
             return inner;
         }
 
-        // Bandeau "Actu Instagram" : embed officiel Meta du post choisi dans
-        // data/instagram.json. URL éditable via le CMS ; masqué proprement si absente.
-        async function renderInstagramActu() {
-            const data = await loadJSON('data/instagram.json');
-            const url = (data && typeof data.postUrl === 'string') ? data.postUrl.trim() : '';
-            const section = document.getElementById('instagram-actu');
-            const container = document.getElementById('instagram-embed-container');
-            if (!url || !container || !section) return; // reste masqué (classe hidden par défaut)
-
-            container.innerHTML = `<blockquote class="instagram-media" data-instgrm-permalink="${url}" data-instgrm-version="14" style="margin:0 auto;"></blockquote>`;
-            section.classList.remove('hidden');
-
-            // embed.js ne traite que les blockquotes présentes à son chargement ; celle-ci
-            // est injectée après coup, il faut donc relancer le traitement manuellement.
-            // Le script est chargé en async et peut ne pas encore être prêt : on patiente.
-            const process = () => { if (window.instgrm && window.instgrm.Embeds) window.instgrm.Embeds.process(); };
-            if (window.instgrm) {
-                process();
-            } else {
-                const wait = setInterval(() => {
-                    if (window.instgrm) { clearInterval(wait); process(); }
-                }, 200);
-                setTimeout(() => clearInterval(wait), 8000); // abandon silencieux après 8s
-            }
-        }
-
         async function renderSponsors() {
             const marquee = document.getElementById('sponsors-marquee');
             const t1 = document.getElementById('sponsors-track-1');
@@ -1540,7 +1497,6 @@
         renderHero();
         renderGallery().then(renderGalleryTeaser);
         renderSponsors();
-        renderInstagramActu();
 
 
         // --- LOGIQUE DE LA GALERIE PHOTOS ---
