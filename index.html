@@ -374,7 +374,7 @@
                  d'un polaroid), plutôt que les deux en miniature. En ligne sous les boutons
                  (pas de place pour du flottant en dessous de lg). -->
             <div class="flex lg:hidden justify-center mt-14 reveal">
-                <div data-hero-mobile-wrap class="polaroid hover-tilt w-48 sm:w-56" data-tilt-max="10">
+                <div data-hero-mobile-wrap class="polaroid hover-tilt w-64 sm:w-72" data-tilt-max="10">
                     <img data-hero-mobile-img src="img/D85A3835.webp" alt="Équipe sur le terrain" class="aspect-square grayscale hover:grayscale-0 transition-all duration-500 object-cover">
                     <p data-hero-mobile-caption class="polaroid-caption font-handwriting">Passion & Futsal</p>
                 </div>
@@ -668,11 +668,13 @@
     <section id="gallery-teaser" class="py-20 relative z-10">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16 reveal">
-                <div class="polaroid hover-tilt rotate-3 w-48 sm:w-56 shrink-0" data-tilt-max="10">
+                <!-- order-2 sur mobile : texte + bouton d'abord, image ensuite. Sur desktop
+                     (md:), order-1 remet l'image à gauche comme avant. -->
+                <div class="polaroid hover-tilt rotate-3 w-48 sm:w-56 shrink-0 order-2 md:order-1" data-tilt-max="10">
                     <img id="gallery-teaser-img" src="img/D85A3835.webp" alt="Aperçu de la galerie" class="aspect-square grayscale hover:grayscale-0 transition-all duration-500 object-cover">
                     <p id="gallery-teaser-caption" class="polaroid-caption font-handwriting">Un souvenir du club</p>
                 </div>
-                <div class="text-center md:text-left">
+                <div class="text-center md:text-left order-1 md:order-2">
                     <p class="text-accent text-sm font-bold tracking-[0.2em] uppercase mb-3">Galerie</p>
                     <h2 class="text-3xl md:text-4xl font-black text-white tracking-tight mb-4">Nos plus beaux moments</h2>
                     <p class="text-slate-300 font-light leading-relaxed mb-8 max-w-md">Matchs, entraînements, académie... revivez les temps forts du club en images.</p>
@@ -1292,7 +1294,9 @@
                 // de l'écraser.
                 if (mWrap) {
                     const angle = (Math.random() * 6 + 2) * (Math.random() < 0.5 ? -1 : 1); // ±2° à ±8°
-                    const offsetX = Math.round(Math.random() * 25 + 25); // toujours vers la droite : 25 à 50px
+                    // Toujours vers la droite ; plage réduite car le polaroid est plus grand
+                    // (w-64) — au-delà de ~30px il déborderait sur les écrans ≤360px de large.
+                    const offsetX = Math.round(Math.random() * 15 + 15); // 15 à 30px
                     heroMobileBase = { el: mWrap, angle, offsetX };
                     applyHeroMobileTransform(0);
                 }
