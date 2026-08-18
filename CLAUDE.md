@@ -23,6 +23,7 @@ Hébergé sur **GitHub Pages** depuis la branche principale du dépôt `tristede
 | `logo_uof.svg` | Logo source (déjà inliné dans `index.html`) |
 | `img/*.webp` | Photos du club (`D85A3835`, `IMG_8135`, `IMG_8323`) — dossier média du CMS |
 | `data/gallery.json` | Vignettes de la galerie (généré au chargement par JS) |
+| `data/categories.json` | Liste des filtres de la galerie (`value`/`label`, éditable, ordre = ordre d'affichage) |
 | `data/sponsors.json` | Bandeau sponsors (généré par JS, deux pistes) |
 | `data/hero.json` | Polaroids du hero : liste d'images par polaroid, **tirage aléatoire à chaque visite** |
 | `data/instagram.json` | URL du post Instagram mis en avant dans la bannière « Actu » (vide = bannière masquée) |
@@ -46,6 +47,12 @@ Hébergé sur **GitHub Pages** depuis la branche principale du dépôt `tristede
 - **Chemins d'images** : le CMS écrit des chemins absolus `/img/…`, mais le rendu les
   convertit en relatifs (`toRel()` retire le `/` initial) — indispensable tant qu'il n'y a
   pas de `CNAME` (GitHub Pages sert alors sur le sous-chemin `/oasisforest/`).
+- **Filtres de la galerie** : la liste des catégories (`data/categories.json`) est éditable
+  via `/admin`, mais le champ « Catégorie » d'une photo reste un champ **texte libre**
+  (widget `select` impossible : Sveltia CMS ne peut pas lire dynamiquement les options
+  depuis un autre fichier JSON dans une config statique). Le volontaire doit taper la même
+  valeur que la colonne « Valeur » d'un filtre — un `pattern` regex limite la casse/les
+  caractères, mais ne garantit pas la correspondance exacte.
 
 ## Pièges rencontrés
 

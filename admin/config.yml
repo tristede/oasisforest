@@ -52,14 +52,27 @@ collections:
               - { name: legende, label: Légende, widget: string }
               - name: categorie
                 label: Catégorie
-                widget: select
-                hint: "Détermine le filtre affiché dans la galerie. Un filtre n'apparaît que s'il y a au moins une photo dans cette catégorie."
-                options:
-                  - { label: "D2 Nationale", value: "d2" }
-                  - { label: "U21", value: "u21" }
-                  - { label: "U17 - U15", value: "u17_15" }
-                  - { label: "U7 - U12", value: "u7_12" }
-                  - { label: "U3", value: "u3" }
+                widget: string
+                hint: "Doit correspondre exactement à la colonne « Valeur » d'un des filtres définis dans « Filtres galerie ». Un filtre n'apparaît que s'il y a au moins une photo dans cette catégorie."
+                pattern: ['^[a-z0-9_]+$', "Minuscules, chiffres et underscores uniquement (ex : d2, u17_15) — doit correspondre à une valeur de « Filtres galerie »."]
+
+  - name: filtres-galerie
+    label: Filtres galerie
+    files:
+      - name: categories
+        label: Liste des filtres
+        file: data/categories.json
+        fields:
+          - name: categories
+            label: Filtres
+            widget: list
+            hint: "L'ordre ici est l'ordre d'affichage des boutons sur le site. Un filtre sans photo correspondante ne s'affiche pas."
+            fields:
+              - name: value
+                label: Valeur (à utiliser dans le champ Catégorie d'une photo)
+                widget: string
+                pattern: ['^[a-z0-9_]+$', "Minuscules, chiffres et underscores uniquement (ex : d2, u17_15)."]
+              - { name: label, label: "Libellé affiché", widget: string }
 
   - name: sponsors
     label: Sponsors

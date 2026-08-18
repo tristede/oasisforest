@@ -1300,18 +1300,16 @@
         }
 
         // 2) Galerie + filtres fonctionnels.
-        // Catégories alignées sur les branches du club ("Nos Équipes"). CATEGORY_ORDER fixe
-        // l'ordre d'affichage ; setupGalleryFilters() n'affiche que celles ayant ≥1 photo.
-        const CATEGORIES = {
-            d2: 'D2 Nationale',
-            u21: 'U21',
-            u17_15: 'U17 - U15',
-            u7_12: 'U7 - U12',
-            u3: 'U3'
-        };
-        const CATEGORY_ORDER = ['d2', 'u21', 'u17_15', 'u7_12', 'u3'];
+        // Liste des filtres éditable via data/categories.json (/admin → Filtres galerie) :
+        // ni les valeurs ni l'ordre d'affichage ne sont figés dans le code.
+        let categoriesList = []; // [{ value, label }], dans l'ordre d'affichage voulu
         let galleryPhotos = [];
         let currentFilter = 'tout';
+
+        function categoryLabel(value) {
+            const found = categoriesList.find((c) => c.value === value);
+            return found ? found.label : (value || ''); // repli : afficher la valeur brute
+        }
 
         function buildTile(photo) {
             const rel = toRel(photo.image);
@@ -1333,7 +1331,7 @@
             const texts = document.createElement('div');
             const catLabel = document.createElement('span');
             catLabel.className = 'text-accent text-[10px] font-black uppercase tracking-widest block mb-1';
-            catLabel.textContent = CATEGORIES[cat] || '';
+            catLabel.textContent = categoryLabel(cat);
             const legende = document.createElement('span');
             legende.className = 'text-white font-bold tracking-wide';
             legende.textContent = photo.legende || '';
@@ -1379,7 +1377,7 @@
 
             const present = new Set(galleryPhotos.map((p) => p.categorie));
             const entries = [{ filter: 'tout', label: 'Tout' }].concat(
-                CATEGORY_ORDER.filter((c) => present.has(c)).map((c) => ({ filter: c, label: CATEGORIES[c] }))
+                categoriesList.filter((c) => present.has(c.value)).map((c) => ({ filter: c.value, label: c.label }))
             );
 
             entries.forEach(({ filter, label }) => {
@@ -1402,8 +1400,12 @@
         }
 
         async function renderGallery() {
-            const data = await loadJSON('data/gallery.json');
-            galleryPhotos = (data && Array.isArray(data.photos)) ? data.photos : [];
+            const [galleryData, categoriesData] = await Promise.all([
+                loadJSON('data/gallery.json'),
+                loadJSON('data/categories.json')
+            ]);
+            galleryPhotos = (galleryData && Array.isArray(galleryData.photos)) ? galleryData.photos : [];
+            categoriesList = (categoriesData && Array.isArray(categoriesData.categories)) ? categoriesData.categories : [];
             renderGalleryGrid();
             setupGalleryFilters();
         }
