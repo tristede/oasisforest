@@ -236,7 +236,7 @@
         }
 
         /* Ancres : compense la navbar + le bandeau sponsors fixes */
-        section[id], div[id="agenda"] { scroll-margin-top: 11rem; }
+        section[id], div[id="agenda"], div[id="map"] { scroll-margin-top: 11rem; }
 
         /* Encarts "Projet et Ambitions" */
         .ambition-card {
@@ -329,15 +329,15 @@
     </button>
 
     <!-- Menu Mobile Plein Écran -->
-    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-night/95 backdrop-blur-xl opacity-0 invisible transition-all duration-300 lg:hidden flex flex-col items-start justify-center">
-        <div class="flex flex-col items-start space-y-8 w-full px-6 text-left">
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-night/95 backdrop-blur-xl opacity-0 invisible transition-all duration-300 lg:hidden flex flex-col items-end justify-center">
+        <div class="flex flex-col items-end space-y-8 w-full px-6 text-right">
             <a href="#entites" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Nos Équipes</a>
             <a href="#club" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Histoire</a>
-            <a href="#agenda" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Agenda RBFA</a>
+            <a href="#agenda" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Agenda</a>
             <a href="#gallery-teaser" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Photos</a>
             <a href="#partenaires" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Sponsors</a>
-            <a href="#contact" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Carte</a>
             <a href="#contact" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Contact</a>
+            <a href="#map" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Maps</a>
         </div>
     </div>
 
@@ -511,6 +511,10 @@
                 <p class="text-lg text-slate-300 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
                     Pour suivre le classement en direct de la D2 et des divisions de nos jeunes, consultez la plateforme officielle de l'Union Belge (RBFA).
                 </p>
+                <!-- Lien ciblé vers la page club -->
+                <a href="https://www.rbfa.be/fr/club/9955/equipes" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-10 py-5 text-sm font-bold text-night tracking-widest uppercase bg-accent rounded-full hover:bg-white hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] transition-all duration-300">
+                    Aller sur RBFA <i class="fas fa-arrow-right ml-3"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -821,7 +825,7 @@
                     </div>
                 </div>
 
-                <div class="block h-[400px] md:h-auto rounded-3xl overflow-hidden glass-panel p-2 reveal relative group">
+                <div id="map" class="block h-[400px] md:h-auto rounded-3xl overflow-hidden glass-panel p-2 reveal relative group">
                     <div class="absolute inset-0 z-10 bg-night/80 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl backdrop-blur-md gap-4">
                         <h4 class="text-white font-bold mb-2 tracking-widest uppercase text-sm">Ouvrir avec :</h4>
                         
