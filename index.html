@@ -179,6 +179,12 @@
             color: #0f172a;
             font-size: 1.5rem;
             transform: rotate(-2deg);
+            /* Les légendes viennent du CMS (texte libre, longueur non maîtrisée) : on
+               tronque sur une ligne plutôt que de laisser déborder du cadre polaroid. */
+            padding: 0 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .parallax-wrapper { will-change: transform; }
@@ -1288,15 +1294,13 @@
                     if (choice.legende) mImg.alt = choice.legende;
                 }
                 if (mCap && choice.legende) mCap.textContent = choice.legende;
-                // Inclinaison + décalage aléatoires à chaque visite : un polaroid parfaitement
-                // centré et droit ne fait pas "posé à la main". Conservés dans heroMobileBase
-                // pour que le parallax au scroll (plus bas) compose avec cette base au lieu
-                // de l'écraser.
+                // Inclinaison aléatoire à chaque visite (posé "à la main"), mais centré sur
+                // l'axe vertical de la page - un décalage latéral avait été tenté puis jugé
+                // bizarre une fois le polaroid agrandi. Conservé dans heroMobileBase pour que
+                // le parallax au scroll (plus bas) compose avec cette base au lieu de l'écraser.
                 if (mWrap) {
                     const angle = (Math.random() * 6 + 2) * (Math.random() < 0.5 ? -1 : 1); // ±2° à ±8°
-                    // Toujours vers la droite ; plage réduite car le polaroid est plus grand
-                    // (w-64) — au-delà de ~30px il déborderait sur les écrans ≤360px de large.
-                    const offsetX = Math.round(Math.random() * 15 + 15); // 15 à 30px
+                    const offsetX = 0; // centré, pas de décalage latéral
                     heroMobileBase = { el: mWrap, angle, offsetX };
                     applyHeroMobileTransform(0);
                 }
