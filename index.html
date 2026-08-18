@@ -1205,6 +1205,15 @@
             }
         }
 
+        // Base (angle + décalage) du polaroid mobile, posée une fois par renderHero() puis
+        // recomposée à chaque scroll avec un léger parallax (cf. applyHeroMobileTransform).
+        let heroMobileBase = null;
+        function applyHeroMobileTransform(parallaxY) {
+            if (!heroMobileBase) return;
+            const { el, angle, offsetX } = heroMobileBase;
+            el.style.transform = `rotate(${angle.toFixed(1)}deg) translateX(${offsetX}px) translateY(${parallaxY.toFixed(1)}px)`;
+        }
+
         // 1) Polaroids du hero : une image tirée au hasard par polaroid, à chaque visite.
         // Desktop : les 2 polaroids sont affichés côte à côte (flottants). Mobile : un seul
         // polaroid affiché, tiré au hasard entre les deux — même mécanique de tirage que
@@ -1242,11 +1251,14 @@
                 }
                 if (mCap && choice.legende) mCap.textContent = choice.legende;
                 // Inclinaison + décalage aléatoires à chaque visite : un polaroid parfaitement
-                // centré et droit ne fait pas "posé à la main".
+                // centré et droit ne fait pas "posé à la main". Conservés dans heroMobileBase
+                // pour que le parallax au scroll (plus bas) compose avec cette base au lieu
+                // de l'écraser.
                 if (mWrap) {
                     const angle = (Math.random() * 6 + 2) * (Math.random() < 0.5 ? -1 : 1); // ±2° à ±8°
                     const offsetX = Math.round(Math.random() * 25 + 25); // toujours vers la droite : 25 à 50px
-                    mWrap.style.transform = `rotate(${angle.toFixed(1)}deg) translateX(${offsetX}px)`;
+                    heroMobileBase = { el: mWrap, angle, offsetX };
+                    applyHeroMobileTransform(0);
                 }
             }
         }
@@ -1524,6 +1536,14 @@
                 const yPos = -(scrolled * speed);
                 el.style.transform = `translateY(${yPos}px)`;
             });
+
+            // Polaroid mobile : léger parallax propre (composé avec sa base rotate/décalage
+            // plutôt que remplacé, contrairement au parallax générique ci-dessus).
+            if (heroMobileBase && window.innerWidth < 1024) {
+                const rect = heroMobileBase.el.getBoundingClientRect();
+                const delta = (rect.top + rect.height / 2) - (window.innerHeight / 2);
+                applyHeroMobileTransform(delta * 0.08);
+            }
         });
 
         const tiltElements = document.querySelectorAll('.hover-tilt');
