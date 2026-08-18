@@ -178,13 +178,6 @@
             transform: rotate(-2deg);
         }
 
-        /* Variante compacte : polaroids du hero en ligne sur mobile/tablette (w-28/w-32).
-           Le "scotch" (::before) et la légende sont à taille fixe dans .polaroid ; à cette
-           échelle réduite ils paraissent disproportionnés sans cet ajustement. */
-        .polaroid-sm { padding: 8px 8px 26px 8px; }
-        .polaroid-sm::before { width: 52px; height: 18px; margin-left: -26px; top: -9px; }
-        .polaroid-sm .polaroid-caption { font-size: 0.85rem; bottom: 4px; }
-
         .parallax-wrapper { will-change: transform; }
 
         /* Custom Scrollbar */
@@ -373,16 +366,14 @@
                 </div>
             </div>
 
-            <!-- Polaroids du hero sur mobile/tablette : en ligne sous les boutons plutôt
-                 qu'en position flottante (pas de place sur les côtés en dessous de lg). -->
-            <div class="flex lg:hidden justify-center items-start gap-6 mt-14 reveal">
-                <div class="polaroid polaroid-sm hover-tilt rotate-3 w-28 sm:w-32 opacity-90" data-tilt-max="10">
-                    <img data-hero-img="0" src="img/D85A3835.webp" alt="Équipe sur le terrain" class="aspect-square grayscale hover:grayscale-0 transition-all duration-500 object-cover">
-                    <p data-hero-caption="0" class="polaroid-caption font-handwriting">Passion & Futsal</p>
-                </div>
-                <div class="polaroid polaroid-sm hover-tilt -rotate-3 w-28 sm:w-32 opacity-90 mt-4" data-tilt-max="10">
-                    <img data-hero-img="1" src="img/IMG_8323.webp" alt="Victoire" class="aspect-square grayscale hover:grayscale-0 transition-all duration-500 object-cover">
-                    <p data-hero-caption="1" class="polaroid-caption font-handwriting">L'Esprit d'Équipe</p>
+            <!-- Polaroid du hero sur mobile/tablette : un seul, tiré au hasard entre les
+                 deux polaroids desktop (même mécanique que le tirage de photo à l'intérieur
+                 d'un polaroid), plutôt que les deux en miniature. En ligne sous les boutons
+                 (pas de place pour du flottant en dessous de lg). -->
+            <div class="flex lg:hidden justify-center mt-14 reveal">
+                <div data-hero-mobile-wrap class="polaroid hover-tilt w-48 sm:w-56" data-tilt-max="10">
+                    <img data-hero-mobile-img src="img/D85A3835.webp" alt="Équipe sur le terrain" class="aspect-square grayscale hover:grayscale-0 transition-all duration-500 object-cover">
+                    <p data-hero-mobile-caption class="polaroid-caption font-handwriting">Passion & Futsal</p>
                 </div>
             </div>
 
@@ -1215,11 +1206,14 @@
         }
 
         // 1) Polaroids du hero : une image tirée au hasard par polaroid, à chaque visite.
-        // Chaque index (0, 1...) peut être présent plusieurs fois dans le DOM (version
-        // desktop + version mobile en ligne) : on applique le même tirage aux deux.
+        // Desktop : les 2 polaroids sont affichés côte à côte (flottants). Mobile : un seul
+        // polaroid affiché, tiré au hasard entre les deux — même mécanique de tirage que
+        // pour la photo à l'intérieur d'un polaroid, appliquée cette fois au choix du polaroid.
         async function renderHero() {
             const data = await loadJSON('data/hero.json');
             if (!data || !Array.isArray(data.polaroids)) return; // on garde l'image de secours du HTML
+            const resolved = []; // { pick, legende } par index, réutilisé pour le tirage mobile
+
             data.polaroids.forEach((p, k) => {
                 const imgs = document.querySelectorAll(`[data-hero-img="${k}"]`);
                 const caps = document.querySelectorAll(`[data-hero-caption="${k}"]`);
@@ -1231,7 +1225,30 @@
                 caps.forEach((cap) => {
                     if (p.legende) cap.textContent = p.legende;
                 });
+                resolved.push({ pick, legende: p.legende });
             });
+
+            // Polaroid unique mobile : tiré parmi les 2 premiers polaroids (ceux affichés
+            // sur desktop), en réutilisant leur tirage déjà fait ci-dessus.
+            const usable = resolved.slice(0, 2).filter((r) => r.pick);
+            if (usable.length) {
+                const choice = pickRandom(usable);
+                const mWrap = document.querySelector('[data-hero-mobile-wrap]');
+                const mImg = document.querySelector('[data-hero-mobile-img]');
+                const mCap = document.querySelector('[data-hero-mobile-caption]');
+                if (mImg) {
+                    mImg.src = choice.pick;
+                    if (choice.legende) mImg.alt = choice.legende;
+                }
+                if (mCap && choice.legende) mCap.textContent = choice.legende;
+                // Inclinaison + décalage aléatoires à chaque visite : un polaroid parfaitement
+                // centré et droit ne fait pas "posé à la main".
+                if (mWrap) {
+                    const angle = (Math.random() * 6 + 2) * (Math.random() < 0.5 ? -1 : 1); // ±2° à ±8°
+                    const offsetX = Math.round(Math.random() * 36 - 18); // ±18px
+                    mWrap.style.transform = `rotate(${angle.toFixed(1)}deg) translateX(${offsetX}px)`;
+                }
+            }
         }
 
         // 2) Galerie + filtres fonctionnels.
