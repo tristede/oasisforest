@@ -189,6 +189,11 @@
 
         .parallax-wrapper { will-change: transform; }
 
+        /* Barre de filtres galerie : scrollable horizontalement sur mobile sans montrer
+           de scrollbar disgracieuse. */
+        .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #020617; }
@@ -309,7 +314,7 @@
                 <div class="flex items-center space-x-5 xl:space-x-8">
                     <a href="#entites" class="text-slate-300 hover:text-accent transition-colors font-medium text-sm uppercase tracking-widest whitespace-nowrap">Équipes</a>
                     <a href="#club" class="text-slate-300 hover:text-accent transition-colors font-medium text-sm uppercase tracking-widest whitespace-nowrap">Histoire</a>
-                    <a href="#" onclick="openGallery(event)" class="text-slate-300 hover:text-accent transition-colors font-medium text-sm uppercase tracking-widest whitespace-nowrap">Photos</a>
+                    <a href="#gallery-teaser" class="text-slate-300 hover:text-accent transition-colors font-medium text-sm uppercase tracking-widest whitespace-nowrap">Photos</a>
                     <a href="#partenaires" class="text-slate-300 hover:text-accent transition-colors font-medium text-sm uppercase tracking-widest whitespace-nowrap">Sponsors</a>
                     <a href="#contact" class="text-slate-300 hover:text-accent transition-colors font-medium text-sm uppercase tracking-widest whitespace-nowrap">Maps</a>
                     <a href="#contact" class="glass-panel text-accent border border-accent/30 px-5 xl:px-6 py-2.5 rounded-full font-bold hover:bg-accent hover:text-night hover:shadow-[0_0_20px_rgba(56,189,248,0.4)] transition-all duration-300 uppercase tracking-wider text-xs whitespace-nowrap"><span class="hidden xl:inline">Nous rejoindre</span><span class="xl:hidden">Rejoindre</span></a>
@@ -324,14 +329,15 @@
     </button>
 
     <!-- Menu Mobile Plein Écran -->
-    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-night/95 backdrop-blur-xl opacity-0 invisible transition-all duration-300 lg:hidden flex flex-col items-center justify-center">
-        <div class="flex flex-col items-center space-y-8 w-full px-6 text-center">
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-night/95 backdrop-blur-xl opacity-0 invisible transition-all duration-300 lg:hidden flex flex-col items-start justify-center">
+        <div class="flex flex-col items-start space-y-8 w-full px-6 text-left">
             <a href="#entites" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Nos Équipes</a>
             <a href="#club" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Histoire</a>
-            <a href="#agenda" class="mobile-link text-2xl text-accent font-black uppercase tracking-widest hover:text-white transition-colors">Agenda RBFA</a>
-            <a href="#" onclick="openGallery(event)" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Photos</a>
+            <a href="#agenda" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Agenda RBFA</a>
+            <a href="#gallery-teaser" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Photos</a>
             <a href="#partenaires" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Sponsors</a>
-            <a href="#contact" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Maps & Contact</a>
+            <a href="#contact" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Carte</a>
+            <a href="#contact" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Contact</a>
         </div>
     </div>
 
@@ -505,10 +511,6 @@
                 <p class="text-lg text-slate-300 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
                     Pour suivre le classement en direct de la D2 et des divisions de nos jeunes, consultez la plateforme officielle de l'Union Belge (RBFA).
                 </p>
-                <!-- Lien ciblé vers la page club -->
-                <a href="https://www.rbfa.be/fr/club/9955/equipes" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-10 py-5 text-sm font-bold text-night tracking-widest uppercase bg-accent rounded-full hover:bg-white hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] transition-all duration-300">
-                    Aller sur RBFA <i class="fas fa-arrow-right ml-3"></i>
-                </a>
             </div>
         </div>
     </section>
@@ -687,7 +689,7 @@
             <div class="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16 reveal">
                 <!-- order-2 sur mobile : texte + bouton d'abord, image ensuite. Sur desktop
                      (md:), order-1 remet l'image à gauche comme avant. -->
-                <div class="polaroid hover-tilt rotate-3 w-48 sm:w-56 shrink-0 order-2 md:order-1" data-tilt-max="10">
+                <div class="polaroid hover-tilt rotate-3 w-56 sm:w-64 shrink-0 order-2 md:order-1" data-tilt-max="10">
                     <img id="gallery-teaser-img" src="img/D85A3835.webp" alt="Aperçu de la galerie" class="aspect-square grayscale hover:grayscale-0 transition-all duration-500 object-cover">
                     <p id="gallery-teaser-caption" class="polaroid-caption font-handwriting">Un souvenir du club</p>
                 </div>
@@ -960,22 +962,24 @@
     <!-- PAGE GALERIE (Overlay Plein Écran pour le mode One-Page) -->
     <div id="gallery-page" class="fixed inset-0 bg-night z-[100] hidden flex-col overflow-y-auto opacity-0 transition-opacity duration-300">
         
-        <!-- Navbar Galerie (Padding ajusté) -->
-        <div class="sticky top-0 w-full z-10 bg-night/80 backdrop-blur-md border-b border-white/5 h-24 flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
-            <div class="flex items-center gap-4">
-                <button onclick="closeGallery()" class="w-10 h-10 rounded-full bg-white/5 hover:bg-white/20 text-white flex items-center justify-center transition-colors">
+        <!-- Navbar Galerie : titre sur une ligne, filtres en dessous (scroll horizontal si
+             ça déborde) - visible sur toutes les tailles d'écran, y compris mobile. -->
+        <div class="sticky top-0 w-full z-10 bg-night/80 backdrop-blur-md border-b border-white/5 py-4">
+            <div class="flex items-center gap-4 px-4 sm:px-6 lg:px-8 mb-3">
+                <button onclick="closeGallery()" class="w-10 h-10 rounded-full bg-white/5 hover:bg-white/20 text-white flex items-center justify-center transition-colors shrink-0">
                     <i class="fas fa-arrow-left"></i>
                 </button>
                 <h2 class="text-xl md:text-2xl font-black text-white tracking-widest uppercase">Galerie <span class="text-accent">Photos</span></h2>
             </div>
             <!-- Boutons générés par JS (setupGalleryFilters) : "Tout" + une entrée par
                  catégorie présente parmi les photos, jamais de filtre vide. -->
-            <div id="gallery-filters" class="hidden sm:flex gap-2"></div>
+            <div id="gallery-filters" class="flex gap-2 overflow-x-auto no-scrollbar px-4 sm:px-6 lg:px-8"></div>
         </div>
 
-        <!-- Grille Photos (Images cliquables) -->
+        <!-- Grille Photos (Images cliquables) : format "grille Instagram" sur mobile
+             (3 colonnes serrées, gap réduit), plus aérée à partir de sm. -->
         <div class="max-w-7xl mx-auto px-4 py-8 md:py-12 w-full flex-1">
-            <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"></div>
+            <div id="gallery-grid" class="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-4 md:gap-6"></div>
 
             <!-- État vide : affiché si aucune photo (ou JSON introuvable) -->
             <p id="gallery-empty" class="hidden text-center text-slate-500 py-16">Aucune photo pour le moment.</p>
@@ -1380,7 +1384,7 @@
         function buildFilterButton(filterValue, label, isActive) {
             const btn = document.createElement('button');
             btn.dataset.filter = filterValue;
-            btn.className = 'gallery-filter-btn px-4 py-1.5 rounded-full font-bold text-xs tracking-wider uppercase transition-colors '
+            btn.className = 'gallery-filter-btn shrink-0 whitespace-nowrap px-4 py-1.5 rounded-full font-bold text-xs tracking-wider uppercase transition-colors '
                 + (isActive ? 'bg-accent text-night' : 'glass-panel text-white hover:text-accent border-white/5');
             btn.textContent = label;
             return btn;
