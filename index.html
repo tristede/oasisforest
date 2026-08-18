@@ -534,9 +534,11 @@
                             <h4 class="text-xl font-bold text-white mb-2">Création de l'ASBL "l'Oasis"</h4>
                             <p class="text-slate-300 text-sm leading-relaxed">Mise en place d'actions sociales concrètes et encadrement de la jeunesse bruxelloise. Un projet pensé pour la communauté dès le premier jour.</p>
                         </div>
-                        <!-- Photo superposée sur la zone tampon vide du bas de l'encart -->
-                        <div class="hidden md:flex justify-center -mt-16 relative z-20">
-                            <div class="polaroid hover-tilt rotate-3 w-52" data-tilt-max="12">
+                        <!-- Photo : en flux normal sous la carte sur mobile (mt-6), superposée
+                             sur la zone tampon réservée (md:pb-24 ci-dessus) à partir de md.
+                             Pas de parallax ici : ça avait causé des chevauchements de texte. -->
+                        <div class="flex justify-center mt-6 md:-mt-16 relative z-20">
+                            <div class="polaroid hover-tilt rotate-3 w-44 sm:w-52" data-tilt-max="12">
                                 <img src="img/oasis.webp" alt="Les débuts du projet" class="aspect-square grayscale sepia-[.2] object-cover">
                                 <p class="polaroid-caption font-handwriting">Le projet naît</p>
                             </div>
@@ -569,8 +571,17 @@
                             <h4 class="text-xl font-bold text-white mb-2">Développement de l'image</h4>
                             <p class="text-slate-300 text-sm leading-relaxed">Structuration de notre présence digitale. Le club fédère une communauté massive sur les réseaux sociaux autour de son projet sport/social.</p>
                         </div>
+                        <!-- Photo mobile : en flux normal sous la carte plutôt que dans la
+                             colonne séparée ci-dessous (qui mettrait la carte et la photo
+                             côte à côte sur un mobile trop étroit pour les deux). -->
+                        <div class="flex justify-center md:hidden mt-6">
+                            <div class="polaroid hover-tilt -rotate-3 w-44" data-tilt-max="12">
+                                <img src="img/IMG_8323.webp" alt="La communauté du club" class="aspect-square grayscale object-cover">
+                                <p class="polaroid-caption font-handwriting">Notre communauté</p>
+                            </div>
+                        </div>
                     </div>
-                    <!-- Photo parallèle à l'encart, de l'autre côté de la ligne -->
+                    <!-- Photo parallèle à l'encart, de l'autre côté de la ligne (desktop) -->
                     <div class="hidden md:flex w-[45%] justify-center px-8">
                         <div class="polaroid hover-tilt -rotate-3 w-52" data-tilt-max="12">
                             <img src="img/IMG_8323.webp" alt="La communauté du club" class="aspect-square grayscale object-cover">

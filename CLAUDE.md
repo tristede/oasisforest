@@ -57,7 +57,7 @@ Hébergé sur **GitHub Pages** depuis la branche principale du dépôt `tristede
 ## Pièges rencontrés
 
 - **Pas de `localStorage`** dans les aperçus d'artefacts Claude.ai (fonctionne normalement sur GitHub Pages).
-- L'effet **parallax sur les polaroids** provoquait des chevauchements de texte dans la ligne du temps. Il en a été retiré — ne pas le réintroduire là-bas.
+- L'effet **parallax sur les polaroids** provoquait des chevauchements de texte dans la ligne du temps. Il en a été retiré — ne pas le réintroduire là-bas. Les polaroids de la ligne du temps sont bien affichés sur mobile depuis, mais **en flux normal** (sous la carte, `mt-6`/`md:hidden` + instance desktop séparée `hidden md:flex`), jamais en position superposée/absolue hors du breakpoint `md` pour lequel elle a été prévue.
 - Vérifier que les classes Tailwind utilisées **existent bien dans l'échelle par défaut** (`bottom-26` n'existe pas ; utiliser `bottom-[6.5rem]`).
 - Les guillemets `«»` et le chevron de la ligne du temps utilisent `scale-x-[…]` pour resserrer leur angle.
 
