@@ -1245,7 +1245,7 @@
                 // centré et droit ne fait pas "posé à la main".
                 if (mWrap) {
                     const angle = (Math.random() * 6 + 2) * (Math.random() < 0.5 ? -1 : 1); // ±2° à ±8°
-                    const offsetX = Math.round(Math.random() * 36 - 18); // ±18px
+                    const offsetX = Math.round(Math.random() * 25 + 25); // toujours vers la droite : 25 à 50px
                     mWrap.style.transform = `rotate(${angle.toFixed(1)}deg) translateX(${offsetX}px)`;
                 }
             }
