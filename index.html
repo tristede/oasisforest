@@ -949,11 +949,9 @@
                 </button>
                 <h2 class="text-xl md:text-2xl font-black text-white tracking-widest uppercase">Galerie <span class="text-accent">Photos</span></h2>
             </div>
-            <div id="gallery-filters" class="hidden sm:flex gap-2">
-                <button data-filter="tout" class="gallery-filter-btn px-4 py-1.5 rounded-full bg-accent text-night font-bold text-xs tracking-wider uppercase transition-colors">Tout</button>
-                <button data-filter="d2" class="gallery-filter-btn px-4 py-1.5 rounded-full glass-panel text-white hover:text-accent font-bold text-xs tracking-wider uppercase transition-colors border-white/5">D2 Nationale</button>
-                <button data-filter="academie" class="gallery-filter-btn px-4 py-1.5 rounded-full glass-panel text-white hover:text-accent font-bold text-xs tracking-wider uppercase transition-colors border-white/5">Académie</button>
-            </div>
+            <!-- Boutons générés par JS (setupGalleryFilters) : "Tout" + une entrée par
+                 catégorie présente parmi les photos, jamais de filtre vide. -->
+            <div id="gallery-filters" class="hidden sm:flex gap-2"></div>
         </div>
 
         <!-- Grille Photos (Images cliquables) -->
@@ -1302,7 +1300,16 @@
         }
 
         // 2) Galerie + filtres fonctionnels.
-        const CATEGORIES = { d2: 'D2 Nationale', academie: 'Académie' };
+        // Catégories alignées sur les branches du club ("Nos Équipes"). CATEGORY_ORDER fixe
+        // l'ordre d'affichage ; setupGalleryFilters() n'affiche que celles ayant ≥1 photo.
+        const CATEGORIES = {
+            d2: 'D2 Nationale',
+            u21: 'U21',
+            u17_15: 'U17 - U15',
+            u7_12: 'U7 - U12',
+            u3: 'U3'
+        };
+        const CATEGORY_ORDER = ['d2', 'u21', 'u17_15', 'u7_12', 'u3'];
         let galleryPhotos = [];
         let currentFilter = 'tout';
 
@@ -1353,14 +1360,33 @@
             if (empty) empty.classList.toggle('hidden', list.length > 0);
         }
 
+        function buildFilterButton(filterValue, label, isActive) {
+            const btn = document.createElement('button');
+            btn.dataset.filter = filterValue;
+            btn.className = 'gallery-filter-btn px-4 py-1.5 rounded-full font-bold text-xs tracking-wider uppercase transition-colors '
+                + (isActive ? 'bg-accent text-night' : 'glass-panel text-white hover:text-accent border-white/5');
+            btn.textContent = label;
+            return btn;
+        }
+
+        // "Tout" + une entrée par catégorie réellement présente parmi les photos chargées :
+        // un filtre sans aucune photo ne doit jamais apparaître.
         function setupGalleryFilters() {
-            const btns = document.querySelectorAll('.gallery-filter-btn');
-            const activeCls = ['bg-accent', 'text-night'];
-            const idleCls = ['glass-panel', 'text-white', 'hover:text-accent', 'border-white/5'];
-            btns.forEach((btn) => {
+            const container = document.getElementById('gallery-filters');
+            if (!container) return;
+            container.innerHTML = '';
+            if (!galleryPhotos.length) return; // pas de photo -> pas de filtres du tout
+
+            const present = new Set(galleryPhotos.map((p) => p.categorie));
+            const entries = [{ filter: 'tout', label: 'Tout' }].concat(
+                CATEGORY_ORDER.filter((c) => present.has(c)).map((c) => ({ filter: c, label: CATEGORIES[c] }))
+            );
+
+            entries.forEach(({ filter, label }) => {
+                const btn = buildFilterButton(filter, label, filter === currentFilter);
                 btn.addEventListener('click', () => {
-                    currentFilter = btn.dataset.filter || 'tout';
-                    btns.forEach((b) => {
+                    currentFilter = filter;
+                    container.querySelectorAll('.gallery-filter-btn').forEach((b) => {
                         const on = b === btn;
                         b.classList.toggle('bg-accent', on);
                         b.classList.toggle('text-night', on);
@@ -1371,6 +1397,7 @@
                     });
                     renderGalleryGrid();
                 });
+                container.append(btn);
             });
         }
 

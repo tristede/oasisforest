@@ -53,9 +53,13 @@ collections:
               - name: categorie
                 label: Catégorie
                 widget: select
+                hint: "Détermine le filtre affiché dans la galerie. Un filtre n'apparaît que s'il y a au moins une photo dans cette catégorie."
                 options:
                   - { label: "D2 Nationale", value: "d2" }
-                  - { label: "Académie", value: "academie" }
+                  - { label: "U21", value: "u21" }
+                  - { label: "U17 - U15", value: "u17_15" }
+                  - { label: "U7 - U12", value: "u7_12" }
+                  - { label: "U3", value: "u3" }
 
   - name: sponsors
     label: Sponsors
