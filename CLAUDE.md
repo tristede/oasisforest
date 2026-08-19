@@ -41,10 +41,12 @@ Hébergé sur **GitHub Pages** depuis la branche principale du dépôt `tristede
   `rgba(56, 189, 248, …)` du fichier ont été converties en `rgba(0, 194, 255, …)` en même
   temps — si `accent` est retouché à nouveau, penser à refaire ce remplacement global pour
   rester cohérent (25 occurrences au dernier compte).
-- `img { filter: saturate(1.35) contrast(1.08); }` (règle globale) : boost visuel des
-  photos. Scopé aux `<img>` uniquement — **ne jamais appliquer de `filter` à `body`/`html`**,
-  ça change le containing block des éléments `position: fixed` (navbar, popup, WhatsApp…)
-  et casse leur positionnement au scroll.
+- **Ne jamais appliquer de `filter` CSS à `body`/`html`** (même scopé à un wrapper englobant
+  les éléments `fixed`) : ça change leur containing block et casse leur positionnement au
+  scroll (navbar, popup, WhatsApp…). Un `filter: saturate()/contrast()` global sur `img` a
+  été testé pour un rendu plus vif, puis retiré : combiné à des photos non redimensionnées
+  (20+ mégapixels affichés à ~200px), le recalcul du filtre à chaque repaint ralentissait
+  nettement l'ouverture des modales (backdrop-blur qui recomposite tout ce qu'il y a derrière).
 - **Contenus éditables** (galerie, sponsors, polaroids du hero) : ne jamais recoder les
   images en dur. Ajouter la donnée dans `data/*.json` + le champ correspondant dans
   `admin/config.yml`. Le rendu JS est regroupé dans `index.html` (bloc « RENDU DES CONTENUS
@@ -66,6 +68,15 @@ Hébergé sur **GitHub Pages** depuis la branche principale du dépôt `tristede
 - L'effet **parallax sur les polaroids** provoquait des chevauchements de texte dans la ligne du temps. Il en a été retiré — ne pas le réintroduire là-bas. Les polaroids de la ligne du temps sont bien affichés sur mobile depuis, mais **en flux normal** (sous la carte, `mt-6`/`md:hidden` + instance desktop séparée `hidden md:flex`), jamais en position superposée/absolue hors du breakpoint `md` pour lequel elle a été prévue.
 - Vérifier que les classes Tailwind utilisées **existent bien dans l'échelle par défaut** (`bottom-26` n'existe pas ; utiliser `bottom-[6.5rem]`).
 - Les guillemets `«»` et le chevron de la ligne du temps utilisent `scale-x-[…]` pour resserrer leur angle.
+- **Photos `img/*.webp` non redimensionnées** (jusqu'à 27 mégapixels, résolution native
+  appareil photo, affichées à ~200px) : ralentissait sensiblement le site, surtout
+  l'ouverture des modales (voir plus haut). Corrigé une fois via ImageMagick
+  (`winget install ImageMagick.ImageMagick`, `magick photo.webp -auto-orient -resize
+  "1600x1600>" -quality 85 photo.webp`) : dossier `img/` passé d'environ 34 Mo à ~1,3 Mo,
+  qualité visuelle inchangée à l'écran. **Le CMS n'applique pas ce traitement** : toute
+  nouvelle photo ajoutée par un bénévole via `/admin` doit être redimensionnée à la main
+  avant upload (hint déjà présent sur les champs image de `admin/config.yml`), sous peine
+  de réintroduire le même ralentissement.
 
 ## Chantiers ouverts
 

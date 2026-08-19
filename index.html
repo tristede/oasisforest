@@ -191,11 +191,6 @@
         .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
 
-        /* Mode "HDR" : couleurs plus vives/pétantes sur les photos (safe car scopé aux
-           <img>, jamais sur un ancestor commun avec des éléments position:fixed - un
-           filter sur body/html casse le positionnement fixed de la navbar/popup/etc.). */
-        img { filter: saturate(1.35) contrast(1.08); }
-
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #020617; }
