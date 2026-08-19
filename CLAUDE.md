@@ -41,6 +41,10 @@ Hébergé sur **GitHub Pages** depuis la branche principale du dépôt `tristede
   `rgba(56, 189, 248, …)` du fichier ont été converties en `rgba(0, 194, 255, …)` en même
   temps — si `accent` est retouché à nouveau, penser à refaire ce remplacement global pour
   rester cohérent (25 occurrences au dernier compte).
+- **Protection légère des photos** (`img { -webkit-touch-callout: none; user-select: none;
+  -webkit-user-drag: none; }` + `contextmenu`/`dragstart` bloqués en JS sur les `<img>`) :
+  empêche le menu « Enregistrer l'image » au clic long iOS et le clic droit desktop. Aucune
+  technique web ne bloque les captures d'écran — c'est une gêne, pas une vraie protection.
 - **Ne jamais appliquer de `filter` CSS à `body`/`html`** (même scopé à un wrapper englobant
   les éléments `fixed`) : ça change leur containing block et casse leur positionnement au
   scroll (navbar, popup, WhatsApp…). Un `filter: saturate()/contrast()` global sur `img` a

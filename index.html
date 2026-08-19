@@ -191,6 +191,17 @@
         .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
 
+        /* Protection légère des photos du club : empêche le menu "Enregistrer l'image"
+           au clic long sur iOS Safari (-webkit-touch-callout) et la sélection/glisser au
+           clic long sur les autres navigateurs. N'empêche pas les captures d'écran (aucune
+           technique web ne le peut) - ça bloque juste le geste d'enregistrement le plus courant. */
+        img {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #020617; }
@@ -962,8 +973,8 @@
          après 10s sans interaction = masqué jusqu'au lendemain (localStorage par jour),
          jamais définitivement. Uniquement des échéances réelles issues du calendrier du
          club - jamais de fausse urgence (cf. CLAUDE.md, directive 2005/29/CE). -->
-    <div id="modal-popup-actu" class="fixed top-28 sm:top-32 right-4 left-4 sm:left-auto sm:right-6 z-[140] hidden sm:max-w-sm opacity-0 -translate-y-3 transition-all duration-300">
-        <div id="popup-actu-card" class="glass-panel border border-slate-400/30 rounded-3xl p-6 relative shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+    <div id="modal-popup-actu" class="fixed top-28 sm:top-32 right-4 z-[140] hidden w-[calc(100%-4rem)] max-w-[260px] opacity-0 -translate-y-3 transition-all duration-300">
+        <div id="popup-actu-card" class="glass-panel border border-slate-400/30 rounded-2xl p-4 relative shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
             <button id="btn-close-popup-actu" aria-label="Fermer" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/5 hover:bg-white/20 text-white flex items-center justify-center transition-colors">
                 <i class="fas fa-times text-sm"></i>
             </button>
@@ -1622,7 +1633,7 @@
                 modal.style.left = `${startLeft}px`;
                 modal.style.top = `${startTop}px`;
                 modal.style.right = 'auto';
-                modal.classList.remove('right-4', 'left-4', 'sm:right-6', 'sm:left-auto', 'top-28', 'sm:top-32');
+                modal.classList.remove('right-4', 'top-28', 'sm:top-32');
                 card.style.cursor = 'grabbing';
                 document.body.style.userSelect = 'none'; // évite de sélectionner le texte sous le curseur pendant le drag
                 e.preventDefault();
@@ -1894,6 +1905,12 @@
             });
         }, 100);
 
+
+        // Protection légère des photos : bloque le clic droit ("Enregistrer l'image sous...")
+        // et le glisser-déposer vers le bureau, en complément du CSS -webkit-touch-callout
+        // (qui gère le clic long sur iOS). Ne bloque pas les captures d'écran.
+        document.addEventListener('contextmenu', (e) => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+        document.addEventListener('dragstart', (e) => { if (e.target.tagName === 'IMG') e.preventDefault(); });
 
         // 4. Parallax Effect on Scroll & Tilt Effect
         window.addEventListener('scroll', () => {
