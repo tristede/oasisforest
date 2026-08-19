@@ -1045,7 +1045,7 @@
                         type: e.titre || 'Match',
                         time: isNaN(d) ? '' : d.toLocaleTimeString('fr-BE', { hour: '2-digit', minute: '2-digit' }),
                         location: e.lieu || 'Extérieur',
-                        isMatch: true,
+                        isMatch: false, // pas d'entraînement en D2/U21 : que des matchs, format normal (pas de mise en avant)
                         _date: d
                     };
                 })
@@ -1183,22 +1183,24 @@
 
             if (id === 'div2' || id === 'u21') {
                 // Équipes de haut niveau : pas d'inscription directe, mais Horaires ET RBFA
-                // affichés ensemble - les vrais matchs du calendrier RBFA importé (voir
-                // data/evenements.json) complètent les entraînements récurrents.
+                // affichés ensemble - uniquement les vrais matchs du calendrier RBFA importé
+                // (voir data/evenements.json), pas d'entraînement pour ces deux équipes.
                 waBtn.classList.add('hidden'); waBtn.classList.remove('flex');
                 calBtn.classList.remove('hidden'); calBtn.classList.add('flex');
                 rbfaBtn.classList.remove('hidden'); rbfaBtn.classList.add('flex');
                 rbfaBtn.href = data.rbfaUrl;
 
-                const trainings = (data.schedule || []).filter((item) => !item.isMatch);
                 const matches = await getTeamMatchesFromEvenements(id);
-                const scheduleHtml = buildScheduleUI(trainings.concat(matches));
+                const scheduleHtml = buildScheduleUI(matches);
                 const warningHtml = `
                     <div class="mt-4 flex items-start gap-2 text-[11px] text-amber-300/90 bg-amber-500/10 border border-amber-500/20 rounded-xl p-3">
                         <i class="fas fa-triangle-exclamation mt-0.5 shrink-0"></i>
                         <span>Attention, les horaires ont pu être modifiés depuis l'encodage. Référez-vous au <a href="${data.rbfaUrl}" target="_blank" rel="noopener noreferrer" class="underline text-accent hover:text-white">site officiel RBFA</a> pour les horaires exacts.</span>
                     </div>`;
-                document.getElementById('modal-cal-content').innerHTML = scheduleHtml + warningHtml;
+                // Hauteur limitée à ~3 lignes visibles, défilement interne sans scrollbar
+                // visible (.no-scrollbar) pour voir le reste du calendrier sans surcharger la modale.
+                document.getElementById('modal-cal-content').innerHTML =
+                    `<div class="max-h-[390px] overflow-y-auto no-scrollbar pr-1">${scheduleHtml}</div>${warningHtml}`;
             } else {
                 // Injection du calendrier visuel statique (académie)
                 document.getElementById('modal-cal-content').innerHTML = buildScheduleUI(data.schedule);
