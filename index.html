@@ -1538,6 +1538,10 @@
         // Pop-up Actu (match ce soir, détection, portes ouvertes...) : voir data/evenements.json
         // (éditable via /admin) et le commentaire sur #modal-popup-actu pour la logique
         // d'éligibilité/cooldown. Un seul pop-up affiché par visite : le plus proche dans le temps.
+        // Page club RBFA : affiche toujours le match précédent/suivant à jour, peu importe
+        // la date - lien par défaut pour tout événement de type "match" (voir showActuPopup).
+        const ACTU_RBFA_CLUB_URL = 'https://www.rbfa.be/fr/club/9955/equipe/369103/apercu';
+
         const ACTU_TYPE_META = {
             match: { badge: 'Match à venir', icon: 'fa-futbol' },
             detection: { badge: 'Détection / Essai', icon: 'fa-user-plus' },
@@ -1632,7 +1636,11 @@
 
             document.getElementById('popup-actu-badge').textContent = meta.badge;
             document.querySelector('#popup-actu-icon i').className = `fas ${meta.icon}`;
-            document.getElementById('popup-actu-titre').textContent = evt.titre || '';
+            // "DOM"/"EXT" coloré dans le titre des matchs (ex. "MATCH EXT VS ADVERSAIRE").
+            // evt.titre vient du CMS (texte libre, pas de contenu utilisateur non maîtrisé) :
+            // même niveau de confiance que le reste du contenu déjà injecté ailleurs sur le site.
+            document.getElementById('popup-actu-titre').innerHTML =
+                (evt.titre || '').replace(/\b(DOM|EXT)\b/, '<span class="text-accent">$1</span>');
             document.querySelector('#popup-actu-datetime span').textContent = formatEventDateTime(evt._date, evt._dayOnly, new Date());
 
             const lieuP = document.getElementById('popup-actu-lieu');
@@ -1644,9 +1652,14 @@
             else { descP.classList.add('hidden'); }
 
             const cta = document.getElementById('popup-actu-cta');
-            if (evt.lien) {
-                cta.href = evt.lien;
-                cta.textContent = evt.lienTexte || "Plus d'infos";
+            // Pour un match, lien par défaut vers la page club RBFA (affiche toujours le
+            // "match précédent"/"match suivant" à jour, quelle que soit la date) - sauf si
+            // l'événement précise son propre lien dans le CMS, qui prime alors.
+            const ctaLink = evt.lien || (evt.type === 'match' ? ACTU_RBFA_CLUB_URL : null);
+            const ctaLabel = evt.lienTexte || (evt.type === 'match' ? "+ d'infos" : "Plus d'infos");
+            if (ctaLink) {
+                cta.href = ctaLink;
+                cta.textContent = ctaLabel;
                 cta.classList.remove('hidden'); cta.classList.add('flex');
             } else {
                 cta.classList.add('hidden'); cta.classList.remove('flex');
