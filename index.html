@@ -982,7 +982,9 @@
                     <p id="popup-actu-datetime" class="text-white font-bold text-xs mb-1 flex items-center gap-1.5"><i class="far fa-clock text-accent"></i> <span></span></p>
                     <p id="popup-actu-lieu" class="text-slate-400 text-xs mb-2 flex items-center gap-1.5"><i class="fas fa-map-marker-alt text-accent"></i> <span></span></p>
                     <p id="popup-actu-desc" class="text-slate-300 text-xs leading-relaxed mb-3"></p>
-                    <a id="popup-actu-cta" href="#" target="_blank" rel="noopener noreferrer" class="hidden items-center justify-center gap-2 bg-gradient-to-r from-accent to-blue-600 text-white font-bold px-4 py-2 rounded-full hover:shadow-[0_0_20px_rgba(0,194,255,0.5)] transition-all text-xs uppercase tracking-wider"></a>
+                    <!-- Discret, façon "liquid glass" : translucide/flouté (glass-panel),
+                         pas de dégradé plein ni de glow appuyé comme les CTA principaux. -->
+                    <a id="popup-actu-cta" href="#" target="_blank" rel="noopener noreferrer" class="hidden items-center justify-center gap-2 glass-panel border border-white/10 hover:border-accent/30 text-white/80 hover:text-accent font-semibold px-4 py-2 rounded-full transition-all text-xs uppercase tracking-wider"></a>
                 </div>
             </div>
         </div>
@@ -1193,7 +1195,7 @@
                 const matches = await getTeamMatchesFromEvenements(id);
                 const scheduleHtml = buildScheduleUI(matches);
                 const warningHtml = `
-                    <div class="mt-4 flex items-start gap-2 text-[11px] text-amber-300/90 bg-amber-500/10 border border-amber-500/20 rounded-xl p-3">
+                    <div class="mt-4 flex items-start gap-2 text-[11px] text-violet-300/90 bg-violet-500/10 border border-violet-500/20 rounded-xl p-3">
                         <i class="fas fa-triangle-exclamation mt-0.5 shrink-0"></i>
                         <span>Attention, les horaires ont pu être modifiés depuis l'encodage. Référez-vous au <a href="${data.rbfaUrl}" target="_blank" rel="noopener noreferrer" class="underline text-accent hover:text-white">site officiel RBFA</a> pour les horaires exacts.</span>
                     </div>`;
@@ -1668,11 +1670,11 @@
 
             document.getElementById('popup-actu-badge').textContent = meta.badge;
             document.querySelector('#popup-actu-icon i').className = `fas ${meta.icon}`;
-            // "DOM"/"EXT" coloré dans le titre des matchs (ex. "MATCH EXT VS ADVERSAIRE").
+            // Nom de l'adversaire coloré dans le titre des matchs (ex. "MATCH VS ADVERSAIRE").
             // evt.titre vient du CMS (texte libre, pas de contenu utilisateur non maîtrisé) :
             // même niveau de confiance que le reste du contenu déjà injecté ailleurs sur le site.
             document.getElementById('popup-actu-titre').innerHTML =
-                (evt.titre || '').replace(/\b(DOM|EXT)\b/, '<span class="text-accent">$1</span>');
+                (evt.titre || '').replace(/VS (.+)$/i, 'VS <span class="text-accent">$1</span>');
             document.querySelector('#popup-actu-datetime span').textContent = formatEventDateTime(evt._date, evt._dayOnly, new Date());
 
             const lieuP = document.getElementById('popup-actu-lieu');
