@@ -116,6 +116,14 @@ collections:
                   - { label: "Détection / Essai", value: "detection" }
                   - { label: "Portes ouvertes", value: "portes-ouvertes" }
                   - { label: "Autre", value: "autre" }
+              - name: equipe
+                label: "Équipe concernée (pour un Match)"
+                widget: select
+                required: false
+                hint: "Si renseigné pour un Match, il apparaît aussi dans la modale Horaires de cette équipe (bouton Horaires sur sa fiche), en plus du pop-up."
+                options:
+                  - { label: "Division 2 (Nationale)", value: "div2" }
+                  - { label: "U21", value: "u21" }
               - name: titre
                 label: Titre
                 widget: string

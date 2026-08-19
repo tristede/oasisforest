@@ -114,6 +114,14 @@ Hébergé sur **GitHub Pages** depuis la branche principale du dépôt `tristede
      immédiatement la notification actuellement éligible (même déjà fermée aujourd'hui),
      outil de vérification pour un modérateur. Logique d'éligibilité partagée via
      `getEligibleActuEvent()`.
+   - Le champ optionnel `equipe` (`div2`/`u21`) d'un événement de type match réutilise ce
+     même calendrier dans la **modale Horaires** de la fiche équipe correspondante (bouton
+     « Horaires » désormais affiché en plus du bouton RBFA pour D2/U21, plus seulement pour
+     l'académie). `getTeamMatchesFromEvenements(id)` filtre et formate les matchs pour
+     `buildScheduleUI()`, combinés aux entraînements récurrents statiques de `teamsData`.
+     Bandeau d'avertissement ajouté (horaires possiblement modifiés depuis l'encodage,
+     lien vers `teamsData[id].rbfaUrl`). Taille de la modale volontairement inchangée
+     (`max-h-[90vh] overflow-y-auto` déjà présent) : le calendrier complet y défile.
    - ⚠️ Uniquement des échéances **réelles** (matchs, détections, portes ouvertes, séance
      d'essai) : ces pratiques figurent sur la liste noire de la directive européenne
      2005/29/CE, jamais de fausse urgence/rareté. Le club est une ASBL qui s'adresse à des

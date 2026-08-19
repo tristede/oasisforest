@@ -1031,6 +1031,27 @@
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
 
+        // Récupère les vrais matchs d'une équipe depuis data/evenements.json (calendrier
+        // RBFA importé) pour les injecter dans sa modale Horaires - voir openTeamModal().
+        async function getTeamMatchesFromEvenements(teamId) {
+            const data = await loadJSON('data/evenements.json');
+            const events = (data && Array.isArray(data.evenements)) ? data.evenements : [];
+            return events
+                .filter((e) => e.type === 'match' && e.equipe === teamId)
+                .map((e) => {
+                    const d = new Date(e.date);
+                    return {
+                        day: isNaN(d) ? '?' : `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}`,
+                        type: e.titre || 'Match',
+                        time: isNaN(d) ? '' : d.toLocaleTimeString('fr-BE', { hour: '2-digit', minute: '2-digit' }),
+                        location: e.lieu || 'Extérieur',
+                        isMatch: true,
+                        _date: d
+                    };
+                })
+                .sort((a, b) => a._date - b._date);
+        }
+
         // Fonction pour générer le calendrier visuel façon "Twitch Schedule"
         function buildScheduleUI(scheduleArray) {
             if (!scheduleArray || scheduleArray.length === 0) {
@@ -1141,22 +1162,19 @@
         const modalInfo = document.getElementById('modal-info');
         const modalCal = document.getElementById('modal-cal');
 
-        function openTeamModal(id) {
+        async function openTeamModal(id) {
             currentTeamId = id;
             const data = teamsData[id];
-            
+
             document.getElementById('modal-info-title').textContent = data.title;
             document.getElementById('modal-info-subtitle').textContent = data.subtitle;
             document.getElementById('modal-info-desc').innerHTML = data.desc;
-            
+
             const iconDiv = document.getElementById('modal-info-icon');
             iconDiv.className = `w-12 h-12 rounded-xl flex items-center justify-center text-white text-xl ${data.iconBg}`;
             iconDiv.innerHTML = `<i class="${data.iconClass}"></i>`;
 
             document.getElementById('modal-cal-title').textContent = `Horaires ${data.title}`;
-            
-            // Injection du nouveau calendrier visuel dynamique
-            document.getElementById('modal-cal-content').innerHTML = buildScheduleUI(data.schedule);
 
             // Mise à jour des boutons selon le type d'équipe (Pro vs Académie)
             const waBtn = document.getElementById('btn-whatsapp-join');
@@ -1164,14 +1182,26 @@
             const rbfaBtn = document.getElementById('btn-rbfa-link');
 
             if (id === 'div2' || id === 'u21') {
-                // Équipes de haut niveau : Pas d'inscription directe, redirection RBFA
+                // Équipes de haut niveau : pas d'inscription directe, mais Horaires ET RBFA
+                // affichés ensemble - les vrais matchs du calendrier RBFA importé (voir
+                // data/evenements.json) complètent les entraînements récurrents.
                 waBtn.classList.add('hidden'); waBtn.classList.remove('flex');
-                calBtn.classList.add('hidden'); calBtn.classList.remove('flex');
+                calBtn.classList.remove('hidden'); calBtn.classList.add('flex');
                 rbfaBtn.classList.remove('hidden'); rbfaBtn.classList.add('flex');
-                
-                // On injecte le lien officiel spécifique à l'équipe
                 rbfaBtn.href = data.rbfaUrl;
+
+                const trainings = (data.schedule || []).filter((item) => !item.isMatch);
+                const matches = await getTeamMatchesFromEvenements(id);
+                const scheduleHtml = buildScheduleUI(trainings.concat(matches));
+                const warningHtml = `
+                    <div class="mt-4 flex items-start gap-2 text-[11px] text-amber-300/90 bg-amber-500/10 border border-amber-500/20 rounded-xl p-3">
+                        <i class="fas fa-triangle-exclamation mt-0.5 shrink-0"></i>
+                        <span>Attention, les horaires ont pu être modifiés depuis l'encodage. Référez-vous au <a href="${data.rbfaUrl}" target="_blank" rel="noopener noreferrer" class="underline text-accent hover:text-white">site officiel RBFA</a> pour les horaires exacts.</span>
+                    </div>`;
+                document.getElementById('modal-cal-content').innerHTML = scheduleHtml + warningHtml;
             } else {
+                // Injection du calendrier visuel statique (académie)
+                document.getElementById('modal-cal-content').innerHTML = buildScheduleUI(data.schedule);
                 // Académie : Inscription WhatsApp + Modale Horaires internes
                 waBtn.classList.remove('hidden'); waBtn.classList.add('flex');
                 calBtn.classList.remove('hidden'); calBtn.classList.add('flex');
