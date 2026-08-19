@@ -95,3 +95,59 @@ collections:
                 hint: "Logo au format SVG ou PNG sur fond transparent de préférence. Laisser vide affiche le nom en texte."
               - { name: url, label: Site web, widget: string, required: false }
               - { name: principal, label: Sponsor maillot, widget: boolean, default: false }
+
+  - name: evenements
+    label: Actu (pop-up match / détection)
+    files:
+      - name: liste
+        label: Liste des événements
+        file: data/evenements.json
+        fields:
+          - name: evenements
+            label: Événements
+            widget: list
+            hint: "Un pop-up s'affiche sur le site à partir de X jours avant chaque événement, jusqu'à sa date. Une fois fermé par un visiteur, il ne réapparaît que le lendemain. N'ajouter que des échéances réelles (match, détection, portes ouvertes...) — jamais de fausse urgence."
+            fields:
+              - name: type
+                label: Type
+                widget: select
+                options:
+                  - { label: "Match", value: "match" }
+                  - { label: "Détection / Essai", value: "detection" }
+                  - { label: "Portes ouvertes", value: "portes-ouvertes" }
+                  - { label: "Autre", value: "autre" }
+              - name: titre
+                label: Titre
+                widget: string
+                hint: "Ex : Match D2 vs Anderlecht"
+              - name: date
+                label: Date et heure
+                widget: datetime
+                date_format: "DD/MM/YYYY"
+                time_format: "HH:mm"
+                picker_utc: false
+              - name: lieu
+                label: Lieu
+                widget: string
+                required: false
+                hint: "Laisser vide pour le complexe sportif du club par défaut."
+              - name: description
+                label: Description courte
+                widget: text
+                required: false
+              - name: joursAvant
+                label: "Jours avant l'événement pour commencer à afficher le pop-up"
+                widget: number
+                default: 1
+                min: 0
+                max: 14
+              - name: lien
+                label: "Lien du bouton (optionnel)"
+                widget: string
+                required: false
+                hint: "Ex : lien WhatsApp, Google Maps, ou page RBFA du match."
+              - name: lienTexte
+                label: "Texte du bouton"
+                widget: string
+                required: false
+                default: "Plus d'infos"

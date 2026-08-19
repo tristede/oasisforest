@@ -946,6 +946,35 @@
         </div>
     </div>
 
+    <!-- NOTIFICATION ACTU (match ce soir, détection, portes ouvertes...) -->
+    <!-- Toast non bloquant en coin d'écran (pas de fond assombri, la landing reste
+         utilisable) : voir renderActuPopup(). Contenu piloté par data/evenements.json
+         (éditable via /admin). Un événement devient éligible entre "date - joursAvant
+         jours" et sa date (comparaison jour civil). Fermeture manuelle OU automatique
+         après 10s sans interaction = masqué jusqu'au lendemain (localStorage par jour),
+         jamais définitivement. Uniquement des échéances réelles issues du calendrier du
+         club - jamais de fausse urgence (cf. CLAUDE.md, directive 2005/29/CE). -->
+    <div id="modal-popup-actu" class="fixed top-28 sm:top-32 right-4 left-4 sm:left-auto sm:right-6 z-[140] hidden sm:max-w-sm opacity-0 -translate-y-3 transition-all duration-300">
+        <div id="popup-actu-card" class="glass-panel border border-accent/30 rounded-3xl p-6 relative shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+            <button id="btn-close-popup-actu" aria-label="Fermer" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/5 hover:bg-white/20 text-white flex items-center justify-center transition-colors">
+                <i class="fas fa-times text-sm"></i>
+            </button>
+            <div class="flex items-start gap-3 pr-6">
+                <div id="popup-actu-icon" class="w-11 h-11 shrink-0 rounded-xl bg-accent/10 flex items-center justify-center text-lg text-accent">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <div class="min-w-0">
+                    <span id="popup-actu-badge" class="text-accent text-[10px] font-bold tracking-widest uppercase block mb-1"></span>
+                    <h3 id="popup-actu-titre" class="text-lg font-black text-white mb-1.5 leading-tight"></h3>
+                    <p id="popup-actu-datetime" class="text-white font-bold text-xs mb-1 flex items-center gap-1.5"><i class="far fa-clock text-accent"></i> <span></span></p>
+                    <p id="popup-actu-lieu" class="text-slate-400 text-xs mb-2 flex items-center gap-1.5"><i class="fas fa-map-marker-alt text-accent"></i> <span></span></p>
+                    <p id="popup-actu-desc" class="text-slate-300 text-xs leading-relaxed mb-3"></p>
+                    <a id="popup-actu-cta" href="#" target="_blank" rel="noopener noreferrer" class="hidden items-center justify-center gap-2 bg-gradient-to-r from-accent to-blue-600 text-white font-bold px-4 py-2 rounded-full hover:shadow-[0_0_20px_rgba(56,189,248,0.5)] transition-all text-xs uppercase tracking-wider"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- PAGE GALERIE (Overlay Plein Écran pour le mode One-Page) -->
     <div id="gallery-page" class="fixed inset-0 bg-night z-[100] hidden flex-col overflow-y-auto opacity-0 transition-opacity duration-300">
         
@@ -1493,10 +1522,109 @@
             });
         }
 
+        // Pop-up Actu (match ce soir, détection, portes ouvertes...) : voir data/evenements.json
+        // (éditable via /admin) et le commentaire sur #modal-popup-actu pour la logique
+        // d'éligibilité/cooldown. Un seul pop-up affiché par visite : le plus proche dans le temps.
+        const ACTU_TYPE_META = {
+            match: { badge: 'Match à venir', icon: 'fa-futbol' },
+            detection: { badge: 'Détection / Essai', icon: 'fa-user-plus' },
+            'portes-ouvertes': { badge: 'Portes ouvertes', icon: 'fa-door-open' },
+            autre: { badge: 'À noter', icon: 'fa-bullhorn' }
+        };
+
+        const dateOnly = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+        // toISOString() convertit en UTC avant de trancher la date : avec un fuseau en avance
+        // sur UTC (Belgique, +1/+2h), ça décale la clé d'un jour. On reste en composants locaux.
+        const localDateKey = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+
+        function formatEventDateTime(eventDate, eventDayOnly, now) {
+            const diffDays = Math.round((eventDayOnly - dateOnly(now)) / 86400000);
+            const timeStr = eventDate.toLocaleTimeString('fr-BE', { hour: '2-digit', minute: '2-digit' });
+            let dayLabel;
+            if (diffDays === 0) dayLabel = "Aujourd'hui";
+            else if (diffDays === 1) dayLabel = 'Demain';
+            else dayLabel = eventDate.toLocaleDateString('fr-BE', { weekday: 'long', day: 'numeric', month: 'long' });
+            return `${dayLabel} à ${timeStr}`;
+        }
+
+        function showActuPopup(evt, eventId, dismissKey) {
+            const modal = document.getElementById('modal-popup-actu');
+            const meta = ACTU_TYPE_META[evt.type] || ACTU_TYPE_META.autre;
+
+            document.getElementById('popup-actu-badge').textContent = meta.badge;
+            document.querySelector('#popup-actu-icon i').className = `fas ${meta.icon}`;
+            document.getElementById('popup-actu-titre').textContent = evt.titre || '';
+            document.querySelector('#popup-actu-datetime span').textContent = formatEventDateTime(evt._date, evt._dayOnly, new Date());
+
+            const lieuP = document.getElementById('popup-actu-lieu');
+            if (evt.lieu) { lieuP.querySelector('span').textContent = evt.lieu; lieuP.classList.remove('hidden'); }
+            else { lieuP.classList.add('hidden'); }
+
+            const descP = document.getElementById('popup-actu-desc');
+            if (evt.description) { descP.textContent = evt.description; descP.classList.remove('hidden'); }
+            else { descP.classList.add('hidden'); }
+
+            const cta = document.getElementById('popup-actu-cta');
+            if (evt.lien) {
+                cta.href = evt.lien;
+                cta.textContent = evt.lienTexte || "Plus d'infos";
+                cta.classList.remove('hidden'); cta.classList.add('flex');
+            } else {
+                cta.classList.add('hidden'); cta.classList.remove('flex');
+            }
+
+            let autoDismissTimer = null;
+            const close = () => {
+                clearTimeout(autoDismissTimer);
+                modal.classList.remove('opacity-100'); modal.classList.add('opacity-0', '-translate-y-3');
+                setTimeout(() => modal.classList.add('hidden'), 300);
+                localStorage.setItem(dismissKey, eventId); // réapparaîtra un autre jour, pas aujourd'hui
+            };
+            document.getElementById('btn-close-popup-actu').addEventListener('click', close, { once: true });
+            document.getElementById('popup-actu-cta').addEventListener('click', close, { once: true });
+
+            // Affichage différé : laisse la page se charger avant d'interrompre le visiteur.
+            // Notification non bloquante : disparaît seule après 10s sans interaction.
+            setTimeout(() => {
+                modal.classList.remove('hidden');
+                void modal.offsetWidth; // force reflow pour que la transition joue
+                modal.classList.remove('opacity-0', '-translate-y-3'); modal.classList.add('opacity-100');
+                autoDismissTimer = setTimeout(close, 10000);
+            }, 1200);
+        }
+
+        async function renderActuPopup() {
+            const data = await loadJSON('data/evenements.json');
+            const events = (data && Array.isArray(data.evenements)) ? data.evenements : [];
+            if (!events.length) return;
+
+            const today = dateOnly(new Date());
+            const eligible = events.map((e) => {
+                const eventDate = new Date(e.date);
+                if (isNaN(eventDate)) return null; // date mal formée -> ignorée sans casser la page
+                const dayOnly = dateOnly(eventDate);
+                const windowStart = new Date(dayOnly);
+                windowStart.setDate(windowStart.getDate() - (Number(e.joursAvant) || 0));
+                return (today >= windowStart && today <= dayOnly) ? { ...e, _date: eventDate, _dayOnly: dayOnly } : null;
+            }).filter(Boolean).sort((a, b) => a._dayOnly - b._dayOnly);
+
+            if (!eligible.length) return;
+            const chosen = eligible[0];
+
+            // Fermé aujourd'hui -> ne pas le remontrer avant demain (mémorisation par jour).
+            const todayKey = localDateKey(today);
+            const dismissKey = `actuPopupDismissed_${todayKey}`;
+            const eventId = `${chosen.type}_${localDateKey(chosen._dayOnly)}_${chosen.titre}`;
+            if (localStorage.getItem(dismissKey) === eventId) return;
+
+            showActuPopup(chosen, eventId, dismissKey);
+        }
+
         // Lancement
         renderHero();
         renderGallery().then(renderGalleryTeaser);
         renderSponsors();
+        renderActuPopup();
 
 
         // --- LOGIQUE DE LA GALERIE PHOTOS ---

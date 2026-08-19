@@ -24,6 +24,7 @@ Hébergé sur **GitHub Pages** depuis la branche principale du dépôt `tristede
 | `data/categories.json` | Liste des filtres de la galerie (`value`/`label`, éditable, ordre = ordre d'affichage) |
 | `data/sponsors.json` | Bandeau sponsors (généré par JS, deux pistes) |
 | `data/hero.json` | Polaroids du hero : liste d'images par polaroid, **tirage aléatoire à chaque visite** |
+| `data/evenements.json` | Matchs/détections/événements : alimente la notification « Actu » (voir Chantiers) |
 | `admin/index.html` + `admin/config.yml` | Interface Sveltia CMS (`/admin`) |
 | `.nojekyll` | Empêche Jekyll d'ignorer les dossiers en underscore sur GitHub Pages |
 
@@ -79,14 +80,25 @@ Hébergé sur **GitHub Pages** depuis la branche principale du dépôt `tristede
      le club (upload photo + légende à chaque post plutôt qu'un simple lien). Ne pas
      réintroduire sans revalider ce compromis avec le club.
 2. **Tailwind en production** — remplacer le CDN par un CSS compilé.
-3. **Pop-up de recrutement** — envisagé, avec cooldown (mémorisation via `localStorage`).
-   Uniquement sur des échéances **réelles** : places limitées par catégorie d'âge,
-   dates d'affiliation RBFA, portes ouvertes, séance d'essai.
-   ⚠️ Ne jamais implémenter de fausse promotion, faux compte à rebours ou fausse
-   rareté : ces pratiques figurent sur la liste noire de la directive européenne
-   2005/29/CE et sont interdites en toutes circonstances. Le club est une ASBL qui
-   s'adresse à des familles — le risque réputationnel local s'ajoute au risque légal.
-   Le contenu du pop-up doit être éditable via le CMS de l'étape 1.
+3. **Notification Actu (matchs/détections/événements)** — ✅ faite.
+   `data/evenements.json` (éditable via `/admin` → « Actu (pop-up match / détection) »),
+   rendu par `renderActuPopup()` dans `index.html`.
+   - Notification **non bloquante** en coin d'écran (haut-droite), la landing reste
+     utilisable en dessous. Ne jamais revenir à une modale plein écran qui bloque l'accès
+     au site — c'est le retour explicite du club sur une première version trop intrusive.
+   - Un événement devient éligible entre `date - joursAvant jours` et sa date (comparaison
+     en jour civil, pas à l'heure près). Le plus proche dans le temps est affiché en priorité
+     si plusieurs sont éligibles simultanément (un seul pop-up par visite).
+   - Fermeture manuelle **ou** automatique après 10s sans interaction : dans les deux cas,
+     mémorisé pour la journée (`localStorage`, clé par jour via `localDateKey()` — ne pas
+     utiliser `toISOString()` pour une date locale, ça décale d'un jour avec un fuseau en
+     avance sur UTC comme la Belgique en été).
+   - Calendrier initial peuplé à la main depuis un export PDF RBFA (pas d'API disponible) :
+     à mettre à jour en fin de saison ou en cas de changement d'horaire/forfait.
+   - ⚠️ Uniquement des échéances **réelles** (matchs, détections, portes ouvertes, séance
+     d'essai) : ces pratiques figurent sur la liste noire de la directive européenne
+     2005/29/CE, jamais de fausse urgence/rareté. Le club est une ASBL qui s'adresse à des
+     familles — le risque réputationnel local s'ajoute au risque légal.
 
 ## Contact du club (déjà dans le site)
 
