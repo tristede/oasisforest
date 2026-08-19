@@ -2,170 +2,170 @@
   "evenements": [
     {
       "type": "match",
-      "titre": "Match à l'extérieur",
+      "titre": "MATCH EXT VS BOURAZA FT BRUSSELS",
       "date": "2026-08-21T21:15:00",
       "lieu": "",
-      "description": "Union Oasis Forest se déplace face à Bouraza FT Brussels.",
+      "description": "",
       "joursAvant": 2
     },
     {
       "type": "match",
-      "titre": "Match à domicile",
+      "titre": "MATCH DOM VS LA SQUADRA MOUSCRON",
       "date": "2026-09-18T21:30:00",
       "lieu": "Complexe sportif, Bd. de la 2ème Armée Britannique 600, 1190 Forest",
-      "description": "Union Oasis Forest reçoit La Squadra Mouscron (Division 2 Nationale A).",
+      "description": "",
       "joursAvant": 2
     },
     {
       "type": "match",
-      "titre": "Match à l'extérieur",
+      "titre": "MATCH EXT VS ANNEESSENS 25 BRUSSELS",
       "date": "2026-09-25T21:10:00",
       "lieu": "",
-      "description": "Union Oasis Forest se déplace face à Anneessens 25 Brussels (Division 2 Nationale A).",
+      "description": "",
       "joursAvant": 2
     },
     {
       "type": "match",
-      "titre": "Match à domicile",
+      "titre": "MATCH DOM VS FUTSAL ACADEMY THULIN",
       "date": "2026-10-02T21:30:00",
       "lieu": "Complexe sportif, Bd. de la 2ème Armée Britannique 600, 1190 Forest",
-      "description": "Union Oasis Forest reçoit Futsal Academy Thulin (Division 2 Nationale A).",
+      "description": "",
       "joursAvant": 2
     },
     {
       "type": "match",
-      "titre": "Match à l'extérieur",
+      "titre": "MATCH EXT VS F.T. DE GEMEENSCHAP SINT-NIKLAAS",
       "date": "2026-10-09T21:15:00",
       "lieu": "",
-      "description": "Union Oasis Forest se déplace face à F.T. De Gemeenschap Sint-Niklaas (Division 2 Nationale A).",
+      "description": "",
       "joursAvant": 2
     },
     {
       "type": "match",
-      "titre": "Match à l'extérieur",
+      "titre": "MATCH EXT VS FUTSAL JETTE UR BXL CAP",
       "date": "2026-10-23T21:25:00",
       "lieu": "",
-      "description": "Union Oasis Forest se déplace face à Futsal Jette UR BXL Cap (Division 2 Nationale A).",
+      "description": "",
       "joursAvant": 2
     },
     {
       "type": "match",
-      "titre": "Match à l'extérieur",
+      "titre": "MATCH EXT VS FT DENDERMONDE",
       "date": "2026-10-30T21:15:00",
       "lieu": "",
-      "description": "Union Oasis Forest se déplace face à FT Dendermonde (Division 2 Nationale A).",
+      "description": "",
       "joursAvant": 2
     },
     {
       "type": "match",
-      "titre": "Match à domicile",
+      "titre": "MATCH DOM VS FUTSAL MY-CARS CHARLEROI",
       "date": "2026-11-13T21:30:00",
       "lieu": "Complexe sportif, Bd. de la 2ème Armée Britannique 600, 1190 Forest",
-      "description": "Union Oasis Forest reçoit Futsal My-Cars Charleroi (Division 2 Nationale A).",
+      "description": "",
       "joursAvant": 2
     },
     {
       "type": "match",
-      "titre": "Match à l'extérieur",
+      "titre": "MATCH EXT VS FT GALAXY-AALST A",
       "date": "2026-11-20T21:55:00",
       "lieu": "",
-      "description": "Union Oasis Forest se déplace face à FT Galaxy-Aalst A (Division 2 Nationale A).",
+      "description": "",
       "joursAvant": 2
     },
     {
       "type": "match",
-      "titre": "Match à domicile",
+      "titre": "MATCH DOM VS FUTSAL CLUB MECHELEN",
       "date": "2026-11-27T21:30:00",
       "lieu": "Complexe sportif, Bd. de la 2ème Armée Britannique 600, 1190 Forest",
-      "description": "Union Oasis Forest reçoit Futsal Club Mechelen (Division 2 Nationale A).",
+      "description": "",
       "joursAvant": 2
     },
     {
       "type": "match",
-      "titre": "Match à l'extérieur",
+      "titre": "MATCH EXT VS BSEP FUTSAL MORLANWELZ",
       "date": "2026-12-04T21:20:00",
       "lieu": "",
-      "description": "Union Oasis Forest se déplace face à BSEP Futsal Morlanwelz (Division 2 Nationale A).",
+      "description": "",
       "joursAvant": 2
     },
     {
       "type": "match",
-      "titre": "Match à l'extérieur",
+      "titre": "MATCH EXT VS LA SQUADRA MOUSCRON",
       "date": "2027-01-22T21:15:00",
       "lieu": "",
-      "description": "Union Oasis Forest se déplace face à La Squadra Mouscron (Division 2 Nationale A).",
+      "description": "",
       "joursAvant": 2
     },
     {
       "type": "match",
-      "titre": "Match à domicile",
+      "titre": "MATCH DOM VS ANNEESSENS 25 BRUSSELS",
       "date": "2027-01-29T21:30:00",
       "lieu": "Complexe sportif, Bd. de la 2ème Armée Britannique 600, 1190 Forest",
-      "description": "Union Oasis Forest reçoit Anneessens 25 Brussels (Division 2 Nationale A).",
+      "description": "",
       "joursAvant": 2
     },
     {
       "type": "match",
-      "titre": "Match à l'extérieur",
+      "titre": "MATCH EXT VS FUTSAL ACADEMY THULIN",
       "date": "2027-02-05T21:30:00",
       "lieu": "",
-      "description": "Union Oasis Forest se déplace face à Futsal Academy Thulin (Division 2 Nationale A).",
+      "description": "",
       "joursAvant": 2
     },
     {
       "type": "match",
-      "titre": "Match à domicile",
+      "titre": "MATCH DOM VS F.T. DE GEMEENSCHAP SINT-NIKLAAS",
       "date": "2027-02-12T21:30:00",
       "lieu": "Complexe sportif, Bd. de la 2ème Armée Britannique 600, 1190 Forest",
-      "description": "Union Oasis Forest reçoit F.T. De Gemeenschap Sint-Niklaas (Division 2 Nationale A).",
+      "description": "",
       "joursAvant": 2
     },
     {
       "type": "match",
-      "titre": "Match à domicile",
+      "titre": "MATCH DOM VS FUTSAL JETTE UR BXL CAP",
       "date": "2027-02-19T21:30:00",
       "lieu": "Complexe sportif, Bd. de la 2ème Armée Britannique 600, 1190 Forest",
-      "description": "Union Oasis Forest reçoit Futsal Jette UR BXL Cap (Division 2 Nationale A).",
+      "description": "",
       "joursAvant": 2
     },
     {
       "type": "match",
-      "titre": "Match à domicile",
+      "titre": "MATCH DOM VS FT DENDERMONDE",
       "date": "2027-03-05T21:30:00",
       "lieu": "Complexe sportif, Bd. de la 2ème Armée Britannique 600, 1190 Forest",
-      "description": "Union Oasis Forest reçoit FT Dendermonde (Division 2 Nationale A).",
+      "description": "",
       "joursAvant": 2
     },
     {
       "type": "match",
-      "titre": "Match à l'extérieur",
+      "titre": "MATCH EXT VS FUTSAL MY-CARS CHARLEROI",
       "date": "2027-03-12T21:30:00",
       "lieu": "",
-      "description": "Union Oasis Forest se déplace face à Futsal My-Cars Charleroi (Division 2 Nationale A).",
+      "description": "",
       "joursAvant": 2
     },
     {
       "type": "match",
-      "titre": "Match à domicile",
+      "titre": "MATCH DOM VS FT GALAXY-AALST A",
       "date": "2027-03-19T21:30:00",
       "lieu": "Complexe sportif, Bd. de la 2ème Armée Britannique 600, 1190 Forest",
-      "description": "Union Oasis Forest reçoit FT Galaxy-Aalst A (Division 2 Nationale A).",
+      "description": "",
       "joursAvant": 2
     },
     {
       "type": "match",
-      "titre": "Match à l'extérieur",
+      "titre": "MATCH EXT VS FUTSAL CLUB MECHELEN",
       "date": "2027-03-26T21:15:00",
       "lieu": "",
-      "description": "Union Oasis Forest se déplace face à Futsal Club Mechelen (Division 2 Nationale A).",
+      "description": "",
       "joursAvant": 2
     },
     {
       "type": "match",
-      "titre": "Match à domicile",
+      "titre": "MATCH DOM VS BSEP FUTSAL MORLANWELZ",
       "date": "2027-04-09T21:30:00",
       "lieu": "Complexe sportif, Bd. de la 2ème Armée Britannique 600, 1190 Forest",
-      "description": "Union Oasis Forest reçoit BSEP Futsal Morlanwelz (Division 2 Nationale A).",
+      "description": "",
       "joursAvant": 2
     }
   ]

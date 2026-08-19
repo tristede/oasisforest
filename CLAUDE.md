@@ -36,7 +36,15 @@ Hébergé sur **GitHub Pages** depuis la branche principale du dépôt `tristede
 - Classe `.zone-unie` (`#070f20`) : fond de couleur **unie** couvrant de la section « Nos Équipes » jusqu'à « Devenez Partenaire ». Un seul dégradé toléré, très léger, sur `#partenaires` (`to-accent/5`).
 - `section[id] { scroll-margin-top: 11rem; }` compense la navbar + le bandeau sponsors, tous deux fixes. À conserver pour toute nouvelle section ancrée.
 - Bascule desktop → menu mobile au breakpoint **`lg`** (1024px), pas `md`. En dessous, les liens s'écrasaient contre le logo.
-- Couleur d'accent : `accent` = `#38bdf8`, `night` = `#020617`.
+- Couleur d'accent : `accent` = `#00c2ff` (bleu vif, remonté depuis `#38bdf8` pour un rendu
+  plus « HDR »/pétant), `accentDark` = `#0091ea`, `night` = `#020617`. Toutes les lueurs
+  `rgba(56, 189, 248, …)` du fichier ont été converties en `rgba(0, 194, 255, …)` en même
+  temps — si `accent` est retouché à nouveau, penser à refaire ce remplacement global pour
+  rester cohérent (25 occurrences au dernier compte).
+- `img { filter: saturate(1.35) contrast(1.08); }` (règle globale) : boost visuel des
+  photos. Scopé aux `<img>` uniquement — **ne jamais appliquer de `filter` à `body`/`html`**,
+  ça change le containing block des éléments `position: fixed` (navbar, popup, WhatsApp…)
+  et casse leur positionnement au scroll.
 - **Contenus éditables** (galerie, sponsors, polaroids du hero) : ne jamais recoder les
   images en dur. Ajouter la donnée dans `data/*.json` + le champ correspondant dans
   `admin/config.yml`. Le rendu JS est regroupé dans `index.html` (bloc « RENDU DES CONTENUS
@@ -95,6 +103,17 @@ Hébergé sur **GitHub Pages** depuis la branche principale du dépôt `tristede
      avance sur UTC comme la Belgique en été).
    - Calendrier initial peuplé à la main depuis un export PDF RBFA (pas d'API disponible) :
      à mettre à jour en fin de saison ou en cas de changement d'horaire/forfait.
+   - Titre des matchs au format `MATCH DOM/EXT VS ADVERSAIRE` (majuscules), sans description
+     ni lieu pour les matchs à l'extérieur (adresse adverse inconnue).
+   - Fenêtre **déplaçable** à la souris/au doigt (`makeActuPopupDraggable()`, configuré une
+     fois au chargement) : bascule d'un positionnement Tailwind (`top-28`/`right-4`…) vers un
+     positionnement libre en pixels au premier drag. Transition CSS coupée pendant le drag
+     (`modal.style.transition = 'none'`) et `user-select: none` sur `<body>`, sinon
+     respectivement rattrapage saccadé et sélection de texte parasite en arrière-plan.
+   - Badge « Division 2 Nationale » du hero cliquable → `previewActuPopup()` : affiche
+     immédiatement la notification actuellement éligible (même déjà fermée aujourd'hui),
+     outil de vérification pour un modérateur. Logique d'éligibilité partagée via
+     `getEligibleActuEvent()`.
    - ⚠️ Uniquement des échéances **réelles** (matchs, détections, portes ouvertes, séance
      d'essai) : ces pratiques figurent sur la liste noire de la directive européenne
      2005/29/CE, jamais de fausse urgence/rareté. Le club est une ASBL qui s'adresse à des

@@ -70,8 +70,8 @@
                         night: '#020617',
                         glass: 'rgba(255, 255, 255, 0.05)',
                         glassBorder: 'rgba(255, 255, 255, 0.1)',
-                        accent: '#38bdf8',
-                        accentDark: '#0284c7'
+                        accent: '#00c2ff',
+                        accentDark: '#0091ea'
                     },
                     animation: {
                         'marquee': 'marquee 25s linear infinite',
@@ -113,7 +113,7 @@
             background: linear-gradient(to bottom right, #020617, #0f172a, #020617);
         }
         
-        .blob-1 { position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; filter: blur(60px); }
+        .blob-1 { position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(0, 194, 255, 0.15) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; filter: blur(60px); }
         .blob-2 { position: absolute; bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; filter: blur(80px); animation-delay: 2s; }
         .blob-3 { position: absolute; top: 40%; left: 40%; width: 40vw; height: 40vw; background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; filter: blur(60px); animation-delay: 4s; }
 
@@ -128,9 +128,9 @@
             transition: transform 0.2s ease-out, background 0.2s ease;
         }
         .glass-panel-interactive:hover {
-            border: 1px solid rgba(56, 189, 248, 0.3);
+            border: 1px solid rgba(0, 194, 255, 0.3);
             background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 40px rgba(56, 189, 248, 0.15);
+            box-shadow: 0 10px 40px rgba(0, 194, 255, 0.15);
             transform: translateY(-4px) scale(1.01);
         }
 
@@ -138,7 +138,7 @@
         .polaroid {
             background: #ffffff;
             padding: 12px 12px 40px 12px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 194, 255, 0.1);
             position: relative;
             transform-style: preserve-3d;
             transition: transform 0.1s ease-out;
@@ -191,11 +191,16 @@
         .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
 
+        /* Mode "HDR" : couleurs plus vives/pétantes sur les photos (safe car scopé aux
+           <img>, jamais sur un ancestor commun avec des éléments position:fixed - un
+           filter sur body/html casse le positionnement fixed de la navbar/popup/etc.). */
+        img { filter: saturate(1.35) contrast(1.08); }
+
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #020617; }
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #38bdf8; }
+        ::-webkit-scrollbar-thumb:hover { background: #00c2ff; }
 
         /* Fade-in */
         .reveal {
@@ -243,8 +248,8 @@
         }
         .ambition-card:hover {
             transform: translateY(-10px);
-            border-color: rgba(56, 189, 248, .45);
-            box-shadow: 0 20px 45px rgba(2, 6, 23, .6), 0 0 30px rgba(56, 189, 248, .18);
+            border-color: rgba(0, 194, 255, .45);
+            box-shadow: 0 20px 45px rgba(2, 6, 23, .6), 0 0 30px rgba(0, 194, 255, .18);
         }
         .ambition-icon {
             display: inline-block;
@@ -252,7 +257,7 @@
         }
         .ambition-card:hover .ambition-icon {
             transform: translateY(-4px) scale(1.15);
-            filter: drop-shadow(0 0 12px rgba(56, 189, 248, .75));
+            filter: drop-shadow(0 0 12px rgba(0, 194, 255, .75));
         }
         /* Reflet lumineux qui balaie la carte au survol */
         .ambition-glow {
@@ -261,7 +266,7 @@
             left: -75%;
             width: 50%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(56, 189, 248, .10), transparent);
+            background: linear-gradient(90deg, transparent, rgba(0, 194, 255, .10), transparent);
             transform: skewX(-20deg);
             pointer-events: none;
         }
@@ -314,7 +319,7 @@
                     <a href="#gallery-teaser" class="text-slate-300 hover:text-accent transition-colors font-medium text-sm uppercase tracking-widest whitespace-nowrap">Photos</a>
                     <a href="#partenaires" class="text-slate-300 hover:text-accent transition-colors font-medium text-sm uppercase tracking-widest whitespace-nowrap">Sponsors</a>
                     <a href="#contact" class="text-slate-300 hover:text-accent transition-colors font-medium text-sm uppercase tracking-widest whitespace-nowrap">Maps</a>
-                    <a href="#contact" class="glass-panel text-accent border border-accent/30 px-5 xl:px-6 py-2.5 rounded-full font-bold hover:bg-accent hover:text-night hover:shadow-[0_0_20px_rgba(56,189,248,0.4)] transition-all duration-300 uppercase tracking-wider text-xs whitespace-nowrap"><span class="hidden xl:inline">Nous rejoindre</span><span class="xl:hidden">Rejoindre</span></a>
+                    <a href="#contact" class="glass-panel text-accent border border-accent/30 px-5 xl:px-6 py-2.5 rounded-full font-bold hover:bg-accent hover:text-night hover:shadow-[0_0_20px_rgba(0,194,255,0.4)] transition-all duration-300 uppercase tracking-wider text-xs whitespace-nowrap"><span class="hidden xl:inline">Nous rejoindre</span><span class="xl:hidden">Rejoindre</span></a>
                 </div>
             </div>
         </div>
@@ -377,7 +382,7 @@
                 </p>
                 
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#entites" class="bg-gradient-to-r from-accent to-blue-600 text-white font-bold px-8 py-4 rounded-full hover:shadow-[0_0_30px_rgba(56,189,248,0.5)] transition-all transform hover:-translate-y-1 tracking-wider uppercase text-sm flex items-center justify-center">
+                    <a href="#entites" class="bg-gradient-to-r from-accent to-blue-600 text-white font-bold px-8 py-4 rounded-full hover:shadow-[0_0_30px_rgba(0,194,255,0.5)] transition-all transform hover:-translate-y-1 tracking-wider uppercase text-sm flex items-center justify-center">
                         Découvrir nos équipes
                     </a>
                     <a href="#contact" class="glass-panel text-white font-bold px-8 py-4 rounded-full border border-white/20 hover:border-accent hover:text-accent transition-all transform hover:-translate-y-1 tracking-wider uppercase text-sm flex items-center justify-center gap-2">
@@ -517,7 +522,7 @@
                     Pour suivre le classement en direct de la D2 et des divisions de nos jeunes, consultez la plateforme officielle de l'Union Belge (RBFA).
                 </p>
                 <!-- Lien ciblé vers la page club -->
-                <a href="https://www.rbfa.be/fr/club/9955/equipes" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-10 py-5 text-sm font-bold text-night tracking-widest uppercase bg-accent rounded-full hover:bg-white hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] transition-all duration-300">
+                <a href="https://www.rbfa.be/fr/club/9955/equipes" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-10 py-5 text-sm font-bold text-night tracking-widest uppercase bg-accent rounded-full hover:bg-white hover:shadow-[0_0_30px_rgba(0,194,255,0.6)] transition-all duration-300">
                     Aller sur RBFA <i class="fas fa-arrow-right ml-3"></i>
                 </a>
             </div>
@@ -532,11 +537,11 @@
             </div>
 
             <div class="relative max-w-6xl mx-auto">
-                <div class="absolute left-6 md:left-1/2 top-0 bottom-[6.5rem] w-[2px] bg-gradient-to-b from-accent via-blue-600 to-accent/70 md:-translate-x-1/2 shadow-[0_0_15px_rgba(56,189,248,0.5)]"></div>
+                <div class="absolute left-6 md:left-1/2 top-0 bottom-[6.5rem] w-[2px] bg-gradient-to-b from-accent via-blue-600 to-accent/70 md:-translate-x-1/2 shadow-[0_0_15px_rgba(0,194,255,0.5)]"></div>
                 
                 <!-- 2004 : Création ASBL -->
                 <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse mb-20 reveal">
-                    <div class="flex items-center justify-center w-12 h-12 rounded-full bg-night border border-accent shadow-[0_0_15px_rgba(56,189,248,0.5)] absolute left-0 md:left-1/2 md:-translate-x-1/2 z-10 text-accent font-bold text-sm">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full bg-night border border-accent shadow-[0_0_15px_rgba(0,194,255,0.5)] absolute left-0 md:left-1/2 md:-translate-x-1/2 z-10 text-accent font-bold text-sm">
                         '04
                     </div>
                     <div class="w-full pl-20 md:pl-0 md:w-[45%] md:px-8 text-left md:text-right relative">
@@ -559,7 +564,7 @@
 
                 <!-- 2016 : Futsal P5 -->
                 <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse mb-20 reveal">
-                    <div class="flex items-center justify-center w-12 h-12 rounded-full bg-night border border-accent shadow-[0_0_15px_rgba(56,189,248,0.5)] absolute left-0 md:left-1/2 md:-translate-x-1/2 z-10 text-accent font-bold text-sm">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full bg-night border border-accent shadow-[0_0_15px_rgba(0,194,255,0.5)] absolute left-0 md:left-1/2 md:-translate-x-1/2 z-10 text-accent font-bold text-sm">
                         '16
                     </div>
                     <div class="w-full pl-20 md:pl-0 md:w-[45%] md:px-8 text-left">
@@ -573,7 +578,7 @@
 
                 <!-- 2021 : Réseaux Sociaux -->
                 <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse mb-20 reveal">
-                    <div class="flex items-center justify-center w-12 h-12 rounded-full bg-night border border-accent shadow-[0_0_15px_rgba(56,189,248,0.5)] absolute left-0 md:left-1/2 md:-translate-x-1/2 z-10 text-accent font-bold text-sm">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full bg-night border border-accent shadow-[0_0_15px_rgba(0,194,255,0.5)] absolute left-0 md:left-1/2 md:-translate-x-1/2 z-10 text-accent font-bold text-sm">
                         '21
                     </div>
                     <div class="w-full pl-20 md:pl-0 md:w-[45%] md:px-8 text-left md:text-right">
@@ -603,11 +608,11 @@
 
                 <!-- 2026 : Nationale 2 & OA Next Gen -->
                 <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse mb-12 reveal">
-                    <div class="flex items-center justify-center w-12 h-12 rounded-full bg-accent border border-white shadow-[0_0_20px_rgba(56,189,248,0.8)] absolute left-0 md:left-1/2 md:-translate-x-1/2 z-10 text-white font-bold text-sm">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full bg-accent border border-white shadow-[0_0_20px_rgba(0,194,255,0.8)] absolute left-0 md:left-1/2 md:-translate-x-1/2 z-10 text-white font-bold text-sm">
                         '26
                     </div>
                     <div class="w-full pl-20 md:pl-0 md:w-[45%] md:px-8 text-left">
-                        <div class="glass-panel border-accent/30 p-6 rounded-2xl shadow-[0_0_20px_rgba(56,189,248,0.1)]">
+                        <div class="glass-panel border-accent/30 p-6 rounded-2xl shadow-[0_0_20px_rgba(0,194,255,0.1)]">
                             <span class="text-accent font-black tracking-wider uppercase text-sm block mb-2">La Consécration</span>
                             <h4 class="text-xl font-bold text-white mb-2">Passage en Nationale 2 & OA NEXT GEN</h4>
                             <p class="text-slate-300 text-sm leading-relaxed">Montée historique au niveau national et structuration complète de l'académie des jeunes (U3 à U21) pour former l'élite de demain.</p>
@@ -618,7 +623,7 @@
                 <!-- Flèche de continuité : la suite de l'histoire, guide l'oeil vers Nos Valeurs -->
                 <div class="relative h-32 reveal">
                     <div aria-hidden="true" class="absolute left-6 md:left-1/2 top-10 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none">
-                        <svg viewBox="0 0 24 24" class="w-5 h-5 text-accent animate-bounce drop-shadow-[0_0_10px_rgba(56,189,248,0.6)]" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <svg viewBox="0 0 24 24" class="w-5 h-5 text-accent animate-bounce drop-shadow-[0_0_10px_rgba(0,194,255,0.6)]" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                             <!-- Chevron a angle au sommet de ~60 degres (quasi equilateral) -->
                             <polyline points="0.5,2 12,22 23.5,2"></polyline>
                         </svg>
@@ -706,7 +711,7 @@
                     <p class="text-accent text-sm font-bold tracking-[0.2em] uppercase mb-3">Galerie</p>
                     <h2 class="text-3xl md:text-4xl font-black text-white tracking-tight mb-4">Nos plus beaux moments</h2>
                     <p class="text-slate-300 font-light leading-relaxed mb-8 max-w-md">Matchs, entraînements, académie... revivez les temps forts du club en images.</p>
-                    <a href="#" onclick="openGallery(event)" class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-accent to-blue-600 text-white font-bold px-8 py-4 rounded-full hover:shadow-[0_0_30px_rgba(56,189,248,0.5)] transition-all transform hover:-translate-y-1 tracking-wider uppercase text-sm">
+                    <a href="#" onclick="openGallery(event)" class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-accent to-blue-600 text-white font-bold px-8 py-4 rounded-full hover:shadow-[0_0_30px_rgba(0,194,255,0.5)] transition-all transform hover:-translate-y-1 tracking-wider uppercase text-sm">
                         Voir les photos récentes <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -762,7 +767,7 @@
                         Associez l'image de votre entreprise à un projet sportif et social ambitieux. Soutenez la jeunesse bruxelloise et gagnez en visibilité au cœur de la capitale.
                     </p>
                     
-                    <a href="mailto:union@oasisforest.be?subject=Demande%20de%20dossier%20de%20sponsoring&body=Bonjour%2C%0D%0A%0D%0AJe%20souhaite%20recevoir%20le%20dossier%20de%20sponsoring%20du%20club.%0D%0A%0D%0ANom%20de%20l'entreprise%20%3A%0D%0APersonne%20de%20contact%20%3A%0D%0AT%C3%A9l%C3%A9phone%20%3A%0D%0A" class="inline-flex items-center justify-center bg-gradient-to-r from-accent to-blue-600 text-white font-bold px-10 py-5 rounded-full hover:shadow-[0_0_30px_rgba(56,189,248,0.5)] transition-all transform hover:-translate-y-1 tracking-wider uppercase text-sm">
+                    <a href="mailto:union@oasisforest.be?subject=Demande%20de%20dossier%20de%20sponsoring&body=Bonjour%2C%0D%0A%0D%0AJe%20souhaite%20recevoir%20le%20dossier%20de%20sponsoring%20du%20club.%0D%0A%0D%0ANom%20de%20l'entreprise%20%3A%0D%0APersonne%20de%20contact%20%3A%0D%0AT%C3%A9l%C3%A9phone%20%3A%0D%0A" class="inline-flex items-center justify-center bg-gradient-to-r from-accent to-blue-600 text-white font-bold px-10 py-5 rounded-full hover:shadow-[0_0_30px_rgba(0,194,255,0.5)] transition-all transform hover:-translate-y-1 tracking-wider uppercase text-sm">
                         <i class="fas fa-envelope text-xl mr-3"></i> Demander le dossier complet
                     </a>
                 </div>
@@ -909,17 +914,17 @@
                 <a id="btn-whatsapp-join" href="https://wa.me/32477022021" target="_blank" rel="noopener noreferrer" class="bg-[#25D366] text-white font-bold px-6 py-3 rounded-full hover:bg-[#20bd5a] hover:shadow-[0_0_20px_rgba(37,211,102,0.4)] transition-all flex items-center justify-center gap-2 text-sm uppercase tracking-wider text-center">
                     <i class="fab fa-whatsapp text-lg"></i> S'inscrire / Infos
                 </a>
-                <button id="btn-open-cal" class="bg-gradient-to-r from-accent to-blue-600 text-white font-bold px-6 py-3 rounded-full hover:shadow-[0_0_20px_rgba(56,189,248,0.5)] transition-all flex items-center justify-center gap-2 text-sm uppercase tracking-wider">
+                <button id="btn-open-cal" class="bg-gradient-to-r from-accent to-blue-600 text-white font-bold px-6 py-3 rounded-full hover:shadow-[0_0_20px_rgba(0,194,255,0.5)] transition-all flex items-center justify-center gap-2 text-sm uppercase tracking-wider">
                     <i class="far fa-calendar-alt text-lg"></i> Horaires
                 </button>
-                <a id="btn-rbfa-link" href="https://www.rbfa.be/fr/recherche?q=union+oasis+forest" target="_blank" rel="noopener noreferrer" class="hidden bg-gradient-to-r from-accent to-blue-600 text-white font-bold px-6 py-3 rounded-full hover:shadow-[0_0_20px_rgba(56,189,248,0.5)] transition-all items-center justify-center gap-2 text-sm uppercase tracking-wider text-center">
+                <a id="btn-rbfa-link" href="https://www.rbfa.be/fr/recherche?q=union+oasis+forest" target="_blank" rel="noopener noreferrer" class="hidden bg-gradient-to-r from-accent to-blue-600 text-white font-bold px-6 py-3 rounded-full hover:shadow-[0_0_20px_rgba(0,194,255,0.5)] transition-all items-center justify-center gap-2 text-sm uppercase tracking-wider text-center">
                     <i class="fas fa-external-link-alt text-lg"></i> Calendrier RBFA
                 </a>
             </div>
         </div>
 
         <!-- MODALE 2 : CALENDRIER / HORAIRES -->
-        <div id="modal-cal" class="glass-panel border-accent/40 w-full max-w-lg rounded-3xl p-6 md:p-10 relative transform scale-95 opacity-0 transition-all duration-300 hidden flex-col shadow-[0_0_40px_rgba(56,189,248,0.2)] max-h-[90vh] overflow-y-auto">
+        <div id="modal-cal" class="glass-panel border-accent/40 w-full max-w-lg rounded-3xl p-6 md:p-10 relative transform scale-95 opacity-0 transition-all duration-300 hidden flex-col shadow-[0_0_40px_rgba(0,194,255,0.2)] max-h-[90vh] overflow-y-auto">
             <button id="btn-back-info" class="absolute top-4 left-4 w-10 h-10 rounded-full bg-white/5 hover:bg-white/20 text-white flex items-center justify-center transition-colors" title="Retour">
                 <i class="fas fa-arrow-left"></i>
             </button>
@@ -963,7 +968,7 @@
          jamais définitivement. Uniquement des échéances réelles issues du calendrier du
          club - jamais de fausse urgence (cf. CLAUDE.md, directive 2005/29/CE). -->
     <div id="modal-popup-actu" class="fixed top-28 sm:top-32 right-4 left-4 sm:left-auto sm:right-6 z-[140] hidden sm:max-w-sm opacity-0 -translate-y-3 transition-all duration-300">
-        <div id="popup-actu-card" class="glass-panel border border-accent/30 rounded-3xl p-6 relative shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+        <div id="popup-actu-card" class="glass-panel border border-slate-400/30 rounded-3xl p-6 relative shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
             <button id="btn-close-popup-actu" aria-label="Fermer" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/5 hover:bg-white/20 text-white flex items-center justify-center transition-colors">
                 <i class="fas fa-times text-sm"></i>
             </button>
@@ -977,7 +982,7 @@
                     <p id="popup-actu-datetime" class="text-white font-bold text-xs mb-1 flex items-center gap-1.5"><i class="far fa-clock text-accent"></i> <span></span></p>
                     <p id="popup-actu-lieu" class="text-slate-400 text-xs mb-2 flex items-center gap-1.5"><i class="fas fa-map-marker-alt text-accent"></i> <span></span></p>
                     <p id="popup-actu-desc" class="text-slate-300 text-xs leading-relaxed mb-3"></p>
-                    <a id="popup-actu-cta" href="#" target="_blank" rel="noopener noreferrer" class="hidden items-center justify-center gap-2 bg-gradient-to-r from-accent to-blue-600 text-white font-bold px-4 py-2 rounded-full hover:shadow-[0_0_20px_rgba(56,189,248,0.5)] transition-all text-xs uppercase tracking-wider"></a>
+                    <a id="popup-actu-cta" href="#" target="_blank" rel="noopener noreferrer" class="hidden items-center justify-center gap-2 bg-gradient-to-r from-accent to-blue-600 text-white font-bold px-4 py-2 rounded-full hover:shadow-[0_0_20px_rgba(0,194,255,0.5)] transition-all text-xs uppercase tracking-wider"></a>
                 </div>
             </div>
         </div>
@@ -1036,7 +1041,7 @@
             
             scheduleArray.forEach(item => {
                 const isMatch = item.isMatch;
-                const borderClass = isMatch ? 'border-accent/40 shadow-[0_0_15px_rgba(56,189,248,0.1)]' : 'border-white/5';
+                const borderClass = isMatch ? 'border-accent/40 shadow-[0_0_15px_rgba(0,194,255,0.1)]' : 'border-white/5';
                 const bgClass = isMatch ? 'bg-accent/5' : 'bg-white/[0.02]';
                 const dayBg = isMatch ? 'bg-accent text-night' : 'bg-night/80 border-r border-white/5 text-slate-300';
                 const icon = isMatch ? '<i class="fas fa-fire text-accent animate-pulse"></i>' : '<i class="fas fa-running text-slate-400"></i>';
@@ -1555,6 +1560,72 @@
             return `${dayLabel} à ${timeStr}`;
         }
 
+        // Partagé avec makeActuPopupDraggable() : un déplacement de la fenêtre compte comme
+        // une interaction et annule l'auto-fermeture, tout comme un close().
+        let actuAutoDismissTimer = null;
+
+        // Rend #modal-popup-actu déplaçable à la souris/au doigt, façon fenêtre de bureau.
+        // Configuré une seule fois au chargement (l'élément reste dans le DOM, juste masqué/
+        // affiché) ; bascule du positionnement Tailwind (top/right) vers un positionnement
+        // libre (left/top en pixels) dès le premier déplacement.
+        function makeActuPopupDraggable() {
+            const modal = document.getElementById('modal-popup-actu');
+            const card = document.getElementById('popup-actu-card');
+            let dragging = false, startX = 0, startY = 0, startLeft = 0, startTop = 0;
+            let pendingLeft = 0, pendingTop = 0, rafId = null;
+
+            const onDown = (e) => {
+                if (e.target.closest('#btn-close-popup-actu, #popup-actu-cta')) return; // pas au clic sur ces contrôles
+                dragging = true;
+                clearTimeout(actuAutoDismissTimer); // déplacer = interaction, on annule l'auto-fermeture
+                const point = e.touches ? e.touches[0] : e;
+                const rect = modal.getBoundingClientRect();
+                startX = point.clientX; startY = point.clientY;
+                startLeft = rect.left; startTop = rect.top;
+                // Transition CSS coupée pendant le drag : sinon chaque frame tente
+                // d'animer left/top sur 300ms -> effet de rattrapage saccadé.
+                modal.style.transition = 'none';
+                // Bascule vers un positionnement libre en pixels, ancré une fois pour toutes.
+                modal.style.left = `${startLeft}px`;
+                modal.style.top = `${startTop}px`;
+                modal.style.right = 'auto';
+                modal.classList.remove('right-4', 'left-4', 'sm:right-6', 'sm:left-auto', 'top-28', 'sm:top-32');
+                card.style.cursor = 'grabbing';
+                document.body.style.userSelect = 'none'; // évite de sélectionner le texte sous le curseur pendant le drag
+                e.preventDefault();
+            };
+            const applyPosition = () => {
+                rafId = null;
+                modal.style.left = `${pendingLeft}px`;
+                modal.style.top = `${pendingTop}px`;
+            };
+            const onMove = (e) => {
+                if (!dragging) return;
+                const point = e.touches ? e.touches[0] : e;
+                const maxLeft = window.innerWidth - modal.offsetWidth - 8;
+                const maxTop = window.innerHeight - modal.offsetHeight - 8;
+                pendingLeft = Math.min(Math.max(8, startLeft + (point.clientX - startX)), Math.max(8, maxLeft));
+                pendingTop = Math.min(Math.max(8, startTop + (point.clientY - startY)), Math.max(8, maxTop));
+                if (rafId === null) rafId = requestAnimationFrame(applyPosition); // une seule maj par frame
+                e.preventDefault();
+            };
+            const onUp = () => {
+                if (!dragging) return;
+                dragging = false;
+                card.style.cursor = 'grab';
+                document.body.style.userSelect = '';
+                modal.style.transition = '';
+            };
+
+            card.style.cursor = 'grab';
+            card.addEventListener('mousedown', onDown);
+            card.addEventListener('touchstart', onDown, { passive: false });
+            document.addEventListener('mousemove', onMove);
+            document.addEventListener('touchmove', onMove, { passive: false });
+            document.addEventListener('mouseup', onUp);
+            document.addEventListener('touchend', onUp);
+        }
+
         function showActuPopup(evt, eventId, dismissKey, delay = 1200) {
             const modal = document.getElementById('modal-popup-actu');
             const meta = ACTU_TYPE_META[evt.type] || ACTU_TYPE_META.autre;
@@ -1581,9 +1652,8 @@
                 cta.classList.add('hidden'); cta.classList.remove('flex');
             }
 
-            let autoDismissTimer = null;
             const close = () => {
-                clearTimeout(autoDismissTimer);
+                clearTimeout(actuAutoDismissTimer);
                 modal.classList.remove('opacity-100'); modal.classList.add('opacity-0', '-translate-y-3');
                 setTimeout(() => modal.classList.add('hidden'), 300);
                 localStorage.setItem(dismissKey, eventId); // réapparaîtra un autre jour, pas aujourd'hui
@@ -1598,7 +1668,7 @@
                 modal.classList.remove('hidden');
                 void modal.offsetWidth; // force reflow pour que la transition joue
                 modal.classList.remove('opacity-0', '-translate-y-3'); modal.classList.add('opacity-100');
-                autoDismissTimer = setTimeout(close, 10000);
+                actuAutoDismissTimer = setTimeout(close, 10000);
             }, delay);
         }
 
@@ -1656,6 +1726,7 @@
         renderGallery().then(renderGalleryTeaser);
         renderSponsors();
         renderActuPopup();
+        makeActuPopupDraggable();
 
 
         // --- LOGIQUE DE LA GALERIE PHOTOS ---
