@@ -6,10 +6,16 @@
     <meta name="description" content="Union Oasis Forest - L'excellence du futsal bruxellois. De notre équipe première en Division 2 Nationale jusqu'à notre académie de jeunes OA Next Gen.">
     <title>Union Oasis Forest</title>
 
-    <!-- Icone d'onglet : logo blanc seul -->
+    <!-- Icone d'onglet : SVG pour les navigateurs qui le supportent (logo blanc seul,
+         pensé pour un chrome de navigateur sombre). PNG en repli sur fond sombre
+         (favicon.svg) pour Safari/iOS et les recherches (Spotlight, historique...) qui
+         ignorent le SVG ou rendent mal un logo blanc transparent sur fond clair. -->
     <link rel="icon" type="image/svg+xml" href="./logo%20uof.svg">
-    <!-- Icone d'application iOS : logo sur fond sombre -->
-    <link rel="apple-touch-icon" href="./favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <!-- Icone d'application iOS ("Ajouter à l'écran d'accueil") : DOIT être un PNG,
+         iOS ignore silencieusement un SVG ici (c'était le bug : raccourci sans icône). -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
 
     <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website">
@@ -132,6 +138,18 @@
             background: rgba(255, 255, 255, 0.08);
             box-shadow: 0 10px 40px rgba(0, 194, 255, 0.15);
             transform: translateY(-4px) scale(1.01);
+        }
+
+        /* Pop-up Actu : liquid glass mais toujours assombri derrière (brightness sur le
+           backdrop-filter), pour rester lisible même posé sur un fond clair (logo blanc,
+           photo claire...). Un simple blur (comme .glass-panel standard) ne fait que flouter
+           sans assombrir, donc le contraste chutait sur les zones claires. Règle dédiée à
+           #popup-actu-card (pas de retouche à .glass-panel global, utilisé ailleurs sur fond
+           déjà sombre). */
+        #popup-actu-card {
+            background: rgba(2, 6, 23, 0.6);
+            backdrop-filter: blur(16px) brightness(0.55) saturate(1.1);
+            -webkit-backdrop-filter: blur(16px) brightness(0.55) saturate(1.1);
         }
 
         /* Polaroid Effect */
@@ -930,26 +948,36 @@
         </div>
 
         <!-- MODALE 2 : CALENDRIER / HORAIRES -->
-        <div id="modal-cal" class="glass-panel border-accent/40 w-full max-w-lg rounded-3xl p-6 md:p-10 relative transform scale-95 opacity-0 transition-all duration-300 hidden flex-col shadow-[0_0_40px_rgba(0,194,255,0.2)] max-h-[90vh] overflow-y-auto">
+        <div id="modal-cal" class="glass-panel border-accent/40 w-full max-w-lg rounded-3xl p-6 md:p-10 relative transform scale-95 opacity-0 transition-all duration-300 hidden flex-col shadow-[0_0_40px_rgba(0,194,255,0.2)] max-h-[90dvh] overflow-hidden">
             <button id="btn-back-info" class="absolute top-4 left-4 w-10 h-10 rounded-full bg-white/5 hover:bg-white/20 text-white flex items-center justify-center transition-colors" title="Retour">
                 <i class="fas fa-arrow-left"></i>
             </button>
             <button id="btn-close-cal" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/5 hover:bg-white/20 text-white flex items-center justify-center transition-colors" title="Fermer">
                 <i class="fas fa-times"></i>
             </button>
-            
-            <div class="text-center mt-6 mb-8">
+
+            <div class="text-center mt-6 mb-6 shrink-0">
                 <div class="w-16 h-16 mx-auto bg-accent/20 border border-accent/50 rounded-full flex items-center justify-center text-accent text-2xl mb-4">
                     <i class="far fa-clock"></i>
                 </div>
                 <h3 id="modal-cal-title" class="text-xl md:text-2xl font-black text-white">Horaires</h3>
             </div>
-            
-            <div class="bg-night/50 rounded-2xl p-4 md:p-6 border border-white/5 w-full">
+
+            <!-- Zone scrollable : seule partie qui défile, hauteur adaptée à l'espace
+                 restant (flex-1 min-h-0) plutôt qu'un plafond fixe en dur - le bandeau
+                 d'avertissement ci-dessous reste ainsi toujours visible sans défilement
+                 supplémentaire, quelle que soit la taille d'écran. max-h-[90dvh] sur la
+                 modale (au lieu de vh) pour respecter la hauteur réellement visible sous
+                 la barre d'adresse de Safari iOS. -->
+            <div class="bg-night/50 rounded-2xl p-4 md:p-6 border border-white/5 w-full flex-1 min-h-0 overflow-y-auto no-scrollbar">
                 <div id="modal-cal-content" class="w-full">
                     <!-- Contenu injecté via JS -->
                 </div>
             </div>
+
+            <!-- Bandeau d'avertissement RBFA (div2/u21) : hors de la zone de défilement
+                 ci-dessus, toujours affiché en pied de modale. -->
+            <div id="modal-cal-warning" class="shrink-0 w-full"></div>
         </div>
 
     </div> <!-- FIN DU OVERLAY GÉNÉRAL DES MODALES (ON FERME ICI) -->
@@ -1199,19 +1227,18 @@
                 rbfaBtn.href = data.rbfaUrl;
 
                 const matches = await getTeamMatchesFromEvenements(id);
-                const scheduleHtml = buildScheduleUI(matches);
-                const warningHtml = `
+                document.getElementById('modal-cal-content').innerHTML = buildScheduleUI(matches);
+                // Bandeau injecté hors de la zone scrollable (#modal-cal-warning, cf. HTML) :
+                // toujours visible, jamais coincé sous le défilement du calendrier.
+                document.getElementById('modal-cal-warning').innerHTML = `
                     <div class="mt-4 flex items-start gap-2 text-[11px] text-violet-300/90 bg-violet-500/10 border border-violet-500/20 rounded-xl p-3">
                         <i class="fas fa-triangle-exclamation mt-0.5 shrink-0"></i>
                         <span>Attention, les horaires ont pu être modifiés depuis l'encodage. Référez-vous au <a href="${data.rbfaUrl}" target="_blank" rel="noopener noreferrer" class="underline text-accent hover:text-white">site officiel RBFA</a> pour les horaires exacts.</span>
                     </div>`;
-                // Hauteur limitée à ~3 lignes visibles, défilement interne sans scrollbar
-                // visible (.no-scrollbar) pour voir le reste du calendrier sans surcharger la modale.
-                document.getElementById('modal-cal-content').innerHTML =
-                    `<div class="max-h-[390px] overflow-y-auto no-scrollbar pr-1">${scheduleHtml}</div>${warningHtml}`;
             } else {
-                // Injection du calendrier visuel statique (académie)
+                // Injection du calendrier visuel statique (académie) - pas de bandeau RBFA
                 document.getElementById('modal-cal-content').innerHTML = buildScheduleUI(data.schedule);
+                document.getElementById('modal-cal-warning').innerHTML = '';
                 // Académie : Inscription WhatsApp + Modale Horaires internes
                 waBtn.classList.remove('hidden'); waBtn.classList.add('flex');
                 calBtn.classList.remove('hidden'); calBtn.classList.add('flex');
@@ -1224,6 +1251,9 @@
 
             backdrop.classList.remove('invisible', 'opacity-0');
             document.body.classList.add('modal-open');
+            // Masqué pendant que la modale occupe l'écran : moche en superposition
+            // (cf. bouton "hamburger" flottant au-dessus de la modale sur mobile).
+            document.getElementById('mobile-menu-btn').classList.add('hidden');
 
             // Afficher modale Info (gestion propre du flex vs hidden pour Tailwind)
             modalInfo.classList.remove('hidden');
@@ -1288,6 +1318,7 @@
                 modalCal.classList.add('hidden');
                 modalCal.classList.remove('flex');
                 document.body.classList.remove('modal-open');
+                document.getElementById('mobile-menu-btn').classList.remove('hidden');
             }, 300);
         }
 
@@ -1795,7 +1826,8 @@
             
             galleryPage.classList.remove('hidden');
             galleryPage.classList.add('flex');
-            document.body.classList.add('modal-open'); 
+            document.body.classList.add('modal-open');
+            document.getElementById('mobile-menu-btn').classList.add('hidden');
             
             // Timeout pour l'animation CSS
             setTimeout(() => {
@@ -1812,6 +1844,7 @@
                 galleryPage.classList.add('hidden');
                 galleryPage.classList.remove('flex');
                 document.body.classList.remove('modal-open');
+                document.getElementById('mobile-menu-btn').classList.remove('hidden');
             }, 300); // 300ms match avec duration-300
         }
 
