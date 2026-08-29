@@ -53,8 +53,9 @@ collections:
               - name: categorie
                 label: Catégorie
                 widget: string
-                hint: "Doit correspondre exactement à la colonne « Valeur » d'un des filtres définis dans « Filtres galerie ». Un filtre n'apparaît que s'il y a au moins une photo dans cette catégorie."
-                pattern: ['^[a-z0-9_]+$', "Minuscules, chiffres et underscores uniquement (ex : d2, u17_15) — doit correspondre à une valeur de « Filtres galerie »."]
+                required: false
+                hint: "Doit correspondre exactement à la colonne « Valeur » d'un des filtres définis dans « Filtres galerie ». Laisser vide met la photo dans « Tout » uniquement. Un filtre n'apparaît que s'il y a au moins une photo dans cette catégorie."
+                pattern: ['^([a-z0-9_]+)?$', "Minuscules, chiffres et underscores uniquement (ex : d2, u17) — doit correspondre à une valeur de « Filtres galerie », ou rester vide."]
 
   - name: filtres-galerie
     label: Filtres galerie
@@ -71,7 +72,7 @@ collections:
               - name: value
                 label: Valeur (à utiliser dans le champ Catégorie d'une photo)
                 widget: string
-                pattern: ['^[a-z0-9_]+$', "Minuscules, chiffres et underscores uniquement (ex : d2, u17_15)."]
+                pattern: ['^[a-z0-9_]+$', "Minuscules, chiffres et underscores uniquement (ex : d2, u17)."]
               - { name: label, label: "Libellé affiché", widget: string }
 
   - name: sponsors

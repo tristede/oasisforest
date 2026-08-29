@@ -1,9 +1,9 @@
 {
   "categories": [
-    { "value": "d2", "label": "D2 Nationale" },
-    { "value": "u21", "label": "U21" },
-    { "value": "u17_15", "label": "U17 - U15" },
-    { "value": "u7_12", "label": "U7 - U12" },
-    { "value": "u3", "label": "U3" }
+    { "value": "d2", "label": "Futsal D2" },
+    { "value": "u21", "label": "Futsal U21" },
+    { "value": "u17", "label": "Futsal U17" },
+    { "value": "u15", "label": "Futsal U15" },
+    { "value": "u3", "label": "Baby Foot U3-U7" }
   ]
 }
