@@ -54,7 +54,7 @@ collections:
                 label: Catégorie
                 widget: string
                 required: false
-                hint: "Doit correspondre exactement à la colonne « Valeur » d'un des filtres définis dans « Filtres galerie ». Laisser vide met la photo dans « Tout » uniquement. Un filtre n'apparaît que s'il y a au moins une photo dans cette catégorie."
+                hint: "Doit correspondre exactement à la colonne « Valeur » d'un des filtres définis dans « Filtres galerie ». Sert deux fois : elle filtre la photo dans la galerie ET, si la valeur correspond à une équipe (d2, u21, u15_u17, u3), la photo illustre la fiche de cette équipe en polaroid. Laisser vide met la photo dans « Tout » uniquement."
                 pattern: ['^([a-z0-9_]+)?$', "Minuscules, chiffres et underscores uniquement (ex : d2, u17) — doit correspondre à une valeur de « Filtres galerie », ou rester vide."]
 
   - name: filtres-galerie

@@ -1,9 +1,8 @@
 {
   "categories": [
-    { "value": "d2", "label": "Futsal D2" },
-    { "value": "u21", "label": "Futsal U21" },
-    { "value": "u17", "label": "Futsal U17" },
-    { "value": "u15", "label": "Futsal U15" },
-    { "value": "u3", "label": "Baby Foot U3-U7" }
+    { "value": "d2", "label": "Équipe première" },
+    { "value": "u21", "label": "Espoirs U21" },
+    { "value": "u15_u17", "label": "Futsal U15-U17" },
+    { "value": "u3", "label": "Baby Futsal U3-U7" }
   ]
 }
