@@ -1,28 +1,32 @@
 {
   "sponsors": [
     {
-      "nom": "SPONSOR",
+      "nom": "Emplacement partenaire disponible",
       "logo": "/img/logo uof.svg",
       "url": "",
-      "principal": false
+      "principal": false,
+      "demo": true
     },
     {
-      "nom": "SPONSOR",
+      "nom": "Emplacement partenaire disponible",
       "logo": "/img/logo uof.svg",
       "url": "",
-      "principal": false
+      "principal": false,
+      "demo": true
     },
     {
-      "nom": "SPONSOR",
+      "nom": "Emplacement partenaire disponible",
       "logo": "/img/logo uof.svg",
       "url": "",
-      "principal": false
+      "principal": false,
+      "demo": true
     },
     {
-      "nom": "SPONSOR",
+      "nom": "Emplacement partenaire disponible",
       "logo": "/img/logo uof.svg",
       "url": "",
-      "principal": false
+      "principal": false,
+      "demo": true
     }
   ]
 }

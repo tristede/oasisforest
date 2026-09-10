@@ -3,9 +3,29 @@
 Site vitrine one-page d'un club de futsal bruxellois (Forest, 1190).
 Hébergé sur **GitHub Pages** depuis la branche principale du dépôt `tristede/oasisforest`.
 
+## Identité légale (à ne pas confondre)
+
+Le club se présente partout sous le nom sportif **Union Oasis Forest**, mais l'entité
+juridique qui le porte est **L'Oasis de Forest ASBL** (association sans but lucratif de
+droit belge). Les deux noms désignent la même structure — c'est précisément ce que Google
+demande d'expliquer sur le site (« Organizational Clarity »).
+
+| Donnée | Valeur | Source |
+|---|---|---|
+| Dénomination légale | L'Oasis de Forest ASBL | Moniteur belge, 06/07/2016 |
+| Numéro d'entreprise (BCE) | 0867.614.619 | Extrait UBO, 20/08/2026 |
+| Constitution | 05/10/2004 | Extrait UBO |
+| Siège social | Rue du Croissant 85, 1190 Forest | Extrait UBO |
+| Salle / entraînements | Bd. de la 2ème Armée Britannique 600, 1190 Forest | — |
+| E-mail (et super admin Workspace) | union@oasisforest.be | — |
+
+⚠️ L'ancien pied de page annonçait « Union Oasis Forest ASBL », ce qui ne correspond à
+aucune entité enregistrée. Ne pas réintroduire cette formulation.
+
 ## Stack
 
-- **Un seul fichier** : `index.html` — HTML, CSS et JS inclus. Pas de build, pas de bundler.
+- **Site multi-pages, sans build** : 6 fichiers HTML à la racine, plus des ressources
+  partagées dans `assets/`. Pas de bundler, pas d'étape de compilation.
 - **Tailwind CSS via CDN** (`cdn.tailwindcss.com`), configuré en ligne dans une balise `<script>` du `<head>`.
   ⚠️ Le CDN affiche un warning en production. Migration vers Tailwind CLI/PostCSS à prévoir avant la mise en ligne définitive.
 - **Font Awesome 6.4** (CDN) pour les icônes.
@@ -15,10 +35,19 @@ Hébergé sur **GitHub Pages** depuis la branche principale du dépôt `tristede
 
 | Fichier | Rôle |
 |---|---|
-| `index.html` | Le site entier |
+| `index.html` | Page d'accueil (hero, mission, équipes, agenda, valeurs, teasers, contact) |
+| `a-propos.html` | Le club : mission détaillée, identité juridique, ligne du temps, valeurs |
+| `equipes.html` | Les 5 équipes, **du plus jeune à la D2**, puis l'encart « Classements officiels » (RBFA) |
+| `galerie.html` | Galerie complète avec filtres, rendue depuis `data/gallery.json` |
+| `partenaires.html` | Chiffres d'impact (argument sponsoring), argumentaire, liste des partenaires |
+| `contact.html` | Coordonnées, carte, adresses légales |
+| `assets/site.css` | Styles du site, partagés par les 6 pages (extraits d'`index.html`) |
+| `assets/tailwind-config.js` | Config Tailwind partagée (chargée après le CDN) |
+| `assets/commun.js` | Menu mobile, `.reveal`, année, protection photos, bandeau sponsors — pour les 5 pages secondaires (`index.html` garde son propre script) |
+| `sitemap.xml` / `robots.txt` | Référencement ; `robots.txt` exclut `/admin/` |
 | `favicon.svg` | Icône webapp iOS (logo sur fond sombre) |
-| `white logo.svg` | Icône d'onglet (⚠️ espace dans le nom → encoder en `%20`) |
-| `logo_uof.svg` | Logo source (déjà inliné dans `index.html`) |
+| `favicon-16x16.png`, `favicon-32x32.png`, `apple-touch-icon.png` | Icônes PNG (iOS ignore le SVG pour l'écran d'accueil) |
+| `logo uof.svg` | Logo blanc : icône d'onglet **et** logo des pages secondaires (⚠️ espace dans le nom → toujours encoder en `logo%20uof.svg`, jamais `logo_uof.svg`) |
 | `img/*.webp` | Photos du club (`D85A3835`, `IMG_8135`, `IMG_8323`) — dossier média du CMS |
 | `data/gallery.json` | Vignettes de la galerie (généré au chargement par JS) |
 | `data/categories.json` | Liste des filtres de la galerie (`value`/`label`, éditable, ordre = ordre d'affichage) |
@@ -31,6 +60,17 @@ Hébergé sur **GitHub Pages** depuis la branche principale du dépôt `tristede
 ## Conventions de code
 
 - **Commentaires en français**, comme le reste du projet.
+- **Navigation et pied de page sont dupliqués dans les 6 pages HTML.** C'est volontaire :
+  il n'y a pas de build, et les mentions légales du pied de page doivent être lisibles
+  sans exécuter de JavaScript (un validateur Google peut lire le HTML brut). Toute
+  modification de la navbar, du menu mobile ou du pied de page **doit être reportée à
+  l'identique dans les 6 fichiers** — un commentaire le rappelle au-dessus de chaque bloc.
+- **Le pied de page contient des mentions obligatoires** (dénomination légale, n° BCE,
+  siège social, e-mail de l'administrateur Workspace, domaine). Elles sont exigées *sur
+  chaque page* par la validation Google for Nonprofits : ne pas les retirer d'une page.
+- Les pages secondaires affichent le logo via `<img src="logo%20uof.svg">` et non via
+  `<use href="#club-logo">` : un `<use>` vers un fichier SVG externe n'est pas supporté
+  par les navigateurs. Le `<symbol>` reste déclaré une seule fois, dans `index.html`.
 - Le logo est déclaré **une seule fois** en `<symbol id="club-logo">` juste après `<body>`, puis réutilisé via `<use href="#club-logo">`. Ne jamais dupliquer les tracés.
 - Classe `.reveal` + IntersectionObserver pour les apparitions au scroll. Ajouter `reveal` à tout nouveau bloc.
 - Classe `.zone-unie` (`#070f20`) : fond de couleur **unie** couvrant de la section « Nos Équipes » jusqu'à « Devenez Partenaire ». Un seul dégradé toléré, très léger, sur `#partenaires` (`to-accent/5`).
@@ -66,6 +106,142 @@ Hébergé sur **GitHub Pages** depuis la branche principale du dépôt `tristede
   valeur que la colonne « Valeur » d'un filtre — un `pattern` regex limite la casse/les
   caractères, mais ne garantit pas la correspondance exacte.
 
+## Direction artistique (refonte du 09/09/2026)
+
+Le premier jet de la mise en conformité a été refusé par le club : cartes vitrées
+arrondies, icônes Font Awesome partout, textes longs et répétitifs — « ça fait trop IA ».
+La grammaire visuelle a été refaite. Règles à respecter pour toute nouvelle page :
+
+- **Aucun arrondi.** Zéro `rounded-*` hors du hero et des `blob-*` du fond. Les modales
+  sont ramenées à l'équerre par une règle CSS dédiée en fin d'`assets/site.css`.
+- **Pas d'icône décorative par défaut.** Les icônes de section sont remplacées par une
+  **numérotation en contour** (`.numero`, `01`, `02`…). Quatre exceptions demandées par
+  le club, à conserver : le bouton **WhatsApp flottant** (pastille ronde verte d'origine,
+  sur les 6 pages), les **icônes de marque des réseaux sociaux** (Font Awesome, mises en
+  avant sur l'accueil et la page Partenaires), les **icônes SVG des valeurs** (tracées à
+  la main dans `build`, trait `#00c2ff`), et la **ligne du temps d'origine** de
+  `a-propos.html`, reprise telle quelle avec ses cartes vitrées et ses polaroids.
+- **Classes maison** (fin d'`assets/site.css`) : `.bloc`, `.bloc-accent`, `.bloc-plein`,
+  `.filet`, `.numero`, `.titre-brut`, `.bande-diagonale`, `.table-faits`, `.lien-action`,
+  `.bouton-plein`, `.bouton-vide`. Les utiliser plutôt que d'empiler des classes Tailwind.
+- **Les données factuelles vont dans `.table-faits`**, pas dans des grilles de cartes :
+  plus dense, plus sérieux, et c'est ce que lit un validateur.
+- **`.bande-diagonale`** (fond accent incliné) est la seule rupture forte : réservée aux
+  appels à l'action de fin de page. Pas plus d'une par page.
+- **Textes courts.** Une idée par paragraphe, jamais la même phrase sur deux pages. Le
+  hero, les polaroids, le bleu accent et le fond sombre sont conservés tels quels.
+
+**Hiérarchie de l'information**, fixée par le club, dans cet ordre :
+crédibilité institutionnelle → vitrine du club → inscriptions → sponsors.
+C'est l'ordre des sections de l'accueil (01 L'association, 02 En images, 03 Nos équipes,
+04 Soutenir le club) et l'ordre de la navigation.
+
+## Choix de mise en page (retours du club)
+
+- **Photo pleine largeur de l'équipe première** dans la section 01 de l'accueil, entre la
+  mission et les réseaux (`img/D85A3835.webp`, l'équipe dans le couloir avant d'entrer).
+  Codée en dur comme les photos de la ligne du temps, pas via le CMS. Cadrage `4/3` sur
+  mobile et `16/9` à partir de `sm` : le fichier source fait 1600×1068, un rapport plus
+  large rognerait les joueurs.
+- **Le tableau d'identité légale est en bas de l'accueil**, sous Contact (`#identite`).
+  Les mentions doivent être présentes et vérifiables, pas occuper le haut de page.
+- **Les réseaux sociaux vivent DANS la section 01** (« L'association ») de l'accueil, en
+  bas de bloc sous l'intitulé « Suivre le club » — pas dans une section à eux.
+  **Sans cadre** : logo, nom et pseudo posés sur le fond, groupe centré, large écart entre
+  les trois. Les encarts bordés avaient été essayés puis abandonnés — trois boîtes vides
+  pour trois liens, ça ramenait le rendu « carte » dont le club ne voulait plus. Seulement
+  Instagram / Facebook / TikTok : **pas la RBFA**, qui n'est pas un réseau social.
+  **Aucun chiffre d'audience sur l'accueil** : les statistiques servent d'argument
+  commercial et vivent sur `partenaires.html` uniquement.
+- **Logos de marque officiels**, pas des redessins : tracés repris de Simple Icons v13
+  (CC0), inlinés en SVG plein (`fill="currentColor"`). Mise à jour éventuelle depuis
+  `https://cdn.jsdelivr.net/npm/simple-icons@13/icons/<nom>.svg`. Les icônes **au trait**
+  restent réservées aux valeurs de `a-propos.html`, qui ne représentent aucune marque.
+- **Aucun lien vers le registre BCE nulle part.** Google exige que le numéro d'entreprise
+  soit *affiché*, pas qu'il renvoie au registre : il est en texte simple partout.
+- **Principe général : n'exposer que ce qui est exigé.** Les mentions obligatoires
+  (dénomination légale, n° d'entreprise, siège social, e-mail de l'administrateur,
+  domaine) vivent dans le pied de page, présent sur les six pages — c'est ce que demande
+  la validation. Tout doublon de ces données ailleurs a été supprimé : l'ancienne section
+  `#identite` de l'accueil et la ligne « Siège social » du tableau de contact faisaient
+  répétition avec ce pied de page. Ne pas les réintroduire, et ne rien ajouter
+  (téléphones privés, noms d'administrateurs, IBAN, documents officiels) : c'est une
+  surface de phishing, pas un gage de sérieux.
+- **La carte de contact garde ses deux boutons d'itinéraire au survol** (Google Maps,
+  Waze) : c'est l'interaction d'origine, le club y tient. `pointer-events: none` sur
+  l'iframe, sinon la carte capte le survol et l'overlay ne s'affiche jamais.
+- **L'effet d'inclinaison des polaroids** (`.hover-tilt`) est géré par `activerTilt()`
+  dans `assets/commun.js` pour les pages secondaires. Les cartes créées après le
+  chargement (galerie) doivent appeler `activerTilt(conteneur)` après le rendu, et
+  stocker leur rotation de base dans `dataset.rotation` — sinon le survol redresse la
+  photo au lieu de composer avec son angle.
+
+### Boutons
+
+Un seul vocabulaire sur tout le site : **angles vifs, aplats, pas de dégradé**.
+Trois variantes, définies en fin d'`assets/site.css` — `.bouton-plein` (accent, action
+principale), `.bouton-vide` (contour), `.lien-action` (lien souligné). Dans les modales,
+les mêmes styles sont écrits en Tailwind faute de pouvoir toucher au JS qui les pilote.
+
+Deux exceptions assumées, demandées par le club : le **bouton WhatsApp flottant** (rond,
+vert) et les **deux boutons du hero** (pastilles à dégradé), le hero étant hors périmètre
+de la refonte. Tout le reste est à l'équerre.
+
+**Le bouton « S'abonner à l'agenda » vit dans la modale des horaires**, pas sur la fiche
+d'équipe : on s'abonne une fois le calendrier sous les yeux. Il reste piloté par
+`openTeamModal()`, qui l'affiche pour la D2 et les U21 (les seules équipes avec un flux
+ICS) et le masque pour les jeunes.
+
+### Cache des ressources
+
+Les liens vers `assets/*.css` et `assets/*.js` portent un **numéro de version**
+(`?v=AAAAMMJJHHMM`). Sans lui, un navigateur qui a déjà chargé l'ancienne feuille de
+style continue de la servir après une mise à jour — un composant peut alors s'afficher
+en vrac sans que rien ne soit cassé côté serveur. **Rebumper ce numéro dans les six
+pages à chaque modification de `assets/`** (le générateur le fait automatiquement).
+
+Le serveur de prévisualisation local (`.claude/serveur-local.py`) envoie en plus
+`Cache-Control: no-store`, pour ne pas relire une version périmée pendant une relecture.
+
+### Compteur à rouleaux (page Partenaires)
+
+Le nombre de vues cumulées défile façon compteur mécanique : chaque chiffre est une
+colonne 0-9 (`.compteur-*` en fin d'`assets/site.css`) qui fait quatre tours avant de se
+caler, les chiffres s'arrêtant en cascade. Trois garde-fous à conserver :
+
+- le **nombre final est déjà écrit dans le HTML** (`data-valeur` + texte visible) : sans
+  JavaScript, la valeur reste lisible ;
+- l'animation est **désactivée** si le visiteur a demandé moins d'animations
+  (`prefers-reduced-motion`) ;
+- un **filet de sécurité à 6 secondes** cale les rouleaux sur la valeur finale si
+  l'IntersectionObserver ne s'est jamais déclenché (onglet resté en arrière-plan). Sans
+  lui, la page afficherait « 0 000 000 » — un chiffre faux, pas juste une animation ratée.
+
+### Chiffres réseaux sociaux
+
+Les données de `partenaires.html` et de la section `#reseaux` viennent du **rapport
+digital interne du club, saison 2025-2026** (septembre 2025 → septembre 2026) :
+2 033 800 vues cumulées, Instagram 1 821 abonnés / 953 100 vues, Facebook 2 500 / 883 300,
+TikTok 602 / 197 400. **Ne jamais extrapoler ces chiffres** : toute mise à jour vient d'un
+nouveau rapport fourni par le club.
+
+
+- **Le bandeau sponsors ne doit jamais être masqué.** Les 4 emplacements au logo du club
+  sont une vitrine assumée : ils montrent le rendu aux futurs sponsors. Voir le champ
+  `demo` dans `data/sponsors.json`.
+- **Pas de jalons d'histoire sur l'accueil** : la section `#club` de `index.html` n'est
+  qu'un renvoi vers `a-propos.html`. Répéter les dates faisait doublon avec la ligne du temps.
+- **« Notre impact » vit sur `partenaires.html`**, pas sur `a-propos.html` : ces chiffres
+  (BX1, +250 spectateurs, +40 matchs) servent d'argument commercial, pas de bilan associatif.
+- **Pas de « semaine type » pour la D2 ni les U21** : leurs horaires bougent trop en cours
+  de saison, on renvoie au calendrier RBFA. Les U15-U17 et le Baby Futsal la gardent.
+- **Ordre des équipes sur `equipes.html` : du plus jeune à l'équipe première**, l'encart
+  « Classements officiels » fermant la page juste après la D2.
+- **Mentions légales discrètes** : deux lignes en `text-[11px]` tout en bas du pied de
+  page. Complètes mais pas envahissantes — ne pas les remonter en colonne.
+- **Logo plus petit que le nom** dans l'en-tête : c'est « Union Oasis Forest » qui doit se
+  lire d'abord (`h-7` desktop, `h-5` mobile), avec un `gap-4` pour ne pas coller au texte.
+
 ## Pièges rencontrés
 
 - **Pas de `localStorage`** dans les aperçus d'artefacts Claude.ai (fonctionne normalement sur GitHub Pages).
@@ -83,6 +259,29 @@ Hébergé sur **GitHub Pages** depuis la branche principale du dépôt `tristede
   de réintroduire le même ralentissement.
 
 ## Chantiers ouverts
+
+0. **Conformité Google for Nonprofits** — checklist reçue du support Workspace
+   (case 75278170, 09/09/2026). Traitée le 09/09/2026 :
+   - ✅ Site passé en **multi-pages** (5 pages en plus de l'accueil) : c'était le point
+     bloquant, Google refuse explicitement les sites one-page.
+   - ✅ **Mission** affichée sur l'accueil et développée sur `a-propos.html`.
+   - ✅ **Identité juridique** expliquée (nom sportif vs ASBL), pied de page complet
+     avec n° BCE, siège social, e-mail admin et domaine, sur les 6 pages.
+   - ✅ **Placeholders assainis** : le bandeau sponsors garde ses 4 emplacements
+     d'aperçu (logo du club) — c'est **voulu**, ça montre le rendu aux futurs sponsors,
+     **ne jamais le masquer**. Ces entrées portent désormais `"demo": true` et un libellé
+     honnête (« Emplacement partenaire disponible ») au lieu de « SPONSOR », et
+     `partenaires.html` les exclut de la section « Ils nous soutiennent » : présenter le
+     logo du club comme un partenaire serait trompeur. Décocher `demo` dans `/admin` dès
+     qu'un vrai partenaire est encodé.
+   - ✅ Lien mort corrigé (`logo_uof.svg` → `logo%20uof.svg` dans le JSON-LD).
+   - ⏳ **Reste à faire côté club** : vérifier le domaine dans la console Admin Google,
+     puis réactiver le compte Google for Nonprofits (ou formulaire « PRODUCT ACTIVATION »).
+   - ⏳ **Reste à faire côté code** : Tailwind en production (chantier 2 ci-dessous),
+     seul point « Fast Loading » encore imparfait.
+   - 🧹 La modale galerie d'`index.html` (`openGallery()`) n'est plus appelée depuis que
+     la galerie a sa page : code mort à supprimer lors d'un nettoyage.
+
 
 1. **Galerie et sponsors éditables par un bénévole** — priorité n°1.
    Spécification : `SPEC-cms.md`.

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="L'association L'Oasis de Forest, sa mission, son identité juridique et l'histoire du club de futsal bruxellois Union Oasis Forest.">
+    <title>Le club | Union Oasis Forest</title>
+    <link rel="canonical" href="https://oasisforest.be/a-propos.html">
+
+    <link rel="icon" type="image/svg+xml" href="./logo%20uof.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://oasisforest.be/a-propos.html">
+    <meta property="og:title" content="Le club | Union Oasis Forest">
+    <meta property="og:description" content="L'association L'Oasis de Forest, sa mission, son identité juridique et l'histoire du club de futsal bruxellois Union Oasis Forest.">
+    <meta property="og:image" content="https://oasisforest.be/img/D85A3835.webp">
+    <meta property="og:locale" content="fr_BE">
+    <meta property="og:site_name" content="Union Oasis Forest">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <script src="assets/tailwind-config.js?v=202609100234"></script>
+    <link rel="stylesheet" href="assets/site.css?v=202609100234">
+</head>
+<body class="antialiased font-sans flex flex-col min-h-screen">
+
+    <!-- Fond animé -->
+    <div class="bg-glow">
+        <div class="blob-1 animate-blob"></div>
+        <div class="blob-2 animate-blob"></div>
+        <div class="blob-3 animate-blob"></div>
+    </div>
+
+    <!-- NAVIGATION — bloc identique sur toutes les pages du site.
+         Si tu le modifies, reporte la modification sur index.html, a-propos.html,
+         equipes.html, galerie.html, partenaires.html et contact.html. -->
+    <nav class="hidden lg:block fixed top-0 w-full z-50 bg-night/85 backdrop-blur-md border-b border-white/10 h-20">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 h-full">
+            <div class="flex justify-between items-center h-full gap-10">
+                <a href="index.html" aria-label="Union Oasis Forest - accueil" class="flex-shrink-0 flex items-center gap-4 group">
+                    <img src="logo%20uof.svg" alt="" aria-hidden="true" class="h-7 w-auto opacity-90 group-hover:opacity-100 transition-opacity">
+                    <span class="font-black text-white text-sm xl:text-base tracking-[0.22em] uppercase leading-none group-hover:text-accent transition-colors">Union Oasis Forest</span>
+                </a>
+                <div class="flex items-center gap-6 xl:gap-9">
+                    <a href="index.html" class="text-slate-400 hover:text-white border-b-2 border-transparent pb-1 transition-colors font-bold text-[11px] xl:text-xs uppercase tracking-[0.16em] whitespace-nowrap">Accueil</a>
+                    <a href="a-propos.html" aria-current="page" class="text-white border-b-2 border-accent pb-1 transition-colors font-bold text-[11px] xl:text-xs uppercase tracking-[0.16em] whitespace-nowrap">Le club</a>
+                    <a href="equipes.html" class="text-slate-400 hover:text-white border-b-2 border-transparent pb-1 transition-colors font-bold text-[11px] xl:text-xs uppercase tracking-[0.16em] whitespace-nowrap">Nos équipes</a>
+                    <a href="galerie.html" class="text-slate-400 hover:text-white border-b-2 border-transparent pb-1 transition-colors font-bold text-[11px] xl:text-xs uppercase tracking-[0.16em] whitespace-nowrap">Galerie</a>
+                    <a href="partenaires.html" class="text-slate-400 hover:text-white border-b-2 border-transparent pb-1 transition-colors font-bold text-[11px] xl:text-xs uppercase tracking-[0.16em] whitespace-nowrap">Partenaires</a>
+                    <a href="contact.html" class="text-slate-400 hover:text-white border-b-2 border-transparent pb-1 transition-colors font-bold text-[11px] xl:text-xs uppercase tracking-[0.16em] whitespace-nowrap">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <button id="mobile-menu-btn" aria-label="Ouvrir le menu de navigation" class="lg:hidden fixed top-3 right-4 text-white z-[70] p-1.5 transition-transform active:scale-90">
+        <i class="fas fa-bars text-2xl"></i>
+    </button>
+
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-night/97 opacity-0 invisible transition-all duration-300 lg:hidden flex flex-col justify-center">
+        <div class="flex flex-col items-start gap-6 w-full px-8">
+            <a href="index.html" class="mobile-link titre-brut text-3xl text-white hover:text-accent transition-colors">Accueil</a>
+            <a href="a-propos.html" aria-current="page" class="mobile-link titre-brut text-3xl text-accent hover:text-accent transition-colors">Le club</a>
+            <a href="equipes.html" class="mobile-link titre-brut text-3xl text-white hover:text-accent transition-colors">Nos équipes</a>
+            <a href="galerie.html" class="mobile-link titre-brut text-3xl text-white hover:text-accent transition-colors">Galerie</a>
+            <a href="partenaires.html" class="mobile-link titre-brut text-3xl text-white hover:text-accent transition-colors">Partenaires</a>
+            <a href="contact.html" class="mobile-link titre-brut text-3xl text-white hover:text-accent transition-colors">Contact</a>
+        </div>
+    </div>
+
+    <!-- Bandeau sponsors (data/sponsors.json). Masqué automatiquement si la liste est vide. -->
+    <div id="sponsors-marquee" class="fixed top-12 lg:top-20 w-full z-40 bg-black/70 backdrop-blur-md border-b border-white/10 py-2 flex overflow-hidden">
+        <div id="sponsors-track-1" class="flex animate-marquee min-w-full shrink-0 items-center justify-around gap-12 px-6"></div>
+        <div id="sponsors-track-2" class="flex animate-marquee min-w-full shrink-0 items-center justify-around gap-12 px-6" aria-hidden="true"></div>
+    </div>
+
+    <!-- Barre d'en-tête mobile : la navbar desktop est masquée sous 1024px, or le nom
+         de l'organisation doit rester visible en haut de chaque page. -->
+    <a href="index.html" aria-label="Union Oasis Forest - accueil" class="lg:hidden fixed top-0 left-0 right-0 z-[66] h-12 bg-night/90 backdrop-blur-md border-b border-white/10 flex items-center gap-3 pl-5 pr-14">
+        <img src="logo%20uof.svg" alt="" aria-hidden="true" class="h-5 w-auto opacity-90 shrink-0">
+        <span class="text-white font-black text-[11px] tracking-[0.22em] uppercase leading-none truncate">Union Oasis Forest</span>
+    </a>
+
+    <header class="pt-28 lg:pt-32 pb-8 relative z-10">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <p class="text-accent text-[11px] font-black tracking-[0.28em] uppercase mb-5">Le club</p>
+            <h1 class="titre-brut text-white text-5xl md:text-7xl lg:text-8xl mb-8">Une ASBL<br>forestoise<br>depuis 2004</h1>
+            <div class="filet pt-6">
+                <p class="text-slate-300 text-base md:text-lg font-light max-w-2xl leading-relaxed">L'association existe avant le club : elle est née d'un projet social, le futsal est venu ensuite.</p>
+            </div>
+        </div>
+    </header>
+
+    <section id="mission" class="py-10 md:py-14 relative z-10">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="flex items-baseline gap-4 mb-10 filet pt-6">
+                <span class="numero text-3xl md:text-4xl">01</span>
+                <h2 class="titre-brut text-white text-2xl md:text-4xl">Mission</h2>
+            </div>
+            <p class="titre-brut text-white text-3xl md:text-5xl lg:text-6xl max-w-4xl mb-10">
+                Un club de quartier<br><span class="text-accent">qui joue au niveau national.</span>
+            </p>
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl">
+                <p class="text-slate-300 font-light leading-relaxed">
+                    À Forest, l'énergie et le talent ne manquent pas — le cadre, si. L'association
+                    encadre des jeunes de 3 à 21 ans autour d'un ballon, six jours par semaine.
+                </p>
+                <p class="text-slate-300 font-light leading-relaxed">
+                    Pas de sélection à l'entrée chez les jeunes, cotisation maintenue au plus bas,
+                    moyens réinvestis dans les salles, les équipements et les affiliations.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="lassociation" class="py-10 md:py-14 relative z-10">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="flex items-baseline gap-4 mb-10 filet pt-6">
+                <span class="numero text-3xl md:text-4xl">02</span>
+                <h2 class="titre-brut text-white text-2xl md:text-4xl">L'association</h2>
+            </div>
+            <div class="grid lg:grid-cols-[0.8fr_1fr] gap-10 lg:gap-14 items-start">
+                <div>
+                    <p class="text-slate-300 font-light leading-relaxed mb-8">
+                        <strong class="text-white font-semibold">Union Oasis Forest</strong> est le nom
+                        sportif du club. L'entité juridique qui le porte est
+                        <strong class="text-white font-semibold">L'Oasis de Forest ASBL</strong>. Une seule et même
+                        structure, deux noms : celui de la salle et celui du registre.
+                    </p>
+                </div>
+                <table class="table-faits">
+                    <tbody>
+                        <tr><th>Dénomination légale</th><td>L'Oasis de Forest ASBL</td></tr>
+                        <tr><th>Numéro d'entreprise</th><td>0867.614.619</td></tr>
+                        <tr><th>Siège social</th><td>Rue du Croissant 85, 1190 Forest</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <section id="club" class="py-10 md:py-14 relative z-10">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="flex items-baseline gap-4 mb-16 filet pt-6">
+                <span class="numero text-3xl md:text-4xl">03</span>
+                <h2 class="titre-brut text-white text-2xl md:text-4xl">Notre histoire</h2>
+            </div>
+
+            <div class="relative max-w-6xl mx-auto">
+                <div class="absolute left-6 md:left-1/2 top-0 bottom-[6.5rem] w-[2px] bg-gradient-to-b from-accent via-blue-600 to-accent/70 md:-translate-x-1/2 shadow-[0_0_15px_rgba(0,194,255,0.5)]"></div>
+                
+                <!-- 2004 : Création ASBL -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse mb-20 reveal">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full bg-night border border-accent shadow-[0_0_15px_rgba(0,194,255,0.5)] absolute left-0 md:left-1/2 md:-translate-x-1/2 z-10 text-accent font-bold text-sm">
+                        '04
+                    </div>
+                    <div class="w-full pl-20 md:pl-0 md:w-[45%] md:px-8 text-left md:text-right relative">
+                        <div class="glass-panel p-6 md:pb-24 rounded-2xl hover:border-accent/50 transition-colors relative z-10">
+                            <span class="text-accent font-black tracking-wider uppercase text-sm block mb-2">Les Fondations</span>
+                            <h4 class="text-xl font-bold text-white mb-2">Création de l'ASBL "l'Oasis"</h4>
+                            <p class="text-slate-300 text-sm leading-relaxed">Mise en place d'actions sociales concrètes et encadrement de la jeunesse bruxelloise. Un projet pensé pour la communauté dès le premier jour.</p>
+                        </div>
+                        <!-- Photo : en flux normal sous la carte sur mobile (mt-6), superposée
+                             sur la zone tampon réservée (md:pb-24 ci-dessus) à partir de md.
+                             Pas de parallax ici : ça avait causé des chevauchements de texte. -->
+                        <div class="flex justify-center mt-6 md:-mt-16 relative z-20">
+                            <div class="polaroid hover-tilt rotate-3 w-44 sm:w-52" data-tilt-max="12">
+                                <img src="img/oasis.webp" alt="Les débuts du projet" class="aspect-square grayscale sepia-[.2] object-cover">
+                                <p class="polaroid-caption font-handwriting">Le projet naît</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2016 : Futsal P5 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse mb-20 reveal">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full bg-night border border-accent shadow-[0_0_15px_rgba(0,194,255,0.5)] absolute left-0 md:left-1/2 md:-translate-x-1/2 z-10 text-accent font-bold text-sm">
+                        '16
+                    </div>
+                    <div class="w-full pl-20 md:pl-0 md:w-[45%] md:px-8 text-left">
+                        <div class="glass-panel p-6 rounded-2xl hover:border-accent/50 transition-colors">
+                            <span class="text-accent font-black tracking-wider uppercase text-sm block mb-2">Le Lancement Sportif</span>
+                            <h4 class="text-xl font-bold text-white mb-2">Débuts à la RBFA en P5</h4>
+                            <p class="text-slate-300 text-sm leading-relaxed">Création officielle de l'équipe de Futsal. Début de l'ascension sportive en bas de l'échelle provinciale (P5) avec une équipe passionnée.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2021 : Réseaux Sociaux -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse mb-20 reveal">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full bg-night border border-accent shadow-[0_0_15px_rgba(0,194,255,0.5)] absolute left-0 md:left-1/2 md:-translate-x-1/2 z-10 text-accent font-bold text-sm">
+                        '21
+                    </div>
+                    <div class="w-full pl-20 md:pl-0 md:w-[45%] md:px-8 text-left md:text-right">
+                        <div class="glass-panel p-6 rounded-2xl hover:border-accent/50 transition-colors">
+                            <span class="text-accent font-black tracking-wider uppercase text-sm block mb-2">La Communauté</span>
+                            <h4 class="text-xl font-bold text-white mb-2">Développement de l'image</h4>
+                            <p class="text-slate-300 text-sm leading-relaxed">Structuration de notre présence digitale. Le club fédère une communauté massive sur les réseaux sociaux autour de son projet sport/social.</p>
+                        </div>
+                        <!-- Photo mobile : en flux normal sous la carte plutôt que dans la
+                             colonne séparée ci-dessous (qui mettrait la carte et la photo
+                             côte à côte sur un mobile trop étroit pour les deux). -->
+                        <div class="flex justify-center md:hidden mt-6">
+                            <div class="polaroid hover-tilt -rotate-3 w-44" data-tilt-max="12">
+                                <img src="img/IMG_8323.webp" alt="La communauté du club" class="aspect-square grayscale object-cover">
+                                <p class="polaroid-caption font-handwriting">Notre communauté</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo parallèle à l'encart, de l'autre côté de la ligne (desktop) -->
+                    <div class="hidden md:flex w-[45%] justify-center px-8">
+                        <div class="polaroid hover-tilt -rotate-3 w-52" data-tilt-max="12">
+                            <img src="img/IMG_8323.webp" alt="La communauté du club" class="aspect-square grayscale object-cover">
+                            <p class="polaroid-caption font-handwriting">Notre communauté</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2026 : Nationale 2 & équipes de jeunes -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse mb-12 reveal">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full bg-accent border border-white shadow-[0_0_20px_rgba(0,194,255,0.8)] absolute left-0 md:left-1/2 md:-translate-x-1/2 z-10 text-white font-bold text-sm">
+                        '26
+                    </div>
+                    <div class="w-full pl-20 md:pl-0 md:w-[45%] md:px-8 text-left">
+                        <div class="glass-panel border-accent/30 p-6 rounded-2xl shadow-[0_0_20px_rgba(0,194,255,0.1)]">
+                            <span class="text-accent font-black tracking-wider uppercase text-sm block mb-2">La Consécration</span>
+                            <h4 class="text-xl font-bold text-white mb-2">Passage en Nationale 2 &amp; création des équipes de jeunes</h4>
+                            <p class="text-slate-300 text-sm leading-relaxed">Montée historique au niveau national et création des équipes de jeunes, de l'U3 à l'U17, pour former l'élite de demain.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flèche de continuité : la suite de l'histoire, guide l'oeil vers Nos Valeurs -->
+                <div class="relative h-32 reveal">
+                    <div aria-hidden="true" class="absolute left-6 md:left-1/2 top-10 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none">
+                        <svg viewBox="0 0 24 24" class="w-5 h-5 text-accent animate-bounce drop-shadow-[0_0_10px_rgba(0,194,255,0.6)]" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <!-- Chevron a angle au sommet de ~60 degres (quasi equilateral) -->
+                            <polyline points="0.5,2 12,22 23.5,2"></polyline>
+                        </svg>
+                        <span class="hidden md:block text-[10px] font-black uppercase tracking-[0.25em] text-slate-500 whitespace-nowrap">La suite s'écrit</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="valeurs" class="py-10 md:py-14 relative z-10">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="flex items-baseline gap-4 mb-10 filet pt-6">
+                <span class="numero text-3xl md:text-4xl">04</span>
+                <h2 class="titre-brut text-white text-2xl md:text-4xl">Valeurs</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-4">
+                <div class="bloc bloc-accent p-6 md:p-8 reveal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#00c2ff" stroke-width="1.4" stroke-linecap="square" stroke-linejoin="miter" class="w-9 h-9 mb-5" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+                    <h3 class="titre-brut text-white text-lg mb-3">Ancrage local</h3>
+                    <p class="text-slate-400 text-sm font-light leading-relaxed">Le club recrute, joue et forme à Forest. Rien n'est délocalisé.</p>
+                </div>
+                <div class="bloc bloc-accent p-6 md:p-8 reveal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#00c2ff" stroke-width="1.4" stroke-linecap="square" stroke-linejoin="miter" class="w-9 h-9 mb-5" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 13V8.5"/><path d="M12 13l3.2 3.2"/><path d="M9 2h6"/></svg>
+                    <h3 class="titre-brut text-white text-lg mb-3">Travail</h3>
+                    <p class="text-slate-400 text-sm font-light leading-relaxed">Trois à quatre séances par semaine chez les jeunes, encadrées par des entraîneurs formés.</p>
+                </div>
+                <div class="bloc bloc-accent p-6 md:p-8 reveal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#00c2ff" stroke-width="1.4" stroke-linecap="square" stroke-linejoin="miter" class="w-9 h-9 mb-5" aria-hidden="true"><path d="M12 22c4.2 0 7-2.9 7-6.6 0-4.6-4.4-6.9-4.4-11.4-3 1.4-4.2 4-4.2 6.2 0 1.6-1 2.4-1.9 1.5-.6-.6-.9-1.5-.9-2.4C5.9 11 5 12.9 5 15.4 5 19.1 7.8 22 12 22Z"/></svg>
+                    <h3 class="titre-brut text-white text-lg mb-3">Passion</h3>
+                    <p class="text-slate-400 text-sm font-light leading-relaxed">Une salle pleine à chaque réception, et des matchs qui se jouent devant plus de 250 personnes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PIED DE PAGE — bloc identique sur toutes les pages du site.
+         Les deux dernières lignes (dénomination légale, n° d'entreprise, siège, e-mail,
+         domaine) sont exigées sur chaque page par la validation Google for Nonprofits. -->
+    <footer class="filet relative z-10 mt-12 pt-12 pb-10">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-[2fr_1fr_1fr] gap-10 md:gap-8 mb-12">
+
+                <div>
+                    <a href="index.html" aria-label="Union Oasis Forest - accueil" class="inline-flex items-center gap-4 group mb-5">
+                        <img src="logo%20uof.svg" alt="" aria-hidden="true" class="h-6 w-auto opacity-90">
+                        <span class="font-black text-white text-sm tracking-[0.22em] uppercase leading-none group-hover:text-accent transition-colors">Union Oasis Forest</span>
+                    </a>
+                </div>
+
+                <div class="md:text-right">
+                    <h2 class="text-slate-500 font-black text-[10px] tracking-[0.24em] uppercase mb-4">Pages</h2>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="text-slate-400 hover:text-accent transition-colors">Accueil</a></li>
+                        <li><a href="a-propos.html" class="text-slate-400 hover:text-accent transition-colors">Le club</a></li>
+                        <li><a href="equipes.html" class="text-slate-400 hover:text-accent transition-colors">Nos équipes</a></li>
+                        <li><a href="galerie.html" class="text-slate-400 hover:text-accent transition-colors">Galerie</a></li>
+                        <li><a href="partenaires.html" class="text-slate-400 hover:text-accent transition-colors">Partenaires</a></li>
+                        <li><a href="contact.html" class="text-slate-400 hover:text-accent transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h2 class="text-slate-500 font-black text-[10px] tracking-[0.24em] uppercase mb-4">Contact</h2>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="mailto:union@oasisforest.be" class="hover:text-accent transition-colors">union@oasisforest.be</a></li>
+                        <li><a href="https://wa.me/32477022021" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">+32 477 02 20 21</a></li>
+                        <li class="flex gap-4 pt-2">
+                            <a href="https://www.instagram.com/oasisforestfutsal" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="hover:text-accent transition-colors">Instagram</a>
+                            <a href="https://www.tiktok.com/@oasisforestfutsal" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="hover:text-accent transition-colors">TikTok</a>
+                            <a href="https://www.facebook.com/oasisforestfutsal" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="hover:text-accent transition-colors">Facebook</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="filet pt-6 space-y-1.5">
+                <p class="text-[11px] leading-relaxed text-slate-600">
+                    L'Oasis de Forest ASBL · Siège social : Rue du Croissant 85, 1190 Forest, Belgique ·
+                    Numéro d'entreprise (BCE) 0867.614.619 ·
+                    <a href="mailto:union@oasisforest.be" class="hover:text-slate-400 transition-colors">union@oasisforest.be</a> ·
+                    <a href="https://oasisforest.be/" class="hover:text-slate-400 transition-colors">oasisforest.be</a>
+                </p>
+                <p class="text-[11px] text-slate-600">
+                    &copy; <span id="year"></span> L'Oasis de Forest ASBL — « Union Oasis Forest » est le nom sportif de l'association.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/32477022021" target="_blank" rel="noopener noreferrer" data-track="WhatsApp (flottant)" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 bg-[#25D366] text-white w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-3xl shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:scale-110 hover:bg-[#20bd5a] hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] transition-all duration-300 z-50 group" aria-label="Nous contacter sur WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span class="absolute right-[110%] top-1/2 -translate-y-1/2 bg-night text-white text-xs font-bold py-2.5 px-4 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap border border-white/10 pointer-events-none shadow-xl">
+            Une question ? Discutons !
+        </span>
+    </a>
+
+    <script src="assets/commun.js?v=202609100234"></script>
+</body>
+</html>

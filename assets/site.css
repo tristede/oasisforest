@@ -1,0 +1,427 @@
+/* Styles du site Union Oasis Forest.
+   Extrait de index.html pour etre partage par toutes les pages
+   (index, a-propos, equipes, galerie, partenaires, contact). */
+
+body {
+    background-color: #020617;
+    color: #f8fafc;
+    overflow-x: hidden;
+    /* La propriété perspective a été supprimée ici car elle cassait l'affichage (position: fixed) de la modale au scroll */
+}
+
+/* Animated Background Gradients */
+.bg-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+    background: linear-gradient(to bottom right, #020617, #0f172a, #020617);
+}
+
+.blob-1 { position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(0, 194, 255, 0.15) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; filter: blur(60px); }
+.blob-2 { position: absolute; bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; filter: blur(80px); animation-delay: 2s; }
+.blob-3 { position: absolute; top: 40%; left: 40%; width: 40vw; height: 40vw; background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; filter: blur(60px); animation-delay: 4s; }
+
+/* Glassmorphism */
+/* Cartes des modales équipe : fond nettement plus opaque que .glass-panel, parce
+   que les polaroids d'illustration passent derrière et qu'une photo qui transparaît
+   sous le texte le rendrait illisible. Le flou et la bordure sont conservés, donc
+   l'aspect verre reste. */
+#modal-info.glass-panel,
+#modal-cal.glass-panel {
+    background: rgba(6, 13, 32, 0.93);
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transform-style: preserve-3d;
+    transition: transform 0.2s ease-out, background 0.2s ease;
+}
+.glass-panel-interactive:hover {
+    border: 1px solid rgba(0, 194, 255, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 40px rgba(0, 194, 255, 0.15);
+    transform: translateY(-4px) scale(1.01);
+}
+
+/* Pop-up Actu : liquid glass mais toujours assombri derrière (brightness sur le
+   backdrop-filter), pour rester lisible même posé sur un fond clair (logo blanc,
+   photo claire...). Un simple blur (comme .glass-panel standard) ne fait que flouter
+   sans assombrir, donc le contraste chutait sur les zones claires. Règle dédiée à
+   #popup-actu-card (pas de retouche à .glass-panel global, utilisé ailleurs sur fond
+   déjà sombre). */
+#popup-actu-card {
+    background: rgba(2, 6, 23, 0.6);
+    backdrop-filter: blur(16px) brightness(0.55) saturate(1.1);
+    -webkit-backdrop-filter: blur(16px) brightness(0.55) saturate(1.1);
+}
+
+/* Polaroid Effect */
+.polaroid {
+    background: #ffffff;
+    padding: 12px 12px 40px 12px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 194, 255, 0.1);
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
+    will-change: transform;
+}
+
+.polaroid::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    margin-left: -45px;
+    width: 90px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    backdrop-filter: blur(4px);
+    transform: rotate(-4deg);
+    z-index: 10;
+}
+
+.polaroid img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    height: auto;
+    object-fit: cover;
+    border: 1px solid #e2e8f0;
+}
+
+/* Cadre vide de repérage, rempli uniquement en local (cf. renderTeamPolaroids) :
+   permet de visualiser la disposition des polaroids sur une équipe qui n'a pas
+   encore de photo taguée. Jamais servi sur le site public. */
+.polaroid-vide {
+    aspect-ratio: 1 / 1;
+    border: 2px dashed #94a3b8;
+    background: repeating-linear-gradient(45deg, #f1f5f9, #f1f5f9 8px, #e2e8f0 8px, #e2e8f0 16px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-align: center;
+    padding: 4px;
+}
+
+.polaroid-caption {
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: #0f172a;
+    font-size: 1.5rem;
+    transform: rotate(-2deg);
+    /* Les légendes viennent du CMS (texte libre, longueur non maîtrisée) : on
+       tronque sur une ligne plutôt que de laisser déborder du cadre polaroid. */
+    padding: 0 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.parallax-wrapper { will-change: transform; }
+
+/* Barre de filtres galerie : scrollable horizontalement sur mobile sans montrer
+   de scrollbar disgracieuse. */
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Protection légère des photos du club : empêche le menu "Enregistrer l'image"
+   au clic long sur iOS Safari (-webkit-touch-callout) et la sélection/glisser au
+   clic long sur les autres navigateurs. N'empêche pas les captures d'écran (aucune
+   technique web ne le peut) - ça bloque juste le geste d'enregistrement le plus courant. */
+img {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #020617; }
+::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #00c2ff; }
+
+/* Fade-in */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Indice de clic sur les cartes "Nos Équipes" : le chevron pulse doucement en
+   continu (constat A/B test : des utilisateurs défilaient sans cliquer). Boucle
+   CSS légère (opacity only), pas de déclenchement au scroll, jamais figée. */
+.team-chevron {
+    animation: pulse 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Chaque carte "Nos Équipes" grossit en claquant légèrement à son apparition,
+   l'une après l'autre au fil du défilement (effet "roue crantée"). Sélecteur
+   renforcé pour ne pas toucher au .reveal générique utilisé ailleurs sur le site.
+   transform/opacity uniquement : coût de rendu nul, jamais de saccade. */
+#entites .team-card-reveal.reveal {
+    transform: translateY(30px) scale(0.86);
+    transition: opacity 0.45s ease-out, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+#entites .team-card-reveal.reveal.active {
+    transform: translateY(0) scale(1);
+}
+
+/* Couleur unie : de "Nos Equipes" jusqu'a "Devenez Partenaire" */
+.zone-unie {
+    background-color: #070f20;
+}
+
+/* Ancres : compense la navbar + le bandeau sponsors fixes */
+section[id], div[id="agenda"], div[id="map"] { scroll-margin-top: 8rem; }
+
+/* Encarts "Projet et Ambitions" */
+.ambition-card {
+    position: relative;
+    overflow: hidden;
+    transition: transform .4s cubic-bezier(.2,.8,.2,1), border-color .4s ease, box-shadow .4s ease, opacity .8s cubic-bezier(0.5,0,0,1);
+}
+.ambition-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(0, 194, 255, .45);
+    box-shadow: 0 20px 45px rgba(2, 6, 23, .6), 0 0 30px rgba(0, 194, 255, .18);
+}
+.ambition-icon {
+    display: inline-block;
+    transition: transform .4s cubic-bezier(.2,.8,.2,1), filter .4s ease;
+}
+.ambition-card:hover .ambition-icon {
+    transform: translateY(-4px) scale(1.15);
+    filter: drop-shadow(0 0 12px rgba(0, 194, 255, .75));
+}
+/* Reflet lumineux qui balaie la carte au survol */
+.ambition-glow {
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 194, 255, .10), transparent);
+    transform: skewX(-20deg);
+    pointer-events: none;
+}
+.ambition-card:hover .ambition-glow {
+    animation: ambition-sweep .9s ease;
+}
+@keyframes ambition-sweep {
+    to { left: 125%; }
+}
+
+/* Modal Scroll Locking */
+body.modal-open { overflow: hidden; }
+
+/* ==========================================================================
+   GRAMMAIRE VISUELLE "SPORT" — pages Le club / Nos équipes / Galerie /
+   Partenaires / Contact, et tout l'accueil sous le hero.
+   Principes : angles vifs (aucun arrondi), blocs pleins, filets nets,
+   numérotation apparente, zéro icône décorative. Le hero, les polaroids et
+   les modales gardent leur style d'origine.
+   ========================================================================== */
+
+/* Bloc de base : cadre net, jamais d'arrondi. */
+.bloc {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+}
+.bloc-accent { border-left: 3px solid #00c2ff; }
+
+/* Bloc plein : sert de rupture forte dans la page (CTA, encart clé). */
+.bloc-plein {
+    background: #00c2ff;
+    color: #020617;
+}
+
+/* Filet horizontal : sépare les sections sans les enfermer dans une carte. */
+.filet { border-top: 1px solid rgba(255, 255, 255, 0.12); }
+
+/* Numérotation des sections et des blocs (01, 02...). Chiffres en contour :
+   présents mais discrets, ils structurent sans ajouter de couleur. */
+.numero {
+    font-variant-numeric: tabular-nums;
+    font-weight: 900;
+    line-height: 0.8;
+    letter-spacing: -0.04em;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.22);
+}
+.numero-plein {
+    color: #00c2ff;
+    -webkit-text-stroke: 0;
+}
+
+/* Titres : capitales serrées, très lourdes. Montserrat n'est pas une condensée,
+   on resserre la chasse pour s'en approcher sans charger une police de plus. */
+.titre-brut {
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    line-height: 0.92;
+}
+
+/* Bandeau incliné : la seule diagonale du site, pour les ruptures de section. */
+.bande-diagonale {
+    transform: skewY(-1.5deg);
+}
+.bande-diagonale > * {
+    transform: skewY(1.5deg);
+}
+
+/* Liste de données factuelles (identité juridique, coordonnées, horaires).
+   Remplace les grilles de cartes : plus dense, plus sérieux, plus lisible. */
+.table-faits { width: 100%; border-collapse: collapse; }
+.table-faits th,
+.table-faits td {
+    text-align: left;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    vertical-align: top;
+}
+.table-faits th {
+    width: 40%;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #64748b;
+    padding-right: 1.5rem;
+}
+.table-faits td { color: #e2e8f0; font-size: 0.95rem; }
+@media (max-width: 640px) {
+    .table-faits th, .table-faits td { display: block; width: 100%; border: 0; padding: 0; }
+    .table-faits th { padding-top: 1rem; }
+    .table-faits td { padding-bottom: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+}
+
+/* Lien d'action : soulignement franc qui se remplit au survol. */
+.lien-action {
+    display: inline-block;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.75rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 2px solid #00c2ff;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+.lien-action:hover { color: #00c2ff; }
+
+/* Bouton plein, angles vifs. */
+.bouton-plein {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #00c2ff;
+    color: #ffffff;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.78rem;
+    padding: 1rem 2rem;
+    transition: background 0.2s ease;
+}
+/* Survol vers l'accent foncé, pas vers le blanc : le texte du bouton est blanc. */
+.bouton-plein:hover { background: #0091ea; }
+
+/* Bouton secondaire : contour net. */
+.bouton-vide {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.78rem;
+    padding: 1rem 2rem;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+.bouton-vide:hover { border-color: #00c2ff; color: #00c2ff; }
+
+/* --- Modales alignées sur la grammaire "sport" ---------------------------
+   Les modales (équipe, horaires, abonnement, pop-up Actu, visionneuse) sont
+   pilotées par le JS d'index.html, qui écrit lui-même certaines classes. Plutôt
+   que de réécrire ce JS, on neutralise ici les arrondis et les pastilles
+   d'icônes : le rendu suit le reste du site sans toucher au comportement.
+   Le hero garde volontairement son style d'origine. */
+#modal-info,
+#modal-cal,
+#popup-actu-card,
+#modal-subscribe-backdrop .glass-panel,
+#modal-lightbox img,
+#modal-info button,
+#modal-cal button,
+#popup-actu-card a,
+#popup-actu-card button,
+#modal-subscribe-backdrop button,
+#modal-subscribe-backdrop a,
+#subscribe-team-toggles button,
+#modal-cal-content > * {
+    border-radius: 0 !important;
+}
+
+/* Pastille d'icône de la pop-up Actu : supprimée, le titre suffit. (Celle de la
+   modale équipe a été retirée du balisage.) */
+#popup-actu-icon {
+    display: none !important;
+}
+
+/* Filet sous un bloc (en-tête de carte réseau social, par exemple). */
+.filet-bas { border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+
+/* --- Compteur à rouleaux -------------------------------------------------
+   Chaque chiffre est une colonne 0-9 qui défile puis se cale sur sa valeur,
+   comme un compteur mécanique. Les chiffres s'arrêtent en cascade. Le HTML
+   contient déjà le nombre final : si le JS ne tourne pas, la valeur reste
+   lisible telle quelle. */
+.compteur { display: inline-flex; align-items: baseline; }
+.compteur-chiffre {
+    display: inline-block;
+    overflow: hidden;
+    height: 1em;
+    line-height: 1;
+}
+.compteur-rouleau {
+    display: flex;
+    flex-direction: column;
+    will-change: transform;
+}
+.compteur-rouleau > span {
+    display: block;
+    height: 1em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+/* Séparateur de milliers : une vraie respiration, pas un caractère espace qui
+   se ferait avaler par le flex. */
+.compteur-espace { display: inline-block; width: 0.26em; }
+
+/* Respect du réglage système : pas de défilement si le visiteur a demandé
+   moins d'animations, le nombre s'affiche directement. */
+@media (prefers-reduced-motion: reduce) {
+    .compteur-rouleau { transition: none !important; }
+}

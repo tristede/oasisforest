@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ARCHIVE — version du site avant la refonte du 10/09/2026, conservée pour
+         comparaison « avant / après ». Page volontairement non listée : absente de la
+         navigation, du sitemap, et exclue des moteurs de recherche. Ne pas y lier
+         depuis le site public. -->
+    <meta name="robots" content="noindex, nofollow">
     <meta name="description" content="Union Oasis Forest - L'excellence du futsal bruxellois. De notre équipe première en Division 2 Nationale jusqu'à nos équipes de jeunes.">
-    <title>Union Oasis Forest</title>
+    <title>Archive — ancienne version | Union Oasis Forest</title>
 
     <!-- Icone d'onglet : SVG pour les navigateurs qui le supportent (logo blanc seul,
          pensé pour un chrome de navigateur sombre). PNG en repli sur fond sombre
@@ -38,42 +43,20 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": ["SportsClub", "NGO"],
+        "@type": "SportsClub",
         "name": "Union Oasis Forest",
-        "legalName": "L'Oasis de Forest ASBL",
-        "alternateName": "L'Oasis de Forest",
-        "description": "Club de futsal bruxellois porte par l'ASBL L'Oasis de Forest : encadrement des jeunes de Forest de 3 a 21 ans et equipe premiere en Division 2 Nationale.",
         "sport": "Futsal",
-        "foundingDate": "2004-10-05",
-        "identifier": {
-            "@type": "PropertyValue",
-            "propertyID": "BE-KBO",
-            "name": "Numero d'entreprise (BCE)",
-            "value": "0867.614.619"
-        },
         "url": "https://oasisforest.be/",
-        "logo": "https://oasisforest.be/logo%20uof.svg",
+        "logo": "https://oasisforest.be/logo_uof.svg",
         "email": "union@oasisforest.be",
         "telephone": "+32477022021",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Rue du Croissant 85",
+            "streetAddress": "Bd. de la 2ème Armée Britannique 600",
             "postalCode": "1190",
             "addressLocality": "Forest",
             "addressRegion": "Bruxelles",
             "addressCountry": "BE"
-        },
-        "location": {
-            "@type": "Place",
-            "name": "Complexe sportif de Forest",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Bd. de la 2ème Armée Britannique 600",
-                "postalCode": "1190",
-                "addressLocality": "Forest",
-                "addressRegion": "Bruxelles",
-                "addressCountry": "BE"
-            }
         },
         "sameAs": [
             "https://www.instagram.com/oasisforestfutsal",
@@ -86,8 +69,274 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
-    <script src="assets/tailwind-config.js?v=202609100234"></script>
-    <link rel="stylesheet" href="assets/site.css?v=202609100234">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        handwriting: ['Caveat', 'cursive'],
+                    },
+                    colors: {
+                        night: '#020617',
+                        glass: 'rgba(255, 255, 255, 0.05)',
+                        glassBorder: 'rgba(255, 255, 255, 0.1)',
+                        accent: '#00c2ff',
+                        accentDark: '#0091ea'
+                    },
+                    animation: {
+                        'marquee': 'marquee 25s linear infinite',
+                        'blob': 'blob 10s infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        },
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #020617;
+            color: #f8fafc;
+            overflow-x: hidden;
+            /* La propriété perspective a été supprimée ici car elle cassait l'affichage (position: fixed) de la modale au scroll */
+        }
+        
+        /* Animated Background Gradients */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            z-index: -1;
+            background: linear-gradient(to bottom right, #020617, #0f172a, #020617);
+        }
+        
+        .blob-1 { position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(0, 194, 255, 0.15) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; filter: blur(60px); }
+        .blob-2 { position: absolute; bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; filter: blur(80px); animation-delay: 2s; }
+        .blob-3 { position: absolute; top: 40%; left: 40%; width: 40vw; height: 40vw; background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; filter: blur(60px); animation-delay: 4s; }
+
+        /* Glassmorphism */
+        /* Cartes des modales équipe : fond nettement plus opaque que .glass-panel, parce
+           que les polaroids d'illustration passent derrière et qu'une photo qui transparaît
+           sous le texte le rendrait illisible. Le flou et la bordure sont conservés, donc
+           l'aspect verre reste. */
+        #modal-info.glass-panel,
+        #modal-cal.glass-panel {
+            background: rgba(6, 13, 32, 0.93);
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            transform-style: preserve-3d;
+            transition: transform 0.2s ease-out, background 0.2s ease;
+        }
+        .glass-panel-interactive:hover {
+            border: 1px solid rgba(0, 194, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 40px rgba(0, 194, 255, 0.15);
+            transform: translateY(-4px) scale(1.01);
+        }
+
+        /* Pop-up Actu : liquid glass mais toujours assombri derrière (brightness sur le
+           backdrop-filter), pour rester lisible même posé sur un fond clair (logo blanc,
+           photo claire...). Un simple blur (comme .glass-panel standard) ne fait que flouter
+           sans assombrir, donc le contraste chutait sur les zones claires. Règle dédiée à
+           #popup-actu-card (pas de retouche à .glass-panel global, utilisé ailleurs sur fond
+           déjà sombre). */
+        #popup-actu-card {
+            background: rgba(2, 6, 23, 0.6);
+            backdrop-filter: blur(16px) brightness(0.55) saturate(1.1);
+            -webkit-backdrop-filter: blur(16px) brightness(0.55) saturate(1.1);
+        }
+
+        /* Polaroid Effect */
+        .polaroid {
+            background: #ffffff;
+            padding: 12px 12px 40px 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 194, 255, 0.1);
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+            will-change: transform;
+        }
+        
+        .polaroid::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            margin-left: -45px;
+            width: 90px;
+            height: 30px;
+            background-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            backdrop-filter: blur(4px);
+            transform: rotate(-4deg);
+            z-index: 10;
+        }
+
+        .polaroid img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            height: auto;
+            object-fit: cover;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Cadre vide de repérage, rempli uniquement en local (cf. renderTeamPolaroids) :
+           permet de visualiser la disposition des polaroids sur une équipe qui n'a pas
+           encore de photo taguée. Jamais servi sur le site public. */
+        .polaroid-vide {
+            aspect-ratio: 1 / 1;
+            border: 2px dashed #94a3b8;
+            background: repeating-linear-gradient(45deg, #f1f5f9, #f1f5f9 8px, #e2e8f0 8px, #e2e8f0 16px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-size: .8rem;
+            font-weight: 700;
+            letter-spacing: .05em;
+            text-align: center;
+            padding: 4px;
+        }
+
+        .polaroid-caption {
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: #0f172a;
+            font-size: 1.5rem;
+            transform: rotate(-2deg);
+            /* Les légendes viennent du CMS (texte libre, longueur non maîtrisée) : on
+               tronque sur une ligne plutôt que de laisser déborder du cadre polaroid. */
+            padding: 0 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .parallax-wrapper { will-change: transform; }
+
+        /* Barre de filtres galerie : scrollable horizontalement sur mobile sans montrer
+           de scrollbar disgracieuse. */
+        .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+
+        /* Protection légère des photos du club : empêche le menu "Enregistrer l'image"
+           au clic long sur iOS Safari (-webkit-touch-callout) et la sélection/glisser au
+           clic long sur les autres navigateurs. N'empêche pas les captures d'écran (aucune
+           technique web ne le peut) - ça bloque juste le geste d'enregistrement le plus courant. */
+        img {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00c2ff; }
+
+        /* Fade-in */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Indice de clic sur les cartes "Nos Équipes" : le chevron pulse doucement en
+           continu (constat A/B test : des utilisateurs défilaient sans cliquer). Boucle
+           CSS légère (opacity only), pas de déclenchement au scroll, jamais figée. */
+        .team-chevron {
+            animation: pulse 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        /* Chaque carte "Nos Équipes" grossit en claquant légèrement à son apparition,
+           l'une après l'autre au fil du défilement (effet "roue crantée"). Sélecteur
+           renforcé pour ne pas toucher au .reveal générique utilisé ailleurs sur le site.
+           transform/opacity uniquement : coût de rendu nul, jamais de saccade. */
+        #entites .team-card-reveal.reveal {
+            transform: translateY(30px) scale(0.86);
+            transition: opacity 0.45s ease-out, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        #entites .team-card-reveal.reveal.active {
+            transform: translateY(0) scale(1);
+        }
+
+        /* Couleur unie : de "Nos Equipes" jusqu'a "Devenez Partenaire" */
+        .zone-unie {
+            background-color: #070f20;
+        }
+
+        /* Ancres : compense la navbar + le bandeau sponsors fixes */
+        section[id], div[id="agenda"], div[id="map"] { scroll-margin-top: 11rem; }
+
+        /* Encarts "Projet et Ambitions" */
+        .ambition-card {
+            position: relative;
+            overflow: hidden;
+            transition: transform .4s cubic-bezier(.2,.8,.2,1), border-color .4s ease, box-shadow .4s ease, opacity .8s cubic-bezier(0.5,0,0,1);
+        }
+        .ambition-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 194, 255, .45);
+            box-shadow: 0 20px 45px rgba(2, 6, 23, .6), 0 0 30px rgba(0, 194, 255, .18);
+        }
+        .ambition-icon {
+            display: inline-block;
+            transition: transform .4s cubic-bezier(.2,.8,.2,1), filter .4s ease;
+        }
+        .ambition-card:hover .ambition-icon {
+            transform: translateY(-4px) scale(1.15);
+            filter: drop-shadow(0 0 12px rgba(0, 194, 255, .75));
+        }
+        /* Reflet lumineux qui balaie la carte au survol */
+        .ambition-glow {
+            position: absolute;
+            top: 0;
+            left: -75%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 194, 255, .10), transparent);
+            transform: skewX(-20deg);
+            pointer-events: none;
+        }
+        .ambition-card:hover .ambition-glow {
+            animation: ambition-sweep .9s ease;
+        }
+        @keyframes ambition-sweep {
+            to { left: 125%; }
+        }
+
+        /* Modal Scroll Locking */
+        body.modal-open { overflow: hidden; }
+    </style>
 </head>
 <body class="antialiased font-sans flex flex-col min-h-screen">
 
@@ -102,62 +351,65 @@
     </svg>
 
 
-    <!-- Fond animé -->
+    <!-- Deep Animated Background -->
     <div class="bg-glow">
         <div class="blob-1 animate-blob"></div>
         <div class="blob-2 animate-blob"></div>
         <div class="blob-3 animate-blob"></div>
     </div>
 
-    <!-- NAVIGATION — bloc identique sur toutes les pages du site.
-         Si tu le modifies, reporte la modification sur index.html, a-propos.html,
-         equipes.html, galerie.html, partenaires.html et contact.html. -->
-    <nav class="hidden lg:block fixed top-0 w-full z-50 bg-night/85 backdrop-blur-md border-b border-white/10 h-20">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 h-full">
-            <div class="flex justify-between items-center h-full gap-10">
-                <a href="index.html" aria-label="Union Oasis Forest - accueil" class="flex-shrink-0 flex items-center gap-4 group">
-                    <img src="logo%20uof.svg" alt="" aria-hidden="true" class="h-7 w-auto opacity-90 group-hover:opacity-100 transition-opacity">
-                    <span class="font-black text-white text-sm xl:text-base tracking-[0.22em] uppercase leading-none group-hover:text-accent transition-colors">Union Oasis Forest</span>
+    <!-- Glass Navbar (Fixed, Desktop Only) -->
+    <nav class="hidden lg:block fixed top-0 w-full z-50 glass-panel border-b-0 border-white/5 transition-all duration-300 h-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+            <div class="flex justify-between items-center h-full">
+                
+                <a href="#home" aria-label="Union Oasis Forest - retour en haut de page" class="flex-shrink-0 flex items-center gap-4 cursor-pointer group">
+                    <div id="logo-header-container" class="h-11 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                        <svg class="h-full w-auto" viewBox="0 0 1248.44 1544.45" role="img" aria-label="Logo Union Oasis Forest"><use href="#club-logo"></use></svg>
+                    </div>
+                    <span class="font-black text-white text-xl tracking-[0.2em] uppercase"></span>
                 </a>
-                <div class="flex items-center gap-6 xl:gap-9">
-                    <a href="index.html" aria-current="page" class="text-white border-b-2 border-accent pb-1 transition-colors font-bold text-[11px] xl:text-xs uppercase tracking-[0.16em] whitespace-nowrap">Accueil</a>
-                    <a href="a-propos.html" class="text-slate-400 hover:text-white border-b-2 border-transparent pb-1 transition-colors font-bold text-[11px] xl:text-xs uppercase tracking-[0.16em] whitespace-nowrap">Le club</a>
-                    <a href="equipes.html" class="text-slate-400 hover:text-white border-b-2 border-transparent pb-1 transition-colors font-bold text-[11px] xl:text-xs uppercase tracking-[0.16em] whitespace-nowrap">Nos équipes</a>
-                    <a href="galerie.html" class="text-slate-400 hover:text-white border-b-2 border-transparent pb-1 transition-colors font-bold text-[11px] xl:text-xs uppercase tracking-[0.16em] whitespace-nowrap">Galerie</a>
-                    <a href="partenaires.html" class="text-slate-400 hover:text-white border-b-2 border-transparent pb-1 transition-colors font-bold text-[11px] xl:text-xs uppercase tracking-[0.16em] whitespace-nowrap">Partenaires</a>
-                    <a href="contact.html" class="text-slate-400 hover:text-white border-b-2 border-transparent pb-1 transition-colors font-bold text-[11px] xl:text-xs uppercase tracking-[0.16em] whitespace-nowrap">Contact</a>
+                
+                <div class="flex items-center space-x-5 xl:space-x-8">
+                    <a href="#entites" class="text-slate-300 hover:text-accent transition-colors font-medium text-sm uppercase tracking-widest whitespace-nowrap">Équipes</a>
+                    <a href="#club" class="text-slate-300 hover:text-accent transition-colors font-medium text-sm uppercase tracking-widest whitespace-nowrap">Histoire</a>
+                    <a href="#gallery-teaser" class="text-slate-300 hover:text-accent transition-colors font-medium text-sm uppercase tracking-widest whitespace-nowrap">Photos</a>
+                    <a href="#partenaires" class="text-slate-300 hover:text-accent transition-colors font-medium text-sm uppercase tracking-widest whitespace-nowrap">Sponsors</a>
+                    <a href="#contact" class="text-slate-300 hover:text-accent transition-colors font-medium text-sm uppercase tracking-widest whitespace-nowrap">Maps</a>
+                    <a href="#contact" class="glass-panel text-accent border border-accent/30 px-5 xl:px-6 py-2.5 rounded-full font-bold hover:bg-accent hover:text-night hover:shadow-[0_0_20px_rgba(0,194,255,0.4)] transition-all duration-300 uppercase tracking-wider text-xs whitespace-nowrap"><span class="hidden xl:inline">Nous rejoindre</span><span class="xl:hidden">Rejoindre</span></a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <button id="mobile-menu-btn" aria-label="Ouvrir le menu de navigation" class="lg:hidden fixed top-3 right-4 text-white z-[70] p-1.5 transition-transform active:scale-90">
-        <i class="fas fa-bars text-2xl"></i>
+    <!-- Bouton Menu Mobile Flottant (Visible uniquement sur mobile) -->
+    <button id="mobile-menu-btn" aria-label="Ouvrir le menu de navigation" class="lg:hidden fixed top-16 right-4 text-white z-[70] p-2 transition-transform active:scale-90">
+        <i class="fas fa-bars text-3xl drop-shadow-md"></i>
     </button>
 
-    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-night/97 opacity-0 invisible transition-all duration-300 lg:hidden flex flex-col justify-center">
-        <div class="flex flex-col items-start gap-6 w-full px-8">
-            <a href="index.html" aria-current="page" class="mobile-link titre-brut text-3xl text-accent hover:text-accent transition-colors">Accueil</a>
-            <a href="a-propos.html" class="mobile-link titre-brut text-3xl text-white hover:text-accent transition-colors">Le club</a>
-            <a href="equipes.html" class="mobile-link titre-brut text-3xl text-white hover:text-accent transition-colors">Nos équipes</a>
-            <a href="galerie.html" class="mobile-link titre-brut text-3xl text-white hover:text-accent transition-colors">Galerie</a>
-            <a href="partenaires.html" class="mobile-link titre-brut text-3xl text-white hover:text-accent transition-colors">Partenaires</a>
-            <a href="contact.html" class="mobile-link titre-brut text-3xl text-white hover:text-accent transition-colors">Contact</a>
+    <!-- Menu Mobile Plein Écran -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-night/95 backdrop-blur-xl opacity-0 invisible transition-all duration-300 lg:hidden flex flex-col items-end justify-center">
+        <div class="flex flex-col items-end space-y-8 w-full px-6 text-right">
+            <a href="#entites" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Nos Équipes</a>
+            <a href="#club" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Histoire</a>
+            <a href="#agenda" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Agenda</a>
+            <a href="#gallery-teaser" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Photos</a>
+            <a href="#partenaires" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Sponsors</a>
+            <a href="#contact" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Contact</a>
+            <a href="#map" class="mobile-link text-2xl text-white font-black uppercase tracking-widest hover:text-accent transition-colors">Maps</a>
         </div>
     </div>
 
-    <!-- Bandeau sponsors (data/sponsors.json). Masqué automatiquement si la liste est vide. -->
-    <div id="sponsors-marquee" class="fixed top-12 lg:top-20 w-full z-40 bg-black/70 backdrop-blur-md border-b border-white/10 py-2 flex overflow-hidden">
+    <!-- Sponsors Marquee FIXE sous la navbar sur Desktop, au sommet sur Mobile -->
+    <!-- Nouveau système anti-superposition (Flex + min-w-full) -->
+    <div id="sponsors-marquee" class="fixed top-0 lg:top-24 w-full z-40 bg-black/60 backdrop-blur-md border-b border-white/10 py-2.5 shadow-lg flex overflow-hidden">
+        
+        <!-- Contenu généré par JS depuis data/sponsors.json (voir renderSponsors). -->
         <div id="sponsors-track-1" class="flex animate-marquee min-w-full shrink-0 items-center justify-around gap-12 px-6"></div>
+
+        <!-- Copie parfaite pour la boucle infinie, sans aucun absolute ou délai, suit naturellement le premier conteneur -->
         <div id="sponsors-track-2" class="flex animate-marquee min-w-full shrink-0 items-center justify-around gap-12 px-6" aria-hidden="true"></div>
     </div>
-
-    <!-- Barre d'en-tête mobile : la navbar desktop est masquée sous 1024px, or le nom
-         de l'organisation doit rester visible en haut de chaque page. -->
-    <a href="index.html" aria-label="Union Oasis Forest - accueil" class="lg:hidden fixed top-0 left-0 right-0 z-[66] h-12 bg-night/90 backdrop-blur-md border-b border-white/10 flex items-center gap-3 pl-5 pr-14">
-        <img src="logo%20uof.svg" alt="" aria-hidden="true" class="h-5 w-auto opacity-90 shrink-0">
-        <span class="text-white font-black text-[11px] tracking-[0.22em] uppercase leading-none truncate">Union Oasis Forest</span>
-    </a>
 
     <!-- Hero Section (padding top ajusté) -->
     <header id="home" class="pt-28 pb-20 md:pt-56 md:pb-32 flex items-center min-h-screen relative overflow-hidden">
@@ -223,276 +475,456 @@
         </div>
     </header>
 
-    <!-- ================================================================
-         ACCUEIL SOUS LE HERO — grammaire "sport" : angles vifs, blocs pleins,
-         numérotation, aucune icône décorative. Ordre des sections fixé par le
-         club : crédibilité institutionnelle, puis vitrine, puis inscriptions,
-         puis sponsors.
-         ================================================================ -->
-    <div class="zone-unie relative z-10 border-y border-white/10">
+    <!-- Hiérarchie / Entités (Nouvelle Liste Interactive) -->
+    <!-- ZONE A FOND DEGRADE CONTINU : Nos Equipes -> Devenez Partenaire -->
+    <div class="zone-unie relative z-10 border-y border-white/5">
 
-    <!-- 01 — L'association : ce qui rend le club vérifiable. -->
-    <section id="mission" class="pt-12 md:pt-16 pb-6 relative z-10">
-        <div class="max-w-6xl mx-auto px-6 lg:px-8">
-            <div class="flex items-baseline gap-4 mb-10 filet pt-6">
-                <span class="numero text-3xl md:text-4xl">01</span>
-                <h2 class="titre-brut text-white text-2xl md:text-4xl">L'association</h2>
+    <section id="entites" class="py-24 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-5xl font-black text-white tracking-tight">Nos Équipes</h2>
+                <p class="mt-6 text-slate-300 font-light text-sm max-w-lg mx-auto">
+                    Cliquez sur une branche pour obtenir les détails et consulter les horaires.
+                </p>
             </div>
 
-            <p class="titre-brut text-white text-3xl md:text-5xl lg:text-6xl max-w-4xl mb-10 lg:mb-12">
-                Le futsal comme cadre.<br><span class="text-accent">Le quartier comme terrain.</span>
-            </p>
+            <div class="space-y-4">
+                <!-- 1. Division 2 -->
+                <div data-team="div2" class="glass-panel glass-panel-interactive cursor-pointer rounded-2xl p-6 md:p-8 flex items-center justify-between group reveal team-card-reveal">
+                    <div class="flex items-center gap-6">
+                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-800 flex items-center justify-center text-white text-2xl shadow-lg border border-white/10 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div>
+                            <span class="text-accent text-xs font-bold tracking-widest uppercase block mb-1">Division 2 Nationale</span>
+                            <h3 class="text-2xl font-black text-white tracking-wide">Équipe première</h3>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right team-chevron text-slate-500 group-hover:text-accent group-hover:translate-x-2 transition-all text-xl"></i>
+                </div>
 
-            <div class="max-w-3xl">
-                <p class="text-slate-300 font-light leading-relaxed mb-6">
-                    L'ASBL L'Oasis de Forest est née en 2004 d'un projet social forestois.
-                    Le club de futsal en est issu : affilié à la fédération depuis 2016, il
-                    encadre aujourd'hui des jeunes de 3 à 21 ans sous le nom sportif
-                    <strong class="text-white font-semibold">Union Oasis Forest</strong>.
+                <!-- 2. U21 -->
+                <div data-team="u21" class="glass-panel glass-panel-interactive cursor-pointer rounded-2xl p-6 md:p-8 flex items-center justify-between group reveal team-card-reveal">
+                    <div class="flex items-center gap-6">
+                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-sky-500 to-blue-700 flex items-center justify-center text-white text-2xl shadow-lg border border-white/10 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div>
+                            <span class="text-sky-400 text-xs font-bold tracking-widest uppercase block mb-1">Vers l'équipe première</span>
+                            <h3 class="text-2xl font-black text-white tracking-wide">Espoirs (U21)</h3>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right team-chevron text-slate-500 group-hover:text-accent group-hover:translate-x-2 transition-all text-xl"></i>
+                </div>
+
+                <!-- 3. Futsal (U15-U17) : U15 et U17 fusionnés en un seul groupe -->
+                <div data-team="u15_u17" class="glass-panel glass-panel-interactive cursor-pointer rounded-2xl p-6 md:p-8 flex items-center justify-between group reveal team-card-reveal">
+                    <div class="flex items-center gap-6">
+                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-500 to-sky-600 flex items-center justify-center text-white text-2xl shadow-lg border border-white/10 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-fire-flame-curved"></i>
+                        </div>
+                        <div>
+                            <span class="text-cyan-400 text-xs font-bold tracking-widest uppercase block mb-1">La Relève</span>
+                            <h3 class="text-2xl font-black text-white tracking-wide">Futsal (U15-U17)</h3>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right team-chevron text-slate-500 group-hover:text-accent group-hover:translate-x-2 transition-all text-xl"></i>
+                </div>
+
+                <!-- 4. Baby Futsal (U3-U7) -->
+                <div data-team="u3" class="glass-panel glass-panel-interactive cursor-pointer rounded-2xl p-6 md:p-8 flex items-center justify-between group reveal team-card-reveal">
+                    <div class="flex items-center gap-6">
+                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white text-2xl shadow-lg border border-white/10 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <div>
+                            <span class="text-emerald-400 text-xs font-bold tracking-widest uppercase block mb-1">Immersion néerlandophone</span>
+                            <h3 class="text-2xl font-black text-white tracking-wide">Baby Futsal (U3-U7)</h3>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right team-chevron text-slate-500 group-hover:text-accent group-hover:translate-x-2 transition-all text-xl"></i>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Agenda RBFA Officiel -->
+    <section id="agenda" class="py-20 relative z-10">
+        <div class="max-w-5xl mx-auto px-4 reveal">
+            <div class="glass-panel p-8 md:p-16 rounded-[2.5rem] border border-white/10 text-center relative overflow-hidden group hover-tilt" data-tilt-max="3">
+                <div class="absolute inset-0 bg-gradient-to-r from-accent/0 via-accent/5 to-accent/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                <div class="w-20 h-20 mx-auto bg-white/5 rounded-full flex items-center justify-center mb-8 border border-white/10">
+                    <i class="far fa-calendar-check text-4xl text-accent"></i>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-black text-white mb-6">Classements Officiels</h2>
+                <p class="text-lg text-slate-300 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                    Pour suivre le classement en direct de la D2 et des divisions de nos jeunes, consultez la plateforme officielle de l'Union Belge (RBFA).
                 </p>
-                <p class="text-slate-400 font-light leading-relaxed mb-8">
-                    Pas de sélection à l'entrée chez les jeunes, cotisation maintenue au plus bas,
-                    moyens réinvestis dans les salles, les équipements et les affiliations.
-                </p>
-                <a href="a-propos.html" class="lien-action text-white">Mission, histoire et statuts</a>
+                <!-- Lien ciblé vers la page club -->
+                <a href="https://www.rbfa.be/fr/club/9955/equipes" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-10 py-5 text-sm font-bold text-night tracking-widest uppercase bg-accent rounded-full hover:bg-white hover:shadow-[0_0_30px_rgba(0,194,255,0.6)] transition-all duration-300">
+                    Aller sur RBFA <i class="fas fa-arrow-right ml-3"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- 02 — La vitrine : les photos et les réseaux du club. -->
-    <section id="gallery-teaser" class="py-10 md:py-14 relative z-10">
-        <div class="max-w-6xl mx-auto px-6 lg:px-8">
-            <div class="flex items-baseline gap-4 mb-10 filet pt-6">
-                <span class="numero text-3xl md:text-4xl">02</span>
-                <h2 class="titre-brut text-white text-2xl md:text-4xl">En images</h2>
+    <!-- Historique & Valeurs (Timeline + Polaroids) -->
+    <section id="club" class="py-20 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-24 reveal">
+                <h2 class="text-3xl md:text-5xl font-black text-white tracking-tight">L'Histoire du Club</h2>
             </div>
 
-            <div class="grid md:grid-cols-[auto_1fr] gap-10 md:gap-16 items-center">
-                <div class="polaroid hover-tilt w-56 sm:w-64 shrink-0 mx-auto md:mx-0" data-tilt-max="10" style="transform: rotate(-2.5deg);">
-                    <img id="gallery-teaser-img" src="img/D85A3835.webp" alt="Aperçu de la galerie" loading="lazy">
+            <div class="relative max-w-6xl mx-auto">
+                <div class="absolute left-6 md:left-1/2 top-0 bottom-[6.5rem] w-[2px] bg-gradient-to-b from-accent via-blue-600 to-accent/70 md:-translate-x-1/2 shadow-[0_0_15px_rgba(0,194,255,0.5)]"></div>
+                
+                <!-- 2004 : Création ASBL -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse mb-20 reveal">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full bg-night border border-accent shadow-[0_0_15px_rgba(0,194,255,0.5)] absolute left-0 md:left-1/2 md:-translate-x-1/2 z-10 text-accent font-bold text-sm">
+                        '04
+                    </div>
+                    <div class="w-full pl-20 md:pl-0 md:w-[45%] md:px-8 text-left md:text-right relative">
+                        <div class="glass-panel p-6 md:pb-24 rounded-2xl hover:border-accent/50 transition-colors relative z-10">
+                            <span class="text-accent font-black tracking-wider uppercase text-sm block mb-2">Les Fondations</span>
+                            <h4 class="text-xl font-bold text-white mb-2">Création de l'ASBL "l'Oasis"</h4>
+                            <p class="text-slate-300 text-sm leading-relaxed">Mise en place d'actions sociales concrètes et encadrement de la jeunesse bruxelloise. Un projet pensé pour la communauté dès le premier jour.</p>
+                        </div>
+                        <!-- Photo : en flux normal sous la carte sur mobile (mt-6), superposée
+                             sur la zone tampon réservée (md:pb-24 ci-dessus) à partir de md.
+                             Pas de parallax ici : ça avait causé des chevauchements de texte. -->
+                        <div class="flex justify-center mt-6 md:-mt-16 relative z-20">
+                            <div class="polaroid hover-tilt rotate-3 w-44 sm:w-52" data-tilt-max="12">
+                                <img src="img/oasis.webp" alt="Les débuts du projet" class="aspect-square grayscale sepia-[.2] object-cover">
+                                <p class="polaroid-caption font-handwriting">Le projet naît</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2016 : Futsal P5 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse mb-20 reveal">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full bg-night border border-accent shadow-[0_0_15px_rgba(0,194,255,0.5)] absolute left-0 md:left-1/2 md:-translate-x-1/2 z-10 text-accent font-bold text-sm">
+                        '16
+                    </div>
+                    <div class="w-full pl-20 md:pl-0 md:w-[45%] md:px-8 text-left">
+                        <div class="glass-panel p-6 rounded-2xl hover:border-accent/50 transition-colors">
+                            <span class="text-accent font-black tracking-wider uppercase text-sm block mb-2">Le Lancement Sportif</span>
+                            <h4 class="text-xl font-bold text-white mb-2">Débuts à la RBFA en P5</h4>
+                            <p class="text-slate-300 text-sm leading-relaxed">Création officielle de l'équipe de Futsal. Début de l'ascension sportive en bas de l'échelle provinciale (P5) avec une équipe passionnée.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2021 : Réseaux Sociaux -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse mb-20 reveal">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full bg-night border border-accent shadow-[0_0_15px_rgba(0,194,255,0.5)] absolute left-0 md:left-1/2 md:-translate-x-1/2 z-10 text-accent font-bold text-sm">
+                        '21
+                    </div>
+                    <div class="w-full pl-20 md:pl-0 md:w-[45%] md:px-8 text-left md:text-right">
+                        <div class="glass-panel p-6 rounded-2xl hover:border-accent/50 transition-colors">
+                            <span class="text-accent font-black tracking-wider uppercase text-sm block mb-2">La Communauté</span>
+                            <h4 class="text-xl font-bold text-white mb-2">Développement de l'image</h4>
+                            <p class="text-slate-300 text-sm leading-relaxed">Structuration de notre présence digitale. Le club fédère une communauté massive sur les réseaux sociaux autour de son projet sport/social.</p>
+                        </div>
+                        <!-- Photo mobile : en flux normal sous la carte plutôt que dans la
+                             colonne séparée ci-dessous (qui mettrait la carte et la photo
+                             côte à côte sur un mobile trop étroit pour les deux). -->
+                        <div class="flex justify-center md:hidden mt-6">
+                            <div class="polaroid hover-tilt -rotate-3 w-44" data-tilt-max="12">
+                                <img src="img/IMG_8323.webp" alt="La communauté du club" class="aspect-square grayscale object-cover">
+                                <p class="polaroid-caption font-handwriting">Notre communauté</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo parallèle à l'encart, de l'autre côté de la ligne (desktop) -->
+                    <div class="hidden md:flex w-[45%] justify-center px-8">
+                        <div class="polaroid hover-tilt -rotate-3 w-52" data-tilt-max="12">
+                            <img src="img/IMG_8323.webp" alt="La communauté du club" class="aspect-square grayscale object-cover">
+                            <p class="polaroid-caption font-handwriting">Notre communauté</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2026 : Nationale 2 & équipes de jeunes -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse mb-12 reveal">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full bg-accent border border-white shadow-[0_0_20px_rgba(0,194,255,0.8)] absolute left-0 md:left-1/2 md:-translate-x-1/2 z-10 text-white font-bold text-sm">
+                        '26
+                    </div>
+                    <div class="w-full pl-20 md:pl-0 md:w-[45%] md:px-8 text-left">
+                        <div class="glass-panel border-accent/30 p-6 rounded-2xl shadow-[0_0_20px_rgba(0,194,255,0.1)]">
+                            <span class="text-accent font-black tracking-wider uppercase text-sm block mb-2">La Consécration</span>
+                            <h4 class="text-xl font-bold text-white mb-2">Passage en Nationale 2 &amp; création des équipes de jeunes</h4>
+                            <p class="text-slate-300 text-sm leading-relaxed">Montée historique au niveau national et création des équipes de jeunes, de l'U3 à l'U17, pour former l'élite de demain.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flèche de continuité : la suite de l'histoire, guide l'oeil vers Nos Valeurs -->
+                <div class="relative h-32 reveal">
+                    <div aria-hidden="true" class="absolute left-6 md:left-1/2 top-10 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none">
+                        <svg viewBox="0 0 24 24" class="w-5 h-5 text-accent animate-bounce drop-shadow-[0_0_10px_rgba(0,194,255,0.6)]" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <!-- Chevron a angle au sommet de ~60 degres (quasi equilateral) -->
+                            <polyline points="0.5,2 12,22 23.5,2"></polyline>
+                        </svg>
+                        <span class="hidden md:block text-[10px] font-black uppercase tracking-[0.25em] text-slate-500 whitespace-nowrap">La suite s'écrit</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="valeurs" class="py-16 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Valeurs -->
+            <div class="text-center mb-16 reveal">
+                <p class="text-accent text-sm font-bold tracking-[0.2em] uppercase mb-4">Nos Valeurs</p>
+                <h2 class="text-2xl md:text-4xl font-black text-white mb-6 relative inline-block px-9 sm:px-12 md:px-20">
+                    <span class="absolute left-0 top-1/2 -translate-y-1/2 scale-x-[.6] text-6xl md:text-8xl text-white font-black leading-none select-none">&laquo;</span>
+                    Plus qu'une équipe,<br/> nous sommes un <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-500">moteur social</span>
+                    <span class="absolute right-0 top-1/2 -translate-y-1/2 scale-x-[.6] text-6xl md:text-8xl text-white font-black leading-none select-none">&raquo;</span>
+                </h2>
+                <div class="flex flex-nowrap justify-center items-center gap-2 sm:gap-4 md:gap-8 mt-8">
+                    <span class="glass-panel px-3 sm:px-5 md:px-6 py-2 md:py-3 rounded-full text-white font-bold text-[11px] sm:text-sm md:text-base whitespace-nowrap border-accent/20"><i class="fas fa-heart text-accent mr-1.5 md:mr-2"></i>Passion</span>
+                    <span class="glass-panel px-3 sm:px-5 md:px-6 py-2 md:py-3 rounded-full text-white font-bold text-[11px] sm:text-sm md:text-base whitespace-nowrap border-accent/20"><i class="fas fa-map-pin text-accent mr-1.5 md:mr-2"></i>Ancrage Local</span>
+                    <span class="glass-panel px-3 sm:px-5 md:px-6 py-2 md:py-3 rounded-full text-white font-bold text-[11px] sm:text-sm md:text-base whitespace-nowrap border-accent/20"><i class="fas fa-hammer text-accent mr-1.5 md:mr-2"></i>Travail</span>
+                </div>
+            </div>
+
+            <!-- Chiffres Clés (Cards) -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 reveal mb-20">
+                <div class="glass-panel p-6 md:p-8 rounded-3xl text-center flex flex-col items-center justify-center group hover:border-accent/40 transition-colors">
+                    <div class="text-4xl md:text-5xl font-black text-white mb-2 group-hover:scale-110 transition-transform">BX1</div>
+                    <p class="text-accent text-xs font-bold uppercase tracking-widest">Matchs Diffusés</p>
+                </div>
+                <div class="glass-panel p-6 md:p-8 rounded-3xl text-center flex flex-col items-center justify-center group hover:border-accent/40 transition-colors">
+                    <div class="text-4xl md:text-5xl font-black text-white mb-2 group-hover:scale-110 transition-transform">+250</div>
+                    <p class="text-accent text-xs font-bold uppercase tracking-widest">Spectateurs / Match</p>
+                </div>
+                <div class="glass-panel p-6 md:p-8 rounded-3xl text-center flex flex-col items-center justify-center group hover:border-accent/40 transition-colors">
+                    <div class="text-4xl md:text-5xl font-black text-white mb-2 group-hover:scale-110 transition-transform">+40</div>
+                    <p class="text-accent text-xs font-bold uppercase tracking-widest">Matchs par saison</p>
+                </div>
+                <div class="glass-panel p-6 md:p-8 rounded-3xl text-center flex flex-col items-center justify-center group hover:border-accent/40 transition-colors">
+                    <div class="text-4xl md:text-5xl font-black text-white mb-2 group-hover:scale-110 transition-transform">+200k</div>
+                    <p class="text-accent text-xs font-bold uppercase tracking-widest">Vues / Réseau</p>
+                </div>
+            </div>
+
+            <!-- Projet et Ambitions (apparition en cascade + interactions au survol) -->
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="ambition-card glass-panel p-8 rounded-3xl border-white/5 reveal" style="transition-delay: 0ms">
+                    <span class="ambition-glow"></span>
+                    <i class="fas fa-seedling text-3xl text-accent mb-4 ambition-icon"></i>
+                    <h4 class="text-white font-bold text-lg mb-3">La Formation</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Développer nos équipes de jeunes et former le futur du futsal bruxellois chez nos U21, U17 et U15.</p>
+                </div>
+                <div class="ambition-card glass-panel p-8 rounded-3xl border-white/5 bg-accent/5 reveal" style="transition-delay: 120ms">
+                    <span class="ambition-glow"></span>
+                    <i class="fas fa-shield-alt text-3xl text-accent mb-4 ambition-icon"></i>
+                    <h4 class="text-white font-bold text-lg mb-3">Le Haut Niveau</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Stabiliser notre équipe fanion de D2 au meilleur niveau possible sur le plan sportif national.</p>
+                </div>
+                <div class="ambition-card glass-panel p-8 rounded-3xl border-white/5 reveal" style="transition-delay: 240ms">
+                    <span class="ambition-glow"></span>
+                    <i class="fas fa-mobile-alt text-3xl text-accent mb-4 ambition-icon"></i>
+                    <h4 class="text-white font-bold text-lg mb-3">Le Rayonnement</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Développer notre présence sur les réseaux sociaux (objectif +40% d'impressions) pour engager notre communauté.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Aperçu Galerie : polaroid tiré au hasard dans data/gallery.json + invitation à
+         ouvrir la galerie complète (openGallery(), même modale que le lien de la navbar). -->
+    <section id="gallery-teaser" class="py-20 relative z-10">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16 reveal">
+                <!-- order-2 sur mobile : texte + bouton d'abord, image ensuite. Sur desktop
+                     (md:), order-1 remet l'image à gauche comme avant. -->
+                <div class="polaroid hover-tilt rotate-3 w-56 sm:w-64 shrink-0 order-2 md:order-1" data-tilt-max="10">
+                    <img id="gallery-teaser-img" src="img/D85A3835.webp" alt="Aperçu de la galerie" class="aspect-square grayscale hover:grayscale-0 transition-all duration-500 object-cover">
                     <p id="gallery-teaser-caption" class="polaroid-caption font-handwriting">Un souvenir du club</p>
                 </div>
-                <div>
-                    <p class="titre-brut text-white text-2xl md:text-4xl mb-6 max-w-lg">
-                        Matchs, entraînements, plateaux du samedi.
-                    </p>
-                    <a href="galerie.html" class="lien-action text-white">Voir la galerie</a>
+                <div class="text-center md:text-left order-1 md:order-2">
+                    <p class="text-accent text-sm font-bold tracking-[0.2em] uppercase mb-3">Galerie</p>
+                    <h2 class="text-3xl md:text-4xl font-black text-white tracking-tight mb-4">Nos plus beaux moments</h2>
+                    <p class="text-slate-300 font-light leading-relaxed mb-8 max-w-md">Matchs, entraînements, jeunes... revivez les temps forts du club en images.</p>
+                    <a href="#" onclick="openGallery(event)" class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-accent to-blue-600 text-white font-bold px-8 py-4 rounded-full hover:shadow-[0_0_30px_rgba(0,194,255,0.5)] transition-all transform hover:-translate-y-1 tracking-wider uppercase text-sm">
+                        Voir les photos récentes <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 03 — Les équipes : chaque ligne ouvre la modale des horaires (data-team). -->
-    <section id="entites" class="py-10 md:py-14 relative z-10">
-        <div class="max-w-6xl mx-auto px-6 lg:px-8">
-            <div class="flex items-baseline gap-4 mb-4 filet pt-6">
-                <span class="numero text-3xl md:text-4xl">03</span>
-                <h2 class="titre-brut text-white text-2xl md:text-4xl">Nos équipes</h2>
+    <!-- Social Media (Glass Grid) -->
+    <section class="py-20 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl md:text-5xl font-black text-white tracking-tight">Nos Réseaux</h2>
             </div>
-            <p class="text-slate-500 text-sm font-light mb-10">Une ligne, ses horaires.</p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto reveal">
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/oasisforestfutsal" target="_blank" rel="noopener noreferrer" class="glass-panel flex flex-col items-center justify-center p-8 rounded-3xl hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(225,48,108,0.15)] transition-all duration-300 group border-white/5 hover:border-[#E1306C]/50" aria-label="Suivre Union Oasis Forest sur Instagram">
+                    <i class="fab fa-instagram text-4xl text-slate-400 mb-4 group-hover:text-[#E1306C] transition-colors"></i>
+                    <span class="font-bold text-white tracking-wide text-sm md:text-base">Instagram</span>
+                </a>
+                
+                <!-- TikTok -->
+                <a href="https://www.tiktok.com/@oasisforestfutsal" target="_blank" rel="noopener noreferrer" class="glass-panel flex flex-col items-center justify-center p-8 rounded-3xl hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(0,242,254,0.15)] transition-all duration-300 group border-white/5 hover:border-[#00f2fe]/50" aria-label="Suivre Union Oasis Forest sur TikTok">
+                    <i class="fab fa-tiktok text-4xl text-slate-400 mb-4 group-hover:text-[#00f2fe] transition-colors"></i>
+                    <span class="font-bold text-white tracking-wide text-sm md:text-base">TikTok</span>
+                </a>
+                
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/oasisforestfutsal" target="_blank" rel="noopener noreferrer" class="glass-panel flex flex-col items-center justify-center p-8 rounded-3xl hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(24,119,242,0.15)] transition-all duration-300 group border-white/5 hover:border-[#1877F2]/50" aria-label="Suivre Union Oasis Forest sur Facebook">
+                    <i class="fab fa-facebook-f text-4xl text-slate-400 mb-4 group-hover:text-[#1877F2] transition-colors"></i>
+                    <span class="font-bold text-white tracking-wide text-sm md:text-base">Facebook</span>
+                </a>
+                
+                <!-- WhatsApp -->
+                <a href="https://wa.me/32477022021" target="_blank" rel="noopener noreferrer" class="glass-panel flex flex-col items-center justify-center p-8 rounded-3xl hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(37,211,102,0.15)] transition-all duration-300 group border-white/5 hover:border-[#25D366]/50">
+                    <i class="fab fa-whatsapp text-4xl text-slate-400 mb-4 group-hover:text-[#25D366] transition-colors"></i>
+                    <span class="font-bold text-white tracking-wide text-sm md:text-base">WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </section>
 
-                <div data-team="u3" class="filet pt-6 pb-6 grid grid-cols-[3rem_1fr_auto] md:grid-cols-[4rem_1fr_2fr_auto] gap-4 md:gap-8 items-center cursor-pointer group reveal team-card-reveal">
-                    <span class="numero text-2xl md:text-3xl group-hover:text-accent transition-colors">01</span>
-                    <div>
-                        <p class="text-accent text-[10px] md:text-[11px] font-black tracking-[0.22em] uppercase mb-1">U3 — U7</p>
-                        <h3 class="titre-brut text-white text-xl md:text-3xl group-hover:text-accent transition-colors">Baby Futsal</h3>
-                    </div>
-                    <p class="hidden md:block text-slate-500 text-sm font-light">Éveil en immersion néerlandophone, hors compétition.</p>
-                    <span class="text-slate-600 group-hover:text-accent transition-colors font-black text-[10px] tracking-[0.16em] uppercase whitespace-nowrap">Horaires</span>
+    <!-- Section Sponsoring / B2B -->
+    <section id="partenaires" class="py-20 relative bg-gradient-to-b from-transparent to-accent/5">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel p-8 md:p-12 rounded-[2.5rem] border border-white/10 text-center relative overflow-hidden group hover-tilt" data-tilt-max="3">
+                <div class="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-blue-600/10 opacity-50"></div>
+                
+                <div class="relative z-10">
+                    <p class="text-accent text-sm font-bold tracking-[0.2em] uppercase mb-4">Sponsoring</p>
+                    <h2 class="text-3xl md:text-5xl font-black text-white mb-6">Devenez Partenaire</h2>
+                    <p class="text-slate-300 text-lg mx-auto font-light leading-relaxed mb-10">
+                        Associez l'image de votre entreprise à un projet sportif et social ambitieux. Soutenez la jeunesse bruxelloise et gagnez en visibilité au cœur de la capitale.
+                    </p>
+                    
+                    <a href="mailto:union@oasisforest.be?subject=Demande%20de%20dossier%20de%20sponsoring&body=Bonjour%2C%0D%0A%0D%0AJe%20souhaite%20recevoir%20le%20dossier%20de%20sponsoring%20du%20club.%0D%0A%0D%0ANom%20de%20l'entreprise%20%3A%0D%0APersonne%20de%20contact%20%3A%0D%0AT%C3%A9l%C3%A9phone%20%3A%0D%0A" class="inline-flex items-center justify-center bg-gradient-to-r from-accent to-blue-600 text-white font-bold px-10 py-5 rounded-full hover:shadow-[0_0_30px_rgba(0,194,255,0.5)] transition-all transform hover:-translate-y-1 tracking-wider uppercase text-sm">
+                        <i class="fas fa-envelope text-xl mr-3"></i> Demander le dossier complet
+                    </a>
                 </div>
-                <div data-team="u15_u17" class="filet pt-6 pb-6 grid grid-cols-[3rem_1fr_auto] md:grid-cols-[4rem_1fr_2fr_auto] gap-4 md:gap-8 items-center cursor-pointer group reveal team-card-reveal">
-                    <span class="numero text-2xl md:text-3xl group-hover:text-accent transition-colors">02</span>
+            </div>
+        </div>
+    </section>
+
+    </div>
+    <!-- FIN ZONE A FOND DEGRADE CONTINU -->
+
+    <!-- Localisation & Contact -->
+    <section id="contact" class="py-20 relative z-10 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+                <div class="flex flex-col justify-center reveal">
                     <div>
-                        <p class="text-accent text-[10px] md:text-[11px] font-black tracking-[0.22em] uppercase mb-1">U15 — U17</p>
-                        <h3 class="titre-brut text-white text-xl md:text-3xl group-hover:text-accent transition-colors">Futsal</h3>
+                        <h2 class="text-3xl md:text-5xl font-black text-white mb-6">Nous contacter</h2>
+                        <p class="text-slate-300 mb-10 font-light leading-relaxed">
+                            Pour toute demande d'inscription, de sponsoring ou d'information, n'hésitez pas à nous joindre directement.
+                        </p>
+                        
+                        <div class="glass-panel p-6 rounded-2xl mb-4 flex items-center group transition-colors">
+                            <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mr-6 group-hover:bg-accent/10 transition-colors">
+                                <i class="fas fa-map-marker-alt text-accent text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white tracking-wide">Complexe Sportif</h4>
+                                <p class="text-slate-300 text-sm">Bd. de la 2ème Armée Britannique 600, 1190 Forest</p>
+                            </div>
+                        </div>
+                        
+                        <a href="mailto:union@oasisforest.be" class="glass-panel p-6 rounded-2xl mb-4 flex items-center group hover:border-accent/30 transition-colors cursor-pointer">
+                            <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mr-6 group-hover:bg-accent/10 transition-colors">
+                                <i class="fas fa-envelope text-accent text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white tracking-wide">Email</h4>
+                                <p class="text-slate-300 text-sm group-hover:text-accent transition-colors">union@oasisforest.be</p>
+                            </div>
+                        </a>
+
+                        <a href="https://wa.me/32477022021" target="_blank" rel="noopener noreferrer" class="glass-panel p-6 rounded-2xl mb-10 flex items-center group hover:border-accent/30 transition-colors cursor-pointer">
+                            <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mr-6 group-hover:bg-accent/10 transition-colors">
+                                <i class="fab fa-whatsapp text-accent text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white tracking-wide">WhatsApp</h4>
+                                <p class="text-slate-300 text-sm group-hover:text-accent transition-colors">0477 02 20 21</p>
+                            </div>
+                        </a>
                     </div>
-                    <p class="hidden md:block text-slate-500 text-sm font-light">Le cœur du projet jeunes, en compétition provinciale.</p>
-                    <span class="text-slate-600 group-hover:text-accent transition-colors font-black text-[10px] tracking-[0.16em] uppercase whitespace-nowrap">Horaires</span>
-                </div>
-                <div data-team="u21" class="filet pt-6 pb-6 grid grid-cols-[3rem_1fr_auto] md:grid-cols-[4rem_1fr_2fr_auto] gap-4 md:gap-8 items-center cursor-pointer group reveal team-card-reveal">
-                    <span class="numero text-2xl md:text-3xl group-hover:text-accent transition-colors">03</span>
-                    <div>
-                        <p class="text-accent text-[10px] md:text-[11px] font-black tracking-[0.22em] uppercase mb-1">U21</p>
-                        <h3 class="titre-brut text-white text-xl md:text-3xl group-hover:text-accent transition-colors">Espoirs</h3>
-                    </div>
-                    <p class="hidden md:block text-slate-500 text-sm font-light">L'antichambre de la Division 2.</p>
-                    <span class="text-slate-600 group-hover:text-accent transition-colors font-black text-[10px] tracking-[0.16em] uppercase whitespace-nowrap">Horaires</span>
-                </div>
-                <div data-team="div2" class="filet pt-6 pb-6 grid grid-cols-[3rem_1fr_auto] md:grid-cols-[4rem_1fr_2fr_auto] gap-4 md:gap-8 items-center cursor-pointer group reveal team-card-reveal">
-                    <span class="numero text-2xl md:text-3xl group-hover:text-accent transition-colors">04</span>
-                    <div>
-                        <p class="text-accent text-[10px] md:text-[11px] font-black tracking-[0.22em] uppercase mb-1">Division 2 Nationale</p>
-                        <h3 class="titre-brut text-white text-xl md:text-3xl group-hover:text-accent transition-colors">Équipe première</h3>
-                    </div>
-                    <p class="hidden md:block text-slate-500 text-sm font-light">L'équipe fanion, au niveau national.</p>
-                    <span class="text-slate-600 group-hover:text-accent transition-colors font-black text-[10px] tracking-[0.16em] uppercase whitespace-nowrap">Horaires</span>
                 </div>
 
-            <div class="filet pt-6 flex flex-wrap items-center gap-x-8 gap-y-4">
-                <a href="equipes.html" class="lien-action text-white">Détail des cinq groupes</a>
-                <button id="btn-open-subscribe" class="text-slate-400 hover:text-accent transition-colors font-black text-[11px] tracking-[0.16em] uppercase">
-                    S'abonner au calendrier
+                <div id="map" class="block h-[400px] md:h-auto rounded-3xl overflow-hidden glass-panel p-2 reveal relative group">
+                    <div class="absolute inset-0 z-10 bg-night/80 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl backdrop-blur-md gap-4">
+                        <h4 class="text-white font-bold mb-2 tracking-widest uppercase text-sm">Ouvrir avec :</h4>
+                        
+                        <a href="https://maps.google.com/?q=Bd+de+la+Deuxième+Armée+Britannique+600,+1190+Forest" target="_blank" rel="noopener noreferrer" class="bg-white text-night font-bold px-8 py-3 rounded-full flex items-center gap-3 hover:scale-105 transition-transform w-64 justify-center shadow-lg">
+                            <i class="fab fa-google text-blue-500 text-lg"></i> Google Maps
+                        </a>
+                        
+                        <a href="https://www.waze.com/ul?q=Bd%20de%20la%20Deuxi%C3%A8me%20Arm%C3%A9e%20Britannique%20600,%201190%20Forest&navigate=yes" target="_blank" rel="noopener noreferrer" class="bg-[#33ccff] text-night font-bold px-8 py-3 rounded-full flex items-center gap-3 hover:scale-105 transition-transform w-64 justify-center shadow-lg">
+                            <i class="fab fa-waze text-lg"></i> Waze
+                        </a>
+                    </div>
+                    <div class="w-full h-full rounded-2xl overflow-hidden bg-night/50 relative">
+                        <iframe 
+                            src="https://maps.google.com/maps?q=Bd%20de%20la%20Deuxi%C3%A8me%20Arm%C3%A9e%20Britannique%20600,%201190%20Forest&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0; filter: invert(90%) hue-rotate(180deg) brightness(85%) contrast(110%); pointer-events: none;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bouton Remonter en haut -->
+            <div class="flex justify-center mt-12 mb-4 reveal">
+                <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="group flex flex-col items-center justify-center w-14 h-14 rounded-full glass-panel border border-white/10 hover:border-accent hover:bg-accent/10 transition-all cursor-pointer text-slate-400 hover:text-accent" aria-label="Remonter en haut">
+                    <i class="fas fa-chevron-up text-sm transform translate-y-1 group-hover:-translate-y-1 transition-transform"></i>
+                    <i class="fas fa-chevron-up text-sm -mt-2 transform translate-y-1 group-hover:-translate-y-1 transition-transform delay-75"></i>
                 </button>
             </div>
         </div>
     </section>
 
-    </div>
-
-    <!-- 04 — Partenaires : dernier de la hiérarchie, mais rupture visuelle forte. -->
-    <section id="partenaires" class="relative z-10">
-        <div class="bande-diagonale bg-accent">
-            <div class="max-w-6xl mx-auto px-6 lg:px-8 py-12 md:py-14">
-                <span class="numero text-3xl md:text-4xl block mb-4" style="-webkit-text-stroke-color: rgba(2,6,23,.35);">04</span>
-                <h2 class="titre-brut text-night text-3xl md:text-5xl mb-5 max-w-2xl">Soutenir le club</h2>
-                <p class="text-night/80 font-medium max-w-xl mb-8 leading-relaxed">
-                    Un partenariat finance des salles, des équipements et des affiliations —
-                    pas des dividendes.
-                </p>
-                <a href="partenaires.html" class="inline-flex items-center bg-night text-white font-black text-[11px] tracking-[0.16em] uppercase px-8 py-4 hover:bg-white hover:text-night transition-colors">
-                    Ce que nous proposons
+    <!-- Footer -->
+    <footer class="border-t border-white/5 relative z-10 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
+                <a href="#home" aria-label="Union Oasis Forest - retour en haut de page" class="inline-flex items-center gap-4 group">
+                    <svg id="logo-footer-container" class="block h-7 w-auto shrink-0 self-center transition-transform duration-300 group-hover:scale-110" viewBox="0 0 1248.44 1544.45" role="img" aria-label="Logo Union Oasis Forest"><use href="#club-logo"></use></svg>
+                    <span class="block self-center font-black text-white text-base tracking-[0.2em] uppercase leading-none group-hover:text-accent transition-colors">Union Oasis Forest</span>
                 </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="py-10 md:py-14 relative z-10">
-        <div class="max-w-6xl mx-auto px-6 lg:px-8">
-            <div class="flex items-baseline gap-4 mb-10 filet pt-6">
-                <h2 class="titre-brut text-white text-2xl md:text-4xl">Nous joindre</h2>
-            </div>
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-                <div>
-                    <table class="table-faits mb-10">
-                        <tbody>
-                            <tr><th>E-mail</th><td><a href="mailto:union@oasisforest.be" class="hover:text-accent transition-colors">union@oasisforest.be</a></td></tr>
-                            <tr><th>WhatsApp</th><td><a href="https://wa.me/32477022021" target="_blank" rel="noopener noreferrer" data-track="WhatsApp (contact)" class="hover:text-accent transition-colors">+32 477 02 20 21</a></td></tr>
-                            <tr><th>Salle et entraînements</th><td>Bd. de la 2ème Armée Britannique 600, 1190 Forest</td></tr>
-                        </tbody>
-                    </table>
-                    <!-- Réseaux : sous les coordonnées, rangée centrée à l'horizontale,
-                         sans cadre ni filet. -->
-                    <div class="mt-4 flex flex-col sm:flex-row sm:justify-center gap-8 sm:gap-12 reveal">
-                        <a href="https://www.instagram.com/oasisforestfutsal" target="_blank" rel="noopener noreferrer" data-track="Instagram" aria-label="Suivre Union Oasis Forest sur Instagram" class="flex flex-col items-center text-center text-slate-400 hover:text-[#E1306C] transition-colors">
-                            <svg viewBox="0 0 24 24" fill="currentColor" role="img" class="w-9 h-9 mb-4" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg>
-                            <span class="titre-brut text-white text-base">Instagram</span>
-                            <span class="text-slate-500 text-xs mt-1">@oasisforestfutsal</span>
-                        </a>
-                        <a href="https://www.facebook.com/oasisforestfutsal" target="_blank" rel="noopener noreferrer" data-track="Facebook" aria-label="Suivre Union Oasis Forest sur Facebook" class="flex flex-col items-center text-center text-slate-400 hover:text-[#1877F2] transition-colors">
-                            <svg viewBox="0 0 24 24" fill="currentColor" role="img" class="w-9 h-9 mb-4" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
-                            <span class="titre-brut text-white text-base">Facebook</span>
-                            <span class="text-slate-500 text-xs mt-1">oasisforestfutsal</span>
-                        </a>
-                        <a href="https://www.tiktok.com/@oasisforestfutsal" target="_blank" rel="noopener noreferrer" data-track="TikTok" aria-label="Suivre Union Oasis Forest sur TikTok" class="flex flex-col items-center text-center text-slate-400 hover:text-[#ffffff] transition-colors">
-                            <svg viewBox="0 0 24 24" fill="currentColor" role="img" class="w-9 h-9 mb-4" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
-                            <span class="titre-brut text-white text-base">TikTok</span>
-                            <span class="text-slate-500 text-xs mt-1">@oasisforestfutsal</span>
-                        </a>
-                    </div>
-                </div>
-                <!-- Les deux boutons d'itinéraire apparaissent au survol (ou au doigt),
-                     comme sur la version d'origine du site. -->
-                <div id="map" class="block h-[24rem] lg:h-[30rem] overflow-hidden border border-white/10 p-2 reveal relative group">
-                    <div class="absolute inset-0 z-10 bg-night/80 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 focus-within:opacity-100 transition-opacity duration-300 backdrop-blur-md gap-4">
-                        <h3 class="text-white font-black mb-2 tracking-[0.2em] uppercase text-xs">Ouvrir avec</h3>
-                        <a href="https://maps.google.com/?q=Bd+de+la+Deuxi%C3%A8me+Arm%C3%A9e+Britannique+600,+1190+Forest" target="_blank" rel="noopener noreferrer" class="bg-white text-night font-black text-[11px] tracking-[0.14em] uppercase px-8 py-3.5 flex items-center gap-3 hover:scale-105 transition-transform w-60 justify-center">
-                            <i class="fab fa-google text-blue-500 text-base"></i> Google Maps
-                        </a>
-                        <a href="https://www.waze.com/ul?q=Bd%20de%20la%20Deuxi%C3%A8me%20Arm%C3%A9e%20Britannique%20600,%201190%20Forest&navigate=yes" target="_blank" rel="noopener noreferrer" class="bg-[#33ccff] text-white font-black text-[11px] tracking-[0.14em] uppercase px-8 py-3.5 flex items-center gap-3 hover:scale-105 transition-transform w-60 justify-center">
-                            <i class="fab fa-waze text-base"></i> Waze
-                        </a>
-                    </div>
-                    <div class="w-full h-full overflow-hidden bg-night/50 relative">
-                        <iframe
-                            title="Localisation du complexe sportif sur la carte"
-                            src="https://maps.google.com/maps?q=Bd%20de%20la%20Deuxi%C3%A8me%20Arm%C3%A9e%20Britannique%20600,%201190%20Forest&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                            width="100%" height="100%"
-                            style="border:0; filter: invert(90%) hue-rotate(180deg) brightness(85%) contrast(110%); pointer-events: none;"
-                            allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
+                
+                <div class="flex gap-6">
+                    <a href="#entites" class="text-slate-500 hover:text-white text-sm font-semibold tracking-wider uppercase transition-colors">Équipes</a>
+                    <a href="#agenda" class="text-slate-500 hover:text-white text-sm font-semibold tracking-wider uppercase transition-colors">Agenda</a>
+                    <a href="#contact" class="text-slate-500 hover:text-white text-sm font-semibold tracking-wider uppercase transition-colors">Contact</a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- PIED DE PAGE — bloc identique sur toutes les pages du site.
-         Les deux dernières lignes (dénomination légale, n° d'entreprise, siège, e-mail,
-         domaine) sont exigées sur chaque page par la validation Google for Nonprofits. -->
-    <footer class="filet relative z-10 mt-12 pt-12 pb-10">
-        <div class="max-w-6xl mx-auto px-6 lg:px-8">
-            <div class="grid md:grid-cols-[2fr_1fr_1fr] gap-10 md:gap-8 mb-12">
-
-                <div>
-                    <a href="index.html" aria-label="Union Oasis Forest - accueil" class="inline-flex items-center gap-4 group mb-5">
-                        <img src="logo%20uof.svg" alt="" aria-hidden="true" class="h-6 w-auto opacity-90">
-                        <span class="font-black text-white text-sm tracking-[0.22em] uppercase leading-none group-hover:text-accent transition-colors">Union Oasis Forest</span>
-                    </a>
-                </div>
-
-                <div class="md:text-right">
-                    <h2 class="text-slate-500 font-black text-[10px] tracking-[0.24em] uppercase mb-4">Pages</h2>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="index.html" class="text-slate-400 hover:text-accent transition-colors">Accueil</a></li>
-                        <li><a href="a-propos.html" class="text-slate-400 hover:text-accent transition-colors">Le club</a></li>
-                        <li><a href="equipes.html" class="text-slate-400 hover:text-accent transition-colors">Nos équipes</a></li>
-                        <li><a href="galerie.html" class="text-slate-400 hover:text-accent transition-colors">Galerie</a></li>
-                        <li><a href="partenaires.html" class="text-slate-400 hover:text-accent transition-colors">Partenaires</a></li>
-                        <li><a href="contact.html" class="text-slate-400 hover:text-accent transition-colors">Contact</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h2 class="text-slate-500 font-black text-[10px] tracking-[0.24em] uppercase mb-4">Contact</h2>
-                    <ul class="space-y-2 text-sm text-slate-400">
-                        <li><a href="mailto:union@oasisforest.be" class="hover:text-accent transition-colors">union@oasisforest.be</a></li>
-                        <li><a href="https://wa.me/32477022021" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">+32 477 02 20 21</a></li>
-                        <li class="flex gap-4 pt-2">
-                            <a href="https://www.instagram.com/oasisforestfutsal" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="hover:text-accent transition-colors">Instagram</a>
-                            <a href="https://www.tiktok.com/@oasisforestfutsal" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="hover:text-accent transition-colors">TikTok</a>
-                            <a href="https://www.facebook.com/oasisforestfutsal" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="hover:text-accent transition-colors">Facebook</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="filet pt-6 space-y-1.5">
-                <p class="text-[11px] leading-relaxed text-slate-600">
-                    L'Oasis de Forest ASBL · Siège social : Rue du Croissant 85, 1190 Forest, Belgique ·
-                    Numéro d'entreprise (BCE) 0867.614.619 ·
-                    <a href="mailto:union@oasisforest.be" class="hover:text-slate-400 transition-colors">union@oasisforest.be</a> ·
-                    <a href="https://oasisforest.be/" class="hover:text-slate-400 transition-colors">oasisforest.be</a>
+            
+            <div class="border-t border-white/5 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs text-slate-500 font-medium tracking-wide">
+                    &copy; <span id="year"></span> UNION OASIS FOREST ASBL. <br class="md:hidden">TOUS DROITS RÉSERVÉS.
                 </p>
-                <p class="text-[11px] text-slate-600">
-                    &copy; <span id="year"></span> L'Oasis de Forest ASBL — « Union Oasis Forest » est le nom sportif de l'association.
-                </p>
+                <div class="flex gap-4">
+                    <a href="https://www.instagram.com/oasisforestfutsal" target="_blank" rel="noopener noreferrer" aria-label="Suivre Union Oasis Forest sur Instagram" class="text-slate-500 hover:text-accent"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/oasisforestfutsal" target="_blank" rel="noopener noreferrer" aria-label="Suivre Union Oasis Forest sur Facebook" class="text-slate-500 hover:text-accent"><i class="fab fa-facebook"></i></a>
+                </div>
             </div>
         </div>
     </footer>
-
-    <!-- MODALE : S'ABONNER AU CALENDRIER (sélection d'équipes -> abonnement webcal
-         combiné). Volontairement PAS de téléchargement de fichier .ics : un fichier
-         importé est un instantané figé, alors que les dates de match changent
-         régulièrement. Seul l'abonnement garantit des horaires justes. -->
-    <div id="modal-subscribe-backdrop" class="fixed inset-0 bg-night/80 backdrop-blur-sm z-[60] flex items-center justify-center opacity-0 invisible transition-all duration-300 px-4">
-        <div class="glass-panel w-full max-w-md rounded-3xl p-6 md:p-8 relative">
-            <button id="btn-close-subscribe" class="absolute top-4 right-4 w-10 h-10 bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors">
-                <i class="fas fa-times"></i>
-            </button>
-            <h3 class="text-xl md:text-2xl font-black text-white mb-2 pr-10">À quoi s'abonner ?</h3>
-            <p class="text-slate-300 font-light text-sm mb-6">
-                Choisis une ou plusieurs équipes et abonne-toi depuis ton agenda habituel (Google Calendar, Apple Calendar, Outlook...). Les dates de match changent souvent : l'abonnement se met à jour tout seul, tu gardes toujours les bons horaires.
-            </p>
-            <div id="subscribe-team-toggles" class="flex flex-wrap gap-2 mb-8"></div>
-            <div class="flex">
-                <a id="btn-subscribe-webcal" href="#" data-track="Abonnement calendrier (multi-équipes)" class="w-full bg-accent text-white font-black px-5 py-3.5 hover:bg-accentDark transition-colors flex items-center justify-center gap-2 text-[11px] uppercase tracking-[0.14em] text-center">
-                    <i class="fas fa-bell"></i> S'abonner
-                </a>
-            </div>
-            <p id="subscribe-empty-hint" class="text-slate-500 text-xs text-center mt-4 hidden">Sélectionne au moins une équipe.</p>
-        </div>
-    </div>
 
     <!-- OVERLAY GÉNÉRAL DES MODALES -->
     <div id="modal-backdrop" class="fixed inset-0 bg-night/80 backdrop-blur-sm z-[60] flex items-center justify-center opacity-0 invisible transition-all duration-300 px-4">
@@ -508,12 +940,15 @@
 
         
         <!-- MODALE 1 : INFO ÉQUIPE -->
-        <div id="modal-info" class="glass-panel w-full max-w-2xl p-6 md:p-10 relative transform scale-95 opacity-0 transition-all duration-300 hidden flex-col max-h-[90vh] overflow-y-auto">
-            <button id="btn-close-info" class="absolute top-4 right-4 w-10 h-10 bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors">
+        <div id="modal-info" class="glass-panel w-full max-w-2xl rounded-3xl p-6 md:p-10 relative transform scale-95 opacity-0 transition-all duration-300 hidden flex-col max-h-[90vh] overflow-y-auto">
+            <button id="btn-close-info" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors">
                 <i class="fas fa-times"></i>
             </button>
             
             <div class="flex items-center gap-4 mb-6 mt-2">
+                <div id="modal-info-icon" class="w-12 h-12 rounded-xl bg-accent flex items-center justify-center text-white text-xl">
+                    <i class="fas fa-futbol"></i>
+                </div>
                 <div>
                     <span id="modal-info-subtitle" class="text-accent text-xs font-bold tracking-widest uppercase block mb-1">Catégorie</span>
                     <h3 id="modal-info-title" class="text-2xl md:text-3xl font-black text-white">Nom Équipe</h3>
@@ -526,30 +961,30 @@
                 Description détaillée de l'équipe...
             </p>
             
-            <div class="mt-auto flex flex-col sm:flex-row justify-end gap-3">
-                <a id="btn-whatsapp-join" href="https://wa.me/32477022021" target="_blank" rel="noopener noreferrer" data-track="Devenir joueur (WhatsApp)" class="bg-[#25D366] text-white font-black px-5 py-3 hover:bg-[#1da851] transition-colors flex items-center justify-center gap-2.5 text-[11px] uppercase tracking-[0.14em] text-center">
-                    <svg viewBox="0 0 24 24" fill="currentColor" role="img" class="w-8 h-8 -my-2 shrink-0" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg> S'inscrire / Infos
+            <div class="mt-auto flex flex-col sm:flex-row justify-end gap-3 sm:gap-4">
+                <a id="btn-whatsapp-join" href="https://wa.me/32477022021" target="_blank" rel="noopener noreferrer" class="bg-[#25D366] text-white font-bold px-6 py-3 rounded-full hover:bg-[#20bd5a] hover:shadow-[0_0_20px_rgba(37,211,102,0.4)] transition-all flex items-center justify-center gap-2 text-sm uppercase tracking-wider text-center">
+                    <i class="fab fa-whatsapp text-lg"></i> S'inscrire / Infos
                 </a>
-                <a id="btn-rbfa-link" href="https://www.rbfa.be/fr/recherche?q=union+oasis+forest" target="_blank" rel="noopener noreferrer" class="hidden border border-white/25 text-white font-black px-6 py-3.5 hover:border-accent hover:text-accent transition-colors items-center justify-center gap-2 text-[11px] uppercase tracking-[0.14em] text-center">
-                    Calendrier RBFA
+                <a id="btn-rbfa-link" href="https://www.rbfa.be/fr/recherche?q=union+oasis+forest" target="_blank" rel="noopener noreferrer" class="hidden bg-gradient-to-r from-accent to-blue-600 text-white font-bold px-6 py-3 rounded-full hover:shadow-[0_0_20px_rgba(0,194,255,0.5)] transition-all items-center justify-center gap-2 text-sm uppercase tracking-wider text-center">
+                    <i class="fas fa-external-link-alt text-lg"></i> Calendrier RBFA
                 </a>
-                <button id="btn-open-cal" class="bg-accent text-white font-black px-6 py-3.5 hover:bg-accentDark transition-colors flex items-center justify-center gap-2 text-[11px] uppercase tracking-[0.14em]">
-                    Horaires
+                <button id="btn-open-cal" class="bg-gradient-to-r from-accent to-blue-600 text-white font-bold px-6 py-3 rounded-full hover:shadow-[0_0_20px_rgba(0,194,255,0.5)] transition-all flex items-center justify-center gap-2 text-sm uppercase tracking-wider">
+                    <i class="far fa-calendar-alt text-lg"></i> Horaires
                 </button>
             </div>
         </div>
 
         <!-- MODALE 2 : CALENDRIER / HORAIRES -->
-        <div id="modal-cal" class="glass-panel border-accent/40 w-full max-w-lg p-6 md:p-10 relative transform scale-95 opacity-0 transition-all duration-300 hidden flex-col shadow-[0_0_40px_rgba(0,194,255,0.2)] max-h-[90dvh] overflow-hidden">
-            <button id="btn-back-info" class="absolute top-4 left-4 w-10 h-10 bg-white/5 hover:bg-white/20 text-white flex items-center justify-center transition-colors" title="Retour">
+        <div id="modal-cal" class="glass-panel border-accent/40 w-full max-w-lg rounded-3xl p-6 md:p-10 relative transform scale-95 opacity-0 transition-all duration-300 hidden flex-col shadow-[0_0_40px_rgba(0,194,255,0.2)] max-h-[90dvh] overflow-hidden">
+            <button id="btn-back-info" class="absolute top-4 left-4 w-10 h-10 rounded-full bg-white/5 hover:bg-white/20 text-white flex items-center justify-center transition-colors" title="Retour">
                 <i class="fas fa-arrow-left"></i>
             </button>
-            <button id="btn-close-cal" class="absolute top-4 right-4 w-10 h-10 bg-white/5 hover:bg-white/20 text-white flex items-center justify-center transition-colors" title="Fermer">
+            <button id="btn-close-cal" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/5 hover:bg-white/20 text-white flex items-center justify-center transition-colors" title="Fermer">
                 <i class="fas fa-times"></i>
             </button>
 
             <div class="text-center mt-6 mb-6 shrink-0">
-                <div class="hidden">
+                <div class="w-16 h-16 mx-auto bg-accent/20 border border-accent/50 rounded-full flex items-center justify-center text-accent text-2xl mb-4">
                     <i class="far fa-clock"></i>
                 </div>
                 <h3 id="modal-cal-title" class="text-xl md:text-2xl font-black text-white">Horaires</h3>
@@ -561,7 +996,7 @@
                  supplémentaire, quelle que soit la taille d'écran. max-h-[90dvh] sur la
                  modale (au lieu de vh) pour respecter la hauteur réellement visible sous
                  la barre d'adresse de Safari iOS. -->
-            <div class="bg-night/50 p-4 md:p-6 border border-white/5 w-full flex-1 min-h-0 overflow-y-auto no-scrollbar">
+            <div class="bg-night/50 rounded-2xl p-4 md:p-6 border border-white/5 w-full flex-1 min-h-0 overflow-y-auto no-scrollbar">
                 <div id="modal-cal-content" class="w-full">
                     <!-- Contenu injecté via JS -->
                 </div>
@@ -570,13 +1005,6 @@
             <!-- Bandeau d'avertissement RBFA (div2/u21) : hors de la zone de défilement
                  ci-dessus, toujours affiché en pied de modale. -->
             <div id="modal-cal-warning" class="shrink-0 w-full"></div>
-
-            <!-- Abonnement à l'agenda : à sa place ici, une fois les horaires sous les
-                 yeux, plutôt que sur la fiche d'équipe. Affiché/masqué par openTeamModal
-                 selon que l'équipe a un calendrier ou non. -->
-            <a id="btn-ics-subscribe" href="#" data-track="Abonnement calendrier (fiche équipe)" class="hidden shrink-0 w-full mt-5 bg-accent text-white font-black px-6 py-3.5 hover:bg-accentDark transition-colors items-center justify-center gap-2 text-[11px] uppercase tracking-[0.14em] text-center">
-                S'abonner à l'agenda
-            </a>
         </div>
 
     </div> <!-- FIN DU OVERLAY GÉNÉRAL DES MODALES (ON FERME ICI) -->
@@ -584,7 +1012,7 @@
     <!-- MODALE 3 : LIGHTBOX IMAGE EN GRAND (DÉSORMAIS INDÉPENDANTE) -->
     <div id="modal-lightbox" class="fixed inset-0 z-[110] flex items-center justify-center opacity-0 hidden transition-all duration-300">
         <div class="absolute inset-0 bg-black/95 backdrop-blur-lg" id="lightbox-bg"></div>
-        <button id="btn-close-lightbox" class="absolute top-6 right-6 w-12 h-12 bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors z-[120]">
+        <button id="btn-close-lightbox" class="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors z-[120]">
             <i class="fas fa-times text-xl"></i>
         </button>
         <div class="relative z-[115] max-w-[90vw] max-h-[90vh] flex items-center justify-center">
@@ -602,7 +1030,7 @@
          club - jamais de fausse urgence (cf. CLAUDE.md, directive 2005/29/CE). -->
     <div id="modal-popup-actu" class="fixed top-28 sm:top-32 right-4 z-[140] hidden w-[calc(100%-4rem)] max-w-[260px] opacity-0 -translate-y-3 transition-all duration-300">
         <div id="popup-actu-card" class="glass-panel border border-slate-400/30 rounded-2xl p-4 relative shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
-            <button id="btn-close-popup-actu" aria-label="Fermer" class="absolute top-3 right-3 w-8 h-8 bg-white/5 hover:bg-white/20 text-white flex items-center justify-center transition-colors">
+            <button id="btn-close-popup-actu" aria-label="Fermer" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/5 hover:bg-white/20 text-white flex items-center justify-center transition-colors">
                 <i class="fas fa-times text-sm"></i>
             </button>
             <div class="flex items-start gap-3 pr-6">
@@ -617,7 +1045,7 @@
                     <p id="popup-actu-desc" class="text-slate-300 text-xs leading-relaxed mb-3"></p>
                     <!-- Discret, façon "liquid glass" : translucide/flouté (glass-panel),
                          pas de dégradé plein ni de glow appuyé comme les CTA principaux. -->
-                    <a id="popup-actu-cta" href="#" target="_blank" rel="noopener noreferrer" class="hidden items-center justify-center gap-2 border border-white/20 hover:border-accent text-white/80 hover:text-accent font-black px-4 py-2.5 transition-colors text-[10px] uppercase tracking-[0.14em]"></a>
+                    <a id="popup-actu-cta" href="#" target="_blank" rel="noopener noreferrer" class="hidden items-center justify-center gap-2 glass-panel border border-white/10 hover:border-accent/30 text-white/80 hover:text-accent font-semibold px-4 py-2 rounded-full transition-all text-xs uppercase tracking-wider"></a>
                 </div>
             </div>
         </div>
@@ -630,7 +1058,7 @@
              ça déborde) - visible sur toutes les tailles d'écran, y compris mobile. -->
         <div class="sticky top-0 w-full z-10 bg-night/80 backdrop-blur-md border-b border-white/5 py-4">
             <div class="flex items-center gap-4 px-4 sm:px-6 lg:px-8 mb-3">
-                <button onclick="closeGallery()" class="w-10 h-10 bg-white/5 hover:bg-white/20 text-white flex items-center justify-center transition-colors shrink-0">
+                <button onclick="closeGallery()" class="w-10 h-10 rounded-full bg-white/5 hover:bg-white/20 text-white flex items-center justify-center transition-colors shrink-0">
                     <i class="fas fa-arrow-left"></i>
                 </button>
                 <h2 class="text-xl md:text-2xl font-black text-white tracking-widest uppercase">Galerie <span class="text-accent">Photos</span></h2>
@@ -655,7 +1083,7 @@
     </div>
 
     <!-- Bouton WhatsApp Flottant -->
-    <a href="https://wa.me/32477022021" target="_blank" rel="noopener noreferrer" data-track="WhatsApp (flottant)" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 bg-[#25D366] text-white w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-3xl shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:scale-110 hover:bg-[#20bd5a] hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] transition-all duration-300 z-50 group" aria-label="Nous contacter sur WhatsApp">
+    <a href="https://wa.me/32477022021" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 bg-[#25D366] text-white w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-3xl shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:scale-110 hover:bg-[#20bd5a] hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] transition-all duration-300 z-50 group" aria-label="Nous contacter sur WhatsApp">
         <i class="fab fa-whatsapp"></i>
         <span class="absolute right-[110%] top-1/2 -translate-y-1/2 bg-night text-white text-xs font-bold py-2.5 px-4 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap border border-white/10 pointer-events-none shadow-xl">
             Une question ? Discutons !
@@ -669,7 +1097,7 @@
         // Récupère les vrais matchs d'une équipe depuis data/evenements.json (calendrier
         // RBFA importé) pour les injecter dans sa modale Horaires - voir openTeamModal().
         async function getTeamMatchesFromEvenements(teamId) {
-            const data = await loadEvenements();
+            const data = await loadJSON('data/evenements.json');
             const events = (data && Array.isArray(data.evenements)) ? data.evenements : [];
             const todayOnly = dateOnly(new Date());
             const matches = events
@@ -723,11 +1151,11 @@
                 const dayBg = isMatch ? 'bg-accent text-night' : 'bg-night/80 border-r border-white/5 text-slate-300';
                 const icon = isMatch ? '<i class="fas fa-fire text-accent animate-pulse"></i>' : '<i class="fas fa-running text-slate-400"></i>';
                 const badgeLabel = item.isNext ? 'Prochain match' : (item.isMatch ? 'Match' : '');
-                const matchBadge = badgeLabel ? `<span class="px-2 py-0.5 bg-accent text-night text-[9px] font-black tracking-widest uppercase ml-2 shrink-0">${badgeLabel}</span>` : '';
+                const matchBadge = badgeLabel ? `<span class="px-2 py-0.5 rounded bg-accent text-night text-[9px] font-black tracking-widest uppercase ml-2 shrink-0">${badgeLabel}</span>` : '';
                 const anchorAttr = item.isNext ? ' id="schedule-next-match"' : '';
 
                 html += `
-                    <div${anchorAttr} class="flex items-stretch overflow-hidden border ${borderClass} ${bgClass} transition-colors hover:bg-white/10 group">
+                    <div${anchorAttr} class="flex items-stretch rounded-xl overflow-hidden border ${borderClass} ${bgClass} transition-colors hover:bg-white/10 group">
                         <div class="${dayBg} flex flex-col items-center justify-center w-14 md:w-16 p-2 shrink-0 transition-colors">
                             <span class="text-xs font-black uppercase tracking-wider">${item.day}</span>
                         </div>
@@ -777,7 +1205,7 @@
                 schedule: [
                     { day: 'MAR', type: 'Entraînement Commun D2', time: '20:00', location: 'Complexe Forest', isMatch: false },
                     { day: 'JEU', type: 'Entraînement Spécifique', time: '20:00', location: 'Complexe Forest', isMatch: false },
-                    { day: 'W-E', type: 'Match Championnat', time: 'À confirmer', location: 'Selon calendrier RBFA', isMatch: true }
+                    { day: 'W-E', type: 'Match Championnat', time: 'TBD', location: 'Selon calendrier RBFA', isMatch: true }
                 ]
             },
             // U15 et U17 fusionnés en un seul groupe : une seule fiche, un seul calendrier.
@@ -788,10 +1216,10 @@
                 iconClass: 'fas fa-fire-flame-curved',
                 iconBg: 'bg-gradient-to-br from-cyan-500 to-sky-600',
                 desc: "Le cœur de notre projet jeunes, à l'âge où le Futsal de compétition prend toute sa dimension. Nous combinons la technique pure du Futsal (semelle, jeu court) et les fondamentaux du grand football, avec un accent sur l'intelligence tactique de déplacement, la rapidité d'exécution en espace réduit et le développement athlétique spécifique.",
-                // Horaires de la saison pas encore arrêtés (voir Baby Futsal).
                 schedule: [
-                    { day: '—', type: 'Entraînements', time: 'À définir', location: 'Complexe Forest', isMatch: false },
-                    { day: '—', type: 'Plateau / Match', time: 'À définir', location: 'Tournoi Provincial', isMatch: true }
+                    { day: 'LUN', type: 'Entraînement', time: '18:30', location: 'Complexe Forest', isMatch: false },
+                    { day: 'MER', type: 'Entraînement', time: '18:30', location: 'Complexe Forest', isMatch: false },
+                    { day: 'SAM', type: 'Plateau / Match', time: '14:00', location: 'Tournoi Provincial', isMatch: true }
                 ]
             },
             'u3': {
@@ -801,10 +1229,8 @@
                 iconClass: 'fas fa-child',
                 iconBg: 'bg-gradient-to-br from-emerald-400 to-teal-500',
                 desc: "Une initiation au sport en immersion néerlandophone, dans un cadre bienveillant et familial. L'objectif n'est pas la compétition, mais le développement de la motricité, l'apprentissage de l'équilibre, le vivre-ensemble et les premiers contacts ludiques avec le ballon.",
-                // Horaires de la saison pas encore arrêtés : on n'affiche pas de jour
-                // ni d'heure tant qu'ils ne sont pas confirmés par le club.
                 schedule: [
-                    { day: '—', type: 'Séance Éveil & Psychomotricité', time: 'À définir', location: 'Complexe Forest', isMatch: false }
+                    { day: 'LUN', type: 'Séance Éveil & Psychomotricité', time: '18:00 - 19:00', location: 'Complexe Forest', isMatch: false }
                 ]
             }
         };
@@ -905,13 +1331,16 @@
             document.getElementById('modal-info-subtitle').textContent = data.subtitle;
             document.getElementById('modal-info-desc').innerHTML = data.desc;
 
+            const iconDiv = document.getElementById('modal-info-icon');
+            iconDiv.className = `w-12 h-12 rounded-xl flex items-center justify-center text-white text-xl ${data.iconBg}`;
+            iconDiv.innerHTML = `<i class="${data.iconClass}"></i>`;
+
             document.getElementById('modal-cal-title').textContent = `Horaires ${data.title}`;
 
             // Mise à jour des boutons selon le type d'équipe (compétition vs jeunes)
             const waBtn = document.getElementById('btn-whatsapp-join');
             const calBtn = document.getElementById('btn-open-cal');
             const rbfaBtn = document.getElementById('btn-rbfa-link');
-            const icsBtn = document.getElementById('btn-ics-subscribe');
 
             if (id === 'div2' || id === 'u21') {
                 // Équipes de haut niveau : pas d'inscription directe, mais Horaires ET RBFA
@@ -922,8 +1351,6 @@
                 calBtn.classList.remove('hidden'); calBtn.classList.add('flex');
                 rbfaBtn.classList.remove('hidden'); rbfaBtn.classList.add('flex');
                 rbfaBtn.href = data.rbfaUrl;
-                icsBtn.classList.remove('hidden'); icsBtn.classList.add('flex');
-                icsBtn.href = webcalIcsUrl(`equipe=${id}`);
 
                 const matches = await getTeamMatchesFromEvenements(id);
                 const calContent = document.getElementById('modal-cal-content');
@@ -936,7 +1363,7 @@
                 // Bandeau injecté hors de la zone scrollable (#modal-cal-warning, cf. HTML) :
                 // toujours visible, jamais coincé sous le défilement du calendrier.
                 document.getElementById('modal-cal-warning').innerHTML = `
-                    <div class="mt-4 flex items-start gap-2 text-[11px] text-violet-300/90 bg-violet-500/10 border border-violet-500/20 p-3">
+                    <div class="mt-4 flex items-start gap-2 text-[11px] text-violet-300/90 bg-violet-500/10 border border-violet-500/20 rounded-xl p-3">
                         <i class="fas fa-triangle-exclamation mt-0.5 shrink-0"></i>
                         <span>Attention, les horaires ont pu être modifiés depuis l'encodage. Référez-vous au <a href="${data.rbfaUrl}" target="_blank" rel="noopener noreferrer" class="underline text-accent hover:text-white">site officiel RBFA</a> pour les horaires exacts.</span>
                     </div>`;
@@ -948,7 +1375,6 @@
                 waBtn.classList.remove('hidden'); waBtn.classList.add('flex');
                 calBtn.classList.remove('hidden'); calBtn.classList.add('flex');
                 rbfaBtn.classList.add('hidden'); rbfaBtn.classList.remove('flex');
-                icsBtn.classList.add('hidden'); icsBtn.classList.remove('flex');
 
                 const teamTitle = data.title;
                 const msg = encodeURIComponent(`Bonjour, je souhaiterais avoir des informations concernant les inscriptions pour l'équipe ${teamTitle}.`);
@@ -1080,87 +1506,6 @@
             }
         }
 
-        // Calendrier (matchs/détections/événements) : géré depuis l'onglet Calendrier
-        // de l'outil admin (Notion), pas depuis /admin (Sveltia CMS) — data/evenements.json
-        // ne sert plus que de secours si jamais l'outil admin est indisponible.
-        const EVENEMENTS_API_URL = 'https://oasisforest-admin-tool.tristederk.workers.dev/api/evenements';
-        async function loadEvenements() {
-            const fromApi = await loadJSON(EVENEMENTS_API_URL);
-            if (fromApi) return fromApi;
-            return await loadJSON('data/evenements.json');
-        }
-
-        // --- Modale "S'abonner au calendrier" : boutons-leviers par équipe, combinés en
-        // un seul lien .ics (téléchargement ou abonnement webcal://, mis à jour tout
-        // seul par les calendriers qui le supportent). ---
-        // `equipes` = valeurs `equipe=` envoyées à l'API ICS. Le groupe U15-U17 est une
-        // seule case côté visiteur mais reste deux équipes côté calendrier.
-        const SUBSCRIBE_TEAMS = [
-            { id: 'div2', label: 'Équipe première', equipes: ['div2'] },
-            { id: 'u21', label: 'Espoirs U21', equipes: ['u21'] },
-            { id: 'u15_u17', label: 'U15-U17', equipes: ['u15', 'u17'] },
-            { id: 'u3', label: 'U3-U7', equipes: ['u3'] },
-        ];
-        const subscribeSelected = new Set();
-
-        // webcal:// est le standard reconnu par Apple/Google/Outlook pour un vrai
-        // abonnement : l'agenda mémorise l'URL et la relit régulièrement, au lieu de
-        // copier une fois pour toutes un fichier figé. Aucun lien de téléchargement .ics
-        // n'est proposé sur le site - un instantané deviendrait faux au premier
-        // changement d'horaire, ce qui est précisément le problème à éviter.
-        function webcalIcsUrl(qs) {
-            return `${EVENEMENTS_API_URL}/ics?${qs}`.replace(/^https?:\/\//, 'webcal://');
-        }
-
-        function updateSubscribeLinks() {
-            const equipes = [...subscribeSelected];
-            const empty = equipes.length === 0;
-            document.getElementById('subscribe-empty-hint').classList.toggle('hidden', !empty);
-            const webcalBtn = document.getElementById('btn-subscribe-webcal');
-            webcalBtn.classList.toggle('opacity-40', empty);
-            webcalBtn.classList.toggle('pointer-events-none', empty);
-            if (empty) return;
-            const params = equipes
-                .flatMap((id) => SUBSCRIBE_TEAMS.find((t) => t.id === id).equipes)
-                .map((e) => `equipe=${e}`)
-                .join('&');
-            webcalBtn.href = webcalIcsUrl(params);
-        }
-
-        function setupSubscribeModal() {
-            const backdrop = document.getElementById('modal-subscribe-backdrop');
-            const container = document.getElementById('subscribe-team-toggles');
-            SUBSCRIBE_TEAMS.forEach(({ id, label }) => {
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                btn.textContent = label;
-                btn.className = 'px-4 py-1.5 rounded-full font-bold text-xs tracking-wider uppercase transition-colors glass-panel text-white hover:text-accent border-white/5';
-                btn.addEventListener('click', () => {
-                    subscribeSelected.has(id) ? subscribeSelected.delete(id) : subscribeSelected.add(id);
-                    const on = subscribeSelected.has(id);
-                    btn.classList.toggle('bg-accent', on);
-                    btn.classList.toggle('text-night', on);
-                    btn.classList.toggle('glass-panel', !on);
-                    btn.classList.toggle('text-white', !on);
-                    btn.classList.toggle('hover:text-accent', !on);
-                    btn.classList.toggle('border-white/5', !on);
-                    updateSubscribeLinks();
-                });
-                container.appendChild(btn);
-            });
-            updateSubscribeLinks();
-
-            document.getElementById('btn-open-subscribe').addEventListener('click', () => {
-                backdrop.classList.remove('invisible', 'opacity-0');
-            });
-            document.getElementById('btn-close-subscribe').addEventListener('click', () => {
-                backdrop.classList.add('invisible', 'opacity-0');
-            });
-            backdrop.addEventListener('click', (e) => {
-                if (e.target === backdrop) backdrop.classList.add('invisible', 'opacity-0');
-            });
-        }
-        setupSubscribeModal();
 
         // Base (angle + décalage) du polaroid mobile, posée une fois par renderHero() puis
         // recomposée à chaque scroll avec un léger parallax (cf. applyHeroMobileTransform).
@@ -1567,7 +1912,7 @@
         // état "fermé aujourd'hui"), pour réutilisation par renderActuPopup() et l'aperçu
         // modérateur previewActuPopup().
         async function getEligibleActuEvent() {
-            const data = await loadEvenements();
+            const data = await loadJSON('data/evenements.json');
             const events = (data && Array.isArray(data.evenements)) ? data.evenements : [];
             if (!events.length) return null;
 
@@ -1815,44 +2160,6 @@
         });
     </script>
 
-    <!-- Mesure d'audience minimale (visites + clics sur quelques boutons clés), lue
-         depuis l'onglet "Stats" de l'outil admin du club. Agrégats par jour uniquement
-         côté serveur : pas d'IP, pas de cookie, pas d'identifiant visiteur — rien à
-         faire fonctionner si le navigateur bloque la requête (ad-blocker, offline...). -->
-    <script>
-        (function () {
-            const TRACK_ENDPOINT = 'https://oasisforest-admin-tool.derquemoss.workers.dev/api/track';
-            const device = window.innerWidth < 768 ? 'Mobile' : 'Desktop';
-
-            function send(body) {
-                try {
-                    const payload = JSON.stringify({ device, ...body });
-                    if (navigator.sendBeacon) {
-                        navigator.sendBeacon(TRACK_ENDPOINT, new Blob([payload], { type: 'application/json' }));
-                    } else {
-                        fetch(TRACK_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload, keepalive: true }).catch(() => {});
-                    }
-                } catch (e) { /* silencieux : la mesure ne doit jamais impacter le site */ }
-            }
-
-            send({ type: 'pageview', path: location.pathname });
-
-            document.addEventListener('click', (e) => {
-                const el = e.target.closest('[data-track]');
-                if (el) send({ type: 'click', element: el.getAttribute('data-track') });
-            });
-
-            // Temps passé sur la page, envoyé une seule fois à la fermeture/sortie.
-            // "pagehide" plutôt que "beforeunload" : plus fiable sur mobile (Safari
-            // notamment, y compris avec le cache arrière/avant du navigateur).
-            const loadedAt = performance.now();
-            let durationSent = false;
-            window.addEventListener('pagehide', () => {
-                if (durationSent) return;
-                durationSent = true;
-                send({ type: 'duration', seconds: Math.round((performance.now() - loadedAt) / 1000) });
-            });
-        })();
     </script>
 </body>
 </html>

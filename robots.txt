@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /old.html
+
+Sitemap: https://oasisforest.be/sitemap.xml

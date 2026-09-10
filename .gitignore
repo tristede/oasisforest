@@ -1,0 +1,5 @@
+# Fichiers macOS
+.DS_Store
+
+# Configuration locale de l'outillage (serveur de prévisualisation, etc.)
+.claude/

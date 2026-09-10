@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Soutenir l'Union Oasis Forest : audience du club, formules de partenariat et dossier de sponsoring.">
+    <title>Partenaires | Union Oasis Forest</title>
+    <link rel="canonical" href="https://oasisforest.be/partenaires.html">
+
+    <link rel="icon" type="image/svg+xml" href="./logo%20uof.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://oasisforest.be/partenaires.html">
+    <meta property="og:title" content="Partenaires | Union Oasis Forest">
+    <meta property="og:description" content="Soutenir l'Union Oasis Forest : audience du club, formules de partenariat et dossier de sponsoring.">
+    <meta property="og:image" content="https://oasisforest.be/img/D85A3835.webp">
+    <meta property="og:locale" content="fr_BE">
+    <meta property="og:site_name" content="Union Oasis Forest">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <script src="assets/tailwind-config.js?v=202609100234"></script>
+    <link rel="stylesheet" href="assets/site.css?v=202609100234">
+</head>
+<body class="antialiased font-sans flex flex-col min-h-screen">
+
+    <!-- Fond animé -->
+    <div class="bg-glow">
+        <div class="blob-1 animate-blob"></div>
+        <div class="blob-2 animate-blob"></div>
+        <div class="blob-3 animate-blob"></div>
+    </div>
+
+    <!-- NAVIGATION — bloc identique sur toutes les pages du site.
+         Si tu le modifies, reporte la modification sur index.html, a-propos.html,
+         equipes.html, galerie.html, partenaires.html et contact.html. -->
+    <nav class="hidden lg:block fixed top-0 w-full z-50 bg-night/85 backdrop-blur-md border-b border-white/10 h-20">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 h-full">
+            <div class="flex justify-between items-center h-full gap-10">
+                <a href="index.html" aria-label="Union Oasis Forest - accueil" class="flex-shrink-0 flex items-center gap-4 group">
+                    <img src="logo%20uof.svg" alt="" aria-hidden="true" class="h-7 w-auto opacity-90 group-hover:opacity-100 transition-opacity">
+                    <span class="font-black text-white text-sm xl:text-base tracking-[0.22em] uppercase leading-none group-hover:text-accent transition-colors">Union Oasis Forest</span>
+                </a>
+                <div class="flex items-center gap-6 xl:gap-9">
+                    <a href="index.html" class="text-slate-400 hover:text-white border-b-2 border-transparent pb-1 transition-colors font-bold text-[11px] xl:text-xs uppercase tracking-[0.16em] whitespace-nowrap">Accueil</a>
+                    <a href="a-propos.html" class="text-slate-400 hover:text-white border-b-2 border-transparent pb-1 transition-colors font-bold text-[11px] xl:text-xs uppercase tracking-[0.16em] whitespace-nowrap">Le club</a>
+                    <a href="equipes.html" class="text-slate-400 hover:text-white border-b-2 border-transparent pb-1 transition-colors font-bold text-[11px] xl:text-xs uppercase tracking-[0.16em] whitespace-nowrap">Nos équipes</a>
+                    <a href="galerie.html" class="text-slate-400 hover:text-white border-b-2 border-transparent pb-1 transition-colors font-bold text-[11px] xl:text-xs uppercase tracking-[0.16em] whitespace-nowrap">Galerie</a>
+                    <a href="partenaires.html" aria-current="page" class="text-white border-b-2 border-accent pb-1 transition-colors font-bold text-[11px] xl:text-xs uppercase tracking-[0.16em] whitespace-nowrap">Partenaires</a>
+                    <a href="contact.html" class="text-slate-400 hover:text-white border-b-2 border-transparent pb-1 transition-colors font-bold text-[11px] xl:text-xs uppercase tracking-[0.16em] whitespace-nowrap">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <button id="mobile-menu-btn" aria-label="Ouvrir le menu de navigation" class="lg:hidden fixed top-3 right-4 text-white z-[70] p-1.5 transition-transform active:scale-90">
+        <i class="fas fa-bars text-2xl"></i>
+    </button>
+
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-night/97 opacity-0 invisible transition-all duration-300 lg:hidden flex flex-col justify-center">
+        <div class="flex flex-col items-start gap-6 w-full px-8">
+            <a href="index.html" class="mobile-link titre-brut text-3xl text-white hover:text-accent transition-colors">Accueil</a>
+            <a href="a-propos.html" class="mobile-link titre-brut text-3xl text-white hover:text-accent transition-colors">Le club</a>
+            <a href="equipes.html" class="mobile-link titre-brut text-3xl text-white hover:text-accent transition-colors">Nos équipes</a>
+            <a href="galerie.html" class="mobile-link titre-brut text-3xl text-white hover:text-accent transition-colors">Galerie</a>
+            <a href="partenaires.html" aria-current="page" class="mobile-link titre-brut text-3xl text-accent hover:text-accent transition-colors">Partenaires</a>
+            <a href="contact.html" class="mobile-link titre-brut text-3xl text-white hover:text-accent transition-colors">Contact</a>
+        </div>
+    </div>
+
+    <!-- Bandeau sponsors (data/sponsors.json). Masqué automatiquement si la liste est vide. -->
+    <div id="sponsors-marquee" class="fixed top-12 lg:top-20 w-full z-40 bg-black/70 backdrop-blur-md border-b border-white/10 py-2 flex overflow-hidden">
+        <div id="sponsors-track-1" class="flex animate-marquee min-w-full shrink-0 items-center justify-around gap-12 px-6"></div>
+        <div id="sponsors-track-2" class="flex animate-marquee min-w-full shrink-0 items-center justify-around gap-12 px-6" aria-hidden="true"></div>
+    </div>
+
+    <!-- Barre d'en-tête mobile : la navbar desktop est masquée sous 1024px, or le nom
+         de l'organisation doit rester visible en haut de chaque page. -->
+    <a href="index.html" aria-label="Union Oasis Forest - accueil" class="lg:hidden fixed top-0 left-0 right-0 z-[66] h-12 bg-night/90 backdrop-blur-md border-b border-white/10 flex items-center gap-3 pl-5 pr-14">
+        <img src="logo%20uof.svg" alt="" aria-hidden="true" class="h-5 w-auto opacity-90 shrink-0">
+        <span class="text-white font-black text-[11px] tracking-[0.22em] uppercase leading-none truncate">Union Oasis Forest</span>
+    </a>
+
+    <header class="pt-28 lg:pt-32 pb-8 relative z-10">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <p class="text-accent text-[11px] font-black tracking-[0.28em] uppercase mb-5">Partenaires</p>
+            <h1 class="titre-brut text-white text-5xl md:text-7xl lg:text-8xl mb-8">Financer<br>un cadre</h1>
+            <div class="filet pt-6">
+                <p class="text-slate-300 text-base md:text-lg font-light max-w-2xl leading-relaxed">Ce que le club représente, et ce qu'un partenariat finance concrètement.</p>
+            </div>
+        </div>
+    </header>
+
+    <section class="pb-16 relative z-10">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-16">
+                <div class="filet pt-6">
+                    <p class="titre-brut text-white text-4xl md:text-6xl mb-2">5</p>
+                    <p class="text-slate-500 text-[11px] font-black tracking-[0.18em] uppercase">Équipes engagées</p>
+                </div>
+                <div class="filet pt-6">
+                    <p class="titre-brut text-white text-4xl md:text-6xl mb-2">+40</p>
+                    <p class="text-slate-500 text-[11px] font-black tracking-[0.18em] uppercase">Matchs par saison</p>
+                </div>
+                <div class="filet pt-6">
+                    <p class="titre-brut text-white text-4xl md:text-6xl mb-2">+250</p>
+                    <p class="text-slate-500 text-[11px] font-black tracking-[0.18em] uppercase">Spectateurs par match</p>
+                </div>
+                <div class="filet pt-6">
+                    <p class="titre-brut text-white text-4xl md:text-6xl mb-2">BX1</p>
+                    <p class="text-slate-500 text-[11px] font-black tracking-[0.18em] uppercase">Diffusion régionale</p>
+                </div>
+            </div>
+        </div>
+
+            <div class="bande-diagonale bg-accent mb-16">
+                <div class="max-w-6xl mx-auto px-6 lg:px-8 py-12 md:py-14">
+                    <p class="text-night/70 text-[11px] font-black tracking-[0.24em] uppercase mb-3">Audience · saison 2025-2026</p>
+                    <p class="titre-brut text-night mb-3 flex items-baseline flex-wrap gap-x-3">
+                        <span class="text-2xl md:text-4xl text-night/70">+ de</span>
+                        <span id="compteur-vues" data-valeur="2033800" class="text-5xl md:text-7xl lg:text-8xl">2 033 800</span>
+                    </p>
+                    <p class="text-night/80 font-bold text-sm md:text-base">
+                        vues cumulées sur Instagram, Facebook et TikTok, entre septembre 2025 et septembre 2026.
+                    </p>
+                </div>
+            </div>
+
+            <div class="max-w-6xl mx-auto px-6 lg:px-8">
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                <article class="bloc p-6 md:p-8 reveal">
+                    <div class="flex items-center gap-4 mb-6 pb-5 filet-bas">
+                        <span style="color: #E1306C"><svg viewBox="0 0 24 24" fill="currentColor" role="img" class="w-8 h-8" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></span>
+                        <div>
+                            <h3 class="titre-brut text-white text-xl">Instagram</h3>
+                            <a href="https://www.instagram.com/oasisforestfutsal" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-accent transition-colors text-xs">instagram.com/oasisforestfutsal</a>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-x-6 gap-y-5 mb-6">
+                        <div>
+                            <p class="titre-brut text-white text-2xl md:text-3xl">1 821</p>
+                            <p class="text-slate-500 text-[10px] font-black tracking-[0.18em] uppercase mt-1">Abonnés</p>
+                        </div>
+                        <div>
+                            <p class="titre-brut text-white text-2xl md:text-3xl">953 100</p>
+                            <p class="text-slate-500 text-[10px] font-black tracking-[0.18em] uppercase mt-1">Vues</p>
+                        </div>
+                        <div>
+                            <p class="titre-brut text-white text-2xl md:text-3xl">56 800</p>
+                            <p class="text-slate-500 text-[10px] font-black tracking-[0.18em] uppercase mt-1">Portée</p>
+                        </div>
+                        <div>
+                            <p class="titre-brut text-white text-2xl md:text-3xl">11 300</p>
+                            <p class="text-slate-500 text-[10px] font-black tracking-[0.18em] uppercase mt-1">Interactions</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-500 text-xs leading-relaxed">+1 200 % de vues, +1 400 % d'interactions sur la saison</p>
+                </article>
+                <article class="bloc p-6 md:p-8 reveal">
+                    <div class="flex items-center gap-4 mb-6 pb-5 filet-bas">
+                        <span style="color: #1877F2"><svg viewBox="0 0 24 24" fill="currentColor" role="img" class="w-8 h-8" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></span>
+                        <div>
+                            <h3 class="titre-brut text-white text-xl">Facebook</h3>
+                            <a href="https://www.facebook.com/oasisforestfutsal" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-accent transition-colors text-xs">facebook.com/oasisforestfutsal</a>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-x-6 gap-y-5 mb-6">
+                        <div>
+                            <p class="titre-brut text-white text-2xl md:text-3xl">2 500</p>
+                            <p class="text-slate-500 text-[10px] font-black tracking-[0.18em] uppercase mt-1">Abonnés</p>
+                        </div>
+                        <div>
+                            <p class="titre-brut text-white text-2xl md:text-3xl">883 300</p>
+                            <p class="text-slate-500 text-[10px] font-black tracking-[0.18em] uppercase mt-1">Vues</p>
+                        </div>
+                        <div>
+                            <p class="titre-brut text-white text-2xl md:text-3xl">135 200</p>
+                            <p class="text-slate-500 text-[10px] font-black tracking-[0.18em] uppercase mt-1">Portée</p>
+                        </div>
+                        <div>
+                            <p class="titre-brut text-white text-2xl md:text-3xl">9 900</p>
+                            <p class="text-slate-500 text-[10px] font-black tracking-[0.18em] uppercase mt-1">Interactions</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-500 text-xs leading-relaxed">52 200 vues de plus de 3 secondes, +403 % de temps de visionnage</p>
+                </article>
+                <article class="bloc p-6 md:p-8 reveal">
+                    <div class="flex items-center gap-4 mb-6 pb-5 filet-bas">
+                        <span style="color: #00f2fe"><svg viewBox="0 0 24 24" fill="currentColor" role="img" class="w-8 h-8" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></span>
+                        <div>
+                            <h3 class="titre-brut text-white text-xl">TikTok</h3>
+                            <a href="https://www.tiktok.com/@oasisforestfutsal" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-accent transition-colors text-xs">tiktok.com/@oasisforestfutsal</a>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-x-6 gap-y-5 mb-6">
+                        <div>
+                            <p class="titre-brut text-white text-2xl md:text-3xl">602</p>
+                            <p class="text-slate-500 text-[10px] font-black tracking-[0.18em] uppercase mt-1">Abonnés</p>
+                        </div>
+                        <div>
+                            <p class="titre-brut text-white text-2xl md:text-3xl">197 400</p>
+                            <p class="text-slate-500 text-[10px] font-black tracking-[0.18em] uppercase mt-1">Vues</p>
+                        </div>
+                        <div>
+                            <p class="titre-brut text-white text-2xl md:text-3xl">6 000</p>
+                            <p class="text-slate-500 text-[10px] font-black tracking-[0.18em] uppercase mt-1">Portée</p>
+                        </div>
+                        <div>
+                            <p class="titre-brut text-white text-2xl md:text-3xl">5 077</p>
+                            <p class="text-slate-500 text-[10px] font-black tracking-[0.18em] uppercase mt-1">Interactions</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-500 text-xs leading-relaxed">76 % de l'audience vient du fil « Pour toi »</p>
+                </article>
+                </div>
+                <p class="text-slate-600 text-xs mb-20">
+                    Source : rapport digital interne du club, période septembre 2025 → septembre 2026.
+                    Contenus autoproduits (visuels, vidéos, formats courts).
+                </p>
+            </div>
+
+
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+
+            <div class="grid md:grid-cols-3 gap-8 md:gap-10 mb-20">
+                <div class="filet pt-6 reveal">
+                    <span class="numero numero-plein text-xl block mb-4">01</span>
+                    <h3 class="titre-brut text-white text-lg mb-3">Où va l'argent</h3>
+                    <p class="text-slate-400 text-sm font-light leading-relaxed">Salles, équipements, affiliations, formation des entraîneurs. L'ASBL ne redistribue rien : tout est réinvesti dans l'activité.</p>
+                </div>
+                <div class="filet pt-6 reveal">
+                    <span class="numero numero-plein text-xl block mb-4">02</span>
+                    <h3 class="titre-brut text-white text-lg mb-3">Ce que vous obtenez</h3>
+                    <p class="text-slate-400 text-sm font-light leading-relaxed">Présence sur les maillots et dans la salle, et exposition sur des réseaux qui ont dépassé deux millions de vues sur la saison.</p>
+                </div>
+                <div class="filet pt-6 reveal">
+                    <span class="numero numero-plein text-xl block mb-4">03</span>
+                    <h3 class="titre-brut text-white text-lg mb-3">Formules</h3>
+                    <p class="text-slate-400 text-sm font-light leading-relaxed">Adaptables aux moyens d'un commerce local comme d'une entreprise. Le dossier détaille montants et contreparties.</p>
+                </div>
+            </div>
+
+            <div class="mb-20">
+                <h2 class="titre-brut text-white text-2xl md:text-3xl mb-8 filet pt-6">Ils nous soutiennent</h2>
+                <div id="liste-partenaires" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+                <p id="partenaires-vide" class="text-slate-400 font-light leading-relaxed max-w-2xl">
+                    Le club constitue son réseau de partenaires pour la saison. Les emplacements
+                    du bandeau, en haut de page, montrent le rendu à venir.
+                </p>
+            </div>
+        </div>
+
+        <div class="bande-diagonale bg-accent">
+            <div class="max-w-6xl mx-auto px-6 lg:px-8 py-12 md:py-14">
+                <h2 class="titre-brut text-night text-3xl md:text-5xl mb-5 max-w-2xl">Recevoir le dossier</h2>
+                <p class="text-night/80 font-medium max-w-xl mb-8 leading-relaxed">
+                    Montants, contreparties et durées. Réponse sous quelques jours.
+                </p>
+                <a href="mailto:union@oasisforest.be?subject=Demande%20de%20dossier%20de%20sponsoring&body=Bonjour%2C%0D%0A%0D%0AJe%20souhaite%20recevoir%20le%20dossier%20de%20sponsoring%20du%20club.%0D%0A%0D%0ANom%20de%20l%27entreprise%20%3A%0D%0APersonne%20de%20contact%20%3A%0D%0AT%C3%A9l%C3%A9phone%20%3A%0D%0A" class="inline-flex items-center bg-night text-white font-black text-[11px] tracking-[0.16em] uppercase px-8 py-4 hover:bg-white hover:text-night transition-colors">
+                    Demander le dossier
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PIED DE PAGE — bloc identique sur toutes les pages du site.
+         Les deux dernières lignes (dénomination légale, n° d'entreprise, siège, e-mail,
+         domaine) sont exigées sur chaque page par la validation Google for Nonprofits. -->
+    <footer class="filet relative z-10 mt-12 pt-12 pb-10">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-[2fr_1fr_1fr] gap-10 md:gap-8 mb-12">
+
+                <div>
+                    <a href="index.html" aria-label="Union Oasis Forest - accueil" class="inline-flex items-center gap-4 group mb-5">
+                        <img src="logo%20uof.svg" alt="" aria-hidden="true" class="h-6 w-auto opacity-90">
+                        <span class="font-black text-white text-sm tracking-[0.22em] uppercase leading-none group-hover:text-accent transition-colors">Union Oasis Forest</span>
+                    </a>
+                </div>
+
+                <div class="md:text-right">
+                    <h2 class="text-slate-500 font-black text-[10px] tracking-[0.24em] uppercase mb-4">Pages</h2>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="text-slate-400 hover:text-accent transition-colors">Accueil</a></li>
+                        <li><a href="a-propos.html" class="text-slate-400 hover:text-accent transition-colors">Le club</a></li>
+                        <li><a href="equipes.html" class="text-slate-400 hover:text-accent transition-colors">Nos équipes</a></li>
+                        <li><a href="galerie.html" class="text-slate-400 hover:text-accent transition-colors">Galerie</a></li>
+                        <li><a href="partenaires.html" class="text-slate-400 hover:text-accent transition-colors">Partenaires</a></li>
+                        <li><a href="contact.html" class="text-slate-400 hover:text-accent transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h2 class="text-slate-500 font-black text-[10px] tracking-[0.24em] uppercase mb-4">Contact</h2>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="mailto:union@oasisforest.be" class="hover:text-accent transition-colors">union@oasisforest.be</a></li>
+                        <li><a href="https://wa.me/32477022021" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">+32 477 02 20 21</a></li>
+                        <li class="flex gap-4 pt-2">
+                            <a href="https://www.instagram.com/oasisforestfutsal" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="hover:text-accent transition-colors">Instagram</a>
+                            <a href="https://www.tiktok.com/@oasisforestfutsal" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="hover:text-accent transition-colors">TikTok</a>
+                            <a href="https://www.facebook.com/oasisforestfutsal" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="hover:text-accent transition-colors">Facebook</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="filet pt-6 space-y-1.5">
+                <p class="text-[11px] leading-relaxed text-slate-600">
+                    L'Oasis de Forest ASBL · Siège social : Rue du Croissant 85, 1190 Forest, Belgique ·
+                    Numéro d'entreprise (BCE) 0867.614.619 ·
+                    <a href="mailto:union@oasisforest.be" class="hover:text-slate-400 transition-colors">union@oasisforest.be</a> ·
+                    <a href="https://oasisforest.be/" class="hover:text-slate-400 transition-colors">oasisforest.be</a>
+                </p>
+                <p class="text-[11px] text-slate-600">
+                    &copy; <span id="year"></span> L'Oasis de Forest ASBL — « Union Oasis Forest » est le nom sportif de l'association.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/32477022021" target="_blank" rel="noopener noreferrer" data-track="WhatsApp (flottant)" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 bg-[#25D366] text-white w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-3xl shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:scale-110 hover:bg-[#20bd5a] hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] transition-all duration-300 z-50 group" aria-label="Nous contacter sur WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span class="absolute right-[110%] top-1/2 -translate-y-1/2 bg-night text-white text-xs font-bold py-2.5 px-4 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap border border-white/10 pointer-events-none shadow-xl">
+            Une question ? Discutons !
+        </span>
+    </a>
+
+    <script src="assets/commun.js?v=202609100234"></script>
+
+    <script>
+        // Les entrées marquées "demo" sont les emplacements d'aperçu du bandeau (logo du
+        // club) : elles ne doivent pas figurer ici comme de vrais partenaires.
+        (async function () {
+            const grille = document.getElementById('liste-partenaires');
+            const message = document.getElementById('partenaires-vide');
+            const data = await loadJSON('data/sponsors.json');
+            const toutes = (data && Array.isArray(data.sponsors)) ? data.sponsors : [];
+            const liste = toutes.filter((s) => s.demo !== true);
+            if (!liste.length) { grille.classList.add('hidden'); return; }
+            message.classList.add('hidden');
+            grille.innerHTML = '';
+            liste.forEach((s) => {
+                const carte = document.createElement(s.url ? 'a' : 'div');
+                carte.className = 'bloc p-6 flex flex-col items-center justify-center gap-3 min-h-[8rem] hover:border-accent transition-colors';
+                if (s.url) { carte.href = s.url; carte.target = '_blank'; carte.rel = 'noopener noreferrer'; }
+                if (s.logo) {
+                    const img = document.createElement('img');
+                    img.src = toRel(s.logo);
+                    img.alt = s.nom || '';
+                    img.loading = 'lazy';
+                    img.className = 'h-10 w-auto object-contain';
+                    carte.append(img);
+                }
+                const nom = document.createElement('span');
+                nom.className = 'text-[11px] font-black text-slate-300 uppercase tracking-[0.16em] text-center';
+                nom.textContent = s.nom || '';
+                carte.append(nom);
+                grille.append(carte);
+            });
+        })();
+    </script>
+    <script>
+        // Compteur à rouleaux sur le nombre de vues cumulées. Chaque chiffre est une
+        // colonne 0-9 qui fait quelques tours avant de se caler ; les chiffres
+        // s'immobilisent de gauche à droite, comme un compteur mécanique.
+        // Le nombre final est déjà dans le HTML : si ce script ne tourne pas, ou si le
+        // visiteur a demandé moins d'animations, la valeur reste lisible telle quelle.
+        (function () {
+            const cible = document.getElementById('compteur-vues');
+            if (!cible) return;
+
+            const moinsDAnimations = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (moinsDAnimations) return;
+
+            const TOURS = 4;               // nombre de cycles 0-9 avant l'arrêt
+            const chiffres = (cible.dataset.valeur || '').replace(/\D/g, '');
+            if (!chiffres) return;
+
+            // Découpage en groupes de milliers, à la française : 2 033 800
+            const groupes = [];
+            for (let i = chiffres.length; i > 0; i -= 3) groupes.unshift(chiffres.slice(Math.max(0, i - 3), i));
+
+            const conteneur = document.createElement('span');
+            conteneur.className = 'compteur';
+            const rouleaux = [];
+
+            groupes.forEach((groupe, ig) => {
+                if (ig > 0) {
+                    const espace = document.createElement('span');
+                    espace.className = 'compteur-espace';
+                    conteneur.append(espace);
+                }
+                [...groupe].forEach((c) => {
+                    const boite = document.createElement('span');
+                    boite.className = 'compteur-chiffre';
+                    const rouleau = document.createElement('span');
+                    rouleau.className = 'compteur-rouleau';
+                    // TOURS cycles complets, puis le chiffre final en dernière position
+                    let html = '';
+                    for (let t = 0; t < TOURS; t++) for (let n = 0; n <= 9; n++) html += '<span>' + n + '</span>';
+                    html += '<span>' + c + '</span>';
+                    rouleau.innerHTML = html;
+                    boite.append(rouleau);
+                    conteneur.append(boite);
+                    rouleaux.push(rouleau);
+                });
+            });
+
+            cible.textContent = '';
+            cible.append(conteneur);
+
+            let lance = false;
+            function lancer() {
+                if (lance) return;
+                lance = true;
+                rouleaux.forEach((rouleau, i) => {
+                    const arrivee = TOURS * 10;   // index du chiffre final dans la colonne
+                    const duree = 1100 + i * 160; // arrêt en cascade, de gauche à droite
+                    rouleau.style.transition = `transform ${duree}ms cubic-bezier(0.15, 0.85, 0.2, 1)`;
+                    // Un rAF avant de bouger, sinon la transition part d'un état non peint
+                    requestAnimationFrame(() => {
+                        rouleau.style.transform = `translateY(-${arrivee}em)`;
+                    });
+                });
+            }
+
+            const observateur = new IntersectionObserver((entrees) => {
+                entrees.forEach((e) => { if (e.isIntersecting) { lancer(); observateur.disconnect(); } });
+            }, { threshold: 0.4 });
+            observateur.observe(cible);
+
+            // Filet de sécurité : tant que rien n'est lancé, les rouleaux affichent des
+            // zéros. Si l'observateur ne se déclenche jamais (onglet ouvert en arrière-plan,
+            // page jamais rendue...), on cale les chiffres sur la valeur finale sans
+            // animation : mieux vaut pas d'effet qu'un « 0 000 000 » mensonger.
+            function caler() {
+                if (lance) return;
+                lance = true;
+                observateur.disconnect();
+                rouleaux.forEach((rouleau) => {
+                    rouleau.style.transition = 'none';
+                    rouleau.style.transform = `translateY(-${TOURS * 10}em)`;
+                });
+            }
+            setTimeout(caler, 6000);
+        })();
+    </script></body>
+</html>
