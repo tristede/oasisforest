@@ -311,10 +311,13 @@ nouveau rapport fourni par le club.
    - Un événement devient éligible entre `date - joursAvant jours` et sa date (comparaison
      en jour civil, pas à l'heure près). Le plus proche dans le temps est affiché en priorité
      si plusieurs sont éligibles simultanément (un seul pop-up par visite).
-   - Fermeture manuelle **ou** automatique après 10s sans interaction : dans les deux cas,
-     mémorisé pour la journée (`localStorage`, clé par jour via `localDateKey()` — ne pas
+   - Fermeture manuelle **ou** automatique après 10s sans interaction. **La fermeture
+     n'est plus mémorisée** (demande du club, 09/2026) : la pop-up réapparaît à chaque
+     arrivée sur l'accueil, rafraîchissement compris. L'ancienne mémorisation par jour
+     (`localStorage`) a été retirée — ne pas la réintroduire sans revalider avec le club.
+     `localDateKey()` reste utilisé pour construire l'identifiant d'événement : ne pas
      utiliser `toISOString()` pour une date locale, ça décale d'un jour avec un fuseau en
-     avance sur UTC comme la Belgique en été).
+     avance sur UTC comme la Belgique en été.
    - Calendrier initial peuplé à la main depuis un export PDF RBFA (pas d'API disponible) :
      à mettre à jour en fin de saison ou en cas de changement d'horaire/forfait.
    - Titre des matchs au format `MATCH DOM/EXT VS ADVERSAIRE` (majuscules), sans description

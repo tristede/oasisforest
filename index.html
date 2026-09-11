@@ -86,8 +86,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
-    <script src="assets/tailwind-config.js?v=202609100248"></script>
-    <link rel="stylesheet" href="assets/site.css?v=202609100248">
+    <script src="assets/tailwind-config.js?v=202609120124"></script>
+    <link rel="stylesheet" href="assets/site.css?v=202609120124">
 </head>
 <body class="antialiased font-sans flex flex-col min-h-screen">
 
@@ -135,7 +135,7 @@
         <i class="fas fa-bars text-2xl"></i>
     </button>
 
-    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-night/97 opacity-0 invisible transition-all duration-300 lg:hidden flex flex-col justify-center">
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-night/95 backdrop-blur-xl opacity-0 invisible transition-all duration-300 lg:hidden flex flex-col justify-center">
         <div class="flex flex-col items-start gap-6 w-full px-8">
             <a href="index.html" aria-current="page" class="mobile-link titre-brut text-3xl text-accent hover:text-accent transition-colors">Accueil</a>
             <a href="a-propos.html" class="mobile-link titre-brut text-3xl text-white hover:text-accent transition-colors">Le club</a>
@@ -597,8 +597,8 @@
          utilisable) : voir renderActuPopup(). Contenu piloté par data/evenements.json
          (éditable via /admin). Un événement devient éligible entre "date - joursAvant
          jours" et sa date (comparaison jour civil). Fermeture manuelle OU automatique
-         après 10s sans interaction = masqué jusqu'au lendemain (localStorage par jour),
-         jamais définitivement. Uniquement des échéances réelles issues du calendrier du
+         après 10s sans interaction ; la fermeture n'est pas mémorisée, la pop-up revient à
+         chaque arrivée sur l'accueil. Uniquement des échéances réelles issues du calendrier du
          club - jamais de fausse urgence (cf. CLAUDE.md, directive 2005/29/CE). -->
     <div id="modal-popup-actu" class="fixed top-28 sm:top-32 right-4 z-[140] hidden w-[calc(100%-4rem)] max-w-[260px] opacity-0 -translate-y-3 transition-all duration-300">
         <div id="popup-actu-card" class="glass-panel border border-slate-400/30 rounded-2xl p-4 relative shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
@@ -1547,7 +1547,6 @@
                 clearTimeout(actuAutoDismissTimer);
                 modal.classList.remove('opacity-100'); modal.classList.add('opacity-0', '-translate-y-3');
                 setTimeout(() => modal.classList.add('hidden'), 300);
-                localStorage.setItem(dismissKey, eventId); // réapparaîtra un autre jour, pas aujourd'hui
             };
             document.getElementById('btn-close-popup-actu').addEventListener('click', close, { once: true });
             document.getElementById('popup-actu-cta').addEventListener('click', close, { once: true });
@@ -1601,30 +1600,27 @@
 
         // Déclenché en cliquant sur le badge "Division 2 Nationale" du hero : permet à un
         // modérateur de voir immédiatement ce que verrait un visiteur arrivant maintenant,
-        // sans attendre ni dépendre du cooldown localStorage déjà passé aujourd'hui.
+        // sans attendre le délai d'apparition.
         async function previewActuPopup() {
             const chosen = await getEligibleActuEvent();
             if (!chosen) {
                 alert("Aucune notification active en ce moment (aucun événement dans sa fenêtre d'affichage).");
                 return;
             }
-            const todayKey = localDateKey(dateOnly(new Date()));
-            const dismissKey = `actuPopupDismissed_${todayKey}`;
             const eventId = `${chosen.type}_${localDateKey(chosen._dayOnly)}_${chosen.titre}`;
-            showActuPopup(chosen, eventId, dismissKey, 0);
+            showActuPopup(chosen, eventId, null, 0);
         }
 
         async function renderActuPopup() {
             const chosen = await getEligibleActuEvent();
             if (!chosen) return;
 
-            // Fermé aujourd'hui -> ne pas le remontrer avant demain (mémorisation par jour).
-            const todayKey = localDateKey(dateOnly(new Date()));
-            const dismissKey = `actuPopupDismissed_${todayKey}`;
+            // Affichée à chaque arrivée sur l'accueil, y compris après un rafraîchissement :
+            // demande du club (09/2026). La fermeture n'est plus mémorisée d'une visite à
+            // l'autre — l'ancienne mémorisation par jour (localStorage) empêchait la
+            // pop-up de revenir.
             const eventId = `${chosen.type}_${localDateKey(chosen._dayOnly)}_${chosen.titre}`;
-            if (localStorage.getItem(dismissKey) === eventId) return;
-
-            showActuPopup(chosen, eventId, dismissKey);
+            showActuPopup(chosen, eventId, null);
         }
 
         // Lancement
