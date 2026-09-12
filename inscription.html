@@ -282,6 +282,20 @@
         </div>
     </section>
 
+    <!-- Relecture avant envoi : le parent revoit noms, téléphones et e-mail (fautes de frappe),
+         puis confirme. Remplie par confirmerEnvoi() dans le script en bas de page. -->
+    <div id="relecture" class="fixed inset-0 z-[150] hidden items-center justify-center bg-night/85 backdrop-blur-sm px-5" role="dialog" aria-modal="true" aria-labelledby="relecture-titre">
+        <div class="bloc bg-night w-full max-w-md p-6 md:p-8 max-h-[90vh] overflow-y-auto">
+            <p class="text-accent text-[11px] font-black tracking-[0.24em] uppercase mb-3">Dernière vérification</p>
+            <h2 id="relecture-titre" class="text-white text-xl md:text-2xl font-black leading-snug mb-5">Êtes-vous sûr de ne pas avoir fait d'erreur de frappe sur le mail ou les noms&nbsp;?</h2>
+            <table class="table-faits mb-7"><tbody id="relecture-recap"></tbody></table>
+            <div class="flex flex-wrap gap-3">
+                <button type="button" id="relecture-ok" class="bouton-plein">Oui, valider</button>
+                <button type="button" id="relecture-corriger" class="bouton-vide">Corriger</button>
+            </div>
+        </div>
+    </div>
+
     <!-- PIED DE PAGE — bloc identique sur toutes les pages du site.
          Les deux dernières lignes (dénomination légale, n° d'entreprise, siège, e-mail,
          domaine) sont exigées sur chaque page par la validation Google for Nonprofits. -->
@@ -426,6 +440,7 @@
                     montrerErreur('La preuve de paiement dépasse 8 Mo.');
                     return;
                 }
+                if (!(await confirmerEnvoi())) return;
                 bouton.disabled = true;
                 bouton.textContent = 'Envoi en cours…';
                 try {
@@ -445,6 +460,48 @@
                     bouton.textContent = texteBouton;
                 }
             });
+
+            // Relecture avant envoi : récapitulatif des noms, téléphones et e-mails (texte brut,
+            // jamais de HTML : ce sont des saisies du visiteur). Résout true sur « Oui, valider ».
+            function confirmerEnvoi() {
+                const boite = document.getElementById('relecture');
+                const val = (id) => document.getElementById(id).value.trim();
+                const categorie = form.querySelector('input[name=categorie]:checked');
+                const lignes = [
+                    ['Enfant', `${val('enfantPrenom')} ${val('enfantNom')}`],
+                    ['Date de naissance', val('dateNaissance').split('-').reverse().join('/')],
+                    ['Catégorie', categorie ? categorie.nextElementSibling.firstChild.textContent.trim() : ''],
+                    ['Parent', val('parentNom')],
+                    ['Téléphone', val('parentTelephone')],
+                    ['E-mail', val('parentEmail')],
+                ];
+                if (!bloc2.classList.contains('hidden')) {
+                    lignes.push(['Second parent', val('parent2Nom')], ['Téléphone', val('parent2Telephone')]);
+                    if (val('parent2Email')) lignes.push(['E-mail', val('parent2Email')]);
+                }
+                const recap = document.getElementById('relecture-recap');
+                recap.replaceChildren(...lignes.map(([k, v]) => {
+                    const tr = document.createElement('tr');
+                    const th = document.createElement('th'); th.textContent = k;
+                    const td = document.createElement('td'); td.textContent = v;
+                    tr.append(th, td);
+                    return tr;
+                }));
+                boite.classList.remove('hidden'); boite.classList.add('flex');
+                document.getElementById('relecture-ok').focus();
+                return new Promise((resolve) => {
+                    const fin = (ok) => {
+                        boite.classList.add('hidden'); boite.classList.remove('flex');
+                        document.removeEventListener('keydown', surTouche);
+                        resolve(ok);
+                    };
+                    const surTouche = (e) => { if (e.key === 'Escape') fin(false); };
+                    document.getElementById('relecture-ok').onclick = () => fin(true);
+                    document.getElementById('relecture-corriger').onclick = () => fin(false);
+                    boite.onclick = (e) => { if (e.target === boite) fin(false); };
+                    document.addEventListener('keydown', surTouche);
+                });
+            }
 
             // Suggestions de messagerie : dès le « @ », quelques boutons proposent les domaines
             // courants, filtrés par les lettres tapées après le @ (« @g » → gmail.com). Un toucher

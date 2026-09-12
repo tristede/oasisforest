@@ -301,6 +301,10 @@ des parents ; la page n'est volontairement pas dans la navigation.
 - Paiement proposé dans l'ordre **Non, En partie, Oui** ; case newsletter **avant** le
   consentement. Sous les champs e-mail, boutons de **suggestion de messagerie** dès le
   « @ » (liste `DOMAINES` du script de la page), pas de `<datalist>` (mal rendu sur iPhone).
+- **Relecture avant envoi** (`#relecture`, `confirmerEnvoi()`) : « Êtes-vous sûr de ne pas
+  avoir fait d'erreur de frappe sur le mail ou les noms ? », récapitulatif en texte brut,
+  boutons « Oui, valider » / « Corriger ». Demandé par le club côté **parent** — la
+  validation d'une fiche dans l'outil admin n'a pas cette fenêtre.
 
 ## Pièges rencontrés
 
