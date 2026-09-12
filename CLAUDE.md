@@ -286,7 +286,7 @@ des parents ; la page n'est volontairement pas dans la navigation.
 
 ### Validation, ouverture et fermeture (12/09/2026)
 
-- **Second parent** facultatif (bouton « + Ajouter un second parent ») → colonnes Notion
+- **Second contact** facultatif (bouton « + Ajouter un second contact ») → colonnes Notion
   « Contact urgence 2 - Nom/Téléphone/Mail ». **Case newsletter** facultative (« Recevoir les
   annonces du club par mail ») → colonne « Newsletter » + fiche dans 📧 Newsletter — Contacts.
 - Chaque fiche arrive **« À valider »** (colonne « Statut fiche ») : l'outil admin la signale
@@ -298,6 +298,9 @@ des parents ; la page n'est volontairement pas dans la navigation.
   quand même : le serveur refuse l'envoi de toute façon.
 - ⚠️ L'adresse **inscriptions@oasisforest.be** doit exister (alias Workspace) : c'est le
   contact affiché quand le formulaire est fermé.
+- **Vocabulaire inclusif** (demande du club) : « Personne de contact » / « Second contact »,
+  jamais « parent » dans les textes visibles. Les identifiants techniques (`parentNom`…)
+  et les colonnes Notion gardent leur nom.
 - Paiement proposé dans l'ordre **Non, En partie, Oui** ; case newsletter **avant** le
   consentement. Sous les champs e-mail, boutons de **suggestion de messagerie** dès le
   « @ » (liste `DOMAINES` du script de la page), pas de `<datalist>` (mal rendu sur iPhone).

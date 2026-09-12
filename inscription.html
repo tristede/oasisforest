@@ -182,10 +182,10 @@
                 </fieldset>
 
                 <fieldset class="filet pt-6">
-                    <legend class="flex items-baseline gap-4 mb-8 w-full"><span class="numero text-2xl md:text-3xl">03</span><span class="titre-brut text-white text-xl md:text-2xl">Parent à contacter</span></legend>
+                    <legend class="flex items-baseline gap-4 mb-8 w-full"><span class="numero text-2xl md:text-3xl">03</span><span class="titre-brut text-white text-xl md:text-2xl">Personne de contact</span></legend>
                     <div class="grid sm:grid-cols-2 gap-5">
                         <div class="sm:col-span-2">
-                            <label class="champ-label" for="parentNom">Nom et prénom du parent</label>
+                            <label class="champ-label" for="parentNom">Nom et prénom</label>
                             <input class="champ" id="parentNom" name="parentNom" required maxlength="120" autocomplete="name">
                         </div>
                         <div>
@@ -200,11 +200,11 @@
                     </div>
                     <p class="text-slate-500 text-xs mt-4">Ce numéro sert aussi de contact en cas d'urgence pendant les séances.</p>
 
-                    <button type="button" id="ajouter-parent2" class="lien-action text-white mt-8">+ Ajouter un second parent</button>
+                    <button type="button" id="ajouter-parent2" class="lien-action text-white mt-8">+ Ajouter un second contact</button>
                     <!-- Champs désactivés tant que le bloc est replié : ni validés, ni envoyés. -->
                     <div id="bloc-parent2" class="hidden mt-8 filet pt-6">
                         <div class="flex items-baseline justify-between gap-4 mb-5">
-                            <p class="champ-label" style="margin-bottom:0">Second parent <span class="normal-case tracking-normal font-medium text-slate-600">(facultatif)</span></p>
+                            <p class="champ-label" style="margin-bottom:0">Second contact <span class="normal-case tracking-normal font-medium text-slate-600">(facultatif)</span></p>
                             <button type="button" id="retirer-parent2" class="text-slate-500 hover:text-accent transition-colors text-[10px] font-black tracking-[0.16em] uppercase">Retirer</button>
                         </div>
                         <div class="grid sm:grid-cols-2 gap-5">
@@ -471,12 +471,12 @@
                     ['Enfant', `${val('enfantPrenom')} ${val('enfantNom')}`],
                     ['Date de naissance', val('dateNaissance').split('-').reverse().join('/')],
                     ['Catégorie', categorie ? categorie.nextElementSibling.firstChild.textContent.trim() : ''],
-                    ['Parent', val('parentNom')],
+                    ['Personne de contact', val('parentNom')],
                     ['Téléphone', val('parentTelephone')],
                     ['E-mail', val('parentEmail')],
                 ];
                 if (!bloc2.classList.contains('hidden')) {
-                    lignes.push(['Second parent', val('parent2Nom')], ['Téléphone', val('parent2Telephone')]);
+                    lignes.push(['Second contact', val('parent2Nom')], ['Téléphone', val('parent2Telephone')]);
                     if (val('parent2Email')) lignes.push(['E-mail', val('parent2Email')]);
                 }
                 const recap = document.getElementById('relecture-recap');
