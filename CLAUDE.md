@@ -275,9 +275,7 @@ des parents ; la page n'est volontairement pas dans la navigation.
   ces joueurs s'inscrivent via la RBFA.
 - **Remplis automatiquement par le serveur** : cotisation due (barème : Baby-foot 250 €,
   U15/U17 175 €), date d'inscription à l'heure de Bruxelles (la colonne Saison en
-  dépend), « Créé par : Formulaire en ligne (oasisforest.be) ». « Montant payé » reste à
-  0 : la déclaration du parent (« Paiement déclaré (parent) » + « Preuve de paiement »)
-  n'est jamais prise pour un encaissement, c'est le club qui valide.
+  dépend), « Créé par : Formulaire en ligne (oasisforest.be) ». « Montant payé » reprend le montant déclaré par la famille (voir plus bas) : la fiche arrive « À valider » et c'est le club qui confirme.
 - **Champs demandés** : identité de l'enfant, catégorie, parent (nom, téléphone qui sert
   aussi de contact d'urgence, e-mail), paiement déclaré, preuve facultative. Pas d'infos
   médicales, de carte d'identité ni de nationalité (choix du club). L'autorisation à
@@ -306,6 +304,11 @@ des parents ; la page n'est volontairement pas dans la navigation.
 - **Vocabulaire inclusif** (demande du club) : « Personne de contact » / « Second contact »,
   jamais « parent » dans les textes visibles. Les identifiants techniques (`parentNom`…)
   et les colonnes Notion gardent leur nom.
+- **Montant payé déclaré** : « Oui » = cotisation entière, « En partie » = montant saisi
+  (champ `montantDeclare`, obligatoire, entre 1 € et la cotisation − 1), « Non » = 0 →
+  écrit dans « Montant payé (€) ». La fiche arrive « À valider » : c'est le club qui
+  confirme en la validant, et la recette Finances est créée à ce moment-là. Barème dupliqué
+  côté page (`COTISATIONS`) : à garder aligné sur `CATEGORIES` du Worker.
 - Paiement proposé dans l'ordre **Non, En partie, Oui** ; case newsletter **avant** le
   consentement. Sous les champs e-mail, boutons de **suggestion de messagerie** dès le
   « @ » (liste `DOMAINES` du script de la page), pas de `<datalist>` (mal rendu sur iPhone).

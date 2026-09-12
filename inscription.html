@@ -235,6 +235,14 @@
                         <label class="choix"><input type="radio" name="paiement" value="partie"><span>En partie</span></label>
                         <label class="choix"><input type="radio" name="paiement" value="oui"><span>Oui</span></label>
                     </div>
+                    <!-- Visible seulement pour « En partie » : champ alors obligatoire (même règle côté serveur). -->
+                    <div id="bloc-montant" class="hidden -mt-4 mb-8">
+                        <label class="champ-label" for="montantDeclare">Montant déjà payé</label>
+                        <div class="flex items-center gap-3 sm:max-w-xs">
+                            <input class="champ" type="number" id="montantDeclare" name="montantDeclare" min="1" step="1" inputmode="numeric" disabled>
+                            <span id="montant-sur" class="text-slate-400 text-sm whitespace-nowrap">€</span>
+                        </div>
+                    </div>
                     <p class="champ-label">Preuve de paiement <span class="normal-case tracking-normal font-medium text-slate-600">(facultatif)</span></p>
                     <label class="fichier" for="preuve">
                         <input type="file" id="preuve" name="preuve" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,application/pdf">
@@ -463,6 +471,23 @@
                 }
             });
 
+            // Paiement « En partie » : on demande le montant déjà payé, borné par la cotisation de
+            // la catégorie choisie. ⚠️ Barème aligné sur CATEGORIES dans le Worker de l'outil admin.
+            const COTISATIONS = { baby: 250, u15: 175, u17: 175 };
+            const blocMontant = document.getElementById('bloc-montant');
+            const montant = document.getElementById('montantDeclare');
+            function majMontant() {
+                const partie = form.querySelector('input[name=paiement]:checked')?.value === 'partie';
+                const due = COTISATIONS[form.querySelector('input[name=categorie]:checked')?.value];
+                blocMontant.classList.toggle('hidden', !partie);
+                montant.disabled = !partie;
+                montant.required = partie;
+                if (!partie) montant.value = '';
+                if (due) montant.max = String(due - 1); else montant.removeAttribute('max');
+                document.getElementById('montant-sur').textContent = due ? `€ sur ${due} €` : '€';
+            }
+            form.querySelectorAll('input[name=paiement], input[name=categorie]').forEach((r) => r.addEventListener('change', majMontant));
+
             // Relecture avant envoi : récapitulatif des noms, téléphones et e-mails (texte brut,
             // jamais de HTML : ce sont des saisies du visiteur). Résout true sur « Oui, valider ».
             function confirmerEnvoi() {
@@ -536,6 +561,7 @@
             document.getElementById('autre-enfant').addEventListener('click', () => {
                 ['enfantPrenom', 'enfantNom', 'dateNaissance'].forEach((id) => { document.getElementById(id).value = ''; });
                 form.querySelectorAll('input[name=categorie], input[name=paiement]').forEach((r) => { r.checked = false; });
+                majMontant();
                 preuve.value = '';
                 preuveNom.textContent = texteFichier;
                 armer();
