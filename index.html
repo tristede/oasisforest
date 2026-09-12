@@ -131,8 +131,10 @@
         </div>
     </nav>
 
-    <button id="mobile-menu-btn" aria-label="Ouvrir le menu de navigation" class="lg:hidden fixed top-3 right-4 text-white z-[70] p-1.5 transition-transform active:scale-90">
-        <i class="fas fa-bars text-2xl"></i>
+    <!-- Sur téléphone, pas de barre d'en-tête : le bandeau sponsors occupe le haut de
+         l'écran et ce bouton en ferme le bout, à la même hauteur (h-12). -->
+    <button id="mobile-menu-btn" aria-label="Ouvrir le menu de navigation" class="lg:hidden fixed top-0 right-0 z-[70] w-14 h-12 flex items-center justify-center bg-night border-l border-b border-white/10 text-white transition-transform active:scale-90">
+        <i class="fas fa-bars text-3xl"></i>
     </button>
 
     <div id="mobile-menu" class="fixed inset-0 z-[60] bg-night/95 backdrop-blur-xl opacity-0 invisible transition-all duration-300 lg:hidden flex flex-col justify-center">
@@ -147,20 +149,14 @@
     </div>
 
     <!-- Bandeau sponsors (data/sponsors.json). Masqué automatiquement si la liste est vide. -->
-    <div id="sponsors-marquee" class="fixed top-12 lg:top-20 w-full z-40 bg-black/70 backdrop-blur-md border-b border-white/10 py-2 flex overflow-hidden">
+    <div id="sponsors-marquee" class="fixed top-0 lg:top-20 h-12 lg:h-auto w-full z-40 bg-black/70 backdrop-blur-md border-b border-white/10 py-2 flex overflow-hidden">
         <div id="sponsors-track-1" class="flex animate-marquee min-w-full shrink-0 items-center justify-around gap-12 px-6"></div>
         <div id="sponsors-track-2" class="flex animate-marquee min-w-full shrink-0 items-center justify-around gap-12 px-6" aria-hidden="true"></div>
     </div>
 
-    <!-- Barre d'en-tête mobile : la navbar desktop est masquée sous 1024px, or le nom
-         de l'organisation doit rester visible en haut de chaque page. -->
-    <a href="index.html" aria-label="Union Oasis Forest - accueil" class="lg:hidden fixed top-0 left-0 right-0 z-[66] h-12 bg-night/90 backdrop-blur-md border-b border-white/10 flex items-center gap-3 pl-5 pr-14">
-        <img src="logo%20uof.svg" alt="" aria-hidden="true" class="h-5 w-auto opacity-90 shrink-0">
-        <span class="text-white font-black text-[11px] tracking-[0.22em] uppercase leading-none truncate">Union Oasis Forest</span>
-    </a>
 
     <!-- Hero Section (padding top ajusté) -->
-    <header id="home" class="pt-28 pb-20 md:pt-56 md:pb-32 flex items-center min-h-screen relative overflow-hidden">
+    <header id="home" class="pt-20 pb-20 md:pt-56 md:pb-32 flex items-center min-h-screen relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col items-center">
             
             <div class="text-center reveal relative z-20">
@@ -291,8 +287,7 @@
             </div>
             <p class="text-slate-500 text-sm font-light mb-10">Une ligne, ses horaires.</p>
 
-                <div data-team="u3" class="filet pt-6 pb-6 grid grid-cols-[3rem_1fr_auto] md:grid-cols-[4rem_1fr_2fr_auto] gap-4 md:gap-8 items-center cursor-pointer group reveal team-card-reveal">
-                    <span class="numero text-2xl md:text-3xl group-hover:text-accent transition-colors">01</span>
+                <div data-team="u3" class="filet pt-6 pb-6 grid grid-cols-[1fr_auto] md:grid-cols-[1fr_2fr_auto] gap-4 md:gap-8 items-center cursor-pointer group reveal team-card-reveal">
                     <div>
                         <p class="text-accent text-[10px] md:text-[11px] font-black tracking-[0.22em] uppercase mb-1">U3 — U7</p>
                         <h3 class="titre-brut text-white text-xl md:text-3xl group-hover:text-accent transition-colors">Baby Futsal</h3>
@@ -300,8 +295,7 @@
                     <p class="hidden md:block text-slate-500 text-sm font-light">Éveil en immersion néerlandophone, hors compétition.</p>
                     <span class="text-slate-600 group-hover:text-accent transition-colors font-black text-[10px] tracking-[0.16em] uppercase whitespace-nowrap">Horaires</span>
                 </div>
-                <div data-team="u15_u17" class="filet pt-6 pb-6 grid grid-cols-[3rem_1fr_auto] md:grid-cols-[4rem_1fr_2fr_auto] gap-4 md:gap-8 items-center cursor-pointer group reveal team-card-reveal">
-                    <span class="numero text-2xl md:text-3xl group-hover:text-accent transition-colors">02</span>
+                <div data-team="u15_u17" class="filet pt-6 pb-6 grid grid-cols-[1fr_auto] md:grid-cols-[1fr_2fr_auto] gap-4 md:gap-8 items-center cursor-pointer group reveal team-card-reveal">
                     <div>
                         <p class="text-accent text-[10px] md:text-[11px] font-black tracking-[0.22em] uppercase mb-1">U15 — U17</p>
                         <h3 class="titre-brut text-white text-xl md:text-3xl group-hover:text-accent transition-colors">Futsal</h3>
@@ -309,8 +303,7 @@
                     <p class="hidden md:block text-slate-500 text-sm font-light">Le cœur du projet jeunes, en compétition provinciale.</p>
                     <span class="text-slate-600 group-hover:text-accent transition-colors font-black text-[10px] tracking-[0.16em] uppercase whitespace-nowrap">Horaires</span>
                 </div>
-                <div data-team="u21" class="filet pt-6 pb-6 grid grid-cols-[3rem_1fr_auto] md:grid-cols-[4rem_1fr_2fr_auto] gap-4 md:gap-8 items-center cursor-pointer group reveal team-card-reveal">
-                    <span class="numero text-2xl md:text-3xl group-hover:text-accent transition-colors">03</span>
+                <div data-team="u21" class="filet pt-6 pb-6 grid grid-cols-[1fr_auto] md:grid-cols-[1fr_2fr_auto] gap-4 md:gap-8 items-center cursor-pointer group reveal team-card-reveal">
                     <div>
                         <p class="text-accent text-[10px] md:text-[11px] font-black tracking-[0.22em] uppercase mb-1">U21</p>
                         <h3 class="titre-brut text-white text-xl md:text-3xl group-hover:text-accent transition-colors">Espoirs</h3>
@@ -318,8 +311,7 @@
                     <p class="hidden md:block text-slate-500 text-sm font-light">L'antichambre de la Division 2.</p>
                     <span class="text-slate-600 group-hover:text-accent transition-colors font-black text-[10px] tracking-[0.16em] uppercase whitespace-nowrap">Horaires</span>
                 </div>
-                <div data-team="div2" class="filet pt-6 pb-6 grid grid-cols-[3rem_1fr_auto] md:grid-cols-[4rem_1fr_2fr_auto] gap-4 md:gap-8 items-center cursor-pointer group reveal team-card-reveal">
-                    <span class="numero text-2xl md:text-3xl group-hover:text-accent transition-colors">04</span>
+                <div data-team="div2" class="filet pt-6 pb-6 grid grid-cols-[1fr_auto] md:grid-cols-[1fr_2fr_auto] gap-4 md:gap-8 items-center cursor-pointer group reveal team-card-reveal">
                     <div>
                         <p class="text-accent text-[10px] md:text-[11px] font-black tracking-[0.22em] uppercase mb-1">Division 2 Nationale</p>
                         <h3 class="titre-brut text-white text-xl md:text-3xl group-hover:text-accent transition-colors">Équipe première</h3>
@@ -548,7 +540,8 @@
                 <i class="fas fa-times"></i>
             </button>
 
-            <div class="text-center mt-6 mb-6 shrink-0">
+            <!-- mt-10 sur mobile : les boutons Retour / Fermer (absolus, 40px) chevauchaient le titre. -->
+            <div class="text-center mt-10 md:mt-6 mb-6 shrink-0">
                 <div class="hidden">
                     <i class="far fa-clock"></i>
                 </div>
@@ -619,6 +612,21 @@
                          pas de dégradé plein ni de glow appuyé comme les CTA principaux. -->
                     <a id="popup-actu-cta" href="#" target="_blank" rel="noopener noreferrer" class="hidden items-center justify-center gap-2 border border-white/20 hover:border-accent text-white/80 hover:text-accent font-black px-4 py-2.5 transition-colors text-[10px] uppercase tracking-[0.14em]"></a>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation avant de quitter le site depuis la pop-up Actu (voir confirmerSortie). -->
+    <div id="confirm-sortie" class="fixed inset-0 z-[150] hidden items-center justify-center bg-night/80 backdrop-blur-sm px-6" role="dialog" aria-modal="true" aria-labelledby="confirm-sortie-titre">
+        <div class="bloc bg-night w-full max-w-sm p-6 md:p-8">
+            <p class="text-accent text-[11px] font-black tracking-[0.24em] uppercase mb-3">Lien externe</p>
+            <h3 id="confirm-sortie-titre" class="titre-brut text-white text-2xl mb-3">Vous quittez le site</h3>
+            <p class="text-slate-300 text-sm font-light leading-relaxed mb-6">
+                Ce lien ouvre <strong id="confirm-sortie-domaine" class="text-white font-bold"></strong> dans un nouvel onglet. Continuer&nbsp;?
+            </p>
+            <div class="flex flex-wrap gap-3">
+                <button type="button" id="confirm-sortie-ok" class="bouton-plein">Continuer</button>
+                <button type="button" id="confirm-sortie-annuler" class="bouton-vide">Rester ici</button>
             </div>
         </div>
     </div>
@@ -1538,6 +1546,15 @@
             if (ctaLink) {
                 cta.href = ctaLink;
                 cta.textContent = ctaLabel;
+                // onclick (et non addEventListener) : la pop-up peut être affichée plusieurs
+                // fois (aperçu modérateur), un seul gestionnaire doit rester actif.
+                cta.onclick = (e) => {
+                    const url = new URL(cta.href, location.href);
+                    if (url.host === location.host) return;
+                    e.preventDefault();
+                    clearTimeout(actuAutoDismissTimer);
+                    confirmerSortie(url);
+                };
                 cta.classList.remove('hidden'); cta.classList.add('flex');
             } else {
                 cta.classList.add('hidden'); cta.classList.remove('flex');
@@ -1556,10 +1573,49 @@
             // Notification non bloquante : disparaît seule après 10s sans interaction.
             setTimeout(() => {
                 modal.classList.remove('hidden');
+                placerActuPopupAuHasard(modal);
                 void modal.offsetWidth; // force reflow pour que la transition joue
                 modal.classList.remove('opacity-0', '-translate-y-3'); modal.classList.add('opacity-100');
                 actuAutoDismissTimer = setTimeout(close, 10000);
             }, delay);
+        }
+
+        // Sur ordinateur, la notification apparaît à un endroit différent à chaque visite,
+        // dans l'une des deux bandes latérales du hero : elle attire l'œil sans couvrir le
+        // titre central, la navigation (haut) ni le bouton WhatsApp (bas-droite). Sur
+        // téléphone, elle garde sa place fixe sous le bandeau sponsors.
+        function placerActuPopupAuHasard(modal) {
+            if (window.innerWidth < 1024) return;
+            const w = modal.offsetWidth, h = modal.offsetHeight;
+            const W = window.innerWidth, H = window.innerHeight;
+            const bande = Math.max(0, W * 0.24 - w); // marge de déplacement dans la bande latérale
+            const aGauche = Math.random() < 0.5;
+            const left = aGauche ? 24 + Math.random() * bande : W - w - 24 - Math.random() * bande;
+            const topMin = 150, topMax = Math.max(topMin, H - h - 130);
+            const top = topMin + Math.random() * (topMax - topMin);
+            // Même bascule vers un positionnement libre que le déplacement à la souris.
+            // Transition coupée le temps du placement : la pop-up anime « transition-all »,
+            // elle glisserait sinon depuis le coin haut-droit jusqu'à sa nouvelle place.
+            modal.style.transition = 'none';
+            modal.classList.remove('right-4', 'top-28', 'sm:top-32');
+            Object.assign(modal.style, { left: `${Math.round(left)}px`, top: `${Math.round(top)}px`, right: 'auto' });
+            void modal.offsetWidth; // applique la position avant de rétablir la transition
+            modal.style.transition = '';
+        }
+
+        // Lien externe depuis la pop-up (page RBFA, billetterie…) : on prévient avant de
+        // quitter le site, puis on ouvre dans un nouvel onglet si le visiteur confirme.
+        function confirmerSortie(url) {
+            const boite = document.getElementById('confirm-sortie');
+            document.getElementById('confirm-sortie-domaine').textContent = url.hostname.replace(/^www\./, '');
+            const fermer = () => { boite.classList.add('hidden'); boite.classList.remove('flex'); document.removeEventListener('keydown', surTouche); };
+            const surTouche = (e) => { if (e.key === 'Escape') fermer(); };
+            document.getElementById('confirm-sortie-ok').onclick = () => { window.open(url.href, '_blank', 'noopener'); fermer(); };
+            document.getElementById('confirm-sortie-annuler').onclick = fermer;
+            boite.onclick = (e) => { if (e.target === boite) fermer(); };
+            document.addEventListener('keydown', surTouche);
+            boite.classList.remove('hidden'); boite.classList.add('flex');
+            document.getElementById('confirm-sortie-ok').focus();
         }
 
         // Cherche l'événement le plus proche actuellement éligible (indépendamment de son

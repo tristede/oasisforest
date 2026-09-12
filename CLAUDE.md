@@ -242,8 +242,16 @@ nouveau rapport fourni par le club.
   page. Complètes mais pas envahissantes — ne pas les remonter en colonne.
 - **Menu mobile aligné à droite** (`items-end text-right`), du même côté que la croix de
   fermeture — comme sur l'ancienne landing (`old.html`).
-- **Logo plus petit que le nom** dans l'en-tête : c'est « Union Oasis Forest » qui doit se
-  lire d'abord (`h-7` desktop, `h-5` mobile), avec un `gap-4` pour ne pas coller au texte.
+- **Logo plus petit que le nom** dans l'en-tête desktop : c'est « Union Oasis Forest » qui
+  doit se lire d'abord (`h-7`), avec un `gap-4` pour ne pas coller au texte.
+- **Pas de barre d'en-tête sur téléphone** (demande du club, 12/09/2026) : le bandeau
+  sponsors (`h-12`) occupe le haut de l'écran et le bouton menu en ferme le bout (carré
+  `w-14 h-12`, fond `night`, icône `text-3xl`). Le nom de l'association reste lisible
+  dans le hero de l'accueil, les titres de page et le pied de page (mentions légales).
+- **Pas de numéros sur les équipes** (liste de l'accueil, blocs d'`equipes.html`) : ils
+  faisaient doublon avec les catégories (U3 — U7, U15 — U17…). La numérotation `.numero`
+  reste réservée aux sections.
+- **Compteur de vues** : « + 2 033 800 », sans « de », le « + » à la taille du nombre.
 
 ## Inscription en ligne (`inscription.html`)
 
@@ -376,6 +384,11 @@ des parents ; la page n'est volontairement pas dans la navigation.
      positionnement libre en pixels au premier drag. Transition CSS coupée pendant le drag
      (`modal.style.transition = 'none'`) et `user-select: none` sur `<body>`, sinon
      respectivement rattrapage saccadé et sélection de texte parasite en arrière-plan.
+   - **Position tirée au hasard sur ordinateur** (`placerActuPopupAuHasard()`, ≥ 1024px) :
+     l'une des deux bandes latérales du hero, jamais sur le titre central, la navigation
+     ni le bouton WhatsApp. Sur téléphone, place fixe sous le bandeau sponsors.
+   - **Lien « + d'infos » vers un autre site** (RBFA, billetterie…) : boîte de confirmation
+     `#confirm-sortie` (« Vous quittez le site »), puis ouverture dans un nouvel onglet.
    - Badge « Division 2 Nationale » du hero cliquable → `previewActuPopup()` : affiche
      immédiatement la notification actuellement éligible (même déjà fermée aujourd'hui),
      outil de vérification pour un modérateur. Logique d'éligibilité partagée via

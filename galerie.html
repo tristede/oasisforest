@@ -57,8 +57,10 @@
         </div>
     </nav>
 
-    <button id="mobile-menu-btn" aria-label="Ouvrir le menu de navigation" class="lg:hidden fixed top-3 right-4 text-white z-[70] p-1.5 transition-transform active:scale-90">
-        <i class="fas fa-bars text-2xl"></i>
+    <!-- Sur téléphone, pas de barre d'en-tête : le bandeau sponsors occupe le haut de
+         l'écran et ce bouton en ferme le bout, à la même hauteur (h-12). -->
+    <button id="mobile-menu-btn" aria-label="Ouvrir le menu de navigation" class="lg:hidden fixed top-0 right-0 z-[70] w-14 h-12 flex items-center justify-center bg-night border-l border-b border-white/10 text-white transition-transform active:scale-90">
+        <i class="fas fa-bars text-3xl"></i>
     </button>
 
     <div id="mobile-menu" class="fixed inset-0 z-[60] bg-night/95 backdrop-blur-xl opacity-0 invisible transition-all duration-300 lg:hidden flex flex-col justify-center">
@@ -73,19 +75,13 @@
     </div>
 
     <!-- Bandeau sponsors (data/sponsors.json). Masqué automatiquement si la liste est vide. -->
-    <div id="sponsors-marquee" class="fixed top-12 lg:top-20 w-full z-40 bg-black/70 backdrop-blur-md border-b border-white/10 py-2 flex overflow-hidden">
+    <div id="sponsors-marquee" class="fixed top-0 lg:top-20 h-12 lg:h-auto w-full z-40 bg-black/70 backdrop-blur-md border-b border-white/10 py-2 flex overflow-hidden">
         <div id="sponsors-track-1" class="flex animate-marquee min-w-full shrink-0 items-center justify-around gap-12 px-6"></div>
         <div id="sponsors-track-2" class="flex animate-marquee min-w-full shrink-0 items-center justify-around gap-12 px-6" aria-hidden="true"></div>
     </div>
 
-    <!-- Barre d'en-tête mobile : la navbar desktop est masquée sous 1024px, or le nom
-         de l'organisation doit rester visible en haut de chaque page. -->
-    <a href="index.html" aria-label="Union Oasis Forest - accueil" class="lg:hidden fixed top-0 left-0 right-0 z-[66] h-12 bg-night/90 backdrop-blur-md border-b border-white/10 flex items-center gap-3 pl-5 pr-14">
-        <img src="logo%20uof.svg" alt="" aria-hidden="true" class="h-5 w-auto opacity-90 shrink-0">
-        <span class="text-white font-black text-[11px] tracking-[0.22em] uppercase leading-none truncate">Union Oasis Forest</span>
-    </a>
 
-    <header class="pt-28 lg:pt-32 pb-8 relative z-10">
+    <header class="pt-20 lg:pt-32 pb-8 relative z-10">
         <div class="max-w-6xl mx-auto px-6 lg:px-8">
             <p class="text-accent text-[11px] font-black tracking-[0.28em] uppercase mb-5">Galerie</p>
             <h1 class="titre-brut text-white text-5xl md:text-7xl lg:text-8xl mb-8">La saison<br>en images</h1>
