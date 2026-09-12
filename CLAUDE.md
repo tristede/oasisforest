@@ -245,8 +245,9 @@ nouveau rapport fourni par le club.
 - **Logo plus petit que le nom** dans l'en-tête desktop : c'est « Union Oasis Forest » qui
   doit se lire d'abord (`h-7`), avec un `gap-4` pour ne pas coller au texte.
 - **Pas de barre d'en-tête sur téléphone** (demande du club, 12/09/2026) : le bandeau
-  sponsors (`h-12`) occupe le haut de l'écran et le bouton menu en ferme le bout (carré
-  `w-14 h-12`, fond `night`, icône `text-3xl`). Le nom de l'association reste lisible
+  sponsors (`h-12`) occupe le haut de l'écran ; le bouton menu (et la croix) **flotte juste
+  en dessous, à droite, sans cadre ni fond** (`top-[3.6rem] right-4`, icône `text-3xl` avec
+  ombre portée). Une première version en case accolée au bandeau a été refusée par le club. Le nom de l'association reste lisible
   dans le hero de l'accueil, les titres de page et le pied de page (mentions légales).
 - **Pas de numéros sur les équipes** (liste de l'accueil, blocs d'`equipes.html`) : ils
   faisaient doublon avec les catégories (U3 — U7, U15 — U17…). La numérotation `.numero`

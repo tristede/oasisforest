@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Inscrire un enfant à l'Union Oasis Forest : Baby Futsal, U15 et U17, saison 2026-2027.">
+    <meta name="description" content="Inscrire un jeune à l'Union Oasis Forest : Baby Futsal, U15 et U17, saison 2026-2027.">
     <title>Inscription | Union Oasis Forest</title>
     <link rel="canonical" href="https://oasisforest.be/inscription.html">
 
@@ -15,7 +15,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://oasisforest.be/inscription.html">
     <meta property="og:title" content="Inscription | Union Oasis Forest">
-    <meta property="og:description" content="Inscrire un enfant à l'Union Oasis Forest : Baby Futsal, U15 et U17, saison 2026-2027.">
+    <meta property="og:description" content="Inscrire un jeune à l'Union Oasis Forest : Baby Futsal, U15 et U17, saison 2026-2027.">
     <meta property="og:image" content="https://oasisforest.be/img/partage-inscription.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -38,7 +38,12 @@
         .champ:focus { outline:none; border-color:#00c2ff; }
         .champ::placeholder { color:#475569; }
         input[type=date].champ { color-scheme:dark; }
-        .choix { position:relative; display:block; cursor:pointer; }
+        /* iOS affiche le champ date à sa largeur « naturelle », qui déborde de l'écran : on le
+           ramène à la largeur de la colonne et on aligne la date à gauche. */
+        input[type=date].champ { -webkit-appearance:none; appearance:none; display:block; min-width:0; max-width:100%; min-height:3.3rem; }
+        input[type=date].champ::-webkit-date-and-time-value { text-align:left; }
+        .choix { position:relative; display:flex; cursor:pointer; }
+        .choix span { flex:1; } /* cases d'un même groupe à la même hauteur */
         .choix input { position:absolute; opacity:0; pointer-events:none; }
         .choix span { display:block; border:1px solid rgba(255,255,255,.15); padding:1rem 1.1rem;
             color:#cbd5e1; font-weight:800; font-size:.8rem; letter-spacing:.12em; text-transform:uppercase;
@@ -54,6 +59,8 @@
             padding:1rem; cursor:pointer; color:#94a3b8; font-size:.85rem; }
         .fichier:hover { border-color:#00c2ff; color:#fff; }
         .fichier input { position:absolute; opacity:0; width:1px; height:1px; }
+        /* Paiement : trois cases étroites sur téléphone, « En partie » doit tenir sur une ligne. */
+        .paiement-choix .choix span { text-align:center; padding-left:.4rem; padding-right:.4rem; white-space:nowrap; letter-spacing:.08em; }
         /* Suggestions de messagerie sous les champs e-mail (voir le script en bas de page). */
         .suggestions-mail { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.6rem; }
         .suggestions-mail button { border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.03); color:#cbd5e1;
@@ -119,7 +126,7 @@
 
     <header class="pt-20 lg:pt-44 pb-8 relative z-10">
         <div class="max-w-6xl mx-auto px-6 lg:px-8">
-            <h1 class="titre-brut text-white text-5xl md:text-7xl lg:text-8xl mb-8">Inscrire<br>un enfant</h1>
+            <h1 class="titre-brut text-white text-5xl md:text-7xl lg:text-8xl mb-8">Inscrire<br>un jeune</h1>
             <div class="filet pt-6">
                 <p class="text-slate-300 text-base md:text-lg font-light max-w-2xl leading-relaxed">Baby Futsal, U15 et U17 — saison 2026-2027. Cinq minutes, et la fiche arrive directement au club.</p>
             </div>
@@ -178,10 +185,6 @@
                         <label class="choix"><input type="radio" name="categorie" value="u15"><span>Futsal U15<small>Moins de 15 ans</small></span></label>
                         <label class="choix"><input type="radio" name="categorie" value="u17"><span>Futsal U17<small>Moins de 17 ans</small></span></label>
                     </div>
-                    <p class="text-slate-500 text-xs mt-4 leading-relaxed">
-                        Espoirs U21 et équipe première : l'inscription passe par la fédération,
-                        <a href="contact.html" class="text-slate-300 hover:text-accent transition-colors">contactez-nous</a>.
-                    </p>
                 </fieldset>
 
                 <fieldset class="filet pt-6">
@@ -231,7 +234,7 @@
                 <fieldset class="filet pt-6">
                     <legend class="flex items-baseline gap-4 mb-8 w-full"><span class="numero text-2xl md:text-3xl">04</span><span class="titre-brut text-white text-xl md:text-2xl">Cotisation</span></legend>
                     <p class="champ-label">La cotisation est-elle déjà payée ?</p>
-                    <div class="grid grid-cols-3 gap-3 mb-8">
+                    <div class="paiement-choix grid grid-cols-3 gap-3 mb-8">
                         <label class="choix"><input type="radio" name="paiement" value="non" required><span>Non</span></label>
                         <label class="choix"><input type="radio" name="paiement" value="partie"><span>En partie</span></label>
                         <label class="choix"><input type="radio" name="paiement" value="oui"><span>Oui</span></label>
@@ -259,7 +262,7 @@
                 <div class="filet pt-6">
                     <label class="flex items-start gap-3 cursor-pointer">
                         <input type="checkbox" name="newsletter" class="mt-1 w-4 h-4 accent-[#00c2ff] shrink-0">
-                        <span class="text-slate-400 text-sm leading-relaxed">Recevoir les annonces du club par mail.</span>
+                        <span class="text-slate-400 text-sm leading-relaxed">J'accepte de recevoir des annonces relatives au club par mail.</span>
                     </label>
                     <label class="flex items-start gap-3 cursor-pointer mt-5">
                         <input type="checkbox" name="consentement" required class="mt-1 w-4 h-4 accent-[#00c2ff] shrink-0">
