@@ -161,7 +161,7 @@
                 </div>
 
                 <fieldset class="filet pt-6">
-                    <legend class="flex items-baseline gap-4 mb-8 w-full"><span class="numero text-2xl md:text-3xl">01</span><span class="titre-brut text-white text-xl md:text-2xl">L'enfant</span></legend>
+                    <legend class="flex items-baseline gap-4 mb-8 w-full"><span class="numero text-2xl md:text-3xl">01</span><span class="titre-brut text-white text-xl md:text-2xl">Le jeune</span></legend>
                     <div class="grid sm:grid-cols-2 gap-5">
                         <div>
                             <label class="champ-label" for="enfantPrenom">Prénom</label>
@@ -289,7 +289,7 @@
                     La preuve de paiement n'a pas pu être jointe : envoyez-la en message privé WhatsApp au +32 477 02 20 21.
                 </p>
                 <div class="flex flex-wrap gap-3 mt-8">
-                    <button type="button" id="autre-enfant" class="bouton-vide">Inscrire un autre enfant</button>
+                    <button type="button" id="autre-enfant" class="bouton-vide">Inscrire un autre jeune</button>
                     <a href="index.html" class="bouton-vide">Retour à l'accueil</a>
                 </div>
             </div>
@@ -499,7 +499,7 @@
                 const val = (id) => document.getElementById(id).value.trim();
                 const categorie = form.querySelector('input[name=categorie]:checked');
                 const lignes = [
-                    ['Enfant', `${val('enfantPrenom')} ${val('enfantNom')}`],
+                    ['Jeune', `${val('enfantPrenom')} ${val('enfantNom')}`],
                     ['Date de naissance', val('dateNaissance').split('-').reverse().join('/')],
                     ['Catégorie', categorie ? categorie.nextElementSibling.firstChild.textContent.trim() : ''],
                     ['Personne de contact', val('parentNom')],
