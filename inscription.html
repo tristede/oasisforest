@@ -52,6 +52,11 @@
             padding:1rem; cursor:pointer; color:#94a3b8; font-size:.85rem; }
         .fichier:hover { border-color:#00c2ff; color:#fff; }
         .fichier input { position:absolute; opacity:0; width:1px; height:1px; }
+        /* Suggestions de messagerie sous les champs e-mail (voir le script en bas de page). */
+        .suggestions-mail { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.6rem; }
+        .suggestions-mail button { border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.03); color:#cbd5e1;
+            font-size:.8rem; font-weight:700; padding:.45rem .7rem; transition:border-color .2s, color .2s; }
+        .suggestions-mail button:hover, .suggestions-mail button:focus-visible { border-color:#00c2ff; color:#fff; outline:none; }
     </style>
 </head>
 <body class="antialiased font-sans flex flex-col min-h-screen">
@@ -190,6 +195,7 @@
                         <div>
                             <label class="champ-label" for="parentEmail">E-mail</label>
                             <input class="champ" type="email" id="parentEmail" name="parentEmail" required maxlength="120" autocomplete="email">
+                            <div class="suggestions-mail hidden" data-pour="parentEmail"></div>
                         </div>
                     </div>
                     <p class="text-slate-500 text-xs mt-4">Ce numéro sert aussi de contact en cas d'urgence pendant les séances.</p>
@@ -213,6 +219,7 @@
                             <div>
                                 <label class="champ-label" for="parent2Email">E-mail <span class="normal-case tracking-normal font-medium text-slate-600">(facultatif)</span></label>
                                 <input class="champ" type="email" id="parent2Email" name="parent2Email" maxlength="120" autocomplete="off" disabled>
+                                <div class="suggestions-mail hidden" data-pour="parent2Email"></div>
                             </div>
                         </div>
                     </div>
@@ -222,9 +229,9 @@
                     <legend class="flex items-baseline gap-4 mb-8 w-full"><span class="numero text-2xl md:text-3xl">04</span><span class="titre-brut text-white text-xl md:text-2xl">Cotisation</span></legend>
                     <p class="champ-label">La cotisation est-elle déjà payée ?</p>
                     <div class="grid grid-cols-3 gap-3 mb-8">
-                        <label class="choix"><input type="radio" name="paiement" value="oui" required><span>Oui</span></label>
+                        <label class="choix"><input type="radio" name="paiement" value="non" required><span>Non</span></label>
                         <label class="choix"><input type="radio" name="paiement" value="partie"><span>En partie</span></label>
-                        <label class="choix"><input type="radio" name="paiement" value="non"><span>Non</span></label>
+                        <label class="choix"><input type="radio" name="paiement" value="oui"><span>Oui</span></label>
                     </div>
                     <p class="champ-label">Preuve de paiement <span class="normal-case tracking-normal font-medium text-slate-600">(facultatif)</span></p>
                     <label class="fichier" for="preuve">
@@ -240,18 +247,15 @@
 
                 <div class="filet pt-6">
                     <label class="flex items-start gap-3 cursor-pointer">
+                        <input type="checkbox" name="newsletter" class="mt-1 w-4 h-4 accent-[#00c2ff] shrink-0">
+                        <span class="text-slate-400 text-sm leading-relaxed">Recevoir les annonces du club par mail.</span>
+                    </label>
+                    <label class="flex items-start gap-3 cursor-pointer mt-5">
                         <input type="checkbox" name="consentement" required class="mt-1 w-4 h-4 accent-[#00c2ff] shrink-0">
                         <span class="text-slate-400 text-sm leading-relaxed">
                             J'accepte que ces informations soient utilisées par L'Oasis de Forest ASBL pour la gestion
                             des inscriptions et des cotisations. Elles ne sont ni vendues ni utilisées à d'autres fins ;
                             pour les consulter ou les faire supprimer : union@oasisforest.be.
-                        </span>
-                    </label>
-                    <label class="flex items-start gap-3 cursor-pointer mt-5">
-                        <input type="checkbox" name="newsletter" class="mt-1 w-4 h-4 accent-[#00c2ff] shrink-0">
-                        <span class="text-slate-400 text-sm leading-relaxed">
-                            Recevoir les annonces du club par mail
-                            <span class="text-slate-600">(facultatif, désinscription possible à tout moment)</span>.
                         </span>
                     </label>
                 </div>
@@ -440,6 +444,33 @@
                     bouton.disabled = false;
                     bouton.textContent = texteBouton;
                 }
+            });
+
+            // Suggestions de messagerie : dès le « @ », quelques boutons proposent les domaines
+            // courants, filtrés par les lettres tapées après le @ (« @g » → gmail.com). Un toucher
+            // complète l'adresse. Boutons plutôt que <datalist>, mal affiché sur iPhone.
+            const DOMAINES = ['gmail.com', 'hotmail.com', 'outlook.com', 'icloud.com', 'hotmail.be', 'live.be',
+                'outlook.be', 'yahoo.fr', 'yahoo.com', 'telenet.be', 'skynet.be', 'proximus.be'];
+            document.querySelectorAll('.suggestions-mail').forEach((boite) => {
+                const champ = document.getElementById(boite.dataset.pour);
+                const afficher = () => {
+                    const at = champ.value.indexOf('@');
+                    const tape = at === -1 ? null : champ.value.slice(at + 1).trim().toLowerCase();
+                    const choix = tape === null ? [] : DOMAINES.filter((d) => d.startsWith(tape) && d !== tape).slice(0, 4);
+                    boite.innerHTML = choix.map((d) => `<button type="button" data-domaine="${d}">@${d}</button>`).join('');
+                    boite.classList.toggle('hidden', !choix.length);
+                };
+                champ.addEventListener('input', afficher);
+                champ.addEventListener('focus', afficher);
+                champ.addEventListener('blur', () => setTimeout(() => boite.classList.add('hidden'), 200));
+                // Le toucher sur une suggestion ne doit pas faire perdre le focus au champ.
+                boite.addEventListener('pointerdown', (e) => e.preventDefault());
+                boite.addEventListener('click', (e) => {
+                    const bouton = e.target.closest('button');
+                    if (!bouton) return;
+                    champ.value = champ.value.slice(0, champ.value.indexOf('@') + 1) + bouton.dataset.domaine;
+                    boite.classList.add('hidden');
+                });
             });
 
             // Fratrie : on garde les coordonnées du parent, on vide ce qui concerne l'enfant.

@@ -298,6 +298,9 @@ des parents ; la page n'est volontairement pas dans la navigation.
   quand même : le serveur refuse l'envoi de toute façon.
 - ⚠️ L'adresse **inscriptions@oasisforest.be** doit exister (alias Workspace) : c'est le
   contact affiché quand le formulaire est fermé.
+- Paiement proposé dans l'ordre **Non, En partie, Oui** ; case newsletter **avant** le
+  consentement. Sous les champs e-mail, boutons de **suggestion de messagerie** dès le
+  « @ » (liste `DOMAINES` du script de la page), pas de `<datalist>` (mal rendu sur iPhone).
 
 ## Pièges rencontrés
 
