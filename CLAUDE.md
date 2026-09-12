@@ -41,6 +41,7 @@ aucune entité enregistrée. Ne pas réintroduire cette formulation.
 | `galerie.html` | Galerie complète avec filtres, rendue depuis `data/gallery.json` |
 | `partenaires.html` | Chiffres d'impact (argument sponsoring), argumentaire, liste des partenaires |
 | `contact.html` | Coordonnées, carte, adresses légales |
+| `inscription.html` | Formulaire d'inscription des jeunes (Baby Futsal, U15, U17), envoyé à l'outil admin qui crée la fiche dans Notion |
 | `assets/site.css` | Styles du site, partagés par les 6 pages (extraits d'`index.html`) |
 | `assets/tailwind-config.js` | Config Tailwind partagée (chargée après le CDN) |
 | `assets/commun.js` | Menu mobile, `.reveal`, année, protection photos, bandeau sponsors — pour les 5 pages secondaires (`index.html` garde son propre script) |
@@ -241,6 +242,36 @@ nouveau rapport fourni par le club.
   page. Complètes mais pas envahissantes — ne pas les remonter en colonne.
 - **Logo plus petit que le nom** dans l'en-tête : c'est « Union Oasis Forest » qui doit se
   lire d'abord (`h-7` desktop, `h-5` mobile), avec un `gap-4` pour ne pas coller au texte.
+
+## Inscription en ligne (`inscription.html`)
+
+Remplace l'encodage à la main des affiliés. Le lien se partage dans les groupes WhatsApp
+des parents ; la page n'est volontairement pas dans la navigation.
+
+- **Circuit** : la page envoie un `POST` multipart à `/api/inscription` de l'outil admin
+  (`oasisforest-admin-tool`, Worker Cloudflare, dépôt local `~/oasisforest-admin-tool`,
+  fichier `src/routes/inscription-publique.js`), qui crée la fiche dans la base Notion
+  **👥 Affiliés**. Le site reste statique : il ne stocke et ne voit aucune donnée.
+- **Catégories** : la page affiche les noms du site (Baby Futsal, Futsal U15, Futsal U17)
+  mais l'outil écrit les valeurs Notion existantes (`Baby-foot`, `Futsal U15`,
+  `Futsal U17`) — c'est ce qui fait fonctionner le barème et les accès coachs de l'outil
+  admin. Ne pas renommer ces options dans Notion sans modifier l'outil admin en même
+  temps (listes déroulantes, `COTISATION_PRESETS`, `roles.js`). U21 et D2 sont exclues :
+  ces joueurs s'inscrivent via la RBFA.
+- **Remplis automatiquement par le serveur** : cotisation due (barème : Baby-foot 250 €,
+  U15/U17 175 €), date d'inscription à l'heure de Bruxelles (la colonne Saison en
+  dépend), « Créé par : Formulaire en ligne (oasisforest.be) ». « Montant payé » reste à
+  0 : la déclaration du parent (« Paiement déclaré (parent) » + « Preuve de paiement »)
+  n'est jamais prise pour un encaissement, c'est le club qui valide.
+- **Champs demandés** : identité de l'enfant, catégorie, parent (nom, téléphone qui sert
+  aussi de contact d'urgence, e-mail), paiement déclaré, preuve facultative. Pas d'infos
+  médicales, de carte d'identité ni de nationalité (choix du club). L'autorisation à
+  l'image est gérée à part pendant la saison.
+- **Anti-abus** (côté Worker) : origine limitée à `https://oasisforest.be`, champ piège,
+  délai minimal de 3 s, plafond de 10 envois/heure par connexion (IP hachée, TTL 1 h).
+- **Tester en local** : `npm run dev` dans l'outil admin (port 8787) + serveur du site
+  (port 4173) ; la page bascule seule sur `localhost:8787`. ⚠️ Le mode local écrit dans le
+  **vrai** Notion : préfixer les fiches de test (`TEST-…`) et les supprimer après.
 
 ## Pièges rencontrés
 

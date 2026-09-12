@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Inscrire un enfant à l'Union Oasis Forest : Baby Futsal, U15 et U17, saison 2026-2027.">
+    <title>Inscription | Union Oasis Forest</title>
+    <link rel="canonical" href="https://oasisforest.be/inscription.html">
+
+    <link rel="icon" type="image/svg+xml" href="./logo%20uof.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://oasisforest.be/inscription.html">
+    <meta property="og:title" content="Inscription | Union Oasis Forest">
+    <meta property="og:description" content="Inscrire un enfant à l'Union Oasis Forest : Baby Futsal, U15 et U17, saison 2026-2027.">
+    <meta property="og:image" content="https://oasisforest.be/img/D85A3835.webp">
+    <meta property="og:locale" content="fr_BE">
+    <meta property="og:site_name" content="Union Oasis Forest">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <script src="assets/tailwind-config.js?v=202609120124"></script>
+    <link rel="stylesheet" href="assets/site.css?v=202609120124">
+    <style>
+        /* Formulaire d'inscription — même grammaire que le reste du site : angles vifs,
+           filets, capitales serrées. Styles propres à cette page, d'où leur place ici. */
+        .champ-label { display:block; font-size:10px; font-weight:900; letter-spacing:.2em;
+            text-transform:uppercase; color:#94a3b8; margin-bottom:.5rem; }
+        .champ { width:100%; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.15);
+            color:#fff; padding:.85rem 1rem; font-size:1rem; border-radius:0; transition:border-color .2s; }
+        /* 1rem minimum : en dessous, Safari iOS zoome sur le champ au focus. */
+        .champ:focus { outline:none; border-color:#00c2ff; }
+        .champ::placeholder { color:#475569; }
+        input[type=date].champ { color-scheme:dark; }
+        .choix { position:relative; display:block; cursor:pointer; }
+        .choix input { position:absolute; opacity:0; pointer-events:none; }
+        .choix span { display:block; border:1px solid rgba(255,255,255,.15); padding:1rem 1.1rem;
+            color:#cbd5e1; font-weight:800; font-size:.8rem; letter-spacing:.12em; text-transform:uppercase;
+            transition:border-color .2s, background .2s, color .2s; }
+        .choix span small { display:block; font-weight:500; letter-spacing:0; text-transform:none;
+            color:#64748b; font-size:.75rem; margin-top:.3rem; }
+        .choix:hover span { border-color:rgba(0,194,255,.5); }
+        .choix input:checked + span { border-color:#00c2ff; background:rgba(0,194,255,.08); color:#fff; }
+        .choix input:focus-visible + span { outline:2px solid #00c2ff; outline-offset:2px; }
+        /* Champ piège anti-robots : hors écran, jamais vu ni tabulé par un humain. */
+        .piege { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+        .fichier { display:flex; align-items:center; gap:1rem; border:1px dashed rgba(255,255,255,.2);
+            padding:1rem; cursor:pointer; color:#94a3b8; font-size:.85rem; }
+        .fichier:hover { border-color:#00c2ff; color:#fff; }
+        .fichier input { position:absolute; opacity:0; width:1px; height:1px; }
+    </style>
+</head>
+<body class="antialiased font-sans flex flex-col min-h-screen">
+
+    <!-- Fond animé -->
+    <div class="bg-glow">
+        <div class="blob-1 animate-blob"></div>
+        <div class="blob-2 animate-blob"></div>
+        <div class="blob-3 animate-blob"></div>
+    </div>
+
+    <!-- NAVIGATION — bloc identique sur toutes les pages du site.
+         Si tu le modifies, reporte la modification sur index.html, a-propos.html,
+         equipes.html, galerie.html, partenaires.html et contact.html. -->
+    <nav class="hidden lg:block fixed top-0 w-full z-50 bg-night/85 backdrop-blur-md border-b border-white/10 h-20">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 h-full">
+            <div class="flex justify-between items-center h-full gap-10">
+                <a href="index.html" aria-label="Union Oasis Forest - accueil" class="flex-shrink-0 flex items-center gap-4 group">
+                    <img src="logo%20uof.svg" alt="" aria-hidden="true" class="h-7 w-auto opacity-90 group-hover:opacity-100 transition-opacity">
+                    <span class="font-black text-white text-sm xl:text-base tracking-[0.22em] uppercase leading-none group-hover:text-accent transition-colors">Union Oasis Forest</span>
+                </a>
+                <div class="flex items-center gap-6 xl:gap-9">
+                    <a href="index.html" class="text-slate-400 hover:text-white border-b-2 border-transparent pb-1 transition-colors font-bold text-[11px] xl:text-xs uppercase tracking-[0.16em] whitespace-nowrap">Accueil</a>
+                    <a href="a-propos.html" class="text-slate-400 hover:text-white border-b-2 border-transparent pb-1 transition-colors font-bold text-[11px] xl:text-xs uppercase tracking-[0.16em] whitespace-nowrap">Le club</a>
+                    <a href="equipes.html" class="text-slate-400 hover:text-white border-b-2 border-transparent pb-1 transition-colors font-bold text-[11px] xl:text-xs uppercase tracking-[0.16em] whitespace-nowrap">Nos équipes</a>
+                    <a href="galerie.html" class="text-slate-400 hover:text-white border-b-2 border-transparent pb-1 transition-colors font-bold text-[11px] xl:text-xs uppercase tracking-[0.16em] whitespace-nowrap">Galerie</a>
+                    <a href="partenaires.html" class="text-slate-400 hover:text-white border-b-2 border-transparent pb-1 transition-colors font-bold text-[11px] xl:text-xs uppercase tracking-[0.16em] whitespace-nowrap">Partenaires</a>
+                    <a href="contact.html" class="text-slate-400 hover:text-white border-b-2 border-transparent pb-1 transition-colors font-bold text-[11px] xl:text-xs uppercase tracking-[0.16em] whitespace-nowrap">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <button id="mobile-menu-btn" aria-label="Ouvrir le menu de navigation" class="lg:hidden fixed top-3 right-4 text-white z-[70] p-1.5 transition-transform active:scale-90">
+        <i class="fas fa-bars text-2xl"></i>
+    </button>
+
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-night/95 backdrop-blur-xl opacity-0 invisible transition-all duration-300 lg:hidden flex flex-col justify-center">
+        <div class="flex flex-col items-start gap-6 w-full px-8">
+            <a href="index.html" class="mobile-link titre-brut text-3xl text-white hover:text-accent transition-colors">Accueil</a>
+            <a href="a-propos.html" class="mobile-link titre-brut text-3xl text-white hover:text-accent transition-colors">Le club</a>
+            <a href="equipes.html" class="mobile-link titre-brut text-3xl text-white hover:text-accent transition-colors">Nos équipes</a>
+            <a href="galerie.html" class="mobile-link titre-brut text-3xl text-white hover:text-accent transition-colors">Galerie</a>
+            <a href="partenaires.html" class="mobile-link titre-brut text-3xl text-white hover:text-accent transition-colors">Partenaires</a>
+            <a href="contact.html" class="mobile-link titre-brut text-3xl text-white hover:text-accent transition-colors">Contact</a>
+        </div>
+    </div>
+
+    <!-- Bandeau sponsors (data/sponsors.json). Masqué automatiquement si la liste est vide. -->
+    <div id="sponsors-marquee" class="fixed top-12 lg:top-20 w-full z-40 bg-black/70 backdrop-blur-md border-b border-white/10 py-2 flex overflow-hidden">
+        <div id="sponsors-track-1" class="flex animate-marquee min-w-full shrink-0 items-center justify-around gap-12 px-6"></div>
+        <div id="sponsors-track-2" class="flex animate-marquee min-w-full shrink-0 items-center justify-around gap-12 px-6" aria-hidden="true"></div>
+    </div>
+
+    <!-- Barre d'en-tête mobile : la navbar desktop est masquée sous 1024px, or le nom
+         de l'organisation doit rester visible en haut de chaque page. -->
+    <a href="index.html" aria-label="Union Oasis Forest - accueil" class="lg:hidden fixed top-0 left-0 right-0 z-[66] h-12 bg-night/90 backdrop-blur-md border-b border-white/10 flex items-center gap-3 pl-5 pr-14">
+        <img src="logo%20uof.svg" alt="" aria-hidden="true" class="h-5 w-auto opacity-90 shrink-0">
+        <span class="text-white font-black text-[11px] tracking-[0.22em] uppercase leading-none truncate">Union Oasis Forest</span>
+    </a>
+
+    <header class="pt-28 lg:pt-32 pb-8 relative z-10">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <p class="text-accent text-[11px] font-black tracking-[0.28em] uppercase mb-5">Inscription</p>
+            <h1 class="titre-brut text-white text-5xl md:text-7xl lg:text-8xl mb-8">Inscrire<br>un enfant</h1>
+            <div class="filet pt-6">
+                <p class="text-slate-300 text-base md:text-lg font-light max-w-2xl leading-relaxed">Baby Futsal, U15 et U17 — saison 2026-2027. Cinq minutes, et la fiche arrive directement au club.</p>
+            </div>
+        </div>
+    </header>
+
+    <section class="pb-16 relative z-10">
+        <div class="max-w-3xl mx-auto px-6 lg:px-8">
+
+            <form id="form-inscription" class="space-y-14" novalidate>
+                <input type="hidden" name="t0" id="t0" value="">
+                <div class="piege" aria-hidden="true">
+                    <label for="site_web">Ne pas remplir ce champ</label>
+                    <input type="text" id="site_web" name="site_web" tabindex="-1" autocomplete="off">
+                </div>
+
+                <fieldset class="filet pt-6">
+                    <legend class="flex items-baseline gap-4 mb-8 w-full"><span class="numero text-2xl md:text-3xl">01</span><span class="titre-brut text-white text-xl md:text-2xl">L'enfant</span></legend>
+                    <div class="grid sm:grid-cols-2 gap-5">
+                        <div>
+                            <label class="champ-label" for="enfantPrenom">Prénom</label>
+                            <input class="champ" id="enfantPrenom" name="enfantPrenom" required maxlength="80" autocomplete="off">
+                        </div>
+                        <div>
+                            <label class="champ-label" for="enfantNom">Nom</label>
+                            <input class="champ" id="enfantNom" name="enfantNom" required maxlength="80" autocomplete="off">
+                        </div>
+                        <div class="sm:col-span-2 sm:max-w-xs">
+                            <label class="champ-label" for="dateNaissance">Date de naissance</label>
+                            <input class="champ" type="date" id="dateNaissance" name="dateNaissance" required>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="filet pt-6">
+                    <legend class="flex items-baseline gap-4 mb-8 w-full"><span class="numero text-2xl md:text-3xl">02</span><span class="titre-brut text-white text-xl md:text-2xl">Catégorie</span></legend>
+                    <div class="grid sm:grid-cols-3 gap-3">
+                        <label class="choix"><input type="radio" name="categorie" value="baby" required><span>Baby Futsal<small>U3 — U7, éveil</small></span></label>
+                        <label class="choix"><input type="radio" name="categorie" value="u15"><span>Futsal U15<small>Moins de 15 ans</small></span></label>
+                        <label class="choix"><input type="radio" name="categorie" value="u17"><span>Futsal U17<small>Moins de 17 ans</small></span></label>
+                    </div>
+                    <p class="text-slate-500 text-xs mt-4 leading-relaxed">
+                        Espoirs U21 et équipe première : l'inscription passe par la fédération,
+                        <a href="contact.html" class="text-slate-300 hover:text-accent transition-colors">contactez-nous</a>.
+                    </p>
+                </fieldset>
+
+                <fieldset class="filet pt-6">
+                    <legend class="flex items-baseline gap-4 mb-8 w-full"><span class="numero text-2xl md:text-3xl">03</span><span class="titre-brut text-white text-xl md:text-2xl">Parent à contacter</span></legend>
+                    <div class="grid sm:grid-cols-2 gap-5">
+                        <div class="sm:col-span-2">
+                            <label class="champ-label" for="parentNom">Nom et prénom du parent</label>
+                            <input class="champ" id="parentNom" name="parentNom" required maxlength="120" autocomplete="name">
+                        </div>
+                        <div>
+                            <label class="champ-label" for="parentTelephone">Téléphone</label>
+                            <input class="champ" type="tel" id="parentTelephone" name="parentTelephone" required maxlength="30" autocomplete="tel" placeholder="+32 4xx xx xx xx">
+                        </div>
+                        <div>
+                            <label class="champ-label" for="parentEmail">E-mail</label>
+                            <input class="champ" type="email" id="parentEmail" name="parentEmail" required maxlength="120" autocomplete="email">
+                        </div>
+                    </div>
+                    <p class="text-slate-500 text-xs mt-4">Ce numéro sert aussi de contact en cas d'urgence pendant les séances.</p>
+                </fieldset>
+
+                <fieldset class="filet pt-6">
+                    <legend class="flex items-baseline gap-4 mb-8 w-full"><span class="numero text-2xl md:text-3xl">04</span><span class="titre-brut text-white text-xl md:text-2xl">Cotisation</span></legend>
+                    <p class="champ-label">La cotisation est-elle déjà payée ?</p>
+                    <div class="grid grid-cols-3 gap-3 mb-8">
+                        <label class="choix"><input type="radio" name="paiement" value="oui" required><span>Oui</span></label>
+                        <label class="choix"><input type="radio" name="paiement" value="partie"><span>En partie</span></label>
+                        <label class="choix"><input type="radio" name="paiement" value="non"><span>Non</span></label>
+                    </div>
+                    <p class="champ-label">Preuve de paiement <span class="normal-case tracking-normal font-medium text-slate-600">(facultatif)</span></p>
+                    <label class="fichier" for="preuve">
+                        <input type="file" id="preuve" name="preuve" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,application/pdf">
+                        <span class="text-accent font-black text-xs tracking-[0.14em] uppercase shrink-0">Joindre</span>
+                        <span id="preuve-nom">Capture du virement ou reçu — image ou PDF, 8 Mo max.</span>
+                    </label>
+                    <p class="text-slate-500 text-xs mt-4 leading-relaxed">
+                        Vous pouvez aussi l'envoyer au club en <strong class="text-slate-300">message privé WhatsApp</strong>
+                        au +32 477 02 20 21 — jamais dans le groupe, une capture de virement contient vos coordonnées bancaires.
+                    </p>
+                </fieldset>
+
+                <div class="filet pt-6">
+                    <label class="flex items-start gap-3 cursor-pointer">
+                        <input type="checkbox" name="consentement" required class="mt-1 w-4 h-4 accent-[#00c2ff] shrink-0">
+                        <span class="text-slate-400 text-sm leading-relaxed">
+                            J'accepte que ces informations soient utilisées par L'Oasis de Forest ASBL pour la gestion
+                            des inscriptions et des cotisations. Elles ne sont ni vendues ni utilisées à d'autres fins ;
+                            pour les consulter ou les faire supprimer : union@oasisforest.be.
+                        </span>
+                    </label>
+                </div>
+
+                <p id="form-erreur" class="hidden border-l-2 border-red-500 bg-red-500/10 text-red-200 text-sm px-4 py-3" role="alert"></p>
+
+                <button type="submit" id="form-envoyer" class="bouton-plein w-full sm:w-auto">Envoyer l'inscription</button>
+            </form>
+
+            <div id="merci" class="hidden filet pt-10" tabindex="-1">
+                <p class="text-accent text-[11px] font-black tracking-[0.24em] uppercase mb-4">Inscription reçue</p>
+                <h2 class="titre-brut text-white text-3xl md:text-5xl mb-6">Merci, c'est noté.</h2>
+                <p class="text-slate-300 font-light leading-relaxed max-w-xl mb-3">
+                    La fiche est arrivée au club. Nous revenons vers vous si une information manque.
+                </p>
+                <p id="merci-preuve" class="hidden text-slate-400 text-sm leading-relaxed max-w-xl mb-3">
+                    La preuve de paiement n'a pas pu être jointe : envoyez-la en message privé WhatsApp au +32 477 02 20 21.
+                </p>
+                <div class="flex flex-wrap gap-3 mt-8">
+                    <button type="button" id="autre-enfant" class="bouton-vide">Inscrire un autre enfant</button>
+                    <a href="index.html" class="bouton-vide">Retour à l'accueil</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PIED DE PAGE — bloc identique sur toutes les pages du site.
+         Les deux dernières lignes (dénomination légale, n° d'entreprise, siège, e-mail,
+         domaine) sont exigées sur chaque page par la validation Google for Nonprofits. -->
+    <footer class="filet relative z-10 mt-12 pt-12 pb-10">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-[2fr_1fr_1fr] gap-10 md:gap-8 mb-12">
+
+                <div>
+                    <a href="index.html" aria-label="Union Oasis Forest - accueil" class="inline-flex items-center gap-4 group mb-5">
+                        <img src="logo%20uof.svg" alt="" aria-hidden="true" class="h-6 w-auto opacity-90">
+                        <span class="font-black text-white text-sm tracking-[0.22em] uppercase leading-none group-hover:text-accent transition-colors">Union Oasis Forest</span>
+                    </a>
+                </div>
+
+                <div class="md:text-right">
+                    <h2 class="text-slate-500 font-black text-[10px] tracking-[0.24em] uppercase mb-4">Pages</h2>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="text-slate-400 hover:text-accent transition-colors">Accueil</a></li>
+                        <li><a href="a-propos.html" class="text-slate-400 hover:text-accent transition-colors">Le club</a></li>
+                        <li><a href="equipes.html" class="text-slate-400 hover:text-accent transition-colors">Nos équipes</a></li>
+                        <li><a href="galerie.html" class="text-slate-400 hover:text-accent transition-colors">Galerie</a></li>
+                        <li><a href="partenaires.html" class="text-slate-400 hover:text-accent transition-colors">Partenaires</a></li>
+                        <li><a href="contact.html" class="text-slate-400 hover:text-accent transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h2 class="text-slate-500 font-black text-[10px] tracking-[0.24em] uppercase mb-4">Contact</h2>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="mailto:union@oasisforest.be" class="hover:text-accent transition-colors">union@oasisforest.be</a></li>
+                        <li><a href="https://wa.me/32477022021" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">+32 477 02 20 21</a></li>
+                        <li class="flex gap-4 pt-2">
+                            <a href="https://www.instagram.com/oasisforestfutsal" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="hover:text-accent transition-colors">Instagram</a>
+                            <a href="https://www.tiktok.com/@oasisforestfutsal" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="hover:text-accent transition-colors">TikTok</a>
+                            <a href="https://www.facebook.com/oasisforestfutsal" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="hover:text-accent transition-colors">Facebook</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="filet pt-6 space-y-1.5">
+                <p class="text-[11px] leading-relaxed text-slate-600">
+                    L'Oasis de Forest ASBL · Siège social : Rue du Croissant 85, 1190 Forest, Belgique ·
+                    Numéro d'entreprise (BCE) 0867.614.619 ·
+                    <a href="mailto:union@oasisforest.be" class="hover:text-slate-400 transition-colors">union@oasisforest.be</a> ·
+                    <a href="https://oasisforest.be/" class="hover:text-slate-400 transition-colors">oasisforest.be</a>
+                </p>
+                <p class="text-[11px] text-slate-600">
+                    &copy; <span id="year"></span> L'Oasis de Forest ASBL — « Union Oasis Forest » est le nom sportif de l'association.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/32477022021" target="_blank" rel="noopener noreferrer" data-track="WhatsApp (flottant)" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 bg-[#25D366] text-white w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-3xl shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:scale-110 hover:bg-[#20bd5a] hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] transition-all duration-300 z-50 group" aria-label="Nous contacter sur WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span class="absolute right-[110%] top-1/2 -translate-y-1/2 bg-night text-white text-xs font-bold py-2.5 px-4 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap border border-white/10 pointer-events-none shadow-xl">
+            Une question ? Discutons !
+        </span>
+    </a>
+
+    <script src="assets/commun.js?v=202609120124"></script>
+
+    <script>
+        // Envoi vers l'outil admin (Worker Cloudflare), qui crée la fiche dans Notion.
+        // En local, le Worker tourne via `npm run dev` sur le port 8787.
+        (function () {
+            const API = ['localhost', '127.0.0.1'].includes(location.hostname)
+                ? 'http://localhost:8787/api/inscription'
+                : 'https://oasisforest-admin-tool.tristederk.workers.dev/api/inscription';
+            const form = document.getElementById('form-inscription');
+            const erreur = document.getElementById('form-erreur');
+            const bouton = document.getElementById('form-envoyer');
+            const merci = document.getElementById('merci');
+            const preuve = document.getElementById('preuve');
+            const preuveNom = document.getElementById('preuve-nom');
+            const texteBouton = bouton.textContent;
+            const texteFichier = preuveNom.textContent;
+
+            // Horodatage de l'affichage : le serveur refuse un envoi fait en moins de 3 s.
+            const armer = () => { document.getElementById('t0').value = String(Date.now()); };
+            armer();
+
+            preuve.addEventListener('change', () => {
+                preuveNom.textContent = preuve.files[0] ? preuve.files[0].name : texteFichier;
+            });
+
+            function montrerErreur(message) {
+                erreur.textContent = message + ' Si le problème persiste, écrivez-nous sur WhatsApp au +32 477 02 20 21.';
+                erreur.classList.remove('hidden');
+                erreur.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                erreur.classList.add('hidden');
+                if (!form.reportValidity()) return;
+                if (preuve.files[0] && preuve.files[0].size > 8 * 1024 * 1024) {
+                    montrerErreur('La preuve de paiement dépasse 8 Mo.');
+                    return;
+                }
+                bouton.disabled = true;
+                bouton.textContent = 'Envoi en cours…';
+                try {
+                    const res = await fetch(API, { method: 'POST', body: new FormData(form) });
+                    const data = await res.json().catch(() => ({}));
+                    if (!res.ok || !data.ok) throw new Error(data.erreur || 'Envoi impossible pour le moment.');
+                    document.getElementById('merci-preuve').classList.toggle('hidden', data.preuveJointe !== false);
+                    form.classList.add('hidden');
+                    merci.classList.remove('hidden');
+                    merci.focus();
+                    merci.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } catch (err) {
+                    montrerErreur(err.message || 'Envoi impossible pour le moment.');
+                } finally {
+                    bouton.disabled = false;
+                    bouton.textContent = texteBouton;
+                }
+            });
+
+            // Fratrie : on garde les coordonnées du parent, on vide ce qui concerne l'enfant.
+            document.getElementById('autre-enfant').addEventListener('click', () => {
+                ['enfantPrenom', 'enfantNom', 'dateNaissance'].forEach((id) => { document.getElementById(id).value = ''; });
+                form.querySelectorAll('input[name=categorie], input[name=paiement]').forEach((r) => { r.checked = false; });
+                preuve.value = '';
+                preuveNom.textContent = texteFichier;
+                armer();
+                merci.classList.add('hidden');
+                form.classList.remove('hidden');
+                document.getElementById('enfantPrenom').focus();
+            });
+        })();
+    </script>
+</body>
+</html>
