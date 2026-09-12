@@ -252,6 +252,11 @@ nouveau rapport fourni par le club.
   faisaient doublon avec les catégories (U3 — U7, U15 — U17…). La numérotation `.numero`
   reste réservée aux sections.
 - **Compteur de vues** : « + 2 033 800 », sans « de », le « + » à la taille du nombre.
+- **Images d'aperçu de partage** (`og:image`, 1200 × 630, **JPG** — WhatsApp et Facebook
+  gèrent mal le WebP) : `img/partage.jpg` (équipe première) sur toutes les pages, sauf
+  `inscription.html` → `img/partage-inscription.jpg` (accolade des jeunes, demandée par le
+  club pour les liens partagés aux familles). Générées par recadrage de `img/D85A3835.webp`
+  et `img/IMG_8323.webp`.
 
 ## Inscription en ligne (`inscription.html`)
 
