@@ -1541,7 +1541,8 @@
             // Pour un match, lien par défaut vers la page club RBFA (affiche toujours le
             // "match précédent"/"match suivant" à jour, quelle que soit la date) - sauf si
             // l'événement précise son propre lien dans le CMS, qui prime alors.
-            const ctaLink = evt.lien || (evt.type === 'match' ? ACTU_RBFA_CLUB_URL : null);
+            // Page RBFA de l'équipe concernée (U21, D2…), sinon celle du club.
+            const ctaLink = evt.lien || (evt.type === 'match' ? (teamsData[evt.equipe]?.rbfaUrl || ACTU_RBFA_CLUB_URL) : null);
             const ctaLabel = evt.lienTexte || (evt.type === 'match' ? "+ d'infos" : "Plus d'infos");
             if (ctaLink) {
                 cta.href = ctaLink;
@@ -1621,6 +1622,10 @@
         // Cherche l'événement le plus proche actuellement éligible (indépendamment de son
         // état "fermé aujourd'hui"), pour réutilisation par renderActuPopup() et l'aperçu
         // modérateur previewActuPopup().
+        // Tri des événements : le plus proche d'abord ; le même jour, l'équipe première
+        // passe devant (les U21 jouent à 20h les soirs de match de la D2).
+        const parJourPuisD2 = (a, b) => (a._dayOnly - b._dayOnly) || ((a.equipe === 'div2' ? 0 : 1) - (b.equipe === 'div2' ? 0 : 1));
+
         async function getEligibleActuEvent() {
             const data = await loadEvenements();
             const events = (data && Array.isArray(data.evenements)) ? data.evenements : [];
@@ -1634,7 +1639,7 @@
                 const windowStart = new Date(dayOnly);
                 windowStart.setDate(windowStart.getDate() - (Number(e.joursAvant) || 0));
                 return (today >= windowStart && today <= dayOnly) ? { ...e, _date: eventDate, _dayOnly: dayOnly } : null;
-            }).filter(Boolean).sort((a, b) => a._dayOnly - b._dayOnly);
+            }).filter(Boolean).sort(parJourPuisD2);
 
             if (eligible.length) return eligible[0];
 
@@ -1649,7 +1654,7 @@
                 if (isNaN(eventDate)) return null;
                 const dayOnly = dateOnly(eventDate);
                 return dayOnly >= today ? { ...e, _date: eventDate, _dayOnly: dayOnly } : null;
-            }).filter(Boolean).sort((a, b) => a._dayOnly - b._dayOnly);
+            }).filter(Boolean).sort(parJourPuisD2);
 
             return aVenir.length ? aVenir[0] : null;
         }
