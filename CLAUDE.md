@@ -240,6 +240,8 @@ nouveau rapport fourni par le club.
   « Classements officiels » fermant la page juste après la D2.
 - **Mentions légales discrètes** : deux lignes en `text-[11px]` tout en bas du pied de
   page. Complètes mais pas envahissantes — ne pas les remonter en colonne.
+- **Menu mobile aligné à droite** (`items-end text-right`), du même côté que la croix de
+  fermeture — comme sur l'ancienne landing (`old.html`).
 - **Logo plus petit que le nom** dans l'en-tête : c'est « Union Oasis Forest » qui doit se
   lire d'abord (`h-7` desktop, `h-5` mobile), avec un `gap-4` pour ne pas coller au texte.
 
@@ -272,6 +274,22 @@ des parents ; la page n'est volontairement pas dans la navigation.
 - **Tester en local** : `npm run dev` dans l'outil admin (port 8787) + serveur du site
   (port 4173) ; la page bascule seule sur `localhost:8787`. ⚠️ Le mode local écrit dans le
   **vrai** Notion : préfixer les fiches de test (`TEST-…`) et les supprimer après.
+
+
+### Validation, ouverture et fermeture (12/09/2026)
+
+- **Second parent** facultatif (bouton « + Ajouter un second parent ») → colonnes Notion
+  « Contact urgence 2 - Nom/Téléphone/Mail ». **Case newsletter** facultative (« Recevoir les
+  annonces du club par mail ») → colonne « Newsletter » + fiche dans 📧 Newsletter — Contacts.
+- Chaque fiche arrive **« À valider »** (colonne « Statut fiche ») : l'outil admin la signale
+  par un « ! » jusqu'à ce qu'un membre du club l'ait relue et validée.
+- **Le formulaire s'ouvre et se ferme depuis l'outil admin** (onglet Affiliés), pour une
+  durée ou sans limite. **Fermé par défaut.** Au chargement, la page interroge
+  `GET /api/inscription/statut` : fermé → bloc `#ferme` (contact inscriptions@oasisforest.be
+  ou WhatsApp) à la place du formulaire. Si le Worker ne répond pas, le formulaire s'affiche
+  quand même : le serveur refuse l'envoi de toute façon.
+- ⚠️ L'adresse **inscriptions@oasisforest.be** doit exister (alias Workspace) : c'est le
+  contact affiché quand le formulaire est fermé.
 
 ## Pièges rencontrés
 

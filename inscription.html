@@ -90,7 +90,7 @@
     </button>
 
     <div id="mobile-menu" class="fixed inset-0 z-[60] bg-night/95 backdrop-blur-xl opacity-0 invisible transition-all duration-300 lg:hidden flex flex-col justify-center">
-        <div class="flex flex-col items-start gap-6 w-full px-8">
+        <div class="flex flex-col items-end text-right gap-6 w-full px-8">
             <a href="index.html" class="mobile-link titre-brut text-3xl text-white hover:text-accent transition-colors">Accueil</a>
             <a href="a-propos.html" class="mobile-link titre-brut text-3xl text-white hover:text-accent transition-colors">Le club</a>
             <a href="equipes.html" class="mobile-link titre-brut text-3xl text-white hover:text-accent transition-colors">Nos équipes</a>
@@ -126,7 +126,24 @@
     <section class="pb-16 relative z-10">
         <div class="max-w-3xl mx-auto px-6 lg:px-8">
 
-            <form id="form-inscription" class="space-y-14" novalidate>
+            <p id="chargement" class="text-slate-500 text-sm">Chargement du formulaire…</p>
+
+            <!-- Formulaire fermé par le club (réglage dans l'outil admin, onglet Affiliés). -->
+            <div id="ferme" class="hidden filet pt-10">
+                <p class="text-accent text-[11px] font-black tracking-[0.24em] uppercase mb-4">Inscriptions</p>
+                <h2 class="titre-brut text-white text-3xl md:text-5xl mb-6">Formulaire fermé</h2>
+                <p class="text-slate-300 font-light leading-relaxed max-w-xl">
+                    Le formulaire n'est plus accessible. Contactez-nous via
+                    <a href="mailto:inscriptions@oasisforest.be" class="text-white underline decoration-accent underline-offset-4">inscriptions@oasisforest.be</a>
+                    ou sur WhatsApp au <a href="https://wa.me/32477022021" target="_blank" rel="noopener noreferrer" class="text-white underline decoration-accent underline-offset-4">+32 477 02 20 21</a>.
+                </p>
+                <div class="flex flex-wrap gap-3 mt-8">
+                    <a href="https://wa.me/32477022021" target="_blank" rel="noopener noreferrer" class="bouton-plein">WhatsApp</a>
+                    <a href="mailto:inscriptions@oasisforest.be" class="bouton-vide">Envoyer un e-mail</a>
+                </div>
+            </div>
+
+            <form id="form-inscription" class="hidden space-y-14" novalidate>
                 <input type="hidden" name="t0" id="t0" value="">
                 <div class="piege" aria-hidden="true">
                     <label for="site_web">Ne pas remplir ce champ</label>
@@ -181,6 +198,29 @@
                         </div>
                     </div>
                     <p class="text-slate-500 text-xs mt-4">Ce numéro sert aussi de contact en cas d'urgence pendant les séances.</p>
+
+                    <button type="button" id="ajouter-parent2" class="lien-action text-white mt-8">+ Ajouter un second parent</button>
+                    <!-- Champs désactivés tant que le bloc est replié : ni validés, ni envoyés. -->
+                    <div id="bloc-parent2" class="hidden mt-8 filet pt-6">
+                        <div class="flex items-baseline justify-between gap-4 mb-5">
+                            <p class="champ-label" style="margin-bottom:0">Second parent <span class="normal-case tracking-normal font-medium text-slate-600">(facultatif)</span></p>
+                            <button type="button" id="retirer-parent2" class="text-slate-500 hover:text-accent transition-colors text-[10px] font-black tracking-[0.16em] uppercase">Retirer</button>
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-5">
+                            <div class="sm:col-span-2">
+                                <label class="champ-label" for="parent2Nom">Nom et prénom</label>
+                                <input class="champ" id="parent2Nom" name="parent2Nom" maxlength="120" autocomplete="off" disabled>
+                            </div>
+                            <div>
+                                <label class="champ-label" for="parent2Telephone">Téléphone</label>
+                                <input class="champ" type="tel" id="parent2Telephone" name="parent2Telephone" maxlength="30" autocomplete="off" placeholder="+32 4xx xx xx xx" disabled>
+                            </div>
+                            <div>
+                                <label class="champ-label" for="parent2Email">E-mail <span class="normal-case tracking-normal font-medium text-slate-600">(facultatif)</span></label>
+                                <input class="champ" type="email" id="parent2Email" name="parent2Email" maxlength="120" autocomplete="off" disabled>
+                            </div>
+                        </div>
+                    </div>
                 </fieldset>
 
                 <fieldset class="filet pt-6">
@@ -210,6 +250,13 @@
                             J'accepte que ces informations soient utilisées par L'Oasis de Forest ASBL pour la gestion
                             des inscriptions et des cotisations. Elles ne sont ni vendues ni utilisées à d'autres fins ;
                             pour les consulter ou les faire supprimer : union@oasisforest.be.
+                        </span>
+                    </label>
+                    <label class="flex items-start gap-3 cursor-pointer mt-5">
+                        <input type="checkbox" name="newsletter" class="mt-1 w-4 h-4 accent-[#00c2ff] shrink-0">
+                        <span class="text-slate-400 text-sm leading-relaxed">
+                            Recevoir les annonces du club par mail
+                            <span class="text-slate-600">(facultatif, désinscription possible à tout moment)</span>.
                         </span>
                     </label>
                 </div>
@@ -313,6 +360,31 @@
             const preuve = document.getElementById('preuve');
             const preuveNom = document.getElementById('preuve-nom');
             const texteBouton = bouton.textContent;
+            const chargement = document.getElementById('chargement');
+            const ferme = document.getElementById('ferme');
+
+            function afficherFerme() {
+                chargement.classList.add('hidden');
+                form.classList.add('hidden');
+                merci.classList.add('hidden');
+                ferme.classList.remove('hidden');
+            }
+
+            // Ouvert ou fermé ? Décidé par le club dans l'outil admin. Si le serveur ne
+            // répond pas, on affiche quand même le formulaire : l'envoi sera de toute façon
+            // refusé côté serveur si les inscriptions sont fermées.
+            fetch(API + '/statut', { cache: 'no-store' })
+                .then((res) => res.json())
+                .then((statut) => {
+                    if (!statut.ouvert) { afficherFerme(); return; }
+                    chargement.classList.add('hidden');
+                    form.classList.remove('hidden');
+                    armer();
+                })
+                .catch(() => {
+                    chargement.classList.add('hidden');
+                    form.classList.remove('hidden');
+                });
             const texteFichier = preuveNom.textContent;
 
             // Horodatage de l'affichage : le serveur refuse un envoi fait en moins de 3 s.
@@ -329,6 +401,24 @@
                 erreur.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
 
+            // Second parent : activé seulement quand le bloc est déplié. Nom et téléphone
+            // deviennent alors obligatoires (le serveur applique la même règle).
+            const bloc2 = document.getElementById('bloc-parent2');
+            const ajouter2 = document.getElementById('ajouter-parent2');
+            const champs2 = ['parent2Nom', 'parent2Telephone', 'parent2Email'].map((id) => document.getElementById(id));
+            function parent2(ouvert) {
+                bloc2.classList.toggle('hidden', !ouvert);
+                ajouter2.classList.toggle('hidden', ouvert);
+                champs2.forEach((champ, i) => {
+                    champ.disabled = !ouvert;
+                    champ.required = ouvert && i < 2;
+                    if (!ouvert) champ.value = '';
+                });
+                if (ouvert) champs2[0].focus();
+            }
+            ajouter2.addEventListener('click', () => parent2(true));
+            document.getElementById('retirer-parent2').addEventListener('click', () => parent2(false));
+
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 erreur.classList.add('hidden');
@@ -342,6 +432,7 @@
                 try {
                     const res = await fetch(API, { method: 'POST', body: new FormData(form) });
                     const data = await res.json().catch(() => ({}));
+                    if (data.ferme) { afficherFerme(); return; }
                     if (!res.ok || !data.ok) throw new Error(data.erreur || 'Envoi impossible pour le moment.');
                     document.getElementById('merci-preuve').classList.toggle('hidden', data.preuveJointe !== false);
                     form.classList.add('hidden');
