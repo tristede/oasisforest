@@ -59,9 +59,10 @@
         </div>
     </nav>
 
-    <!-- Sur téléphone, pas de barre d'en-tête : le bandeau sponsors occupe le haut de
-         l'écran et ce bouton en ferme le bout, à la même hauteur (h-12). -->
-    <button id="mobile-menu-btn" aria-label="Ouvrir le menu de navigation" class="lg:hidden fixed top-0 right-0 z-[70] w-14 h-12 flex items-center justify-center bg-night border-l border-b border-white/10 text-white transition-transform active:scale-90">
+    <!-- Sur téléphone, pas de barre d'en-tête : le bouton menu flotte juste sous le bandeau
+         sponsors, sans cadre ni fond (demande du club) ; l'ombre portée le garde lisible
+         au-dessus des photos. La croix de fermeture prend la même place. -->
+    <button id="mobile-menu-btn" aria-label="Ouvrir le menu de navigation" class="lg:hidden fixed top-[3.6rem] right-4 z-[70] p-2 text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.75)] transition-transform active:scale-90">
         <i class="fas fa-bars text-3xl"></i>
     </button>
 
