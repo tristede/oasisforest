@@ -346,6 +346,12 @@ body.modal-open { overflow: hidden; }
 /* Survol vers l'accent foncé, pas vers le blanc : le texte du bouton est blanc. */
 .bouton-plein:hover { background: #0091ea; }
 
+/* Variante WhatsApp d'un .bouton-plein : même forme, couleur de marque au lieu de
+   l'accent — cohérent avec le bouton flottant WhatsApp (rond, vert), seule autre
+   exception au vocabulaire de boutons du site. */
+.bouton-plein.bouton-whatsapp { background: #25D366; }
+.bouton-plein.bouton-whatsapp:hover { background: #20bd5a; }
+
 /* Bouton secondaire : contour net. */
 .bouton-vide {
     display: inline-flex;

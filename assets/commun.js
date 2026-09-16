@@ -129,6 +129,21 @@ async function renderSponsors() {
     });
 }
 
+// --- Photo de l'équipe première (data/equipe-premiere.json, éditable via /admin) ---
+// Uniquement présent sur equipes.html : sur les autres pages, le conteneur n'existe
+// pas et la fonction ne fait rien. Masquée si le champ est vide (pas de photo encore
+// renseignée), plutôt que d'afficher un cadre cassé.
+async function renderEquipePremierePhoto() {
+    const bloc = document.getElementById('photo-equipe-premiere');
+    if (!bloc) return;
+    const img = document.getElementById('photo-equipe-premiere-img');
+    const data = await loadJSON('data/equipe-premiere.json');
+    const photo = data && data.photo && data.photo.trim();
+    if (!photo) return;
+    img.src = toRel(photo);
+    bloc.classList.remove('hidden');
+}
+
 // --- Protection légère des photos ---
 // Bloque le clic droit ("Enregistrer l'image sous...") et le glisser-déposer, en
 // complément du CSS. Ne bloque pas les captures d'écran : c'est une gêne, pas
@@ -171,5 +186,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setupImageProtection();
     setupYear();
     renderSponsors();
+    renderEquipePremierePhoto();
     activerTilt();
 });

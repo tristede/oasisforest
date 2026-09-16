@@ -25,8 +25,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
-    <script src="assets/tailwind-config.js?v=202609120124"></script>
-    <link rel="stylesheet" href="assets/site.css?v=202609120124">
+    <script src="assets/tailwind-config.js?v=202609161500"></script>
+    <link rel="stylesheet" href="assets/site.css?v=202609161500">
 </head>
 <body class="antialiased font-sans flex flex-col min-h-screen">
 
@@ -159,6 +159,15 @@
                         </tbody>
                     </table>
                 </article>
+
+                <!-- Photo de l'équipe première — éditable via /admin (data/equipe-premiere.json),
+                     pas codée en dur : contrairement aux photos de la ligne du temps, celle-ci doit
+                     pouvoir être changée par le club à chaque nouvelle saison sans repasser par du code.
+                     Masquée proprement si aucune photo n'est renseignée (voir renderEquipePremierePhoto()
+                     dans assets/commun.js). -->
+                <div id="photo-equipe-premiere" class="hidden pb-10">
+                    <img id="photo-equipe-premiere-img" src="" alt="L'équipe première" loading="lazy" class="w-full aspect-[4/3] sm:aspect-video object-cover">
+                </div>
         </div>
     </section>
 
@@ -189,8 +198,8 @@
                         d'essai est possible avant de s'engager — précise l'âge du joueur et l'équipe visée.
                     </p>
                     <div class="flex flex-wrap gap-3">
-                        <a href="https://wa.me/32477022021?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20les%20inscriptions." target="_blank" rel="noopener noreferrer" class="bouton-plein">WhatsApp</a>
-                        <a href="mailto:union@oasisforest.be?subject=Demande%20d%27inscription" class="bouton-vide">union@oasisforest.be</a>
+                        <a href="https://wa.me/32477022021?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20les%20inscriptions." target="_blank" rel="noopener noreferrer" class="bouton-plein bouton-whatsapp">WhatsApp</a>
+                        <a href="mailto:inscriptions@oasisforest.be?subject=Demande%20d%27inscription" class="bouton-vide">inscriptions@oasisforest.be</a>
                     </div>
                 </div>
             </div>
@@ -258,6 +267,6 @@
         </span>
     </a>
 
-    <script src="assets/commun.js?v=202609120124"></script>
+    <script src="assets/commun.js?v=202609161500"></script>
 </body>
 </html>

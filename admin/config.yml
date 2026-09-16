@@ -34,6 +34,19 @@ collections:
                   widget: image
                   hint: "Redimensionner à 1600 px de large maximum. Format WebP de préférence."
 
+  - name: equipe-premiere
+    label: "Photo équipe première (page Équipes)"
+    files:
+      - name: photo
+        label: Photo
+        file: data/equipe-premiere.json
+        fields:
+          - name: photo
+            label: Photo
+            widget: image
+            required: false
+            hint: "Affichée juste sous la fiche « Équipe première » de la page Équipes. Redimensionner à 1600 px de large maximum, format WebP de préférence. Laisser vide masque le bloc proprement."
+
   - name: galerie
     label: Galerie photos
     files:

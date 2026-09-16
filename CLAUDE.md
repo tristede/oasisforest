@@ -318,6 +318,35 @@ des parents ; la page n'est volontairement pas dans la navigation.
   boutons « Oui, valider » / « Corriger ». Demandé par le club côté **parent** — la
   validation d'une fiche dans l'outil admin n'a pas cette fenêtre.
 
+## Formulaire de contact partenaires (`partenaires.html`, 16/09/2026)
+
+Remplace le `mailto:` de la section « Recevoir le dossier » : sur mobile/desktop sans
+client mail configuré (webmail uniquement), un lien `mailto:` peut n'ouvrir rien du tout.
+
+- **Champs** : prénom, nom, e-mail, description (message libre), pièce jointe facultative
+  (image ou PDF, 8 Mo max — logo ou présentation de l'entreprise).
+- **Circuit volontairement plus léger que l'inscription** : pas de fiche Notion (volume
+  attendu faible, quelques demandes/mois) — juste un mail transactionnel Brevo envoyé à
+  `PARTENAIRES_EMAIL` (`sponsoring@oasisforest.be`, `wrangler.toml` de l'outil admin), avec
+  le `reply-to` posé sur l'e-mail du visiteur pour que le club puisse juste faire
+  « Répondre ». Si le volume augmente un jour, envisager une base Notion dédiée comme pour
+  les Affiliés.
+- ⚠️ **`sponsoring@oasisforest.be` doit exister comme alias Workspace** (voir
+  `admin.google.com` → `union@oasisforest.be` → adresses e-mail secondaires) — sans lui les
+  réponses au reply-to du club fonctionnent, mais rien ne reçoit les demandes entrantes.
+- **Anti-abus** : mêmes garde-fous que l'inscription (origine, champ piège, délai minimal
+  3 s, plafond 10 envois/heure/connexion), compteur KV séparé (`ratelimit:partenaires:…`).
+- Endpoint : `POST /api/partenaires` (`src/routes/partenaires-publique.js` de l'outil
+  admin). `sendEmail()` (`src/brevo.js`) accepte désormais un `attachment` (base64, encodé
+  par blocs de 32 Ko — `String.fromCharCode(...gros tableau)` plante au-delà).
+
+## Photo équipe première (`equipes.html`, 16/09/2026)
+
+Photo affichée juste sous la fiche « Équipe première », **éditable via `/admin`**
+(contrairement aux photos de la ligne du temps, codées en dur) : `data/equipe-premiere.json`
++ entrée `admin/config.yml`. Rendu par `renderEquipePremierePhoto()` dans
+`assets/commun.js`, masqué proprement si le champ est vide.
+
 ## Pièges rencontrés
 
 - **Pas de `localStorage`** dans les aperçus d'artefacts Claude.ai (fonctionne normalement sur GitHub Pages).
