@@ -25,8 +25,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
-    <script src="assets/tailwind-config.js?v=202609161700"></script>
-    <link rel="stylesheet" href="assets/site.css?v=202609161700">
+    <script src="assets/tailwind-config.js?v=202609161800"></script>
+    <link rel="stylesheet" href="assets/site.css?v=202609161800">
 </head>
 <body class="antialiased font-sans flex flex-col min-h-screen">
 
@@ -164,9 +164,13 @@
                      pas codée en dur : contrairement aux photos de la ligne du temps, celle-ci doit
                      pouvoir être changée par le club à chaque nouvelle saison sans repasser par du code.
                      Masquée proprement si aucune photo n'est renseignée (voir renderEquipePremierePhoto()
-                     dans assets/commun.js). -->
+                     dans assets/commun.js). .photo-scotchee : même mise en scène que les polaroids
+                     (scotch, tilt au survol), sans le cadre blanc — une photo plein cadre "accrochée
+                     au mur", pas une carte polaroid. -->
                 <div id="photo-equipe-premiere" class="hidden pb-10">
-                    <img id="photo-equipe-premiere-img" src="" alt="L'équipe première" loading="lazy" class="w-full aspect-[4/3] sm:aspect-video object-cover">
+                    <div class="photo-scotchee hover-tilt" data-tilt-max="6">
+                        <img id="photo-equipe-premiere-img" src="" alt="L'équipe première" loading="lazy" class="w-full aspect-[4/3] sm:aspect-video object-cover">
+                    </div>
                 </div>
         </div>
     </section>
@@ -267,6 +271,6 @@
         </span>
     </a>
 
-    <script src="assets/commun.js?v=202609161700"></script>
+    <script src="assets/commun.js?v=202609161800"></script>
 </body>
 </html>

@@ -74,15 +74,28 @@ body {
     will-change: transform;
 }
 
+/* Une photo "accrochée au mur" comme un polaroid (même scotch, même tilt au survol),
+   mais sans cadre blanc ni légende : pour une photo plein cadre (ex. équipe première
+   sur equipes.html) qui n'a pas vocation à ressembler à un polaroid, juste à faire
+   partie de la même mise en scène. Toujours avec .hover-tilt + data-tilt-max. */
+.photo-scotchee {
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 194, 255, 0.1);
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
+    will-change: transform;
+}
+
 /* Vrai scotch (masking tape déchiré) à la place du rectangle blanc translucide
    d'origine — textures reprises du portfolio (assets/Resource Boy, licence déjà
    possédée). Quatre variantes, chacune avec sa propre rotation, pour que deux photos
    voisines (fiches équipe, hero) n'affichent jamais le même scotch au même angle.
    ⚠️ nth-of-type ne marche PAS ici : chaque polaroid est en général fils unique de
    son propre conteneur, donc toujours "1er de son type" — la variante doit être
-   posée explicitement, via une classe .polaroid--tape-N (statique dans le HTML) ou
-   au rendu JS (voir renderTeamPolaroids()/galerie.html, qui cyclent sur l'index). */
-.polaroid::before {
+   posée explicitement, via une classe .polaroid--tape-N/.photo-scotchee--tape-N
+   (statique dans le HTML) ou au rendu JS (voir renderTeamPolaroids()/galerie.html,
+   qui cyclent sur l'index). */
+.polaroid::before, .photo-scotchee::before {
     content: '';
     position: absolute;
     top: -16px;
@@ -95,9 +108,9 @@ body {
     transform: rotate(-4deg);
     z-index: 10;
 }
-.polaroid--tape-2::before { background-image: url('../img/tape/tape-2.webp'); transform: rotate(3deg); }
-.polaroid--tape-3::before { background-image: url('../img/tape/tape-3.webp'); transform: rotate(-6deg); }
-.polaroid--tape-4::before { background-image: url('../img/tape/tape-4.webp'); transform: rotate(2deg); }
+.polaroid--tape-2::before, .photo-scotchee--tape-2::before { background-image: url('../img/tape/tape-2.webp'); transform: rotate(3deg); }
+.polaroid--tape-3::before, .photo-scotchee--tape-3::before { background-image: url('../img/tape/tape-3.webp'); transform: rotate(-6deg); }
+.polaroid--tape-4::before, .photo-scotchee--tape-4::before { background-image: url('../img/tape/tape-4.webp'); transform: rotate(2deg); }
 
 .polaroid img {
     width: 100%;
