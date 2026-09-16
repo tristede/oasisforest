@@ -25,8 +25,25 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
-    <script src="assets/tailwind-config.js?v=202609120124"></script>
-    <link rel="stylesheet" href="assets/site.css?v=202609120124">
+    <script src="assets/tailwind-config.js?v=202609161500"></script>
+    <link rel="stylesheet" href="assets/site.css?v=202609161500">
+    <style>
+        /* Formulaire de contact partenaires — mêmes styles que le formulaire d'inscription
+           (inscription.html) : angles vifs, filets, capitales serrées. Propres à cette page. */
+        .champ-label { display:block; font-size:10px; font-weight:900; letter-spacing:.2em;
+            text-transform:uppercase; color:#94a3b8; margin-bottom:.5rem; }
+        .champ { width:100%; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.15);
+            color:#fff; padding:.85rem 1rem; font-size:1rem; border-radius:0; transition:border-color .2s; }
+        .champ:focus { outline:none; border-color:#00c2ff; }
+        .champ::placeholder { color:#475569; }
+        textarea.champ { resize:vertical; min-height:8rem; }
+        /* Champ piège anti-robots : hors écran, jamais vu ni tabulé par un humain. */
+        .piege { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+        .fichier { display:flex; align-items:center; gap:1rem; border:1px dashed rgba(255,255,255,.2);
+            padding:1rem; cursor:pointer; color:#94a3b8; font-size:.85rem; }
+        .fichier:hover { border-color:#00c2ff; color:#fff; }
+        .fichier input { position:absolute; opacity:0; width:1px; height:1px; }
+    </style>
 </head>
 <body class="antialiased font-sans flex flex-col min-h-screen">
 
@@ -256,15 +273,122 @@
         <div class="bande-diagonale bg-accent">
             <div class="max-w-6xl mx-auto px-6 lg:px-8 py-12 md:py-14">
                 <h2 class="titre-brut text-night text-3xl md:text-5xl mb-5 max-w-2xl">Recevoir le dossier</h2>
-                <p class="text-night/80 font-medium max-w-xl mb-8 leading-relaxed">
-                    Montants, contreparties et durées. Réponse sous quelques jours.
+                <p class="text-night/80 font-medium max-w-xl leading-relaxed">
+                    Montants, contreparties et durées. Remplis le formulaire ci-dessous, réponse sous quelques jours.
                 </p>
-                <a href="mailto:union@oasisforest.be?subject=Demande%20de%20dossier%20de%20sponsoring&body=Bonjour%2C%0D%0A%0D%0AJe%20souhaite%20recevoir%20le%20dossier%20de%20sponsoring%20du%20club.%0D%0A%0D%0ANom%20de%20l%27entreprise%20%3A%0D%0APersonne%20de%20contact%20%3A%0D%0AT%C3%A9l%C3%A9phone%20%3A%0D%0A" class="inline-flex items-center bg-night text-white font-black text-[11px] tracking-[0.16em] uppercase px-8 py-4 hover:bg-white hover:text-night transition-colors">
-                    Demander le dossier
-                </a>
             </div>
         </div>
     </section>
+
+    <!-- Formulaire de contact partenaires : envoie un mail (Brevo) au club via l'outil
+         admin — pas de mailto direct, qui n'ouvre rien pour qui n'a qu'un webmail. Pas de
+         fiche Notion, juste un mail vers sponsoring@oasisforest.be (voir CLAUDE.md). -->
+    <section class="pb-20 relative z-10">
+        <div class="max-w-3xl mx-auto px-6 lg:px-8">
+            <form id="form-partenaires" class="filet pt-10 space-y-8" novalidate>
+                <input type="hidden" name="t0" id="p-t0" value="">
+                <div class="piege" aria-hidden="true">
+                    <label for="p-site-web">Ne pas remplir ce champ</label>
+                    <input type="text" id="p-site-web" name="site_web" tabindex="-1" autocomplete="off">
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-5">
+                    <div>
+                        <label class="champ-label" for="p-prenom">Prénom</label>
+                        <input class="champ" id="p-prenom" name="prenom" required maxlength="80" autocomplete="given-name">
+                    </div>
+                    <div>
+                        <label class="champ-label" for="p-nom">Nom</label>
+                        <input class="champ" id="p-nom" name="nom" required maxlength="80" autocomplete="family-name">
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label class="champ-label" for="p-email">E-mail</label>
+                        <input class="champ" type="email" id="p-email" name="email" required maxlength="120" autocomplete="email">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="champ-label" for="p-description">Votre demande</label>
+                    <textarea class="champ" id="p-description" name="description" required maxlength="4000" placeholder="Entreprise, secteur, ce que vous recherchez..."></textarea>
+                </div>
+
+                <div>
+                    <p class="champ-label">Pièce jointe <span class="normal-case tracking-normal font-medium text-slate-600">(facultatif)</span></p>
+                    <label class="fichier" for="p-joint">
+                        <input type="file" id="p-joint" name="joint" accept="image/jpeg,image/png,image/webp,application/pdf">
+                        <span class="text-accent font-black text-xs tracking-[0.14em] uppercase shrink-0">Joindre</span>
+                        <span id="p-joint-nom">Logo, présentation de l'entreprise... — image ou PDF, 8 Mo max.</span>
+                    </label>
+                </div>
+
+                <p id="p-erreur" class="hidden border-l-2 border-red-500 bg-red-500/10 text-red-200 text-sm px-4 py-3" role="alert"></p>
+
+                <button type="submit" id="p-envoyer" class="bouton-plein w-full sm:w-auto">Envoyer</button>
+            </form>
+
+            <div id="p-merci" class="hidden filet pt-10" tabindex="-1">
+                <p class="text-accent text-[11px] font-black tracking-[0.24em] uppercase mb-4">Message envoyé</p>
+                <h2 class="titre-brut text-white text-3xl md:text-5xl mb-6">Merci, c'est noté.</h2>
+                <p class="text-slate-300 font-light leading-relaxed max-w-xl">
+                    Le club revient vers vous par e-mail sous quelques jours.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        (function () {
+            const API = ['localhost', '127.0.0.1'].includes(location.hostname)
+                ? 'http://localhost:8787/api/partenaires'
+                : 'https://oasisforest-admin-tool.tristederk.workers.dev/api/partenaires';
+            const form = document.getElementById('form-partenaires');
+            const erreur = document.getElementById('p-erreur');
+            const bouton = document.getElementById('p-envoyer');
+            const merci = document.getElementById('p-merci');
+            const joint = document.getElementById('p-joint');
+            const jointNom = document.getElementById('p-joint-nom');
+            const texteFichier = jointNom.textContent;
+            const texteBouton = bouton.textContent;
+
+            document.getElementById('p-t0').value = String(Date.now());
+
+            joint.addEventListener('change', () => {
+                jointNom.textContent = joint.files[0] ? joint.files[0].name : texteFichier;
+            });
+
+            function montrerErreur(message) {
+                erreur.textContent = message + ' Si le problème persiste, écrivez-nous sur WhatsApp au +32 477 02 20 21.';
+                erreur.classList.remove('hidden');
+                erreur.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                erreur.classList.add('hidden');
+                if (!form.reportValidity()) return;
+                if (joint.files[0] && joint.files[0].size > 8 * 1024 * 1024) {
+                    montrerErreur('La pièce jointe dépasse 8 Mo.');
+                    return;
+                }
+                bouton.disabled = true;
+                bouton.textContent = 'Envoi en cours…';
+                try {
+                    const res = await fetch(API, { method: 'POST', body: new FormData(form) });
+                    const data = await res.json().catch(() => ({}));
+                    if (!res.ok || !data.ok) throw new Error(data.erreur || 'Envoi impossible pour le moment.');
+                    form.classList.add('hidden');
+                    merci.classList.remove('hidden');
+                    merci.focus();
+                    merci.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } catch (err) {
+                    montrerErreur(err.message || 'Envoi impossible pour le moment.');
+                } finally {
+                    bouton.disabled = false;
+                    bouton.textContent = texteBouton;
+                }
+            });
+        })();
+    </script>
 
     <!-- PIED DE PAGE — bloc identique sur toutes les pages du site.
          Les deux dernières lignes (dénomination légale, n° d'entreprise, siège, e-mail,
@@ -327,7 +451,7 @@
         </span>
     </a>
 
-    <script src="assets/commun.js?v=202609120124"></script>
+    <script src="assets/commun.js?v=202609161500"></script>
 
     <script>
         // Les entrées marquées "demo" sont les emplacements d'aperçu du bandeau (logo du
