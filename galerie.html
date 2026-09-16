@@ -25,8 +25,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
-    <script src="assets/tailwind-config.js?v=202609161600"></script>
-    <link rel="stylesheet" href="assets/site.css?v=202609161600">
+    <script src="assets/tailwind-config.js?v=202609161700"></script>
+    <link rel="stylesheet" href="assets/site.css?v=202609161700">
 </head>
 <body class="antialiased font-sans flex flex-col min-h-screen">
 
@@ -176,7 +176,7 @@
         </span>
     </a>
 
-    <script src="assets/commun.js?v=202609161600"></script>
+    <script src="assets/commun.js?v=202609161700"></script>
 
     <script>
         // Photos et filtres viennent de data/gallery.json et data/categories.json,
@@ -230,7 +230,10 @@
                     // Cadre polaroid du site (.polaroid / .polaroid-caption), léger angle alterné.
                     const angle = (Math.random() * 2.5 + 1) * (i % 2 ? -1 : 1);
                     const carte = document.createElement('div');
-                    carte.className = 'polaroid hover-tilt cursor-zoom-in';
+                    // Scotch cyclé sur 4 variantes (.polaroid--tape-N dans site.css), même
+                    // mécanisme que renderTeamPolaroids() dans index.html.
+                    const classeTape = i % 4 === 0 ? '' : ' polaroid--tape-' + ((i % 4) + 1);
+                    carte.className = 'polaroid' + classeTape + ' hover-tilt cursor-zoom-in';
                     carte.setAttribute('data-tilt-max', '8');
                     carte.dataset.rotation = 'rotate(' + angle.toFixed(2) + 'deg)';
                     carte.style.transform = carte.dataset.rotation;

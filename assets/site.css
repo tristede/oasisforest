@@ -76,8 +76,12 @@ body {
 
 /* Vrai scotch (masking tape déchiré) à la place du rectangle blanc translucide
    d'origine — textures reprises du portfolio (assets/Resource Boy, licence déjà
-   possédée). Quatre variantes + rotations différentes : sur les fiches équipe (3
-   polaroids côte à côte), pas deux photos avec exactement le même scotch. */
+   possédée). Quatre variantes, chacune avec sa propre rotation, pour que deux photos
+   voisines (fiches équipe, hero) n'affichent jamais le même scotch au même angle.
+   ⚠️ nth-of-type ne marche PAS ici : chaque polaroid est en général fils unique de
+   son propre conteneur, donc toujours "1er de son type" — la variante doit être
+   posée explicitement, via une classe .polaroid--tape-N (statique dans le HTML) ou
+   au rendu JS (voir renderTeamPolaroids()/galerie.html, qui cyclent sur l'index). */
 .polaroid::before {
     content: '';
     position: absolute;
@@ -91,9 +95,9 @@ body {
     transform: rotate(-4deg);
     z-index: 10;
 }
-.polaroid:nth-of-type(4n+2)::before { background-image: url('../img/tape/tape-2.webp'); transform: rotate(3deg); }
-.polaroid:nth-of-type(4n+3)::before { background-image: url('../img/tape/tape-3.webp'); transform: rotate(-6deg); }
-.polaroid:nth-of-type(4n)::before { background-image: url('../img/tape/tape-4.webp'); transform: rotate(2deg); }
+.polaroid--tape-2::before { background-image: url('../img/tape/tape-2.webp'); transform: rotate(3deg); }
+.polaroid--tape-3::before { background-image: url('../img/tape/tape-3.webp'); transform: rotate(-6deg); }
+.polaroid--tape-4::before { background-image: url('../img/tape/tape-4.webp'); transform: rotate(2deg); }
 
 .polaroid img {
     width: 100%;
