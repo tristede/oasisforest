@@ -74,20 +74,26 @@ body {
     will-change: transform;
 }
 
+/* Vrai scotch (masking tape déchiré) à la place du rectangle blanc translucide
+   d'origine — textures reprises du portfolio (assets/Resource Boy, licence déjà
+   possédée). Quatre variantes + rotations différentes : sur les fiches équipe (3
+   polaroids côte à côte), pas deux photos avec exactement le même scotch. */
 .polaroid::before {
     content: '';
     position: absolute;
-    top: -15px;
+    top: -16px;
     left: 50%;
-    margin-left: -45px;
-    width: 90px;
-    height: 30px;
-    background-color: rgba(255, 255, 255, 0.4);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-    backdrop-filter: blur(4px);
+    margin-left: -50px;
+    width: 100px;
+    height: 26px;
+    background: url('../img/tape/tape-1.webp') center/100% 100% no-repeat;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.35));
     transform: rotate(-4deg);
     z-index: 10;
 }
+.polaroid:nth-of-type(4n+2)::before { background-image: url('../img/tape/tape-2.webp'); transform: rotate(3deg); }
+.polaroid:nth-of-type(4n+3)::before { background-image: url('../img/tape/tape-3.webp'); transform: rotate(-6deg); }
+.polaroid:nth-of-type(4n)::before { background-image: url('../img/tape/tape-4.webp'); transform: rotate(2deg); }
 
 .polaroid img {
     width: 100%;
